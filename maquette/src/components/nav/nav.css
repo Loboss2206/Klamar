@@ -1,0 +1,48 @@
+.nav_current_page_head{
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 1.5em;
+    text-align: center;
+    font-family: Roboto, serif;
+    color: #ffffff;
+    margin-top: 0;
+    width: 25vw;
+    margin-bottom: 0;
+    background-color: #434343;
+    border-radius: 10px;
+}
+.fjalla-one-regular {
+    font-family: "Fjalla One", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.nav_title{
+    position: absolute;
+    top: 15px;
+    font-size: 1.5em;
+    text-align: center;
+    font-family: "Fjalla One", sans-serif, serif;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+.navbar {
+    display: flex;
+    width: 100%;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: row;
+    position: relative;
+    height: 3rem;
+}
+
+.quitLogo{
+    cursor: pointer;
+}
+
+.logo{
+    width: 120px;
+    object-fit: fill;
+    cursor: pointer;
+}

@@ -1,0 +1,44 @@
+.title_wrapper{
+    font-size: 1.5em;
+    text-align: center;
+    font-family: Roboto, serif;
+    color: #ffffff;
+    margin-top: 0;
+    width: 100%;
+    display: block;
+    margin-bottom: 50px;
+    background-color: #434343;
+    border-radius: 10px;
+}
+
+.finish{
+    height: 10vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+}
+.buttonWrapper > .buttonBackground{
+    margin: 10px;
+    width: 100%;
+}
+
+.felicidad{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.buttonWrapper{
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+}
+
+.finish_text{
+    font-size: 10em;
+    font-family: "Fenix", Serif;
+    text-shadow: 2px 2px 2px #000000;
+    margin-bottom: 0;
+}

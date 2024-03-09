@@ -1,0 +1,34 @@
+.buttonImageBackground {
+    text-align: center;
+    max-height: 30vh;
+    transition: background 0.3s ease;
+    position: relative;
+    aspect-ratio: 21/9;
+}
+
+.buttonImageBackground::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 30px;
+    background: rgba(0, 0, 0, 0);
+    transition: background 0.3s ease;
+}
+
+.buttonImageBackground:hover::after {
+    background: rgba(0, 0, 0, 0.2);
+}
+
+.buttonImg{
+    border-radius: 30px;
+    width: 100%;
+    height: 100%;
+    object-fit: fill;
+}
+
+.liteButtonImage{
+    height: 20vh;
+}

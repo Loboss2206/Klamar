@@ -1,0 +1,35 @@
+.slidecontainer {
+    width: 80vw;
+    margin: 50px auto;
+    display: flex;
+}
+
+.configText {
+    color: black;
+    font-size: 1.5vw;
+    font-weight: bold;
+    margin: 1vw;
+}
+
+.slider {
+    width: 50vw;
+    background-color: lightgray;
+    position: relative;
+    border-radius: 5px;
+    margin: auto;
+}
+
+.slider-handle {
+    width: 20px;
+    height: 20px;
+    background-color: black;
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+input[type="range"]::-webkit-slider-thumb {
+    position: relative;
+    z-index: 2;
+}

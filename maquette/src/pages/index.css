@@ -1,0 +1,46 @@
+html {
+  margin: 0;
+  padding: 0;
+  font-family: 'Roboto', sans-serif;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #434343;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #252525;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+#super-speed_nav{
+/* make a vertical list of links centered in the page */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100vw;
+  background-color: transparent;
+  color: #ffffff;
+  font-size: 2rem;
+}
+
+.center{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

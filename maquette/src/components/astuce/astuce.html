@@ -1,0 +1,23 @@
+<div>
+    <div class="overlay" style="display: none"></div>
+    <img src="assets/lightbulb.svg" alt="astuce" class="astuceImg" onclick="(()=>{
+    document.querySelector('.AstuceDialogContainer').style.display = 'block';
+    document.querySelector('.overlay').style.display = 'block';
+    document.getElementsByTagName('body')[0].style.overflow = 'hidden';
+})()" />
+    <div class="AstuceDialogContainer" style="display: none">
+        <div class="AstuceDialog">
+            <img src="assets/close.svg" alt="close" class="closeAstuce" onclick="(()=>{
+                document.querySelector('.AstuceDialogContainer').style.display = 'none';
+                document.querySelector('.overlay').style.display = 'none';
+                document.getElementsByTagName('body')[0].style.overflow = 'auto';
+            })()" />
+            <h1 class="AstuceTitle">Indice</h1>
+            <div class="AstuceLine">
+            <p class="AstuceContent">
+                <matrio-content></matrio-content>
+            </p>
+            </div>
+        </div>
+    </div>
+</div>

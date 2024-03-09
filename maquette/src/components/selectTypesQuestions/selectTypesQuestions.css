@@ -1,0 +1,22 @@
+.selectContainer {
+    width: 80vw;
+    margin: 4vw auto;
+    text-align: center;
+}
+
+.mySelect {
+    border: 2px solid black;
+    width: 80vw;
+    height: 5vw;
+    padding-left: 1vw;
+    margin: auto;
+    color: black;
+    font-weight: bold;
+    font-size: 1.5vw;
+}
+
+option {
+    color: black;
+    font-weight: bold;
+    font-size: 1.2vw;
+}

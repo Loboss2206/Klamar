@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="english">
+
+<head>
+  <title>Matrio</title>
+  <link rel="stylesheet" href="./style.css" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fjalla+One&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Fenix&display=swap" rel="stylesheet">
+</head>
+
+<body style="overflow: hidden;">
+  <matrio path="components/template/template">
+      <matrio path="components/nav/nav" />
+      <div id="super-speed_nav">
+      </div>
+      <script>
+        const nav = document.getElementById('super-speed_nav');
+        const listOfPages = ['questionTexte', 'questionTexteReponseImage', 'questionImageReponseImage', 'questionImageReponseTexte', 'felicidad', 'config1', 'quizResultPage'];
+        const listOfPagesNames = ['Question Texte', 'Question Texte Réponse Image', 'Question Image Réponse Image', 'Question Image Réponse Texte', 'Felicidad', 'Config', 'Quiz Result Page'];
+        for (let i = 0; i < listOfPages.length; i++) {
+          const a = document.createElement('a');
+          a.href = `./${listOfPages[i]}.html`;
+          a.innerHTML = listOfPagesNames[i];
+          nav.appendChild(a);
+        }
+      </script>
+  </matrio>
+</body>
+
+</html>

@@ -1,0 +1,29 @@
+.selectModeContainer {
+    width: 60vw;
+    margin: 4vw auto;
+    text-align: center;
+    display: flex;
+}
+
+.selectModeContainer h1 {
+    color: black;
+    font-size: 2vw;
+    font-weight: bold;
+    margin: auto;
+}
+
+.selectModeContainer button {
+    width: 20vw;
+    height: 4vw;
+    margin: auto;
+    color: black;
+    font-size: larger;
+    font-weight: bold;
+    font-size: 1.5vw;
+    background-color: lightgray;
+    border: 2px solid black;
+}
+
+.selectModeContainer .active {
+    background-color: gray;
+}
