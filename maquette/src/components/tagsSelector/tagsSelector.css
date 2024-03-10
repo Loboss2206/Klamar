@@ -1,0 +1,43 @@
+.tagsContainer {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    padding: 5px 10px;
+    background-color: #ffffff;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: auto;
+    margin-right: 10px;
+    position: relative;
+}
+
+.tagsSelector {
+    display: none;
+    position: absolute;
+    top: calc(100%);
+    left: 0;
+    background-color: #ffffff;
+    border: 1px solid #ccc;
+    border-top: none;
+    border-radius: 0 0 5px 5px;
+    z-index: 1;
+}
+
+.tagsLabel {
+    cursor: pointer;
+    padding-left: 1vw;
+}
+
+.tagsContainer:hover .tagsLabel+.tagsSelector {
+    display: block;
+}
+
+.tagsSelector option {
+    padding: 5px;
+}
+
+.filterLogo {
+    width: 30px;
+    height: 30px;
+    margin-left: 5px;
+}
