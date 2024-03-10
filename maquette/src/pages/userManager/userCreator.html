@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset=utf-8>
+    <title>Matrio</title>
+    <link rel="stylesheet" href="./style.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai+Looped:wght@100;200;300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fjalla+One&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <matrio path="components/nav/nav" class="navbar"></matrio>
+    <div class="userAvatar">
+        <img src="assets/user.png" alt="userAvatar" width="150" height="150" />
+        <p>Ajouter une photo</p>
+    </div>
+    <main class="userCreator">
+        <div class="colonne1">
+            <matrio path="components/userInputBox/userInputBox" class="userInputBox">Nom</matrio>
+            <matrio path="components/userInputBox/userInputBox" class="userInputBox">Troubles</matrio>
+            <matrio path="components/labelWithSelect/labelWithSelect" class="userInputBox">Statut familiale</matrio>
+            <div class="baseZoom">
+                <p>Zoom de base</p>
+                <input type="number" min="0" step="1" max="300" value="100">
+            </div>
+        </div>
+        <div class="colonne2">
+            <matrio path="components/userInputBox/userInputBox" class="userInputBox">Prénom</matrio>
+            <matrio path="components/labelWithSelect/labelWithSelect" class="userInputBox">Type de daltonisme</matrio>
+            <matrio path="components/userInputBox/userInputBox" class="userInputBox">Intérêts/hobbies</matrio>
+        </div>
+        <div class="colonne3">
+            <matrio path="components/userInputBox/userInputBox" class="userInputBox">Date de naissance</matrio>
+            <matrio path="components/labelWithSelect/labelWithSelect" class="userInputBox">Genre</matrio>
+            <matrio path="components/userInputBox/userInputBox" class="userInputBox">Langue préférée</matrio>
+        </div>
+    </main>
+    <matrio path="components/button/button" class="liteButton">
+        <p>Créer l'utilisateur</p>
+    </matrio>
+    <footer>
+        <matrio path="components/slider/slider" class="sliderForQuizResult"></matrio>
+    </footer>
+</body>
+
+</html>
