@@ -1,0 +1,19 @@
+h1 {
+    font-family: "Roboto", sans-serif;
+}
+
+.graphicName{
+
+    word-spacing: 410px;
+
+}
+
+.graphic {
+    display: flex;
+    justify-content: space-between; /* Ajuste l'espace entre les images */
+}
+.graphic img {
+    max-width: 30%; /* Ajuste la largeur maximale des images */
+    height: auto; /* Assure le maintien des proportions */
+}
+
