@@ -11,6 +11,17 @@
     align-items: center;
 }
 
+.btnRed {
+    background-color: #FF0000;
+}
+
+.btnGray{
+    background-color: #808080;
+}
+
+.btnGreen{
+    background-color: #008000;
+}
 .buttonBackground::after {
     content: "";
     position: absolute;
@@ -26,13 +37,11 @@
 .buttonBackground:hover::after {
     background: rgba(0, 0, 0, 0.2);
 }
-
 .buttonTxt {
     font-size: 3rem;
     font-family: Roboto, serif;
     color: #ffffff;
 }
-
 .liteButton {
     height: 10vh;
 }
