@@ -1,8 +1,8 @@
-.buttonBackground {
+.buttonBackgroundGray {
     border-radius: 30px;
     height: 25vh;
     width: 400px;
-    background-color: #3a4eff;
+    background-color: #303030;
     text-align: center;
     transition: background 0.3s ease;
     position: relative;
@@ -10,7 +10,6 @@
     justify-content: center;
     align-items: center;
 }
-
 .buttonBackground::after {
     content: "";
     position: absolute;
@@ -26,13 +25,11 @@
 .buttonBackground:hover::after {
     background: rgba(0, 0, 0, 0.2);
 }
-
 .buttonTxt {
     font-size: 3rem;
     font-family: Roboto, serif;
     color: #ffffff;
 }
-
 .liteButton {
     height: 10vh;
 }

@@ -2,6 +2,7 @@
 <html lang="english">
 
 <head>
+  <meta charset=utf-8>
   <title>Matrio</title>
   <link rel="stylesheet" href="./style.css" />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
@@ -13,20 +14,20 @@
 
 <body style="overflow: hidden;">
   <matrio path="components/template/template">
-      <matrio path="components/nav/nav" />
-      <div id="super-speed_nav">
-      </div>
-      <script>
-        const nav = document.getElementById('super-speed_nav');
-        const listOfPages = ['questionTexte', 'questionTexteReponseImage', 'questionImageReponseImage', 'questionImageReponseTexte', 'felicidad', 'config1', 'quizResultPage'];
-        const listOfPagesNames = ['Question Texte', 'Question Texte Réponse Image', 'Question Image Réponse Image', 'Question Image Réponse Texte', 'Felicidad', 'Config', 'Quiz Result Page'];
-        for (let i = 0; i < listOfPages.length; i++) {
-          const a = document.createElement('a');
-          a.href = `./${listOfPages[i]}.html`;
-          a.innerHTML = listOfPagesNames[i];
-          nav.appendChild(a);
-        }
-      </script>
+    <matrio path="components/nav/nav" />
+    <div id="super-speed_nav">
+    </div>
+    <script>
+      const nav = document.getElementById('super-speed_nav');
+      const listOfPages = ['questionTexte', 'questionTexteReponseImage', 'questionImageReponseImage', 'questionImageReponseTexte', 'felicidad', 'config', 'quizResultPage', 'userCreator', 'graphic', 'statMemory', 'statSimon', 'statQuestion'];
+      const listOfPagesNames = ['Question Texte', 'Question Texte RÃ©ponse Image', 'Question Image RÃ©ponse Image', 'Question Image RÃ©ponse Texte', 'Felicidad', 'Config', 'Quiz Result Page', 'userCreator', 'graphic', 'statMemory', 'statSimon', 'statQuestion'];
+      for (let i = 0; i < listOfPages.length; i++) {
+        const a = document.createElement('a');
+        a.href = `./${listOfPages[i]}.html`;
+        a.innerHTML = listOfPagesNames[i];
+        nav.appendChild(a);
+      }
+    </script>
   </matrio>
 </body>
 
