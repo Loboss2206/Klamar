@@ -2,6 +2,7 @@
 <html lang="english">
 
 <head>
+  <meta charset=utf-8>
   <title>Matrio</title>
   <link rel="stylesheet" href="./style.css" />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
@@ -18,8 +19,8 @@
     </div>
     <script>
       const nav = document.getElementById('super-speed_nav');
-      const listOfPages = ['questionTexte', 'questionTexteReponseImage', 'questionImageReponseImage', 'questionImageReponseTexte', 'felicidad', 'config1', 'quizResultPage', 'userCreator'];
-      const listOfPagesNames = ['Question Texte', 'Question Texte R�ponse Image', 'Question Image R�ponse Image', 'Question Image R�ponse Texte', 'Felicidad', 'Config', 'Quiz Result Page', 'userCreator'];
+      const listOfPages = ['questionTexte', 'questionTexteReponseImage', 'questionImageReponseImage', 'questionImageReponseTexte', 'felicidad', 'config', 'quizResultPage', 'userCreator', 'graphic', 'statMemory', 'statSimon', 'statQuestion'];
+      const listOfPagesNames = ['Question Texte', 'Question Texte Réponse Image', 'Question Image Réponse Image', 'Question Image Réponse Texte', 'Felicidad', 'Config', 'Quiz Result Page', 'userCreator', 'graphic', 'statMemory', 'statSimon', 'statQuestion'];
       for (let i = 0; i < listOfPages.length; i++) {
         const a = document.createElement('a');
         a.href = `./${listOfPages[i]}.html`;
