@@ -1,0 +1,4 @@
+<p class="question">{{questionText}}</p>
+<div class="griddy">
+  <app-button *ngFor="let answer of answers" [text]="answer" (click)="!blockUI && onAnswer(answer)" [color]="{correct: answer === correctAnswer ,wrong: answer !== correctAnswer && wrongAnswers.includes(answer)}">{{answer}}</app-button>
+</div>
