@@ -1,4 +1,4 @@
-<div class="buttonBackground" [ngClass]="{'btnGreen': color?.correct, 'btnGray': color?.wrong, 'btnGreenImage': color?.correct && img !== '', 'btnGrayImage': color?.wrong && img !== ''}">
+<div class="buttonBackground" [ngClass]="{'btnGreen': color?.correct, 'btnGray': color?.wrong, 'btnGreenImage': color?.correct && img !== '', 'btnGrayImage': color?.wrong && img !== '', 'liteButton': lite}">
     <span *ngIf="img === ''" class="buttonTxt">
         <ng-content></ng-content>
     </span>

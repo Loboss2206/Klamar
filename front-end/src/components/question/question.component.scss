@@ -38,3 +38,10 @@
   border-radius: 15px;
   aspect-ratio: 21/9;
 }
+.tipsContainer  {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  margin-top: 10px;
+}

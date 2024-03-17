@@ -1,0 +1,21 @@
+<div>
+  <div class="overlay" style="display: none" onclick="(()=>{
+                document.querySelector('.AstuceDialogContainer').style.display = 'none';
+                document.querySelector('.overlay').style.display = 'none';
+                document.getElementsByTagName('body')[0].style.overflow = 'auto';
+            })()"></div>
+  <app-button [lite]="true" onclick="(()=>{
+    document.querySelector('.AstuceDialogContainer').style.display = 'block';
+    document.querySelector('.overlay').style.display = 'block';
+    document.getElementsByTagName('body')[0].style.overflow = 'hidden';
+})()">Astuces</app-button>
+  <div class="AstuceDialogContainer" style="display: none">
+    <div class="AstuceDialog">
+      <div class="AstuceLine">
+        <p class="AstuceContent">
+          <ng-content></ng-content>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>

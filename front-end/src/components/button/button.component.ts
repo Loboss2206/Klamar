@@ -17,6 +17,7 @@ export class ButtonComponent {
   @Input() img?: string = '';
 
   buttonText: string = '';
+  @Input() lite!: boolean;
 
   constructor() {
   }
