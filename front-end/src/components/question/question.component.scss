@@ -1,0 +1,25 @@
+.griddy{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+  justify-content: center;
+  margin-top: 25px;
+}
+
+.griddy > app-button {
+  width: 40%;
+  box-sizing: border-box;
+}
+
+@media (max-width: 768px) {
+  .griddy > app-button {
+    width: 100%;
+  }
+}
+
+.question{
+  font-family: "Alatsi", sans-serif;
+  font-size: 3rem;
+  margin: 0;
+  text-align: center;
+}
