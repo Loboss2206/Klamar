@@ -1,5 +1,8 @@
-<div class="buttonBackground" [ngClass]="{'btnGreen': color?.correct, 'btnGray': color?.wrong}">
-    <span class="buttonTxt">
-      <ng-content></ng-content>
+<div class="buttonBackground" [ngClass]="{'btnGreen': color?.correct, 'btnGray': color?.wrong, 'btnGreenImage': color?.correct && img !== '', 'btnGrayImage': color?.wrong && img !== ''}">
+    <span *ngIf="img === ''" class="buttonTxt">
+        <ng-content></ng-content>
     </span>
+  <span *ngIf="img !== ''"  class="buttonImg">
+      <img ngSrc="{{img}}"  class="buttonImg" [ngClass]="{'btnGreenImage': color?.correct, 'btnGray': color?.wrong}" alt="img" fill="preserve" />
+  </span>
 </div>
