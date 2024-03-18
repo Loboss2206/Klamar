@@ -1,9 +1,11 @@
 .title {
-    padding: 5px;
+    padding-left: 4px;
+    padding-right: 4px;
     background-color: black;
     display: inline-block;
 }
 
 .title>span {
     color: white;
+    font-size: 0.8em;
 }

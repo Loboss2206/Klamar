@@ -2,6 +2,8 @@ import { Component, Input, SimpleChanges } from '@angular/core';
 import { sortComponent } from '../sort/sort.component';
 import { titlePageComponent } from '../titlePage/titlePage.component';
 import { quizResultBoxComponent } from '../quizResultBox/quizResultBox.component';
+import { NavbarComponent } from '../navbar/navbar.component';
+import { ZoomSliderComponent } from '../zoomSlider/zoomSlider.component';
 
 
 @Component({
@@ -10,7 +12,7 @@ import { quizResultBoxComponent } from '../quizResultBox/quizResultBox.component
   imports: [
     sortComponent,
     titlePageComponent,
-    quizResultBoxComponent
+    quizResultBoxComponent, NavbarComponent, ZoomSliderComponent
   ],
   templateUrl: './quizResultPage.component.html',
   styleUrl: './quizResultPage.component.scss'
