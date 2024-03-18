@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { ButtonComponent } from "../components/button/button.component";
+import { ButtonComponent } from "../components/quizButton/button.component";
 import { QuestionComponent } from "../components/question/question.component";
 import { QuizComponent } from "../components/quiz/quiz.component";
 import { quizResultPageComponent } from 'src/components/quizResultPage/quizResultPage.component';
@@ -13,6 +13,7 @@ import { SearchQuizSelectorComponent } from "../components/search-quiz-selector/
 import { QuizSelectorItemComponent } from "../components/quiz-selector-item/quiz-selector-item.component";
 import { QuizSelectorContainerComponent } from "../components/quiz-selector-container/quiz-selector-container.component";
 import { QuizSelectorComponent } from "../components/quiz-selector/quiz-selector.component";
+import { UserCreatorComponent } from 'src/components/userManager/userCreator.component';
 
 @NgModule({
   declarations: [
@@ -25,12 +26,12 @@ import { QuizSelectorComponent } from "../components/quiz-selector/quiz-selector
     QuestionComponent,
     QuizComponent,
     quizResultPageComponent,
-    quizResultBoxComponent
+    quizResultBoxComponent,
     TagsSelectorComponent,
     SearchQuizSelectorComponent,
     QuizSelectorItemComponent,
     QuizSelectorContainerComponent,
-    QuizSelectorComponent
+    QuizSelectorComponent, UserCreatorComponent
   ],
   providers: [],
   bootstrap: [AppComponent]
