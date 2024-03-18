@@ -3,7 +3,6 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { ButtonComponent } from "../components/quizButton/button.component";
 import { QuestionComponent } from "../components/question/question.component";
 import { QuizComponent } from "../components/quiz/quiz.component";
 import { quizResultPageComponent } from 'src/components/quizResultPage/quizResultPage.component';
@@ -14,6 +13,17 @@ import { QuizSelectorItemComponent } from "../components/quiz-selector-item/quiz
 import { QuizSelectorContainerComponent } from "../components/quiz-selector-container/quiz-selector-container.component";
 import { QuizSelectorComponent } from "../components/quiz-selector/quiz-selector.component";
 import { UserCreatorComponent } from 'src/components/userManager/userCreator.component';
+import {NavbarComponent} from "../components/navbar/navbar.component";
+import {RouterModule, Routes} from "@angular/router";
+import {FelicidadComponent} from "../components/felicidad/felicidad.component";
+
+const routes: Routes = [
+  { path: '', component: QuizSelectorComponent },
+  { path: '/quizSelector', component: QuizSelectorComponent},
+  { path: '/quiz/:id', component: QuizComponent },
+  {path: '/felicitations', component: FelicidadComponent},
+  { path: '/quizResultPage/:id', component: quizResultPageComponent }
+];
 
 @NgModule({
   declarations: [
@@ -22,7 +32,6 @@ import { UserCreatorComponent } from 'src/components/userManager/userCreator.com
   imports: [
     BrowserModule,
     AppRoutingModule,
-    ButtonComponent,
     QuestionComponent,
     QuizComponent,
     quizResultPageComponent,
@@ -31,7 +40,10 @@ import { UserCreatorComponent } from 'src/components/userManager/userCreator.com
     SearchQuizSelectorComponent,
     QuizSelectorItemComponent,
     QuizSelectorContainerComponent,
-    QuizSelectorComponent, UserCreatorComponent
+    UserCreatorComponent,
+    QuizSelectorComponent,
+    NavbarComponent,
+    RouterModule.forRoot(routes)
   ],
   providers: [],
   bootstrap: [AppComponent]
