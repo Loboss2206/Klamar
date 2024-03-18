@@ -15,6 +15,6 @@
 
 
 <div class="griddy">
-  <app-button *ngFor="let answer of answers" (click)="!blockUI && onAnswer(answer)" [color]="{correct: answer === correctAnswer ,wrong: answer !== correctAnswer && wrongAnswers.includes(answer)}" [img]="question.AreResponsesImages ?  answer : ''">{{answer}}</app-button>
+  <app-quizButton *ngFor="let answer of answers" (click)="!blockUI && onAnswer(answer)" [color]="{correct: answer === correctAnswer ,wrong: answer !== correctAnswer && wrongAnswers.includes(answer)}" [img]="question.AreResponsesImages ?  answer : ''">{{answer}}</app-quizButton>
 </div>
 

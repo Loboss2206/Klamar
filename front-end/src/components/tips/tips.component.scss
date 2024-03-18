@@ -48,3 +48,7 @@
   background-color: rgba(0, 0, 0, 0.8);
   z-index: 99;
 }
+
+.white {
+  filter: invert(1);
+}

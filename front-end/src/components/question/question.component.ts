@@ -1,5 +1,5 @@
 import {Component, EventEmitter, Input, OnChanges, Output, SimpleChanges} from '@angular/core';
-import {ButtonComponent} from "../button/button.component";
+import {ButtonComponent} from "../quizButton/button.component";
 import {NgClass, NgForOf, NgIf, NgOptimizedImage} from "@angular/common";
 import {QuizService} from "../../services/quiz-service.service";
 import IQuestion from "../../interfaces/IQuestion";

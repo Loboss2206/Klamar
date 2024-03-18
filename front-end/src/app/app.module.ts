@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import {ButtonComponent} from "../components/button/button.component";
+import {ButtonComponent} from "../components/quizButton/button.component";
 import {QuestionComponent} from "../components/question/question.component";
 import {QuizComponent} from "../components/quiz/quiz.component";
 
