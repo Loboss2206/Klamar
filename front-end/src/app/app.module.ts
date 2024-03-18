@@ -12,6 +12,7 @@ import { SearchQuizSelectorComponent } from "../components/search-quiz-selector/
 import { QuizSelectorItemComponent } from "../components/quiz-selector-item/quiz-selector-item.component";
 import { QuizSelectorContainerComponent } from "../components/quiz-selector-container/quiz-selector-container.component";
 import { QuizSelectorComponent } from "../components/quiz-selector/quiz-selector.component";
+import { UserCreatorComponent } from 'src/components/userManager/userCreator.component';
 import {NavbarComponent} from "../components/navbar/navbar.component";
 import {RouterModule, Routes} from "@angular/router";
 import {FelicidadComponent} from "../components/felicidad/felicidad.component";
@@ -39,6 +40,7 @@ const routes: Routes = [
     SearchQuizSelectorComponent,
     QuizSelectorItemComponent,
     QuizSelectorContainerComponent,
+    UserCreatorComponent,
     QuizSelectorComponent,
     NavbarComponent,
     RouterModule.forRoot(routes)
