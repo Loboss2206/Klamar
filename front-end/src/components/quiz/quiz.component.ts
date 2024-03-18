@@ -1,9 +1,10 @@
-import {Component} from '@angular/core';
-import {QuestionComponent} from "../question/question.component";
-import {NgForOf, NgIf} from "@angular/common";
-import {QuizService} from "../../services/quiz-service.service";
+import { Component } from '@angular/core';
+import { QuestionComponent } from "../question/question.component";
+import { NgForOf, NgIf } from "@angular/common";
+import { QuizService } from "../../services/quiz-service.service";
 import IQuestion from "../../interfaces/IQuestion";
-import {FelicidadComponent} from "../felicidad/felicidad.component";
+import { FelicidadComponent } from "../felicidad/felicidad.component";
+import { NavbarComponent } from "../navbar/navbar.component";
 
 @Component({
   selector: 'app-quiz',
@@ -12,7 +13,8 @@ import {FelicidadComponent} from "../felicidad/felicidad.component";
     QuestionComponent,
     NgForOf,
     FelicidadComponent,
-    NgIf
+    NgIf,
+    NavbarComponent
   ],
   templateUrl: './quiz.component.html',
   styleUrl: './quiz.component.scss'
@@ -29,7 +31,7 @@ export class QuizComponent {
   }
 
   renewCurrentQuestion(): void {
-    this.currentQuestion= this.quizService.getCurrentQuestion();
+    this.currentQuestion = this.quizService.getCurrentQuestion();
   }
 
   isGameFinish(): boolean {
