@@ -8,6 +8,11 @@ import { QuestionComponent } from "../components/question/question.component";
 import { QuizComponent } from "../components/quiz/quiz.component";
 import { quizResultPageComponent } from 'src/components/quizResultPage/quizResultPage.component';
 import { quizResultBoxComponent } from 'src/components/quizResultBox/quizResultBox.component';
+import { TagsSelectorComponent } from "../components/tags-selector/tags-selector.component";
+import { SearchQuizSelectorComponent } from "../components/search-quiz-selector/search-quiz-selector.component";
+import { QuizSelectorItemComponent } from "../components/quiz-selector-item/quiz-selector-item.component";
+import { QuizSelectorContainerComponent } from "../components/quiz-selector-container/quiz-selector-container.component";
+import { QuizSelectorComponent } from "../components/quiz-selector/quiz-selector.component";
 
 @NgModule({
   declarations: [
@@ -21,6 +26,11 @@ import { quizResultBoxComponent } from 'src/components/quizResultBox/quizResultB
     QuizComponent,
     quizResultPageComponent,
     quizResultBoxComponent
+    TagsSelectorComponent,
+    SearchQuizSelectorComponent,
+    QuizSelectorItemComponent,
+    QuizSelectorContainerComponent,
+    QuizSelectorComponent
   ],
   providers: [],
   bootstrap: [AppComponent]
