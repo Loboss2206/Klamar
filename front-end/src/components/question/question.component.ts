@@ -1,8 +1,9 @@
 import {Component, EventEmitter, Input, OnChanges, Output, SimpleChanges} from '@angular/core';
 import {ButtonComponent} from "../button/button.component";
-import {NgClass, NgForOf} from "@angular/common";
+import {NgClass, NgForOf, NgIf, NgOptimizedImage} from "@angular/common";
 import {QuizService} from "../../services/quiz-service.service";
 import IQuestion from "../../interfaces/IQuestion";
+import {TipsComponent} from "../tips/tips.component";
 
 @Component({
   selector: 'app-question',
@@ -10,7 +11,10 @@ import IQuestion from "../../interfaces/IQuestion";
   imports: [
     ButtonComponent,
     NgForOf,
-    NgClass
+    NgClass,
+    NgOptimizedImage,
+    NgIf,
+    TipsComponent
   ],
   templateUrl: './question.component.html',
   styleUrl: './question.component.scss'
@@ -41,7 +45,7 @@ export class QuestionComponent implements OnChanges {
   }
 
   updateQuestion() {
-    this.answers = this.question.options;
+    this.answers = this.question.responses;
     this.questionText = this.question.question;
     this.correctAnswer = null;
     this.wrongAnswers = [];

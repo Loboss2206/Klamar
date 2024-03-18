@@ -1,6 +1,7 @@
 .buttonBackground {
   border-radius: 30px;
   height: 25vh;
+  max-height: 30vh;
   width: 100%;
   background-color: #3a4eff;
   text-align: center;
@@ -9,6 +10,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  aspect-ratio: 21/9;
+  cursor: pointer;
 }
 
 .btnRed {
@@ -37,6 +40,19 @@
 .buttonBackground:hover::after {
   background: rgba(0, 0, 0, 0.2);
 }
+
+.btnGreenImage{
+  background-color: rgba(0, 128, 0, 0.60);
+}
+.btnGrayImage{
+  background-color: rgba(128, 128, 128, 0.60);
+}
+.btnGreenImage:after{
+  background-color: rgba(0, 128, 0, 0.60);
+}
+.btnGrayImage:after{
+  background-color: rgba(128, 128, 128, 0.60);
+}
 .buttonTxt {
   font-size: 3rem;
   font-family: Roboto, serif;
@@ -44,4 +60,11 @@
 }
 .liteButton {
   height: 10vh;
+}
+
+.buttonImg{
+  border-radius: 30px;
+  width: 100%;
+  height: 100%;
+  object-fit: fill;
 }
