@@ -6,6 +6,8 @@ import { AppComponent } from './app.component';
 import { ButtonComponent } from "../components/button/button.component";
 import { QuestionComponent } from "../components/question/question.component";
 import { QuizComponent } from "../components/quiz/quiz.component";
+import { quizResultPageComponent } from 'src/components/quizResultPage/quizResultPage.component';
+import { quizResultBoxComponent } from 'src/components/quizResultBox/quizResultBox.component';
 import { TagsSelectorComponent } from "../components/tags-selector/tags-selector.component";
 import { SearchQuizSelectorComponent } from "../components/search-quiz-selector/search-quiz-selector.component";
 import { QuizSelectorItemComponent } from "../components/quiz-selector-item/quiz-selector-item.component";
@@ -22,6 +24,8 @@ import { QuizSelectorComponent } from "../components/quiz-selector/quiz-selector
     ButtonComponent,
     QuestionComponent,
     QuizComponent,
+    quizResultPageComponent,
+    quizResultBoxComponent
     TagsSelectorComponent,
     SearchQuizSelectorComponent,
     QuizSelectorItemComponent,
