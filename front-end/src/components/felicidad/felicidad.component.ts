@@ -1,5 +1,5 @@
 import {Component, EventEmitter, Output} from '@angular/core';
-import {ButtonComponent} from "../button/button.component";
+import {ButtonComponent} from "../quizButton/button.component";
 import {QuizService} from "../../services/quiz-service.service";
 
 @Component({

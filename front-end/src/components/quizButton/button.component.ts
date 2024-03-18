@@ -2,7 +2,7 @@ import {Component, Input, SimpleChanges} from '@angular/core';
 import {NgClass, NgIf, NgOptimizedImage} from "@angular/common";
 
 @Component({
-  selector: 'app-button',
+  selector: 'app-quizButton',
   standalone: true,
   imports: [
     NgClass,

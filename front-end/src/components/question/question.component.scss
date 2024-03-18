@@ -6,13 +6,13 @@
   margin-top: 25px;
 }
 
-.griddy > app-button {
+.griddy > app-quizButton {
   width: 40%;
   box-sizing: border-box;
 }
 
 @media (max-width: 768px) {
-  .griddy > app-button {
+  .griddy > app-quizButton {
     width: 100%;
   }
 }

@@ -45,7 +45,7 @@ test.describe('Home page display', () => {
     // Success message should be visible now!
     expect(success).toBeVisible();
 
-    // Another way to click on a button is to expose a function doing the click directly and avoid the two lines 35 and 36.
+    // Another way to click on a quizButton is to expose a function doing the click directly and avoid the two lines 35 and 36.
     await appComponentFixture.clickOnShowButton();
     success = await appComponentFixture.getSuccessMessage();
     // Success message shouldn't be visible again.
