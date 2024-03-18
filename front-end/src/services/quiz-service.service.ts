@@ -1,10 +1,11 @@
-import {Injectable} from '@angular/core';
+import { Injectable } from '@angular/core';
 import IQuestion from "../interfaces/IQuestion";
 
 @Injectable({
   providedIn: 'root'
 })
 export class QuizService {
+  private tagsList: string[] = ['geo', 'actor', 'music', 'sport'];
   private questionList: IQuestion[] = [
     {
       question: 'Quelle est la capitale de la France ?',
@@ -46,23 +47,33 @@ export class QuizService {
       answer: 'L\'Amazone'
     }
   ];
+
+  getTags(): string[] {
+    return this.tagsList;
+  }
+
   private currentQuestionIndex: number = 0;
   private waitingTimeBeforeNextQuestion: number = 1500;
   private isFinished: boolean = false;
 
-  get  getWaitingTimeBeforeNextQuestion(): number {
+  get getWaitingTimeBeforeNextQuestion(): number {
     return this.waitingTimeBeforeNextQuestion;
+  }
+
+  getQuestions(): IQuestion[] {
+    return this.questionList;
   }
 
   get getTips(): string[] {
     return this.getCurrentQuestion().tips;
   }
+
   getCurrentQuestion(): IQuestion {
     return this.questionList[this.currentQuestionIndex];
   }
 
   getNextQuestion(): IQuestion {
-    if (this.currentQuestionIndex === this.questionList.length-1) {
+    if (this.currentQuestionIndex === this.questionList.length - 1) {
       return this.getCurrentQuestion();
     }
     this.currentQuestionIndex++;
@@ -87,10 +98,10 @@ export class QuizService {
   }
 
   isLastQuestion(): boolean {
-    return this.getQuestionIndex() === this.getQuestionsLength()-1;
+    return this.getQuestionIndex() === this.getQuestionsLength() - 1;
   }
 
-  get getIsFinished (): boolean {
+  get getIsFinished(): boolean {
     return this.isFinished;
   }
 
