@@ -1,5 +1,10 @@
 export default interface IQuestion {
-  answer: string;
   question: string | undefined;
-  options: any;
+  questionImage? : string | undefined;
+  tips: string[];
+  AreResponsesImages: boolean;
+  AreTipsImages?: boolean;
+  AreTipsAvailable?: boolean;
+  responses: string[];
+  answer: string;
 }

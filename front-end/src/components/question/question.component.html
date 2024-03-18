@@ -1,4 +1,20 @@
 <p class="question">{{questionText}}</p>
-<div class="griddy">
-  <app-button *ngFor="let answer of answers" [text]="answer" (click)="!blockUI && onAnswer(answer)" [color]="{correct: answer === correctAnswer ,wrong: answer !== correctAnswer && wrongAnswers.includes(answer)}">{{answer}}</app-button>
+<div class="question-image-container">
+  <img   *ngIf="question.questionImage" src="{{question.questionImage}}" alt=""/>
 </div>
+
+<div class="tipsContainer">
+  <app-tips>
+    <ul>
+      <li *ngFor="let tip of question.tips">
+        {{tip}}
+      </li>
+    </ul>
+  </app-tips>
+</div>
+
+
+<div class="griddy">
+  <app-button *ngFor="let answer of answers" (click)="!blockUI && onAnswer(answer)" [color]="{correct: answer === correctAnswer ,wrong: answer !== correctAnswer && wrongAnswers.includes(answer)}" [img]="question.AreResponsesImages ?  answer : ''">{{answer}}</app-button>
+</div>
+
