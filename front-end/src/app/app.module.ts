@@ -19,10 +19,10 @@ import {FelicidadComponent} from "../components/felicidad/felicidad.component";
 
 const routes: Routes = [
   { path: '', component: QuizSelectorComponent },
-  { path: '/quizSelector', component: QuizSelectorComponent},
-  { path: '/quiz/:id', component: QuizComponent },
-  {path: '/felicitations', component: FelicidadComponent},
-  { path: '/quizResultPage/:id', component: quizResultPageComponent }
+  { path: 'quizSelector', component: QuizSelectorComponent},
+  { path: 'quiz', component: QuizComponent },
+  {path: 'felicitations', component: FelicidadComponent},
+  { path: 'quizResultPage/:id', component: quizResultPageComponent }
 ];
 
 @NgModule({
