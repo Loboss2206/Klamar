@@ -16,13 +16,15 @@ import { UserCreatorComponent } from 'src/components/userManager/userCreator.com
 import {NavbarComponent} from "../components/navbar/navbar.component";
 import {RouterModule, Routes} from "@angular/router";
 import {FelicidadComponent} from "../components/felicidad/felicidad.component";
+import {SimonGameComponent} from "../components/simon-game/simon-game.component";
 
 const routes: Routes = [
   { path: '', component: QuizSelectorComponent },
   { path: 'quizSelector', component: QuizSelectorComponent},
   { path: 'quiz', component: QuizComponent },
   {path: 'felicitations', component: FelicidadComponent},
-  { path: 'quizResultPage/:id', component: quizResultPageComponent }
+  { path: 'quizResultPage/:id', component: quizResultPageComponent },
+  { path: 'simon/:numberOfRound', component: SimonGameComponent }
 ];
 
 @NgModule({

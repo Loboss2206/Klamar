@@ -1,0 +1,28 @@
+.simon-game {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 80vh;
+}
+.simon-board {
+  display: grid;
+  grid-template-columns: repeat(3, 20vh);
+  gap: 10px;
+}
+
+.simon-button {
+  height: 20vh;
+  width: 20vh;
+  background-color: #9f9f9f;
+}
+
+.simon-button:hover {
+  cursor: pointer;
+  filter: brightness(0.8);
+}
+
+.simon-button-active {
+  filter: brightness(0.6);
+}
+
+
