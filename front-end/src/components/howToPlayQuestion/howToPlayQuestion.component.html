@@ -1,3 +1,4 @@
+<p class="tutorialPhrase">{{ tutorialPhrase }}</p>
 <p class="question">Qui suis-je ?</p>
 <!--<div class="question-image-container">
     <img *ngIf="question.questionImage" src="{{question.questionImage}}" alt="" />
@@ -21,8 +22,9 @@
     <app-quizButton (click)="handleButtonClick(4)" [color]="buttonColors[3]">Personne4</app-quizButton>
 </div>
 
-<p class="tutorialPhrase">{{ tutorialPhrase }}</p>
 
-<app-genericButton class="restartTutorial" (click)="resetButtonColors()">Recommencer le tutoriel</app-genericButton>
+<div class="bottomButton">
+    <app-genericButton class="restartTutorial" (click)="resetButtonColors()">Recommencer le tutoriel</app-genericButton>
 
-<app-genericButton (click)="goToQuiz()">Revenir au quiz</app-genericButton>
+    <app-genericButton class="returnToQuiz" (click)="goToQuiz()">Revenir au quiz</app-genericButton>
+</div>

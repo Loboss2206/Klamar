@@ -31,7 +31,7 @@ export class HowToPlayQuestionComponent {
 
 
   constructor(private router: Router) {
-    this.tutorialPhrase = "Bienvenue dans ce tutoriel, pour commencer cliquez avec le clic gauche de la souris sur le bouton Personne3 qui est une des propositions de réponses à la question.";
+    this.tutorialPhrase = "Bienvenue dans ce tutoriel, pour commencer cliquez avec le clic gauche de la souris sur le bouton Personne3 qui est une des propositions de réponses à la question 'Qui suis-je ?'.";
   }
 
   handleButtonClick(personne: number) {
@@ -66,6 +66,6 @@ export class HowToPlayQuestionComponent {
       buttonColor.correct = false;
       buttonColor.wrong = false;
     });
-    this.tutorialPhrase = "Bienvenue dans ce tutoriel, pour commencer cliquez avec le clic gauche de la souris sur le bouton Personne3 qui est une des propositions de réponses à la question";
+    this.tutorialPhrase = "Bienvenue dans ce tutoriel, pour commencer cliquez avec le clic gauche de la souris sur le bouton Personne3 qui est une des propositions de réponses à la question 'Qui suis-je ?'.";
   }
 }
