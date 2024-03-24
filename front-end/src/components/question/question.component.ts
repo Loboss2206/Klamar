@@ -1,9 +1,11 @@
-import {Component, EventEmitter, Input, OnChanges, Output, SimpleChanges} from '@angular/core';
-import {ButtonComponent} from "../quizButton/button.component";
-import {NgClass, NgForOf, NgIf, NgOptimizedImage} from "@angular/common";
-import {QuizService} from "../../services/quiz-service.service";
+import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges } from '@angular/core';
+import { ButtonComponent } from "../quizButton/button.component";
+import { NgClass, NgForOf, NgIf, NgOptimizedImage } from "@angular/common";
+import { QuizService } from "../../services/quiz-service.service";
 import IQuestion from "../../interfaces/IQuestion";
-import {TipsComponent} from "../tips/tips.component";
+import { TipsComponent } from "../tips/tips.component";
+import { Router } from '@angular/router';
+import { GenericButtonComponent } from '../genericButton/genericButton.component';
 
 @Component({
   selector: 'app-question',
@@ -14,7 +16,8 @@ import {TipsComponent} from "../tips/tips.component";
     NgClass,
     NgOptimizedImage,
     NgIf,
-    TipsComponent
+    TipsComponent,
+    GenericButtonComponent
   ],
   templateUrl: './question.component.html',
   styleUrl: './question.component.scss'
@@ -30,7 +33,7 @@ export class QuestionComponent implements OnChanges {
   wrongAnswers: any = [];
   blockUI: boolean = false;
 
-  constructor(private quizService: QuizService) {
+  constructor(private quizService: QuizService, private router: Router) {
 
   }
 
@@ -67,7 +70,11 @@ export class QuestionComponent implements OnChanges {
     }
   }
 
-  private setBlockUI(blocked : boolean) {
+  goToHowToPlay() {
+    this.router.navigate(['howToPlayQuestion/']);
+  }
+
+  private setBlockUI(blocked: boolean) {
     this.blockUI = blocked;
   }
 }

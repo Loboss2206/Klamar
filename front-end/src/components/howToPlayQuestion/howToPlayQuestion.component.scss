@@ -1,0 +1,65 @@
+.griddy {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    justify-content: center;
+    margin-top: 25px;
+}
+
+.griddy>app-quizButton {
+    width: 40%;
+    box-sizing: border-box;
+}
+
+@media (max-width: 768px) {
+    .griddy>app-quizButton {
+        width: 100%;
+    }
+}
+
+.question {
+    font-family: "Alatsi", sans-serif;
+    font-size: 3rem;
+    margin: 0;
+    text-align: center;
+}
+
+.question-image-container {
+    width: 30vw;
+    height: 25vh;
+    max-height: 30vh;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.question-image-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    border-radius: 15px;
+    aspect-ratio: 21/9;
+}
+
+.tipsContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.tutorialPhrase {
+    font-size: 2em;
+    text-align: center;
+    font-family: "Alatsi", sans-serif;
+}
+
+.restartTutorial {
+    float: right;
+    margin-right: 1%;
+    margin-bottom: 1%;
+}
+
+.goToQuiz {
+    cursor: pointer;
+}

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {ButtonComponent} from "../quizButton/button.component";
+import { ButtonComponent } from "../quizButton/button.component";
 
 @Component({
   selector: 'app-tips',
