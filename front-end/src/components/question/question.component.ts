@@ -1,9 +1,11 @@
-import {Component, EventEmitter, Input, OnChanges, Output, SimpleChanges} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ButtonComponent} from "../quizButton/button.component";
 import {NgClass, NgForOf, NgIf, NgOptimizedImage} from "@angular/common";
 import {QuizService} from "../../services/quiz-service.service";
 import IQuestion from "../../interfaces/IQuestion";
 import {TipsComponent} from "../tips/tips.component";
+import {Observable} from "rxjs";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-question',
@@ -19,37 +21,36 @@ import {TipsComponent} from "../tips/tips.component";
   templateUrl: './question.component.html',
   styleUrl: './question.component.scss'
 })
-export class QuestionComponent implements OnChanges {
-  @Input() question!: IQuestion;
+export class QuestionComponent implements OnInit{
 
-  @Output() nextQuestion: EventEmitter<void> = new EventEmitter<void>();
-
+  question: Observable<IQuestion> | undefined;
   questionText: string | undefined;
   answers: any;
   correctAnswer: any = null;
   wrongAnswers: any = [];
   blockUI: boolean = false;
+  tips: string[] = [];
+  questionImage: string | undefined = '';
+  areResponsesImages: boolean = false;
 
-  constructor(private quizService: QuizService) {
+
+  constructor(private quizService: QuizService, private router: Router) {
 
   }
 
   ngOnInit() {
-    this.updateQuestion();
-  }
-
-  ngOnChanges(changes: SimpleChanges) {
-    if (changes['question']) {
-      this.updateQuestion();
-    }
-  }
-
-  updateQuestion() {
-    this.answers = this.question.responses;
-    this.questionText = this.question.question;
-    this.correctAnswer = null;
-    this.wrongAnswers = [];
-    this.setBlockUI(false);
+    this.question = this.quizService.getCurrentQuestion();
+    this.question.subscribe((question: IQuestion) => {
+      console.log(this.question);
+      this.answers = question.responses;
+      this.questionText = question.question;
+      this.tips = question.tips;
+      this.questionImage = question.questionImage;
+      this.areResponsesImages = question.AreResponsesImages;
+      this.correctAnswer = null;
+      this.wrongAnswers = [];
+      this.setBlockUI(false);
+    });
   }
 
   onAnswer(answer: string) {
@@ -58,9 +59,9 @@ export class QuestionComponent implements OnChanges {
       this.setBlockUI(true);
       setTimeout(() => {
         if (this.quizService.isLastQuestion()) {
-          this.quizService.finish();
+          this.router.navigate(['/felicitations']);
         }
-        this.nextQuestion.emit();
+        this.quizService.nextQuestion();
       }, this.quizService.getWaitingTimeBeforeNextQuestion);
     } else {
       this.wrongAnswers.push(answer);

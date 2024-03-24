@@ -1,87 +1,68 @@
 import { Injectable } from '@angular/core';
 import IQuestion from "../interfaces/IQuestion";
+import IQuiz from "../interfaces/IQuiz";
+import {quizzes} from "../mocks/quizzes";
+import {questionsList} from "../mocks/questions";
+import {BehaviorSubject, Observable} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
 })
 export class QuizService {
   private tagsList: string[] = ['geo', 'actor', 'music', 'sport'];
-  private questionList: IQuestion[] = [
-    {
-      question: 'Quelle est la capitale de la France ?',
-      tips: ['La ville de l\'amour', 'La ville lumière'],
-      AreResponsesImages: false,
-      responses: ['Paris', 'Londres', 'New York', 'Berlin'],
-      answer: 'Paris'
-    }, {
-      question: 'Quelle est la capitale de l\'Allemagne ?',
-      tips: ['Elle a un mur célèbre', 'Elle n\'est pas Munich'],
-      AreResponsesImages: true,
-      responses: ['https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/La_Tour_Eiffel_vue_de_la_Tour_Saint-Jacques%2C_Paris_ao%C3%BBt_2014_%282%29.jpg/280px-La_Tour_Eiffel_vue_de_la_Tour_Saint-Jacques%2C_Paris_ao%C3%BBt_2014_%282%29.jpg', 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/cd/London_Montage_L.jpg/280px-London_Montage_L.jpg', 'https://upload.wikimedia.org/wikipedia/commons/thumb/f/f7/Lower_Manhattan_skyline_-_June_2017.jpg/280px-Lower_Manhattan_skyline_-_June_2017.jpg', 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/83/Cityscape_Berlin.jpg/400px-Cityscape_Berlin.jpg'],
-      answer: 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/83/Cityscape_Berlin.jpg/400px-Cityscape_Berlin.jpg'
-    }, {
-      question: 'Quelle est la capitale du Royaume-Uni ?',
-      questionImage: 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/cd/London_Montage_L.jpg/280px-London_Montage_L.jpg',
-      tips: ['Elle a un grand ben', 'Elle n\'est pas Manchester'],
-      AreResponsesImages: false,
-      responses: ['Paris', 'Londres', 'New York', 'Berlin'],
-      answer: 'Londres'
-    }, {
-      question: 'Quelle est la capitale des États-Unis ?',
-      questionImage: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8e/Usa_edcp_%28%2BHI_%2BAK%29_relief_location_map.png/280px-Usa_edcp_%28%2BHI_%2BAK%29_relief_location_map.png",
-      tips: ['Elle a une grande pomme', 'Elle n\'est pas Los Angeles'],
-      AreResponsesImages: true,
-      responses: ['https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/La_Tour_Eiffel_vue_de_la_Tour_Saint-Jacques%2C_Paris_ao%C3%BBt_2014_%282%29.jpg/280px-La_Tour_Eiffel_vue_de_la_Tour_Saint-Jacques%2C_Paris_ao%C3%BBt_2014_%282%29.jpg', 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/cd/London_Montage_L.jpg/280px-London_Montage_L.jpg', 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/White_House_lawn_%28long_tightly_cropped%29.jpg/280px-White_House_lawn_%28long_tightly_cropped%29.jpg', 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/83/Cityscape_Berlin.jpg/400px-Cityscape_Berlin.jpg'],
-      answer: 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/White_House_lawn_%28long_tightly_cropped%29.jpg/280px-White_House_lawn_%28long_tightly_cropped%29.jpg'
-    }, {
-      question: 'Quel est le plus grand désert du monde ?',
-      tips: ['Il est en Afrique', 'Il n\'est pas le Gobi'],
-      AreResponsesImages: false,
-      responses: ['Sahara', 'Gobi', 'Kalahari', 'Arctique'],
-      answer: 'Sahara'
-    }, {
-      question: 'Quel est le plus long fleuve du monde ?',
-      tips: ['Il est en Amérique du Sud', 'Il n\'est pas le Nil'],
-      AreResponsesImages: false,
-      responses: ['Le Nil', 'L\'Amazone', 'Le Yangtsé', 'Le Mississippi'],
-      answer: 'L\'Amazone'
-    }
-  ];
-
-  getTags(): string[] {
+    getTags(): string[] {
     return this.tagsList;
   }
 
+  private currentQuestionSubject :BehaviorSubject<IQuestion> = new BehaviorSubject<IQuestion> ({} as IQuestion);
   private currentQuestionIndex: number = 0;
   private waitingTimeBeforeNextQuestion: number = 1500;
-  private isFinished: boolean = false;
+  private currentQuiz: number = 0;
+
+  private quizzes: IQuiz[] = quizzes;
+  private questions: IQuestion[] = questionsList;
+
+  getTheQuiz(id: number){
+    this.currentQuiz = id;
+    let quiz: IQuiz | undefined = this.quizzes.find((quiz) => quiz.quizId === id);
+    if (!quiz) {
+      throw new Error('Quiz not found');
+    }
+    return quiz;
+  }
+
+  setQuiz(id: number){
+    this.currentQuiz = id;
+  }
 
   get getWaitingTimeBeforeNextQuestion(): number {
     return this.waitingTimeBeforeNextQuestion;
   }
 
   getQuestions(): IQuestion[] {
-    return this.questionList;
+    return this.questions.filter((question) => this.getTheQuiz(this.currentQuiz).questions.includes(parseInt(question.id)));
   }
 
-  get getTips(): string[] {
-    return this.getCurrentQuestion().tips;
+  get getTips(): string[][] {
+    return this.getTheQuiz(this.currentQuiz).questions.map((questionId) => {
+      let question: IQuestion | undefined = this.questions.find((question) => parseInt(question.id) === questionId);
+      if (!question) {
+        throw new Error('Question not found');
+      }
+      return question.tips;
+    });
   }
 
-  getCurrentQuestion(): IQuestion {
-    return this.questionList[this.currentQuestionIndex];
+  getCurrentQuestion(): Observable<IQuestion> {
+    return this.currentQuestionSubject.asObservable();
   }
 
-  getNextQuestion(): IQuestion {
-    if (this.currentQuestionIndex === this.questionList.length - 1) {
-      return this.getCurrentQuestion();
-    }
-    this.currentQuestionIndex++;
-    return this.getCurrentQuestion();
+  updateCurrentQuestion(question : IQuestion){
+    this.currentQuestionSubject.next(question);
   }
 
   checkAnswer(answer: string): boolean {
-    return this.getCurrentQuestion().answer === answer;
+    return this.getQuestions()[this.currentQuestionIndex].answer === answer;
   }
 
   getQuestionIndex(): number {
@@ -89,23 +70,27 @@ export class QuizService {
   }
 
   getQuestionsLength() {
-    return this.questionList.length;
+    return this.getQuestions().length;
   }
 
   restartQuiz() {
     this.currentQuestionIndex = 0;
-    this.isFinished = false;
   }
 
   isLastQuestion(): boolean {
     return this.getQuestionIndex() === this.getQuestionsLength() - 1;
   }
 
-  get getIsFinished(): boolean {
-    return this.isFinished;
+  getQuizzes(): IQuiz[] {
+    return this.quizzes;
   }
 
-  finish() {
-    this.isFinished = true;
+  nextQuestion() {
+    this.updateCurrentQuestion(this.getQuestions()[++this.currentQuestionIndex]);
+  }
+
+  init() {
+    this.currentQuestionIndex = 0;
+    this.updateCurrentQuestion(this.getQuestions()[this.currentQuestionIndex]);
   }
 }
