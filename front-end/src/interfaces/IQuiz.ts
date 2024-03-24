@@ -1,7 +1,7 @@
-import IQuestion from "./IQuestion";
-
-export default interface Quiz {
+export default interface IQuiz {
   title: string;
   imageUrl: string;
-  questions: IQuestion[];
+  questions: number[];
+  quizDescription: string;
+  quizId: number;
 }

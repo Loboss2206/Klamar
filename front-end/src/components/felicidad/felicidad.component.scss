@@ -30,6 +30,10 @@
   flex-direction: column;
 }
 
+body{
+  overflow: hidden !important;
+}
+
 .buttonWrapper{
   display: flex;
   justify-content: space-between;

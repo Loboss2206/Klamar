@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import Quiz from '../../interfaces/IQuiz'; // Assurez-vous que le chemin d'import est correct
+import IQuiz from '../../interfaces/IQuiz'; // Assurez-vous que le chemin d'import est correct
 
 @Component({
   standalone: true,
@@ -8,7 +8,7 @@ import Quiz from '../../interfaces/IQuiz'; // Assurez-vous que le chemin d'impor
   styleUrls: ['./quiz-selector-item.component.scss']
 })
 export class QuizSelectorItemComponent {
-  @Input() quiz!: Quiz;
+  @Input() quiz!: IQuiz;
 
   constructor() { }
 }

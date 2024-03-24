@@ -1,10 +1,12 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import { QuestionComponent } from "../question/question.component";
-import { NgForOf, NgIf } from "@angular/common";
+import {AsyncPipe, NgForOf, NgIf} from "@angular/common";
 import { QuizService } from "../../services/quiz-service.service";
 import IQuestion from "../../interfaces/IQuestion";
 import { FelicidadComponent } from "../felicidad/felicidad.component";
 import { NavbarComponent } from "../navbar/navbar.component";
+import {Observable} from "rxjs";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-quiz',
@@ -14,27 +16,20 @@ import { NavbarComponent } from "../navbar/navbar.component";
     NgForOf,
     FelicidadComponent,
     NgIf,
-    NavbarComponent
+    NavbarComponent,
+    AsyncPipe
   ],
   templateUrl: './quiz.component.html',
   styleUrl: './quiz.component.scss'
 })
-export class QuizComponent {
-  currentQuestion: IQuestion;
+export class QuizComponent implements OnInit{
 
   constructor(protected quizService: QuizService) {
-    this.currentQuestion = this.quizService.getCurrentQuestion();
   }
 
-  nextQuestion() {
-    this.currentQuestion = this.quizService.getNextQuestion();
+  ngOnInit() {
+    this.quizService.init();
+
   }
 
-  renewCurrentQuestion(): void {
-    this.currentQuestion = this.quizService.getCurrentQuestion();
-  }
-
-  isGameFinish(): boolean {
-    return this.quizService.isLastQuestion() && this.quizService.getIsFinished;
-  }
 }
