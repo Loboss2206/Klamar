@@ -17,6 +17,7 @@ import { NavbarComponent } from "../components/navbar/navbar.component";
 import { RouterModule, Routes } from "@angular/router";
 import { FelicidadComponent } from "../components/felicidad/felicidad.component";
 import { HowToPlayQuestionComponent } from 'src/components/howToPlayQuestion/howToPlayQuestion.component';
+import { ZoomSliderComponent } from 'src/components/zoomSlider/zoomSlider.component';
 
 const routes: Routes = [
   { path: '', component: QuizComponent },
@@ -45,6 +46,7 @@ const routes: Routes = [
     QuizSelectorComponent,
     NavbarComponent,
     HowToPlayQuestionComponent,
+    ZoomSliderComponent,
     RouterModule.forRoot(routes)
   ],
   providers: [],
