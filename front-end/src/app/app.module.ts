@@ -55,14 +55,13 @@ const routes: Routes = [
     UserCreatorComponent,
     QuizSelectorComponent,
     NavbarComponent,
-    stat_convert_angular
     RouterModule.forRoot(routes),
     GraphicPageComponent,
     StatMemoyPageComponent,
     StatSimonPageComponent,
     StatQuestionPageComponent,
     HighchartsChartModule,
-    GraphicComponent
+    GraphicComponent,
     HowToPlayQuestionComponent,
     ZoomSliderComponent,
     RouterModule.forRoot(routes)
