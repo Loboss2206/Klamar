@@ -1,0 +1,6 @@
+<div class="memoryItem" [ngClass]="{front: isFlipped, back: !isFlipped}" (click)="toggleFlip()">
+    <div class="memoryItemFront" *ngIf="isFlipped">
+        <img class="front-face" [src]="picURL" alt="FrontFace">
+    </div>
+    <img class="back-face" *ngIf="!isFlipped" src="../../assets/backCardMemory.png" alt="BackFace">
+</div>

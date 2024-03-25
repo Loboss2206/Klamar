@@ -1,0 +1,42 @@
+/*:root {
+    --size1: 250px;
+    --size2: 200px;
+}
+
+.memoryItem {
+    width: var(--size1);
+    height: var(--size1);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+}
+
+.front-face {
+    width: var(--size2);
+    height: var(--size2);
+}
+
+.back-face {
+    width: var(--size1);
+    height: var(--size1);
+}*/
+
+.memoryItem {
+    width: 13vw;
+    height: 13vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+}
+
+.front-face {
+    width: 10vw;
+    height: 10vw;
+}
+
+.back-face {
+    width: 13vw;
+    height: 13vw;
+}

@@ -11,6 +11,8 @@ import { SearchQuizSelectorComponent } from "../components/search-quiz-selector/
 import { QuizSelectorItemComponent } from "../components/quiz-selector-item/quiz-selector-item.component";
 import { QuizSelectorContainerComponent } from "../components/quiz-selector-container/quiz-selector-container.component";
 import { QuizSelectorComponent } from "../components/quiz-selector/quiz-selector.component";
+import { MemoryContainerComponent } from '../components/memory-container/memory-container.component';
+import { MemoryItemComponent } from "../components/memory-item/memory-item.component";
 
 @NgModule({
   declarations: [
@@ -26,7 +28,9 @@ import { QuizSelectorComponent } from "../components/quiz-selector/quiz-selector
     SearchQuizSelectorComponent,
     QuizSelectorItemComponent,
     QuizSelectorContainerComponent,
-    QuizSelectorComponent
+    QuizSelectorComponent,
+    MemoryContainerComponent,
+    MemoryItemComponent
   ],
   providers: [],
   bootstrap: [AppComponent]
