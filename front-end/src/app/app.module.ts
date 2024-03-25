@@ -18,11 +18,11 @@ import {RouterModule, Routes} from "@angular/router";
 import {FelicidadComponent} from "../components/felicidad/felicidad.component";
 
 const routes: Routes = [
-  { path: '', component: QuizSelectorComponent },
-  { path: 'quizSelector', component: QuizSelectorComponent},
-  { path: 'quiz', component: QuizComponent },
-  {path: 'felicitations', component: FelicidadComponent},
-  { path: 'quizResultPage/:id', component: quizResultPageComponent }
+  { path: '', component: QuizSelectorComponent , data:{title: 'Sélection du quiz'}},
+  { path: 'quizSelector', component: QuizSelectorComponent, data:{title: 'Sélection du quiz'}},
+  { path: 'quiz', component: QuizComponent,data:{ title: 'Quiz'}},
+  {path: 'felicitations', component: FelicidadComponent,data:{ title: 'Félicitations'}},
+  { path: 'quizResultPage/:id', component: quizResultPageComponent,data:{ title: 'Résultat du quiz'}},
 ];
 
 @NgModule({
