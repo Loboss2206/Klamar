@@ -1,4 +1,6 @@
-import { Component, Input } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
+import {ActivatedRoute, NavigationEnd, Router} from "@angular/router";
+import {filter} from "rxjs";
 
 @Component({
   standalone: true,
@@ -7,14 +9,21 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['./navbar.component.scss']
 })
 
-export class NavbarComponent {
-  @Input() title: string = '';
+export class NavbarComponent implements OnInit{
 
-  constructor() {
-    this.title = 'Page Actuelle';
+  title: string = '';
+  constructor(private router: Router, private activatedRoute: ActivatedRoute) {
   }
 
-  setTitle(title: string) {
-    this.title = title;
+  ngOnInit() {
+    this.router.events.pipe(
+      filter(event => event instanceof NavigationEnd)
+    ).subscribe(() => {
+      let route = this.activatedRoute.root;
+      while (route.firstChild) route = route.firstChild;
+      route.data.subscribe(data => {
+        this.title = data['title'];
+      });
+    });
   }
 }

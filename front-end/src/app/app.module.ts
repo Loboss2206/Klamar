@@ -19,12 +19,12 @@ import {FelicidadComponent} from "../components/felicidad/felicidad.component";
 import {SimonGameComponent} from "../components/simon-game/simon-game.component";
 
 const routes: Routes = [
-  { path: '', component: QuizSelectorComponent },
-  { path: 'quizSelector', component: QuizSelectorComponent},
-  { path: 'quiz', component: QuizComponent },
-  {path: 'felicitations', component: FelicidadComponent},
-  { path: 'quizResultPage/:id', component: quizResultPageComponent },
-  { path: 'simon/:numberOfRound', component: SimonGameComponent }
+  { path: '', component: QuizSelectorComponent , data:{title: 'Sélection du quiz'}},
+  { path: 'quizSelector', component: QuizSelectorComponent, data:{title: 'Sélection du quiz'}},
+  { path: 'quiz', component: QuizComponent,data:{ title: 'Quiz'}},
+  { path: 'felicitations', component: FelicidadComponent,data:{ title: 'Félicitations'}},
+  { path: 'quizResultPage/:id', component: quizResultPageComponent,data:{ title: 'Résultat du quiz'}},
+  { path: 'simon/:numberOfRound', component: SimonGameComponent, datat: { title: 'Simon' }}
 ];
 
 @NgModule({
