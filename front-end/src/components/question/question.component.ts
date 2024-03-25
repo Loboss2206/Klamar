@@ -1,4 +1,4 @@
-import { Component, SimpleChanges } from '@angular/core';
+import {Component, OnInit, SimpleChanges} from '@angular/core';
 import { ButtonComponent } from "../quizButton/button.component";
 import { NgClass, NgForOf, NgIf, NgOptimizedImage } from "@angular/common";
 import { QuizService } from "../../services/quiz-service.service";

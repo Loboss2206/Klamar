@@ -26,7 +26,8 @@ const routes: Routes = [
   { path: 'quiz', component: QuizComponent,data:{ title: 'Quiz'}},
   { path: 'felicitations', component: FelicidadComponent,data:{ title: 'Félicitations'}},
   { path: 'quizResultPage/:id', component: quizResultPageComponent,data:{ title: 'Résultat du quiz'}},
-  { path: 'simon/:numberOfRound', component: SimonGameComponent, datat: { title: 'Simon' }}
+  { path: 'howToPlayQuestion', component: HowToPlayQuestionComponent, data:{ title: 'Comment jouer'}},
+  { path: 'simon/:numberOfRound', component: SimonGameComponent, data: { title: 'Simon' }}
 ];
 
 @NgModule({
