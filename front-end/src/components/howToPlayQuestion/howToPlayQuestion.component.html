@@ -1,0 +1,30 @@
+<p class="tutorialPhrase">{{ tutorialPhrase }}</p>
+<p class="question">Qui suis-je ?</p>
+<!--<div class="question-image-container">
+    <img *ngIf="question.questionImage" src="{{question.questionImage}}" alt="" />
+</div>-->
+
+<div class="tipsContainer">
+    <app-tips (click)="handleTipsButtonClick()">
+        <ul>
+            <li>
+                La réponse comporte le numéro 2
+            </li>
+        </ul>
+    </app-tips>
+</div>
+
+
+<div class="griddy">
+    <app-quizButton (click)="handleButtonClick(1)" [color]="buttonColors[0]">Personne1</app-quizButton>
+    <app-quizButton (click)="handleButtonClick(2)" [color]="buttonColors[1]">Personne2</app-quizButton>
+    <app-quizButton (click)="handleButtonClick(3)" [color]="buttonColors[2]">Personne3</app-quizButton>
+    <app-quizButton (click)="handleButtonClick(4)" [color]="buttonColors[3]">Personne4</app-quizButton>
+</div>
+
+
+<div class="bottomButton">
+    <app-genericButton class="restartTutorial" (click)="resetButtonColors()">Recommencer le tutoriel</app-genericButton>
+
+    <app-genericButton class="returnToQuiz" (click)="goToQuiz()">Revenir au quiz</app-genericButton>
+</div>

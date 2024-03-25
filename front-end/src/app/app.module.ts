@@ -14,6 +14,8 @@ import { QuizSelectorItemComponent } from "../components/quiz-selector-item/quiz
 import { QuizSelectorContainerComponent } from "../components/quiz-selector-container/quiz-selector-container.component";
 import { QuizSelectorComponent } from "../components/quiz-selector/quiz-selector.component";
 import { UserCreatorComponent } from 'src/components/userManager/userCreator.component';
+import { HowToPlayQuestionComponent } from 'src/components/howToPlayQuestion/howToPlayQuestion.component';
+import { ZoomSliderComponent } from 'src/components/zoomSlider/zoomSlider.component';
 import {NavbarComponent} from "../components/navbar/navbar.component";
 import {RouterModule, Routes} from "@angular/router";
 import {FelicidadComponent} from "../components/felicidad/felicidad.component";
@@ -22,13 +24,17 @@ import {StatMemoyPageComponent} from "../components/stat-memoy-page/stat-memoy-p
 import {StatSimonPageComponent} from "../components/stat-simon-page/stat-simon-page.component";
 import {StatQuestionPageComponent} from "../components/stat-question-page/stat-question-page.component";
 import {GraphicComponent} from "../components/graphic/graphic.component";
+import {SimonGameComponent} from "../components/simon-game/simon-game.component";
+
 
 const routes: Routes = [
-  { path: '', component: QuizSelectorComponent },
-  { path: 'quizSelector', component: QuizSelectorComponent},
-  { path: 'quiz', component: QuizComponent },
-  {path: 'felicitations', component: FelicidadComponent},
-  { path: 'quizResultPage/:id', component: quizResultPageComponent }
+  { path: '', component: QuizSelectorComponent , data:{title: 'Sélection du quiz'}},
+  { path: 'quizSelector', component: QuizSelectorComponent, data:{title: 'Sélection du quiz'}},
+  { path: 'quiz', component: QuizComponent,data:{ title: 'Quiz'}},
+  { path: 'felicitations', component: FelicidadComponent,data:{ title: 'Félicitations'}},
+  { path: 'quizResultPage/:id', component: quizResultPageComponent,data:{ title: 'Résultat du quiz'}},
+  { path: 'howToPlayQuestion', component: HowToPlayQuestionComponent, data:{ title: 'Comment jouer'}},
+  { path: 'simon/:numberOfRound', component: SimonGameComponent, data: { title: 'Simon' }}
 ];
 
 @NgModule({
@@ -49,6 +55,7 @@ const routes: Routes = [
     UserCreatorComponent,
     QuizSelectorComponent,
     NavbarComponent,
+    stat_convert_angular
     RouterModule.forRoot(routes),
     GraphicPageComponent,
     StatMemoyPageComponent,
@@ -56,6 +63,9 @@ const routes: Routes = [
     StatQuestionPageComponent,
     HighchartsChartModule,
     GraphicComponent
+    HowToPlayQuestionComponent,
+    ZoomSliderComponent,
+    RouterModule.forRoot(routes)
   ],
   providers: [],
   bootstrap: [AppComponent]
