@@ -4,6 +4,7 @@
 </div>
 
 <div class="tipsContainer">
+  <app-genericButton class="tutorialButton" (click)=goToHowToPlay()>Tutoriel</app-genericButton>
   <app-tips>
     <ul>
       <li *ngFor="let tip of tips">
@@ -17,4 +18,3 @@
 <div class="griddy">
   <app-quizButton *ngFor="let answer of answers" (click)="!blockUI && onAnswer(answer)" [color]="{correct: answer === correctAnswer ,wrong: answer !== correctAnswer && wrongAnswers.includes(answer)}" [img]="areResponsesImages ?  answer : ''">{{answer}}</app-quizButton>
 </div>
-

@@ -1,11 +1,13 @@
 import { Component } from '@angular/core';
-import {ButtonComponent} from "../quizButton/button.component";
+import { ButtonComponent } from "../quizButton/button.component";
+import { GenericButtonComponent } from '../genericButton/genericButton.component';
 
 @Component({
   selector: 'app-tips',
   standalone: true,
   imports: [
-    ButtonComponent
+    ButtonComponent,
+    GenericButtonComponent
   ],
   templateUrl: './tips.component.html',
   styleUrl: './tips.component.scss'
