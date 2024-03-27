@@ -69,9 +69,12 @@ export class MemoryContainerComponent {
     if (!item.isInactive) item.toggleFlip();
   }
 
-  updateFlippedItems(event: any, item: any, index: any) {
+  updateFlippedItems(index: any) {
     if (this.getFlippedItemsNotInactive().length < 2) {
-      this.flipItem(index);
+      // Remove the first if statement to allow flipping back the cards
+      if (!this.memoryItems.toArray()[index].isFlipped) {
+        this.flipItem(index);
+      }
       this.verifyFlippedItems();
     }
   }
