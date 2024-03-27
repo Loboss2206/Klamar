@@ -1,3 +1,4 @@
 <div class="memoryContainer">
-    <app-memory-item *ngFor="let pic of pics" [picURL]="pic"></app-memory-item>
+    <app-memory-item (onFlip)="updateFlippedItems($event, pic, i)" *ngFor="let pic of pics; let i = index"
+        [picURL]="pic"></app-memory-item>
 </div>

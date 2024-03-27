@@ -1,6 +1,6 @@
-import { Component, Input } from '@angular/core';
-import { NgClass } from '@angular/common';
-import { NgIf } from '@angular/common';
+import { Component, Input, Output } from '@angular/core';
+import { NgClass, NgIf } from '@angular/common';
+import { EventEmitter } from '@angular/core';
 
 @Component({
   standalone: true,
@@ -11,10 +11,16 @@ import { NgIf } from '@angular/common';
 })
 export class MemoryItemComponent {
   isFlipped: boolean = false;
+  isInactive: boolean = false;
 
   @Input() picURL!: string;
+  @Output() onFlip: EventEmitter<void> = new EventEmitter<void>();
 
   constructor() { }
+
+  clickOnCard() {
+    this.onFlip.emit();
+  }
 
   toggleFlip() {
     this.isFlipped = !this.isFlipped;
