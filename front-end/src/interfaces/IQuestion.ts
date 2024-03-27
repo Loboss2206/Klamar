@@ -7,4 +7,6 @@ export default interface IQuestion {
   AreTipsAvailable?: boolean;
   responses: string[];
   answer: string;
+  tags: string[];
+  id: string;
 }

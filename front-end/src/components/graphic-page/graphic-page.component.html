@@ -1,0 +1,25 @@
+<h1>
+  <app-titlePage>
+    <p> Graphiques des quiz joués par M.Nom du patient</p>
+  </app-titlePage>
+</h1>
+  <main>
+    <div class="differentGame">
+      <app-graphic [chartId]="'MyChart1'"></app-graphic>
+      <app-graphic [chartId]="'MyChart2'"></app-graphic>
+      <app-graphic [chartId]="'MyChart3'"></app-graphic>
+    </div>
+    <div class="differentGame">
+      <app-graphic [chartId]="'MyChart4'"></app-graphic>
+      <app-graphic [chartId]="'MyChart5'"></app-graphic>
+    </div>
+    <div class="differentGame">
+      <app-graphic [chartId]="'MyChart6'"></app-graphic>
+      <app-graphic [chartId]="'MyChart7'"></app-graphic>
+    </div>
+
+
+  </main>
+<footer>
+  <app-zoomSlider></app-zoomSlider>
+</footer>

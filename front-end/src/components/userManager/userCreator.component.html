@@ -1,0 +1,33 @@
+<app-navbar></app-navbar>
+<div class="userAvatar">
+    <img src="assets/user.png" alt="userAvatar" width="150" height="150" />
+    <p>Ajouter une photo</p>
+</div>
+<main class="userCreator">
+    <div class="colonne1">
+        <app-textInput class="userInputBox">Nom</app-textInput>
+        <div class="baseZoom">
+            <p>Stade d'Alzheimer</p>
+            <input type="number" min="1" step="1" max="7" value="3">
+        </div>
+        <div class="baseZoom">
+            <p>Zoom de base</p>
+            <input type="number" min="0" step="1" max="300" value="100">
+        </div>
+    </div>
+    <div class="colonne2">
+        <app-textInput class="userInputBox">Prénom</app-textInput>
+        <app-textInput class="userInputBox">Type de daltonisme</app-textInput>
+
+    </div>
+    <div class="colonne3">
+        <app-textInput class="userInputBox">Date de naissance</app-textInput>
+        <app-textInput class="userInputBox">Intérêts/hobbies</app-textInput>
+    </div>
+</main>
+<app-genericButton class="genericButton">
+    Créer l'utilisateur
+</app-genericButton>
+<footer>
+    <app-zoomSlider class="sliderForQuizResult"></app-zoomSlider>
+</footer>

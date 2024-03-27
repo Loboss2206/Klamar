@@ -1,0 +1,17 @@
+button {
+    background-color: blue;
+    border-radius: 20px;
+    font-size: 2.0em;
+    color: white;
+    border: 0px;
+    padding: 10px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+button:hover {
+    background: rgba(0, 0, 0, 0.7);
+}

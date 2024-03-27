@@ -1,6 +1,7 @@
 import {Component, EventEmitter, Output} from '@angular/core';
-import {ButtonComponent} from "../button/button.component";
+import {ButtonComponent} from "../quizButton/button.component";
 import {QuizService} from "../../services/quiz-service.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-felicidad',
@@ -12,13 +13,12 @@ import {QuizService} from "../../services/quiz-service.service";
   styleUrl: './felicidad.component.scss'
 })
 export class FelicidadComponent {
-  @Output() triggerRestart = new EventEmitter<unknown>();
 
-  constructor(protected quizService: QuizService){
+  constructor(protected quizService: QuizService, private router: Router) {
   }
 
   restartQuiz() {
     this.quizService.restartQuiz();
-    this.triggerRestart.emit();
+    this.router.navigate(['/quiz']);
   }
 }
