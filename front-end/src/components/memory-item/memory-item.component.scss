@@ -1,0 +1,23 @@
+.memoryItem {
+    width: 13vw;
+    height: 13vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    margin: auto;
+}
+
+.front-face {
+    width: 10vw;
+    height: 10vw;
+}
+
+.back-face {
+    width: 13vw;
+    height: 13vw;
+}
+
+.inactive-item {
+    pointer-events: none;
+}

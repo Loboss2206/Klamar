@@ -13,6 +13,8 @@ import { SearchQuizSelectorComponent } from "../components/search-quiz-selector/
 import { QuizSelectorItemComponent } from "../components/quiz-selector-item/quiz-selector-item.component";
 import { QuizSelectorContainerComponent } from "../components/quiz-selector-container/quiz-selector-container.component";
 import { QuizSelectorComponent } from "../components/quiz-selector/quiz-selector.component";
+import { MemoryContainerComponent } from '../components/memory-container/memory-container.component';
+import { MemoryItemComponent } from "../components/memory-item/memory-item.component";
 import { UserCreatorComponent } from 'src/components/userManager/userCreator.component';
 import { HowToPlayQuestionComponent } from 'src/components/howToPlayQuestion/howToPlayQuestion.component';
 import { ZoomSliderComponent } from 'src/components/zoomSlider/zoomSlider.component';
@@ -34,7 +36,8 @@ const routes: Routes = [
   { path: 'felicitations', component: FelicidadComponent,data:{ title: 'Félicitations'}},
   { path: 'quizResultPage/:id', component: quizResultPageComponent,data:{ title: 'Résultat du quiz'}},
   { path: 'howToPlayQuestion', component: HowToPlayQuestionComponent, data:{ title: 'Comment jouer'}},
-  { path: 'simon/:numberOfRound', component: SimonGameComponent, data: { title: 'Simon' }}
+  { path: 'simon/:numberOfRound', component: SimonGameComponent, data: { title: 'Simon' }},
+  { path: 'memory' component: MemoryContainerComponent, data: { title: 'Memory' }}
 ];
 
 @NgModule({
@@ -52,6 +55,9 @@ const routes: Routes = [
     SearchQuizSelectorComponent,
     QuizSelectorItemComponent,
     QuizSelectorContainerComponent,
+    QuizSelectorComponent,
+    MemoryContainerComponent,
+    MemoryItemComponent
     UserCreatorComponent,
     QuizSelectorComponent,
     NavbarComponent,
