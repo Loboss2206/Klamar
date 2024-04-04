@@ -3,23 +3,30 @@
     <p> Graphiques des quiz joués par M.Nom du patient</p>
   </app-titlePage>
 </h1>
-  <main>
+
     <div class="differentGame">
-      <app-graphic [chartId]="'MyChart1'"></app-graphic>
-      <app-graphic [chartId]="'MyChart2'"></app-graphic>
-      <app-graphic [chartId]="'MyChart3'"></app-graphic>
+      <app-graphic [chartId]="'MyChart1'" [data]="[80,90,75,80,10,20,50,90]" [titre]="'Questions'" [date]="['2022-05-10', '2022-05-11', '2022-05-12', '2022-05-13',
+          '2022-05-14', '2022-05-15', '2022-05-16', '2022-05-17',]"></app-graphic>
+      <app-graphic [chartId]="'MyChart2'" [data]="[80,90,75,80,10,20,50,90]" [titre]="'Memory'" [date]="['2022-05-10', '2022-05-11', '2022-05-12', '2022-05-13',
+          '2022-05-14', '2022-05-15', '2022-05-16', '2022-05-17',]"></app-graphic>
+      <app-graphic [chartId]="'MyChart3'" [data]="[80,90,75,80,10,20,50,90]" [titre]="'Simon'" [date]="['2022-05-10', '2022-05-11', '2022-05-12', '2022-05-13',
+          '2022-05-14', '2022-05-15', '2022-05-16', '2022-05-17',]"></app-graphic>
     </div>
     <div class="differentGame">
-      <app-graphic [chartId]="'MyChart4'"></app-graphic>
-      <app-graphic [chartId]="'MyChart5'"></app-graphic>
+      <app-graphic [chartId]="'MyChart4'" [data]="[80,90,75,80,10,20,50,90]" [titre]="'Questions textuelles Réponses textuelles'" [date]="['2022-05-10', '2022-05-11', '2022-05-12', '2022-05-13',
+          '2022-05-14', '2022-05-15', '2022-05-16', '2022-05-17',]"></app-graphic>
+      <app-graphic [chartId]="'MyChart5'" [data]="[80,90,75,80,10,20,50,90]" [titre]="'Questions textuelles Réponses graphiques'" [date]="['2022-05-10', '2022-05-11', '2022-05-12', '2022-05-13',
+          '2022-05-14', '2022-05-15', '2022-05-16', '2022-05-17',]"></app-graphic>
     </div>
     <div class="differentGame">
-      <app-graphic [chartId]="'MyChart6'"></app-graphic>
-      <app-graphic [chartId]="'MyChart7'"></app-graphic>
+      <app-graphic [chartId]="'MyChart6'" [data]="[80,90,75,80,10,20,50,90]" [titre]="'Questions graphiques Réponses textuelles'" [date]="['2022-05-10', '2022-05-11', '2022-05-12', '2022-05-13',
+          '2022-05-14', '2022-05-15', '2022-05-16', '2022-05-17',]"></app-graphic>
+      <app-graphic [chartId]="'MyChart7'" [data]="[80,90,75,80,10,20,50,90]" [titre]="'Questions graphiques Réponses graphiques'" [date]="['2022-05-10', '2022-05-11', '2022-05-12', '2022-05-13',
+          '2022-05-14', '2022-05-15', '2022-05-16', '2022-05-17',]"></app-graphic>
     </div>
 
 
-  </main>
+
 <footer>
   <app-zoomSlider></app-zoomSlider>
 </footer>
