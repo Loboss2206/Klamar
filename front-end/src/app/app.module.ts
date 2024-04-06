@@ -18,26 +18,26 @@ import { MemoryItemComponent } from "../components/memory-item/memory-item.compo
 import { UserCreatorComponent } from 'src/components/userManager/userCreator.component';
 import { HowToPlayQuestionComponent } from 'src/components/howToPlayQuestion/howToPlayQuestion.component';
 import { ZoomSliderComponent } from 'src/components/zoomSlider/zoomSlider.component';
-import {NavbarComponent} from "../components/navbar/navbar.component";
-import {RouterModule, Routes} from "@angular/router";
-import {FelicidadComponent} from "../components/felicidad/felicidad.component";
-import {GraphicPageComponent} from "../components/graphic-page/graphic-page.component"
-import {StatMemoyPageComponent} from "../components/stat-memoy-page/stat-memoy-page.component";
-import {StatSimonPageComponent} from "../components/stat-simon-page/stat-simon-page.component";
-import {StatQuestionPageComponent} from "../components/stat-question-page/stat-question-page.component";
-import {GraphicComponent} from "../components/graphic/graphic.component";
-import {SimonGameComponent} from "../components/simon-game/simon-game.component";
+import { NavbarComponent } from "../components/navbar/navbar.component";
+import { RouterModule, Routes } from "@angular/router";
+import { FelicidadComponent } from "../components/felicidad/felicidad.component";
+import { GraphicPageComponent } from "../components/graphic-page/graphic-page.component"
+import { StatMemoyPageComponent } from "../components/stat-memoy-page/stat-memoy-page.component";
+import { StatSimonPageComponent } from "../components/stat-simon-page/stat-simon-page.component";
+import { StatQuestionPageComponent } from "../components/stat-question-page/stat-question-page.component";
+import { GraphicComponent } from "../components/graphic/graphic.component";
+import { SimonGameComponent } from "../components/simon-game/simon-game.component";
 
 
 const routes: Routes = [
-  { path: '', component: QuizSelectorComponent , data:{title: 'Sélection du quiz'}},
-  { path: 'quizSelector', component: QuizSelectorComponent, data:{title: 'Sélection du quiz'}},
-  { path: 'quiz', component: QuizComponent,data:{ title: 'Quiz'}},
-  { path: 'felicitations', component: FelicidadComponent,data:{ title: 'Félicitations'}},
-  { path: 'quizResultPage/:id', component: quizResultPageComponent,data:{ title: 'Résultat du quiz'}},
-  { path: 'howToPlayQuestion', component: HowToPlayQuestionComponent, data:{ title: 'Comment jouer'}},
-  { path: 'simon/:numberOfRound', component: SimonGameComponent, data: { title: 'Simon' }},
-  { path: 'memory' component: MemoryContainerComponent, data: { title: 'Memory' }}
+  { path: '', component: QuizSelectorComponent, data: { title: 'Sélection du quiz' } },
+  { path: 'quizSelector', component: QuizSelectorComponent, data: { title: 'Sélection du quiz' } },
+  { path: 'quiz', component: QuizComponent, data: { title: 'Quiz' } },
+  { path: 'felicitations', component: FelicidadComponent, data: { title: 'Félicitations' } },
+  { path: 'quizResultPage/:id', component: quizResultPageComponent, data: { title: 'Résultat du quiz' } },
+  { path: 'howToPlayQuestion', component: HowToPlayQuestionComponent, data: { title: 'Comment jouer' } },
+  { path: 'simon/:numberOfRound', component: SimonGameComponent, data: { title: 'Simon' } },
+  { path: 'memory', component: MemoryContainerComponent, data: { title: 'Memory' } }
 ];
 
 @NgModule({
@@ -57,7 +57,7 @@ const routes: Routes = [
     QuizSelectorContainerComponent,
     QuizSelectorComponent,
     MemoryContainerComponent,
-    MemoryItemComponent
+    MemoryItemComponent,
     UserCreatorComponent,
     QuizSelectorComponent,
     NavbarComponent,
