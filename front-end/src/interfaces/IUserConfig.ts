@@ -2,12 +2,6 @@ export interface IUserConfig {
   simon: {
     isColorful: boolean;
   },
-  tips: {
-    displayHintOnStart: boolean;
-    displayHintOnWrongAnswer: boolean;
-    displayHintOnCorrectAnswer: boolean;
-    displayHintOnClick: boolean;
-  };
   simonHints: {
     displayTheFullSequenceAfter: number;
   };
@@ -15,6 +9,10 @@ export interface IUserConfig {
     displayTheFullSequenceAfter: number;
   };
   quiz: {
+    showHintAfterError: boolean;
+    showHintAfterStart: boolean;
+    showHintAfterClick: boolean;
+    showHintOneByOne: boolean;
   };
   zoomLevel: number;
 }

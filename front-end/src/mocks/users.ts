@@ -9,12 +9,6 @@ export const users: IUser[] = [
       simon: {
         isColorful: true,
       },
-      tips: {
-        displayHintOnStart: true,
-        displayHintOnWrongAnswer: true,
-        displayHintOnCorrectAnswer: false,
-        displayHintOnClick: true,
-      },
       simonHints: {
         displayTheFullSequenceAfter: 2000,
 
@@ -24,7 +18,10 @@ export const users: IUser[] = [
 
       },
       quiz: {
-
+        showHintAfterError: true,
+        showHintAfterStart: true,
+        showHintAfterClick: true,
+        showHintOneByOne: true,
       },
       zoomLevel: 1,
     },
@@ -38,12 +35,6 @@ export const users: IUser[] = [
       simon: {
         isColorful: false,
       },
-      tips: {
-        displayHintOnStart: true,
-        displayHintOnWrongAnswer: true,
-        displayHintOnCorrectAnswer: false,
-        displayHintOnClick: true,
-      },
       simonHints: {
         displayTheFullSequenceAfter: 2000,
 
@@ -53,7 +44,10 @@ export const users: IUser[] = [
 
       },
       quiz: {
-
+        showHintAfterError: true,
+        showHintAfterStart: true,
+        showHintAfterClick: true,
+        showHintOneByOne: true,
       },
       zoomLevel: 1,
     },
@@ -67,12 +61,6 @@ export const users: IUser[] = [
       simon: {
         isColorful: true,
       },
-      tips: {
-        displayHintOnStart: true,
-        displayHintOnWrongAnswer: true,
-        displayHintOnCorrectAnswer: false,
-        displayHintOnClick: true,
-      },
       simonHints: {
         displayTheFullSequenceAfter: 2000,
 
@@ -82,7 +70,10 @@ export const users: IUser[] = [
 
       },
       quiz: {
-
+        showHintAfterError: true,
+        showHintAfterStart: true,
+        showHintAfterClick: true,
+        showHintOneByOne: true,
       },
       zoomLevel: 1,
     },
@@ -96,12 +87,6 @@ export const users: IUser[] = [
       simon: {
         isColorful: true,
       },
-      tips: {
-        displayHintOnStart: true,
-        displayHintOnWrongAnswer: true,
-        displayHintOnCorrectAnswer: false,
-        displayHintOnClick: true,
-      },
       simonHints: {
         displayTheFullSequenceAfter: 2000,
 
@@ -111,7 +96,10 @@ export const users: IUser[] = [
 
       },
       quiz: {
-
+        showHintAfterError: true,
+        showHintAfterStart: true,
+        showHintAfterClick: true,
+        showHintOneByOne: true,
       },
       zoomLevel: 1,
     },
