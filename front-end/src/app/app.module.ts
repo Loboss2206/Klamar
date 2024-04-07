@@ -28,7 +28,7 @@ import { StatQuestionPageComponent } from "../components/stat-question-page/stat
 import { GraphicComponent } from "../components/graphic/graphic.component";
 import { SimonGameComponent } from "../components/simon-game/simon-game.component";
 import {HttpClientModule} from "@angular/common/http";
-
+import { UserCreatorComponent } from "../components/userManager/userCreator.component";
 
 const routes: Routes = [
   { path: '', component: QuizSelectorComponent, data: { title: 'Sélection du quiz' } },
