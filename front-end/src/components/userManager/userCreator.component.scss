@@ -1,44 +1,83 @@
 .userAvatar {
+    margin-top: 3%;
     text-align: center;
 }
 
-.userCreator {
-    margin-top: 5%;
+.user-creator-form {
     display: flex;
-    flex-direction: row;
-    align-items: start;
-    max-width: 100%;
-    justify-content: space-around;
-}
-
-
-
-.userCreator>div>*:not(:last-child) {
-    margin-bottom: 35%;
-}
-
-.userCreator>div {
-    display: flex;
-    flex-direction: column;
-}
-
-.genericButton {
-    float: right;
-    margin-bottom: 10px;
-    margin-right: 8%;
-    margin-top: 10px;
-}
-
-
-
-.baseZoom {
+    flex-wrap: wrap;
+    align-items: center;
     text-align: center;
-    font-size: 1.2em;
 }
 
-footer {
+.user-creator-form>* {
+    flex: 1 0 calc(33.33% - 10px);
+    margin-bottom: 5%;
+    font-size: 1.9em;
+}
+
+
+input[type="number"] {
+    font-size: 20px;
+}
+
+input[type="number"] {
+    font-size: 20px;
+}
+
+.disabled-button {
+    background-color: gray;
+}
+
+.createUserButton {
+    margin: 0;
+    border-radius: 20px;
+    font-size: 2.0em;
+    color: rgb(0, 0, 0);
+    padding: 10px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+    text-align: center;
     margin: 10px;
     position: fixed;
+    float: left;
     bottom: 0;
-    right: 0;
+    left: 0;
+}
+
+.createUserButton:enabled {
+    margin: 0;
+    border-radius: 20px;
+    background-color: blue;
+    font-size: 2.0em;
+    color: white;
+    padding: 10px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+    text-align: center;
+    margin: 10px;
+    position: fixed;
+    float: left;
+    bottom: 0;
+    left: 0;
+}
+
+
+
+
+#createUserButton:hover {
+    background: rgba(0, 0, 0, 0.7);
+}
+
+select {
+    font-size: 20px;
+}
+
+
+#userInput {
+    background-color: #D9D9D9;
+    border-radius: 200px;
+    padding: 10px;
+    padding-right: 100px;
+    border: #D9D9D9;
 }
