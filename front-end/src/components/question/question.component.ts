@@ -1,12 +1,12 @@
-import {Component, OnInit, SimpleChanges} from '@angular/core';
+import { Component, OnInit, SimpleChanges } from '@angular/core';
 import { ButtonComponent } from "../quizButton/button.component";
 import { NgClass, NgForOf, NgIf, NgOptimizedImage } from "@angular/common";
 import { QuizService } from "../../services/quiz-service.service";
 import IQuestion from "../../interfaces/IQuestion";
 import { TipsComponent } from "../tips/tips.component";
 import { GenericButtonComponent } from '../genericButton/genericButton.component';
-import {Observable} from "rxjs";
-import {Router} from "@angular/router";
+import { Observable } from "rxjs";
+import { Router } from "@angular/router";
 
 @Component({
   selector: 'app-question',
@@ -23,7 +23,7 @@ import {Router} from "@angular/router";
   templateUrl: './question.component.html',
   styleUrl: './question.component.scss'
 })
-export class QuestionComponent implements OnInit{
+export class QuestionComponent implements OnInit {
 
   question: Observable<IQuestion> | undefined;
   questionText: string | undefined;
@@ -60,7 +60,8 @@ export class QuestionComponent implements OnInit{
       this.setBlockUI(true);
       setTimeout(() => {
         if (this.quizService.isLastQuestion()) {
-          this.router.navigate(['/felicitations']);
+          //TODO this.router.navigate(['/felicitations']);
+          this.router.navigate(['/memory']);
         }
         this.quizService.nextQuestion();
       }, this.quizService.getWaitingTimeBeforeNextQuestion);

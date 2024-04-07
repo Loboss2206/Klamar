@@ -1,9 +1,9 @@
-import {Component, OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { NgForOf } from "@angular/common";
 import { QuizSelectorItemComponent } from '../quiz-selector-item/quiz-selector-item.component';
 import IQuiz from '../../interfaces/IQuiz';
 import { QuizService } from '../../services/quiz-service.service';
-import {Router} from "@angular/router";
+import { Router } from "@angular/router";
 
 @Component({
   standalone: true,
@@ -15,7 +15,7 @@ import {Router} from "@angular/router";
     NgForOf
   ]
 })
-export class QuizSelectorContainerComponent implements OnInit{
+export class QuizSelectorContainerComponent implements OnInit {
   quizzes: IQuiz[] = [];
 
   constructor(private quizService: QuizService, private router: Router) {

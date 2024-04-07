@@ -1,6 +1,6 @@
-import {IUserConfig} from "./IUserConfig";
+import { IUserConfig } from "./IUserConfig";
 
-export interface IUser {
+export default interface IUser {
   id: number;
   name: string;
   firstname: string;

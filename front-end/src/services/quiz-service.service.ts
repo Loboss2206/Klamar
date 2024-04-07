@@ -1,20 +1,20 @@
 import { Injectable } from '@angular/core';
 import IQuestion from "../interfaces/IQuestion";
 import IQuiz from "../interfaces/IQuiz";
-import {quizzes} from "../mocks/quizzes";
-import {questionsList} from "../mocks/questions";
-import {BehaviorSubject, Observable} from "rxjs";
+import { quizzes } from "../mocks/quizzes";
+import { questionsList } from "../mocks/questions";
+import { BehaviorSubject, Observable } from "rxjs";
 
 @Injectable({
   providedIn: 'root'
 })
 export class QuizService {
   private tagsList: string[] = ['geo', 'actor', 'music', 'sport'];
-    getTags(): string[] {
+  getTags(): string[] {
     return this.tagsList;
   }
 
-  private currentQuestionSubject :BehaviorSubject<IQuestion> = new BehaviorSubject<IQuestion> ({} as IQuestion);
+  private currentQuestionSubject: BehaviorSubject<IQuestion> = new BehaviorSubject<IQuestion>({} as IQuestion);
   private currentQuestionIndex: number = 0;
   private waitingTimeBeforeNextQuestion: number = 1500;
   private currentQuiz: number = 0;
@@ -22,7 +22,7 @@ export class QuizService {
   private quizzes: IQuiz[] = quizzes;
   private questions: IQuestion[] = questionsList;
 
-  getTheQuiz(id: number){
+  getTheQuiz(id: number) {
     this.currentQuiz = id;
     let quiz: IQuiz | undefined = this.quizzes.find((quiz) => quiz.quizId === id);
     if (!quiz) {
@@ -31,7 +31,7 @@ export class QuizService {
     return quiz;
   }
 
-  setQuiz(id: number){
+  setQuiz(id: number) {
     this.currentQuiz = id;
   }
 
@@ -57,7 +57,7 @@ export class QuizService {
     return this.currentQuestionSubject.asObservable();
   }
 
-  updateCurrentQuestion(question : IQuestion){
+  updateCurrentQuestion(question: IQuestion) {
     this.currentQuestionSubject.next(question);
   }
 
