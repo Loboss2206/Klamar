@@ -4,6 +4,7 @@ import { ZoomSliderComponent } from '../zoomSlider/zoomSlider.component';
 import { NavbarComponent } from '../navbar/navbar.component';
 import { GenericButtonComponent } from '../genericButton/genericButton.component';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { NgClass } from '@angular/common';
 
 
 @Component({
@@ -13,8 +14,8 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
     ButtonComponent,
     ZoomSliderComponent, NavbarComponent,
     GenericButtonComponent,
-    ReactiveFormsModule
-
+    ReactiveFormsModule,
+    NgClass
   ],
   templateUrl: './userCreator.component.html',
   styleUrl: './userCreator.component.scss'
@@ -46,6 +47,7 @@ export class UserCreatorComponent {
   addUser(): void {
     console.log(this.userCreatorForm.getRawValue());
   }
+
 
 
 }

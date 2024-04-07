@@ -1,5 +1,5 @@
 <div class="userAvatar">
-    <img src="assets/user.png" alt="userAvatar" width="150" height="150" />
+    <input type="file">
     <p>Ajouter une photo</p>
 </div>
 <main class="userCreator">
@@ -44,7 +44,7 @@
                 <input type="radio" name="choiceRead" value="non" [formControlName]="'choiceRead'"> Non
             </label>
         </label>
-        <button type="submit" id="createUserButton" [disabled]="!isFormValid()" (click)="addUser()">
+        <button type="submit" class="createUserButton" [disabled]="!isFormValid()" (click)="addUser()">
             Créer l'utilisateur
         </button>
     </form>

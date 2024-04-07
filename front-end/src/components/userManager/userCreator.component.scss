@@ -21,10 +21,34 @@ input[type="number"] {
     font-size: 20px;
 }
 
-#createUserButton {
+input[type="number"] {
+    font-size: 20px;
+}
+
+.disabled-button {
+    background-color: gray;
+}
+
+.createUserButton {
     margin: 0;
-    background-color: blue;
     border-radius: 20px;
+    font-size: 2.0em;
+    color: rgb(0, 0, 0);
+    padding: 10px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+    text-align: center;
+    margin: 10px;
+    position: fixed;
+    float: left;
+    bottom: 0;
+    left: 0;
+}
+
+.createUserButton:enabled {
+    margin: 0;
+    border-radius: 20px;
+    background-color: blue;
     font-size: 2.0em;
     color: white;
     padding: 10px;
