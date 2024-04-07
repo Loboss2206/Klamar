@@ -8,7 +8,7 @@ import { GenericButtonComponent } from '../genericButton/genericButton.component
 import {Observable} from "rxjs";
 import {Router} from "@angular/router";
 import * as Tone from "tone";
-import {IUser} from "../../interfaces/IUser";
+import IUser from "../../interfaces/IUser";
 
 @Component({
   selector: 'app-question',

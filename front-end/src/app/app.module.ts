@@ -27,17 +27,21 @@ import { StatSimonPageComponent } from "../components/stat-simon-page/stat-simon
 import { StatQuestionPageComponent } from "../components/stat-question-page/stat-question-page.component";
 import { GraphicComponent } from "../components/graphic/graphic.component";
 import { SimonGameComponent } from "../components/simon-game/simon-game.component";
+import { SelectUserContainerComponent } from '../components/select-user-container/select-user-container.component';
+import { SelectUserItemComponent } from '../components/select-user-item/select-user-item.component';
 import {HttpClientModule} from "@angular/common/http";
 
 const routes: Routes = [
-  { path: '', component: QuizSelectorComponent, data: { title: 'Sélection du quiz' } },
+  { path: '', component: SelectUserContainerComponent, data: { title: 'Sélection utilisateur' } },
   { path: 'quizSelector', component: QuizSelectorComponent, data: { title: 'Sélection du quiz' } },
   { path: 'quiz', component: QuizComponent, data: { title: 'Quiz' } },
   { path: 'felicitations', component: FelicidadComponent, data: { title: 'Félicitations' } },
   { path: 'quizResultPage/:id', component: quizResultPageComponent, data: { title: 'Résultat du quiz' } },
   { path: 'howToPlayQuestion', component: HowToPlayQuestionComponent, data: { title: 'Comment jouer' } },
-  { path: 'simon', component: SimonGameComponent, data: { title: 'Simon' }},
+  { path: 'simon/:numberOfRound', component: SimonGameComponent, data: { title: 'Simon' } },
   { path: 'memory', component: MemoryContainerComponent, data: { title: 'Memory' } },
+  { path: 'users', component: SelectUserContainerComponent, data: { title: 'Sélection utilisateur' } },
+  { path: 'selectQuiz', component: QuizSelectorComponent, data: { title: 'Sélection du quiz' } },
   { path: 'createUser', component: UserCreatorComponent, data: { title: "Création d'un utilisateur" } }
 ];
 
@@ -62,7 +66,6 @@ const routes: Routes = [
     UserCreatorComponent,
     QuizSelectorComponent,
     NavbarComponent,
-    RouterModule.forRoot(routes),
     GraphicPageComponent,
     StatMemoyPageComponent,
     StatSimonPageComponent,
@@ -71,6 +74,8 @@ const routes: Routes = [
     GraphicComponent,
     HowToPlayQuestionComponent,
     ZoomSliderComponent,
+    SelectUserContainerComponent,
+    SelectUserItemComponent,
     RouterModule.forRoot(routes),
     HttpClientModule
   ],

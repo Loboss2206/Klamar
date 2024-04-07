@@ -1,9 +1,9 @@
 import {Injectable} from '@angular/core';
 import IQuestion from "../interfaces/IQuestion";
 import IQuiz from "../interfaces/IQuiz";
-import {quizzes} from "../mocks/quizzes";
-import {questionsList} from "../mocks/questions";
-import {BehaviorSubject, Observable} from "rxjs";
+import { quizzes } from "../mocks/quizzes";
+import { questionsList } from "../mocks/questions";
+import { BehaviorSubject, Observable } from "rxjs";
 import {Router} from "@angular/router";
 
 @Injectable({
@@ -20,6 +20,7 @@ export class QuizService {
   private currentQuestionIndex: number = JSON.parse(sessionStorage.getItem('currentQuestionIndex') || '0');
   private waitingTimeBeforeNextQuestion: number = 1000;
   private currentQuiz: number = JSON.parse(sessionStorage.getItem('currentQuiz') || '0');
+
   private quizzes: IQuiz[] = quizzes;
   private questions: IQuestion[] = questionsList;
   private SimonGameMode: boolean = false;
@@ -28,8 +29,6 @@ export class QuizService {
 
   constructor(private router: Router) {
   }
-
-
 
   getTheQuiz(id: number) {
     let quiz: IQuiz | undefined = this.quizzes.find((quiz) => quiz.quizId === id);

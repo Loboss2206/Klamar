@@ -1,0 +1,5 @@
+<div class="userContainer">
+    <div *ngFor="let user of users">
+        <app-select-user-item [user]="user" (click)="defineUser(user.id)"></app-select-user-item>
+    </div>
+</div>
