@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, OnInit, ViewChild, SimpleChanges} from '@angular/core';
+import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
 import { ButtonComponent } from "../quizButton/button.component";
 import { NgClass, NgForOf, NgIf, NgOptimizedImage } from "@angular/common";
 import { QuizService } from "../../services/quiz-service.service";
@@ -8,7 +8,7 @@ import { GenericButtonComponent } from '../genericButton/genericButton.component
 import {Observable} from "rxjs";
 import {Router} from "@angular/router";
 import * as Tone from "tone";
-import {IUser} from "../../interfaces/IUser";
+import IUser from "../../interfaces/IUser";
 
 @Component({
   selector: 'app-question',
