@@ -26,6 +26,7 @@ export class QuizSelectorContainerComponent implements OnInit {
   }
 
   defineQuiz(quizId: number) {
+    this.quizService.restartQuiz();
     this.quizService.setQuiz(quizId);
     this.router.navigate(['/quiz']);
   }

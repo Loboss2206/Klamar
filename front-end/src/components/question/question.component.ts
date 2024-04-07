@@ -5,8 +5,9 @@ import { QuizService } from "../../services/quiz-service.service";
 import IQuestion from "../../interfaces/IQuestion";
 import { TipsComponent } from "../tips/tips.component";
 import { GenericButtonComponent } from '../genericButton/genericButton.component';
-import { Observable } from "rxjs";
-import { Router } from "@angular/router";
+import {Observable} from "rxjs";
+import {Router} from "@angular/router";
+import * as Tone from "tone";
 
 @Component({
   selector: 'app-question',
@@ -54,18 +55,38 @@ export class QuestionComponent implements OnInit {
     });
   }
 
+  playCorrectTune() {
+    const synth = new Tone.Synth({
+      oscillator: {
+        type: "sine"
+      }
+    }).toDestination();
+    synth.triggerAttackRelease("A4", "16n");
+  }
+
+  playWrongTune() {
+    const synth = new Tone.Synth({
+      oscillator: {
+        type: "sine"
+      }
+    }).toDestination();
+    synth.triggerAttackRelease("C4", "16n");
+  }
+
   onAnswer(answer: string) {
     if (this.quizService.checkAnswer(answer)) {
+      this.playCorrectTune();
       this.correctAnswer = answer;
       this.setBlockUI(true);
       setTimeout(() => {
         if (this.quizService.isLastQuestion()) {
-          //TODO this.router.navigate(['/felicitations']);
-          this.router.navigate(['/memory']);
+          this.quizService.questionsFinished();
+          return;
         }
         this.quizService.nextQuestion();
       }, this.quizService.getWaitingTimeBeforeNextQuestion);
     } else {
+      this.playWrongTune();
       this.wrongAnswers.push(answer);
     }
   }

@@ -63,7 +63,7 @@ export class MemoryContainerComponent {
         }, 2000);
       }
       this.nbTry++;
-
+      
       if (this.isFinished()) {
         this.router.navigate(['/felicitations']);
       }

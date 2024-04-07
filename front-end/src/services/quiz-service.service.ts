@@ -1,15 +1,17 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import IQuestion from "../interfaces/IQuestion";
 import IQuiz from "../interfaces/IQuiz";
 import { quizzes } from "../mocks/quizzes";
 import { questionsList } from "../mocks/questions";
 import { BehaviorSubject, Observable } from "rxjs";
+import {Router} from "@angular/router";
 
 @Injectable({
   providedIn: 'root'
 })
 export class QuizService {
   private tagsList: string[] = ['geo', 'actor', 'music', 'sport'];
+
   getTags(): string[] {
     return this.tagsList;
   }
@@ -21,9 +23,14 @@ export class QuizService {
 
   private quizzes: IQuiz[] = quizzes;
   private questions: IQuestion[] = questionsList;
+  private SimonGameMode: boolean = false;
+  private MemoryGameMode: boolean = false;
+  private isInQuestionMode: boolean = true;
+
+  constructor(private router: Router) {
+  }
 
   getTheQuiz(id: number) {
-    this.currentQuiz = id;
     let quiz: IQuiz | undefined = this.quizzes.find((quiz) => quiz.quizId === id);
     if (!quiz) {
       throw new Error('Quiz not found');
@@ -32,7 +39,7 @@ export class QuizService {
   }
 
   setQuiz(id: number) {
-    this.currentQuiz = id;
+    this.setCurrentQuiz(id);
   }
 
   get getWaitingTimeBeforeNextQuestion(): number {
@@ -74,7 +81,21 @@ export class QuizService {
   }
 
   restartQuiz() {
-    this.currentQuestionIndex = 0;
+    this.setCurrentQuestionIndex(0);
+    this.isInQuestionMode = true;
+    this.SimonGameMode = false;
+    this.MemoryGameMode = false;
+  }
+
+  setCurrentQuestionIndex(index: number) {
+    this.currentQuestionIndex = index;
+    sessionStorage.setItem('currentQuestionIndex', JSON.stringify(index));
+  }
+
+  setCurrentQuiz(id: number) {
+    this.currentQuiz = id;
+    sessionStorage.setItem('currentQuiz', JSON.stringify(id));
+    sessionStorage.setItem('currentQuestionIndex', JSON.stringify(0));
   }
 
   isLastQuestion(): boolean {
@@ -86,11 +107,51 @@ export class QuizService {
   }
 
   nextQuestion() {
-    this.updateCurrentQuestion(this.getQuestions()[++this.currentQuestionIndex]);
+    this.setCurrentQuestionIndex(this.currentQuestionIndex + 1);
+    this.updateCurrentQuestion(this.getQuestions()[this.currentQuestionIndex]);
   }
 
   init() {
-    this.currentQuestionIndex = 0;
     this.updateCurrentQuestion(this.getQuestions()[this.currentQuestionIndex]);
+  }
+
+  getSimonRules() {
+    return this.getTheQuiz(this.currentQuiz).specials.find((special) => special.name === 'Simon')?.rules;
+  }
+
+  questionsFinished() {
+    this.isInQuestionMode = false;
+    let specials = this.getTheQuiz(this.currentQuiz).specials.map((special) => special.name);
+    let sortedSpecials = specials.sort();
+
+    console.log(sortedSpecials);
+
+    if (sortedSpecials.length === 2 && sortedSpecials[0] === 'Memory' && sortedSpecials[1] === 'Simon') {
+      this.SimonGameMode = true;
+      this.MemoryGameMode = true;
+      this.router.navigate(['simon/']);
+    } else if (sortedSpecials.includes('Simon')) {
+      this.SimonGameMode = true;
+      this.router.navigate(['simon/']);
+    } else if (sortedSpecials.includes('Memory')) {
+      this.MemoryGameMode = true;
+      this.router.navigate(['memory/']);
+    } else {
+      this.router.navigate(['felicitations/']);
+    }
+  }
+
+  endSimonGame() {
+    this.SimonGameMode = false;
+    if (this.MemoryGameMode) {
+      this.router.navigate(['memory/']);
+    } else {
+      this.router.navigate(['felicitations/']);
+    }
+  }
+
+  endMemoryGame() {
+    this.MemoryGameMode = false;
+    this.router.navigate(['felicitations/']);
   }
 }
