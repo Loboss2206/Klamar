@@ -1,4 +1,4 @@
-import { Component, OnInit, SimpleChanges } from '@angular/core';
+import {AfterViewInit, Component, OnInit, ViewChild, SimpleChanges} from '@angular/core';
 import { ButtonComponent } from "../quizButton/button.component";
 import { NgClass, NgForOf, NgIf, NgOptimizedImage } from "@angular/common";
 import { QuizService } from "../../services/quiz-service.service";
@@ -8,6 +8,7 @@ import { GenericButtonComponent } from '../genericButton/genericButton.component
 import {Observable} from "rxjs";
 import {Router} from "@angular/router";
 import * as Tone from "tone";
+import {IUser} from "../../interfaces/IUser";
 
 @Component({
   selector: 'app-question',
@@ -24,7 +25,9 @@ import * as Tone from "tone";
   templateUrl: './question.component.html',
   styleUrl: './question.component.scss'
 })
-export class QuestionComponent implements OnInit {
+export class QuestionComponent implements OnInit, AfterViewInit {
+
+  @ViewChild('tipsComponent') tipsComponent!: TipsComponent;
 
   question: Observable<IQuestion> | undefined;
   questionText: string | undefined;
@@ -35,6 +38,9 @@ export class QuestionComponent implements OnInit {
   tips: string[] = [];
   questionImage: string | undefined = '';
   areResponsesImages: boolean = false;
+  user : IUser | null = !sessionStorage.getItem('user') ? null : JSON.parse(sessionStorage.getItem('user') as string);
+  canOpenTipsOnClick: boolean = this.user ? this.user.config.quiz.showHintAfterClick : false;
+  currentTipIndex: number = this.user ? this.user.config.quiz.showHintOneByOne ? 0 : -1 : -1;
 
   constructor(private quizService: QuizService, private router: Router) {
 
@@ -46,13 +52,23 @@ export class QuestionComponent implements OnInit {
       console.log(this.question);
       this.answers = question.responses;
       this.questionText = question.question;
+      this.currentTipIndex = this.user ? this.user.config.quiz.showHintOneByOne ? 0 : -1 : -1;
       this.tips = question.tips;
       this.questionImage = question.questionImage;
       this.areResponsesImages = question.AreResponsesImages;
       this.correctAnswer = null;
       this.wrongAnswers = [];
       this.setBlockUI(false);
+      if (this.user && this.user.config.quiz.showHintAfterStart) {
+        this.tipsComponent.openATip();
+      }
     });
+  }
+
+  ngAfterViewInit() {
+    if (this.user && this.user.config.quiz.showHintAfterStart) {
+      this.tipsComponent.openATip();
+    }
   }
 
   playCorrectTune() {
@@ -87,6 +103,12 @@ export class QuestionComponent implements OnInit {
       }, this.quizService.getWaitingTimeBeforeNextQuestion);
     } else {
       this.playWrongTune();
+      if (this.user && this.user.config.quiz.showHintAfterError) {
+        if (this.currentTipIndex > -1 && this.currentTipIndex<this.tips.length-1) {
+          this.currentTipIndex++;
+        }
+        this.tipsComponent.openATip();
+      }
       this.wrongAnswers.push(answer);
     }
   }

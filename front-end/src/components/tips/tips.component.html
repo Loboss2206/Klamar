@@ -1,15 +1,8 @@
 <div>
-  <div class="overlay" style="display: none" onclick="(()=>{
-                document.querySelector('.AstuceDialogContainer').style.display = 'none';
-                document.querySelector('.overlay').style.display = 'none';
-                document.getElementsByTagName('body')[0].style.overflow = 'auto';
-            })()"></div>
-  <app-genericButton onclick="(()=>{
-    document.querySelector('.AstuceDialogContainer').style.display = 'block';
-    document.querySelector('.overlay').style.display = 'block';
-    document.getElementsByTagName('body')[0].style.overflow = 'hidden';
-})()"><img src="assets/lightbulb.svg" width="40" class="white" alt="" /> Indices</app-genericButton>
-  <div class="AstuceDialogContainer" style="display: none">
+  <div class="overlay" *ngIf="showHint" (click)="closeATip()"></div>
+  <app-genericButton (click)="openATip()"
+  ><img ngSrc="assets/lightbulb.svg" width="40" class="white" alt="" height="40"/> Indices</app-genericButton>
+  <div class="AstuceDialogContainer" *ngIf="showHint" (click)="$event.stopPropagation(); closeATip()">
     <div class="AstuceDialog">
       <div class="AstuceLine">
         <p class="AstuceContent">

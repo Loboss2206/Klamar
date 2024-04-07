@@ -30,7 +30,6 @@ import { SimonGameComponent } from "../components/simon-game/simon-game.componen
 import { SelectUserContainerComponent } from '../components/select-user-container/select-user-container.component';
 import { SelectUserItemComponent } from '../components/select-user-item/select-user-item.component';
 import {HttpClientModule} from "@angular/common/http";
-import { UserCreatorComponent } from "../components/userManager/userCreator.component";
 
 const routes: Routes = [
   { path: '', component: SelectUserContainerComponent, data: { title: 'Sélection utilisateur' } },
