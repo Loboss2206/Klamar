@@ -27,6 +27,7 @@ import { StatSimonPageComponent } from "../components/stat-simon-page/stat-simon
 import { StatQuestionPageComponent } from "../components/stat-question-page/stat-question-page.component";
 import { GraphicComponent } from "../components/graphic/graphic.component";
 import { SimonGameComponent } from "../components/simon-game/simon-game.component";
+import {HttpClientModule} from "@angular/common/http";
 
 
 const routes: Routes = [
@@ -36,7 +37,7 @@ const routes: Routes = [
   { path: 'felicitations', component: FelicidadComponent, data: { title: 'Félicitations' } },
   { path: 'quizResultPage/:id', component: quizResultPageComponent, data: { title: 'Résultat du quiz' } },
   { path: 'howToPlayQuestion', component: HowToPlayQuestionComponent, data: { title: 'Comment jouer' } },
-  { path: 'simon/:numberOfRound', component: SimonGameComponent, data: { title: 'Simon' } },
+  { path: 'simon', component: SimonGameComponent, data: { title: 'Simon' }},
   { path: 'memory', component: MemoryContainerComponent, data: { title: 'Memory' } }
 ];
 
@@ -70,7 +71,8 @@ const routes: Routes = [
     GraphicComponent,
     HowToPlayQuestionComponent,
     ZoomSliderComponent,
-    RouterModule.forRoot(routes)
+    RouterModule.forRoot(routes),
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

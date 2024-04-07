@@ -12,14 +12,18 @@ import Chart from 'chart.js/auto';
 export class GraphicComponent implements OnInit {
 
   @Input() chartId!: string;
+  @Input() data: number[] = [];
+  @Input() titre: string = "Default";
+  @Input() date: string[] = [];
+  public percentageSuccess: number = 0;
 
   constructor() { }
 
   ngOnInit(): void {
     setTimeout(()=>{
       this.createChart();
-
-    },1000)
+      this.calculateSuccessPercentage();
+    },1)
   }
 
   public chart: any;
@@ -30,21 +34,29 @@ export class GraphicComponent implements OnInit {
       type: 'line', //this denotes tha type of chart
 
       data: {// values on X-Axis
-        labels: ['2022-05-10', '2022-05-11', '2022-05-12', '2022-05-13',
-          '2022-05-14', '2022-05-15', '2022-05-16', '2022-05-17',],
+        labels: this.date,
         datasets: [
           {
-            label: "Sales",
-            data: ['467', '576', '572', '79', '92',
-              '574', '573', '576'],
+            label: "pourcentage de réussite",
+            data: this.data,
             backgroundColor: 'blue'
           },
         ]
       },
       options: {
-        aspectRatio: 1.5
+        aspectRatio: 1.5,
+        scales: {
+          y: {
+            min: 0, // Valeur minimale de l'axe y
+            max: 100 // Valeur maximale de l'axe y
+          }
+        }
       }
-
     });
+  }
+  calculateSuccessPercentage() {
+    const sum = this.data.reduce((acc, curr) => acc + curr, 0);
+    const average = sum / this.data.length;
+    this.percentageSuccess = Math.round(average);
   }
 }
