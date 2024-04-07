@@ -1,4 +1,7 @@
 export interface IUserConfig {
+  simon: {
+    isColorful: boolean;
+  },
   tips: {
     displayHintOnStart: boolean;
     displayHintOnWrongAnswer: boolean;
@@ -6,17 +9,12 @@ export interface IUserConfig {
     displayHintOnClick: boolean;
   };
   simonHints: {
-    displayTheFirstItemAfter: number;
     displayTheFullSequenceAfter: number;
-    numberOfRetryAllowed: number;
   };
   memoryHints: {
-    displayTheFirstItemAfter: number;
     displayTheFullSequenceAfter: number;
-    numberOfRetryAllowed: number;
   };
   quiz: {
-    numberOfRetryAllowed: number;
   };
   zoomLevel: number;
 }

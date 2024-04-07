@@ -3,26 +3,29 @@
   justify-content: center;
   align-items: center;
   height: 80vh;
+  width: 100vw;
 }
+
 .simon-board {
-  display: grid;
-  grid-template-columns: repeat(3, 20vh);
-  gap: 10px;
+  position: relative;
+  width: 80vh;
+  height: 80vh;
+  margin: auto;
 }
 
 .simon-button {
-  height: 20vh;
+  position: absolute;
+  top: 50%;
+  left: 50%;
   width: 20vh;
+  height: 20vh;
+  margin: -10vh; /* half of width/height */
+  border-radius: 50%;
   background-color: #9f9f9f;
 }
-
 .simon-button:hover {
   cursor: pointer;
   filter: brightness(0.8);
-}
-
-.simon-button-active {
-  filter: brightness(0.6);
 }
 
 

@@ -6,6 +6,9 @@ export const users: IUser[] = [
     name: "Doe",
     firstname: "John",
     config: {
+      simon: {
+        isColorful: true,
+      },
       tips: {
         displayHintOnStart: true,
         displayHintOnWrongAnswer: true,
@@ -13,17 +16,15 @@ export const users: IUser[] = [
         displayHintOnClick: true,
       },
       simonHints: {
-        displayTheFirstItemAfter: 1000,
         displayTheFullSequenceAfter: 2000,
-        numberOfRetryAllowed: 3,
+
       },
       memoryHints: {
-        displayTheFirstItemAfter: 1000,
         displayTheFullSequenceAfter: 2000,
-        numberOfRetryAllowed: 3,
+
       },
       quiz: {
-        numberOfRetryAllowed: 3,
+
       },
       zoomLevel: 1,
     },
@@ -34,6 +35,9 @@ export const users: IUser[] = [
     name: "Doe",
     firstname: "Jane",
     config: {
+      simon: {
+        isColorful: false,
+      },
       tips: {
         displayHintOnStart: true,
         displayHintOnWrongAnswer: true,
@@ -41,17 +45,15 @@ export const users: IUser[] = [
         displayHintOnClick: true,
       },
       simonHints: {
-        displayTheFirstItemAfter: 1000,
         displayTheFullSequenceAfter: 2000,
-        numberOfRetryAllowed: 3,
+
       },
       memoryHints: {
-        displayTheFirstItemAfter: 1000,
         displayTheFullSequenceAfter: 2000,
-        numberOfRetryAllowed: 3,
+
       },
       quiz: {
-        numberOfRetryAllowed: 3,
+
       },
       zoomLevel: 1,
     },
@@ -62,6 +64,9 @@ export const users: IUser[] = [
     name: "Doe",
     firstname: "Alice",
     config: {
+      simon: {
+        isColorful: true,
+      },
       tips: {
         displayHintOnStart: true,
         displayHintOnWrongAnswer: true,
@@ -69,17 +74,15 @@ export const users: IUser[] = [
         displayHintOnClick: true,
       },
       simonHints: {
-        displayTheFirstItemAfter: 1000,
         displayTheFullSequenceAfter: 2000,
-        numberOfRetryAllowed: 3,
+
       },
       memoryHints: {
-        displayTheFirstItemAfter: 1000,
         displayTheFullSequenceAfter: 2000,
-        numberOfRetryAllowed: 3,
+
       },
       quiz: {
-        numberOfRetryAllowed: 3,
+
       },
       zoomLevel: 1,
     },
@@ -90,6 +93,9 @@ export const users: IUser[] = [
     name: "Doe",
     firstname: "Bob",
     config: {
+      simon: {
+        isColorful: true,
+      },
       tips: {
         displayHintOnStart: true,
         displayHintOnWrongAnswer: true,
@@ -97,17 +103,15 @@ export const users: IUser[] = [
         displayHintOnClick: true,
       },
       simonHints: {
-        displayTheFirstItemAfter: 1000,
         displayTheFullSequenceAfter: 2000,
-        numberOfRetryAllowed: 3,
+
       },
       memoryHints: {
-        displayTheFirstItemAfter: 1000,
         displayTheFullSequenceAfter: 2000,
-        numberOfRetryAllowed: 3,
+
       },
       quiz: {
-        numberOfRetryAllowed: 3,
+
       },
       zoomLevel: 1,
     },
