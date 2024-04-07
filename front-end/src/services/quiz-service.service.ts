@@ -17,9 +17,9 @@ export class QuizService {
   }
 
   private currentQuestionSubject: BehaviorSubject<IQuestion> = new BehaviorSubject<IQuestion>({} as IQuestion);
-  private currentQuestionIndex: number = 0;
-  private waitingTimeBeforeNextQuestion: number = 1500;
-  private currentQuiz: number = 0;
+  private currentQuestionIndex: number = JSON.parse(sessionStorage.getItem('currentQuestionIndex') || '0');
+  private waitingTimeBeforeNextQuestion: number = 1000;
+  private currentQuiz: number = JSON.parse(sessionStorage.getItem('currentQuiz') || '0');
 
   private quizzes: IQuiz[] = quizzes;
   private questions: IQuestion[] = questionsList;
