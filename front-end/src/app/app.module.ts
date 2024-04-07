@@ -38,7 +38,8 @@ const routes: Routes = [
   { path: 'quizResultPage/:id', component: quizResultPageComponent, data: { title: 'Résultat du quiz' } },
   { path: 'howToPlayQuestion', component: HowToPlayQuestionComponent, data: { title: 'Comment jouer' } },
   { path: 'simon', component: SimonGameComponent, data: { title: 'Simon' }},
-  { path: 'memory', component: MemoryContainerComponent, data: { title: 'Memory' } }
+  { path: 'memory', component: MemoryContainerComponent, data: { title: 'Memory' } },
+  { path: 'createUser', component: UserCreatorComponent, data: { title: "Création d'un utilisateur" } }
 ];
 
 @NgModule({
