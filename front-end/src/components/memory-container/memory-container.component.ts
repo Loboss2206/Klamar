@@ -65,7 +65,7 @@ export class MemoryContainerComponent {
       this.nbTry++;
       
       if (this.isFinished()) {
-        this.router.navigate(['/felicitations']);
+        this.quizService.endMemoryGame();
       }
     }
   }
