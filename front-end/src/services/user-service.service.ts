@@ -13,6 +13,13 @@ export class UserService {
     return this.users;
   }
 
+  getCurrentUser(): IUser | null {
+    if (this.currentUser === -1) {
+      return null;
+    }
+    return this.getTheUser(this.currentUser);
+  }
+
   getTheUser(id: number) {
     let user: IUser | undefined = this.users.find((user) => user.id === id);
     if (!user) {

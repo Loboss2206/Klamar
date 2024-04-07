@@ -9,6 +9,7 @@ import {Observable} from "rxjs";
 import {Router} from "@angular/router";
 import * as Tone from "tone";
 import IUser from "../../interfaces/IUser";
+import {UserService} from "../../services/user-service.service";
 
 @Component({
   selector: 'app-question',
@@ -38,11 +39,11 @@ export class QuestionComponent implements OnInit, AfterViewInit {
   tips: string[] = [];
   questionImage: string | undefined = '';
   areResponsesImages: boolean = false;
-  user : IUser | null = !sessionStorage.getItem('user') ? null : JSON.parse(sessionStorage.getItem('user') as string);
+  user : IUser | null = this.userService.getCurrentUser();
   canOpenTipsOnClick: boolean = this.user ? this.user.config.quiz.showHintAfterClick : false;
   currentTipIndex: number = this.user ? this.user.config.quiz.showHintOneByOne ? 0 : -1 : -1;
 
-  constructor(private quizService: QuizService, private router: Router) {
+  constructor(private quizService: QuizService, private router: Router, private userService: UserService){
 
   }
 
