@@ -1,6 +1,6 @@
 <div>
   <div class="overlay" *ngIf="showHint" (click)="closeATip()"></div>
-  <app-genericButton (click)="openATip()"
+  <app-genericButton (click)="openATip()" *ngIf="canBeClicked"
   ><img ngSrc="assets/lightbulb.svg" width="40" class="white" alt="" height="40"/> Indices</app-genericButton>
   <div class="AstuceDialogContainer" *ngIf="showHint" (click)="$event.stopPropagation(); closeATip()">
     <div class="AstuceDialog">

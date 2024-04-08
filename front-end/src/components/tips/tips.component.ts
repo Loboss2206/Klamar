@@ -1,7 +1,8 @@
-import {Component} from '@angular/core';
+import {booleanAttribute, Component, Input} from '@angular/core';
 import { ButtonComponent } from "../quizButton/button.component";
 import { GenericButtonComponent } from '../genericButton/genericButton.component';
 import {NgIf, NgOptimizedImage} from "@angular/common";
+import IUser from "../../interfaces/IUser";
 
 @Component({
   selector: 'app-tips',
@@ -16,6 +17,8 @@ import {NgIf, NgOptimizedImage} from "@angular/common";
   styleUrl: './tips.component.scss'
 })
 export class TipsComponent {
+
+  @Input({transform: booleanAttribute}) canBeClicked!: boolean
 
   showHint: boolean = false;
 

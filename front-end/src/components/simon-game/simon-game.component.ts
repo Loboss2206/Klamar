@@ -98,7 +98,7 @@ export class SimonGameComponent implements OnInit {
     let i = 0;
     const interval = setInterval(() => {
       const button = this.el.nativeElement.querySelector(`#button-${this.gameInput[i]}`);
-      this.renderer.setStyle(button, 'box-shadow', `0 0 10px 5px ${this.buttonColors[this.gameInput[i]]}`);
+      this.renderer.setStyle(button, 'box-shadow', `0 0 30px 15px ${this.buttonColors[this.gameInput[i]]}`);
       this.playSound(this.gameInput[i])
       setTimeout(() => {
         this.renderer.setStyle(button, 'box-shadow', 'none');
@@ -166,8 +166,7 @@ export class SimonGameComponent implements OnInit {
   }
 
   getButtonColor(i: number) {
-    let user = JSON.parse(sessionStorage.getItem('user') || '{}');
-    if (user && user.config && user.config.simon && user.config.simon.isColorful) {
+    if (this.user && this.user.config.simon.isColorful) {
       return this.buttonColors[i];
     } else {
       return 'gray';
