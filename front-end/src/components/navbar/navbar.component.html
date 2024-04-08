@@ -1,15 +1,15 @@
 <div class="navbar">
-    <div class="logoContainer">
+    <div class="logoContainer" [routerLink]="['/']">
         <div class="logo">
             <img src="../../assets/squid.svg" alt="logo" class="logo-icon" />
             <span class="nav_title">Klamar</span>
         </div>
     </div>
     <span class="nav_current_page_head">{{title}}</span>
-    <div class="quitContainer">
+    <div class="quitContainer" [routerLink]="['/']">
         <div class="quit">
             <span class="nav_title">Quitter</span>
-            <img onclick="window.location.href='/'" src="../../assets/exit.svg" alt="quit" class="quitLogo"
+            <img src="../../assets/exit.svg" alt="quit" class="quitLogo"
                 width="50" />
         </div>
     </div>
