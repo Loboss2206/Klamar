@@ -5,7 +5,7 @@ export const users: IUser[] = [
     id: 0,
     name: "",
     firstname: "Admin",
-    config: new Object() as any,
+    config: {} as any,
     avatar: "https://journalmetro.com/wp-content/uploads/2017/04/default_profile_400x400.png?fit=400%2C400"
   },
   {
@@ -51,10 +51,10 @@ export const users: IUser[] = [
 
       },
       quiz: {
-        showHintAfterError: true,
-        showHintAfterStart: true,
-        showHintAfterClick: true,
-        showHintOneByOne: true,
+        showHintAfterError: false,
+        showHintAfterStart: false,
+        showHintAfterClick: false,
+        showHintOneByOne: false,
       },
       zoomLevel: 1,
     },
@@ -78,8 +78,8 @@ export const users: IUser[] = [
       },
       quiz: {
         showHintAfterError: true,
-        showHintAfterStart: true,
-        showHintAfterClick: true,
+        showHintAfterStart: false,
+        showHintAfterClick: false,
         showHintOneByOne: true,
       },
       zoomLevel: 1,
@@ -103,10 +103,10 @@ export const users: IUser[] = [
 
       },
       quiz: {
-        showHintAfterError: true,
+        showHintAfterError: false,
         showHintAfterStart: true,
         showHintAfterClick: true,
-        showHintOneByOne: true,
+        showHintOneByOne: false,
       },
       zoomLevel: 1,
     },

@@ -38,7 +38,7 @@ const routes: Routes = [
   { path: 'felicitations', component: FelicidadComponent, data: { title: 'Félicitations' } },
   { path: 'quizResultPage/:id', component: quizResultPageComponent, data: { title: 'Résultat du quiz' } },
   { path: 'howToPlayQuestion', component: HowToPlayQuestionComponent, data: { title: 'Comment jouer' } },
-  { path: 'simon/:numberOfRound', component: SimonGameComponent, data: { title: 'Simon' } },
+  { path: 'simon', component: SimonGameComponent, data: { title: 'Simon' } },
   { path: 'memory', component: MemoryContainerComponent, data: { title: 'Memory' } },
   { path: 'users', component: SelectUserContainerComponent, data: { title: 'Sélection utilisateur' } },
   { path: 'selectQuiz', component: QuizSelectorComponent, data: { title: 'Sélection du quiz' } },

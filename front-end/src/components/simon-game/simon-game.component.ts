@@ -3,6 +3,8 @@ import {NgForOf} from "@angular/common";
 import {ActivatedRoute} from "@angular/router";
 import {QuizService} from "../../services/quiz-service.service";
 import * as Tone from "tone";
+import IUser from "../../interfaces/IUser";
+import {UserService} from "../../services/user-service.service";
 
 @Component({
   selector: 'simon-game',
@@ -29,8 +31,9 @@ export class SimonGameComponent implements OnInit {
   lastButtonClickedTime: number = 0;
   inactivityInterval: number | null = 5000;
   intervalTime: number = 5000;
+  user: IUser | null = this.userService.getCurrentUser();
 
-  constructor(private renderer: Renderer2, private el: ElementRef, private route: ActivatedRoute, private quizService: QuizService) {
+  constructor(private renderer: Renderer2, private el: ElementRef, private route: ActivatedRoute, private quizService: QuizService, private userService: UserService) {
   }
 
   ngOnInit(): void {
@@ -40,7 +43,7 @@ export class SimonGameComponent implements OnInit {
     this.roundToWin = this.rules.numberOfRound;
     this.numberOfBoxes = this.rules.numberOfBoxes;
     this.numberMaxOfRetries = this.rules.numberOfRetriesAllowed;
-    this.intervalTime = sessionStorage.getItem('user') ? JSON.parse(sessionStorage.getItem('user') || '{}').config.simonHints.displayTheFullSequenceAfter : 5000;
+    this.intervalTime = this.user ? this.user.config.simonHints.displayTheFullSequenceAfter : 5000;
     this.startGame();
   }
 
