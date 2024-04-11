@@ -69,5 +69,100 @@ export const questionsList: IQuestion[] = [
     "tags": [
       "géographie"
     ]
+  },
+  {
+    "id": "7",
+    "question": "Quel est le plus grand océan du monde ?",
+    "tips": [
+      "Il est au sud de l\"Asie",
+      "Il n\"est pas l\"Atlantique"
+    ],
+    "AreResponsesImages": false,
+    "responses": [
+      "L\"Atlantique",
+      "L\"Arctique",
+      "L\"Indien",
+      "Le Pacifique"
+    ],
+    "answer": "Le Pacifique",
+    "tags": [
+      "géographie"
+    ]
+  },
+  {
+    "id": "8",
+    "question": "Quelle est la capitale de l\"Australie ?",
+    "tips": [
+      "Elle est en Australie",
+      "Elle n\"est pas Sydney"
+    ],
+    "AreResponsesImages": false,
+    "responses": [
+      "Canberra",
+      "Sydney",
+      "Melbourne",
+      "Brisbane"
+    ],
+    "answer": "Canberra",
+    "tags": [
+      "géographie"
+    ]
+  },
+  {
+    "id": "9",
+    "question": "Quelle est la capitale de l\"Italie ?",
+    "tips": [
+      "Elle est en Italie",
+      "Elle n\"est pas Milan"
+    ],
+    "AreResponsesImages": false,
+    "responses": [
+      "Rome",
+      "Milan",
+      "Naples",
+      "Turin"
+    ],
+    "answer": "Rome",
+    "tags": [
+      "géographie"
+    ]
+  },
+  {
+    "id": "10",
+    "question": "Quelle est la capitale de l\"Espagne ?",
+    "tips": [
+      "Elle est en Espagne",
+      "Elle n\"est pas Barcelone"
+    ],
+    "AreResponsesImages": false,
+    "responses": [
+      "Madrid",
+      "Barcelone",
+      "Valence",
+      "Séville"
+    ],
+    "answer": "Madrid",
+    "tags": [
+      "géographie"
+    ]
+  },
+  {
+    "id": "11",
+    "question": "Quelle est la capitale de la Russie ?",
+    "tips": [
+      "Elle est en Russie",
+      "Elle n\"est pas Saint-Pétersbourg"
+    ],
+    "AreResponsesImages": false,
+    "responses": [
+      "Moscou",
+      "Saint-Pétersbourg",
+      "Kazan",
+      "Sotchi"
+    ],
+    "answer": "Moscou",
+    "tags": [
+      "géographie"
+    ]
   }
 ]

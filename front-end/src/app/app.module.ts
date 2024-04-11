@@ -32,6 +32,7 @@ import { SelectUserItemComponent } from '../components/select-user-item/select-u
 import {HttpClientModule} from "@angular/common/http";
 import {LoginComponent} from "../components/login/login.component";
 import {AdminComponent} from "../components/admin-component/admin-component.component";
+import {QuizManagerComponent} from "../components/quiz-manager/quiz-manager.component";
 
 const routes: Routes = [
   { path: '', component: SelectUserContainerComponent, data: { title: 'Sélection utilisateur' } },
@@ -45,8 +46,13 @@ const routes: Routes = [
   { path: 'users', component: SelectUserContainerComponent, data: { title: 'Sélection utilisateur' } },
   { path: 'selectQuiz', component: QuizSelectorComponent, data: { title: 'Sélection du quiz' } },
   { path: 'createUser', component: UserCreatorComponent, data: { title: "Création d'un utilisateur" } },
+  { path: 'graphics/:id', component: GraphicPageComponent, data: { title: "Graphiques" } },
+  { path: 'simonStat', component: StatSimonPageComponent, data: { title: "Stats Simon" } },
+  { path: 'questionStat', component: StatQuestionPageComponent, data: { title: "Stats Questions" } },
+  { path: 'memory', component: StatMemoyPageComponent, data: { title: "Stats Memory" } },
   {path: 'login', component: LoginComponent, data: { title: "Login"}},
-  {path: 'admin', component: AdminComponent, data: { title: "Admin" }}
+  {path: 'admin', component: AdminComponent, data: { title: "Admin" }},
+  { path: 'quizManager', component: QuizManagerComponent, data: { title: 'Gestion des quiz' } },
 ];
 
 @NgModule({

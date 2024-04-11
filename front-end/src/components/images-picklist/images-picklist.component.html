@@ -1,0 +1,25 @@
+<div>
+  <div>
+    <div>
+      <div cdkDropList
+           cdkDropListOrientation="horizontal" class="kanbanColumns"
+           (cdkDropListDropped)="dropGrid($event)">
+        <div
+          cdkDragLockAxis="x" class="kanbanColumn"
+          *ngFor="let column of kanban.col" cdkDrag>
+          <div class="colTitle" cdkDragHandle>
+            {{ column.name }}
+          </div>
+          <div class="imagesContainer"
+               id="{{column.id}}"
+               [cdkDropListConnectedTo]="['1', '2']"
+               cdkDropList
+               [cdkDropListData]="column.images"
+               (cdkDropListDropped)="drop($event)">
+            <img class="images" *ngFor="let image of column.images" cdkDrag [src]="image" width="150"/>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

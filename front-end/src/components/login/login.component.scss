@@ -22,10 +22,7 @@
   position: absolute;
   width: 600px;
   height: 600px;
-  border-top-left-radius: 40%;
-  border-top-right-radius: 45%;
-  border-bottom-left-radius: 35%;
-  border-bottom-right-radius: 40%;
+  border-radius: 40% 45% 40% 35%;
   z-index: -1;
 }
 .login::before {
