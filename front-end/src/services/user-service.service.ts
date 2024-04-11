@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 import { users } from "../mocks/users";
 import IUser from 'src/interfaces/IUser';
 import IAdmin from "../interfaces/IAdmin";
-import {adminList} from "../mocks/admin";
-import {of} from "rxjs";
+import { adminList } from "../mocks/admin";
+import { of } from "rxjs";
 
 @Injectable({
   providedIn: 'root'
@@ -17,14 +17,14 @@ export class UserService {
     return this.users;
   }
 
-  getCurrentUser(): IUser | null{
+  getCurrentUser(): IUser | null {
     if (this.currentUser === -1) {
       return null;
     }
     return this.getTheUser(this.currentUser) as IUser;
   }
 
-  getCurrentAdmin(): IAdmin | null{
+  getCurrentAdmin(): IAdmin | null {
     if (this.currentUser === -1) {
       return null;
     }
@@ -53,13 +53,14 @@ export class UserService {
     if (admin) {
       this.setUser(admin.id);
       return true;
-    }else {
+    } else {
       return false;
     }
   }
 
   getUserConfig() {
-    return this.getTheUser(this.currentUser).config;
+    let user = this.getTheUser(this.currentUser) as IUser;
+    return user.config;
   }
 
   setUser(id: number) {
