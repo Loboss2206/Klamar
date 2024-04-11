@@ -2,14 +2,6 @@ import IUser from "../interfaces/IUser";
 
 export const users: IUser[] = [
   {
-    id: 0,
-    name: "",
-    firstname: "Admin",
-    config: {} as any,
-    charts : [],
-    avatar: "https://journalmetro.com/wp-content/uploads/2017/04/default_profile_400x400.png?fit=400%2C400"
-  },
-  {
     id: 1,
     name: "Boulet",
     firstname: "John",
@@ -46,11 +38,9 @@ export const users: IUser[] = [
       },
       simonHints: {
         displayTheFullSequenceAfter: 2000,
-
       },
       memoryHints: {
         displayTheFullSequenceAfter: 2000,
-
       },
       quiz: {
         showHintAfterError: false,

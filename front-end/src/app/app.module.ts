@@ -30,6 +30,8 @@ import { SimonGameComponent } from "../components/simon-game/simon-game.componen
 import { SelectUserContainerComponent } from '../components/select-user-container/select-user-container.component';
 import { SelectUserItemComponent } from '../components/select-user-item/select-user-item.component';
 import {HttpClientModule} from "@angular/common/http";
+import {LoginComponent} from "../components/login/login.component";
+import {AdminComponent} from "../components/admin-component/admin-component.component";
 
 const routes: Routes = [
   { path: '', component: SelectUserContainerComponent, data: { title: 'Sélection utilisateur' } },
@@ -47,6 +49,8 @@ const routes: Routes = [
   { path: 'simonStat', component: StatSimonPageComponent, data: { title: "Stats Simon" } },
   { path: 'questionStat', component: StatQuestionPageComponent, data: { title: "Stats Questions" } },
   { path: 'memory', component: StatMemoyPageComponent, data: { title: "Stats Memory" } },
+  {path: 'login', component: LoginComponent, data: { title: "Login"}},
+  {path: 'admin', component: AdminComponent, data: { title: "Admin" }}
 ];
 
 @NgModule({

@@ -1,11 +1,14 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {ActivatedRoute, NavigationEnd, Router} from "@angular/router";
+import {ActivatedRoute, NavigationEnd, Router, RouterLink} from "@angular/router";
 import {filter} from "rxjs";
 
 @Component({
   standalone: true,
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
+  imports: [
+    RouterLink
+  ],
   styleUrls: ['./navbar.component.scss']
 })
 

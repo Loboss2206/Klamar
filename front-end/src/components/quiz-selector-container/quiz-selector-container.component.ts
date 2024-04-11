@@ -1,9 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import { NgForOf } from "@angular/common";
-import { QuizSelectorItemComponent } from '../quiz-selector-item/quiz-selector-item.component';
+import {Component, Input, OnInit} from '@angular/core';
+import {NgForOf} from "@angular/common";
+import {QuizSelectorItemComponent} from '../quiz-selector-item/quiz-selector-item.component';
 import IQuiz from '../../interfaces/IQuiz';
-import { QuizService } from '../../services/quiz-service.service';
-import { Router } from "@angular/router";
+import {QuizService} from '../../services/quiz-service.service';
+import {Router} from "@angular/router";
 
 @Component({
   standalone: true,
@@ -16,13 +16,12 @@ import { Router } from "@angular/router";
   ]
 })
 export class QuizSelectorContainerComponent implements OnInit {
-  quizzes: IQuiz[] = [];
+  @Input() quizzes: IQuiz[] = [];
 
   constructor(private quizService: QuizService, private router: Router) {
   }
 
   ngOnInit(): void {
-    this.quizzes = this.quizService.getQuizzes();
   }
 
   defineQuiz(quizId: number) {
