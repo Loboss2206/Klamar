@@ -5,6 +5,7 @@ import {QuizService} from "../../services/quiz-service.service";
 import * as Tone from "tone";
 import IUser from "../../interfaces/IUser";
 import {UserService} from "../../services/user-service.service";
+import ISimonConfig from "../../interfaces/ISimonConfig";
 
 @Component({
   selector: 'simon-game',
@@ -27,23 +28,25 @@ export class SimonGameComponent implements OnInit {
   numberMaxOfRetries: number = 0;
   numberOfBoxesArray: number[] = Array.from({length: this.numberOfBoxes}, (_, i) => i);
   buttonColors: string[] = [];
-  rules: any;
+  rulesForSimon: ISimonConfig | undefined;
   lastButtonClickedTime: number = 0;
   inactivityInterval: number | null = 5000;
   intervalTime: number = 5000;
   user: IUser | null = this.userService.getCurrentUser();
+  intervals: any[] = [];
 
   constructor(private renderer: Renderer2, private el: ElementRef, private route: ActivatedRoute, private quizService: QuizService, private userService: UserService) {
   }
 
   ngOnInit(): void {
     this.buttonColors = this.generateDistinctColors(this.numberOfBoxes);
-    this.rules = this.quizService.getSimonRules();
-    console.log(this.rules);
-    this.roundToWin = this.rules.numberOfRound;
-    this.numberOfBoxes = this.rules.numberOfBoxes;
-    this.numberMaxOfRetries = this.rules.numberOfRetriesAllowed;
+    this.rulesForSimon = this.quizService.getSimonRules();
+    console.log(this.rulesForSimon);
+    this.roundToWin = this.rulesForSimon?.numberOfRound || 5;
+    this.numberOfBoxes = this.rulesForSimon?.numberOfBoxes || 4;
+    this.numberMaxOfRetries = this.rulesForSimon?.numberOfRetriesAllowed || 0;
     this.intervalTime = this.user ? this.user.config.simonHints.displayTheFullSequenceAfter : 5000;
+    this.numberOfBoxesArray = Array.from({length: this.numberOfBoxes}, (_, i) => i);
     this.startGame();
   }
 
@@ -69,11 +72,13 @@ export class SimonGameComponent implements OnInit {
 
   startInactivityInterval() {
     const X_SECONDS = this.intervalTime + (800*this.playerInput.length + 1000*this.gameInput.length);
+    console.log(X_SECONDS);
     this.inactivityInterval = setInterval(() => {
       if (Date.now() - this.lastButtonClickedTime > X_SECONDS) {
         this.playSequence();
       }
     }, X_SECONDS);
+    this.intervals.push(this.inactivityInterval);
   }
 
   stopInactivityInterval() {
@@ -81,6 +86,11 @@ export class SimonGameComponent implements OnInit {
       clearInterval(this.inactivityInterval);
       this.inactivityInterval = null;
     }
+  }
+
+  clearAllIntervals() {
+    this.intervals.forEach(interval => clearInterval(interval));
+    this.intervals = [];
   }
 
 
@@ -97,21 +107,26 @@ export class SimonGameComponent implements OnInit {
   }
 
   playSequence() {
+    this.clearAllIntervals();
     this.sequencePlaying = true;
     let i = 0;
     const interval = setInterval(() => {
       const button = this.el.nativeElement.querySelector(`#button-${this.gameInput[i]}`);
       this.renderer.setStyle(button, 'box-shadow', `0 0 30px 15px ${this.buttonColors[this.gameInput[i]]}`);
+      this.renderer.addClass(button, 'active');
       this.playSound(this.gameInput[i])
       setTimeout(() => {
         this.renderer.setStyle(button, 'box-shadow', 'none');
+        this.renderer.removeClass(button, 'active');
       }, 800);
       i++;
       if (i >= this.gameInput.length) {
         clearInterval(interval);
         this.sequencePlaying = false;
+        this.startInactivityInterval();
       }
     }, 1000);
+    this.intervals.push(interval);
   }
 
 
@@ -178,5 +193,6 @@ export class SimonGameComponent implements OnInit {
 
   ngOnDestroy() {
     this.stopInactivityInterval();
+    this.clearAllIntervals();
   }
 }
