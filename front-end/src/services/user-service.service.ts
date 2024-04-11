@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { users } from "../mocks/users";
 import IUser from 'src/interfaces/IUser';
+import IAdmin from "../interfaces/IAdmin";
+import {adminList} from "../mocks/admin";
 
 @Injectable({
   providedIn: 'root'
@@ -8,24 +10,46 @@ import IUser from 'src/interfaces/IUser';
 export class UserService {
   private users: IUser[] = users;
   private currentUser: number = -1;
+  private admins: IAdmin[] = adminList;
 
   getUsers(): IUser[] {
     return this.users;
   }
 
-  getCurrentUser(): IUser | null {
+  getCurrentUser(): IUser | null{
     if (this.currentUser === -1) {
       return null;
     }
-    return this.getTheUser(this.currentUser);
+    return this.getTheUser(this.currentUser) as IUser;
+  }
+
+  getCurrentAdmin(): IAdmin | null{
+    if (this.currentUser === -1) {
+      return null;
+    }
+    return this.getTheUser(this.currentUser) as IAdmin;
   }
 
   getTheUser(id: number) {
     let user: IUser | undefined = this.users.find((user) => user.id === id);
     if (!user) {
-      throw new Error('User not found');
+      let admin: IAdmin | undefined = this.admins.find((admin) => admin.id === id);
+      if (!admin) {
+        throw new Error('User not found');
+      }
+      return admin;
     }
     return user;
+  }
+
+  connectAsAdmin(username: string, password: string) {
+    let admin = this.admins.find((adminElement: { username: any; mdp: any; }) => adminElement.username === username && adminElement.mdp === password);
+    if (admin) {
+      this.setUser(admin.id);
+      return true;
+    }else {
+      return false;
+    }
   }
 
   setUser(id: number) {

@@ -1,16 +1,19 @@
 <div class="navbar">
-    <div class="logoContainer" [routerLink]="['/']">
-        <div class="logo">
-            <img src="../../assets/squid.svg" alt="logo" class="logo-icon" />
-            <span class="nav_title">Klamar</span>
-        </div>
+  <div class="logoContainer" [routerLink]="['/']">
+    <div class="logo">
+      <img src="../../assets/squid.svg" alt="logo" class="logo-icon"/>
+      <span class="nav_title">Klamar</span>
     </div>
-    <span class="nav_current_page_head">{{title}}</span>
-    <div class="quitContainer" [routerLink]="['/']">
-        <div class="quit">
-            <span class="nav_title">Quitter</span>
-            <img src="../../assets/exit.svg" alt="quit" class="quitLogo"
-                width="50" />
-        </div>
+  </div>
+  <div class="nav_current_page_head">
+    <span *ngIf="userName">{{ userName }} - </span>
+    <span>{{ title }}</span>
+  </div>
+  <div class="quitContainer" [routerLink]="['/']">
+    <div class="quit">
+      <span class="nav_title">Quitter</span>
+      <img src="../../assets/exit.svg" alt="quit" class="quitLogo"
+           width="50"/>
     </div>
+  </div>
 </div>
