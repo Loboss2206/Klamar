@@ -154,4 +154,8 @@ export class QuizService {
     this.MemoryGameMode = false;
     this.router.navigate(['felicitations/']);
   }
+
+  searchQuizzes(searchTerm: string) {
+    return this.quizzes.filter((quiz) => quiz.title.toLowerCase().includes(searchTerm.toLowerCase()));
+  }
 }

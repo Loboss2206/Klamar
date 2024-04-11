@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import {Component, EventEmitter, Output} from '@angular/core';
+import {Observable} from "rxjs";
 
 @Component({
   standalone: true,
@@ -7,5 +8,12 @@ import { Component } from '@angular/core';
   styleUrls: ['./search-quiz-selector.component.scss']
 })
 export class SearchQuizSelectorComponent {
+  @Output() searchTerm = new EventEmitter<string>();
+
+  onInputChange(event: any) {
+    this.searchTerm.emit(event.target.value);
+  }
   constructor() { }
+
+
 }
