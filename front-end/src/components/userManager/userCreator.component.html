@@ -4,46 +4,74 @@
 </div>
 <main class="userCreator">
     <form [formGroup]="userCreatorForm" class="user-creator-form">
-        <label>
-            <b>Nom</b> <br>
-            <input type=" text" id="userInput" name="userInput" [formControlName]="'lastName'" required />
-        </label>
-        <label>
-            <b>Prénom</b> <br>
-            <input type="text" id="userInput" name="userInput" [formControlName]="'firstName'" required />
-        </label>
-        <label>
-            <b>Date de naissance</b> <br>
-            <input type="text" id="userInput" name="userInput" [formControlName]="'userBirth'" required />
-        </label>
-        <label>
-            <b>Intérêt/hobbies</b> <br>
-            <input type="text" id="userInput" name="userInput" [formControlName]="'hobbies'" required />
-        </label>
+        <div class="inputs">
+            <label>
+                <b>Nom</b> <br>
+                <input type=" text" id="userInput" name="userInput" [formControlName]="'lastName'" required />
+            </label>
+            <label>
+                <b>Prénom</b> <br>
+                <input type="text" id="userInput" name="userInput" [formControlName]="'firstName'" required />
+            </label>
+            <label>
+                <b>Date de naissance</b> <br>
+                <input type="text" id="userInput" name="userInput" [formControlName]="'userBirth'" required />
+            </label>
+            <label>
+                <b>Intérêt/hobbies</b> <br>
+                <input type="text" id="userInput" name="userInput" [formControlName]="'hobbies'" required />
+            </label>
 
-        <label><b>Stade d'Alzheimer</b><br>
-            <input type="number" min="1" step="1" max="7" value="3" [formControlName]="'alzheimerState'" required>
-        </label>
-
-        <label><b>Zoom de base</b> <br>
-            <input type="number" min="0" step="1" max="300" value="100" [formControlName]="'baseZoom'" required>
-        </label>
-        <label> <b>Simon monochrome ?</b> <br>
-            <label>
-                <input type="radio" name="choiceSimon" value="oui" [formControlName]="'choiceSimon'" required> Oui
+            <label><b>Zoom de base</b> <br>
+                <input type="number" min="0" step="1" max="300" value="100" [formControlName]="'baseZoom'" required>
             </label>
-            <label>
-                <input type="radio" name="choiceSimon" value="non" [formControlName]="'choiceSimon'"> Non
+            <label> <b>Simon monochrome ?</b> <br>
+                <label>
+                    <input type="radio" name="choiceSimon" value="oui" [formControlName]="'choiceSimon'" required> Oui
+                </label>
+                <label>
+                    <input type="radio" name="choiceSimon" value="non" [formControlName]="'choiceSimon'"> Non
+                </label>
             </label>
-        </label>
-        <label> <b>Sait-il lire ?</b> <br>
-            <label>
-                <input type="radio" name="choiceRead" value="oui" [formControlName]="'choiceRead'" required> Oui
+            <label> <b>Combien de secondes pour afficher un indices ? (Simon)</b> <br>
+                <input type="number" min="0" step="1" max="300" value="0" [formControlName]="'secTipsForSimon'"
+                    required>
             </label>
-            <label>
-                <input type="radio" name="choiceRead" value="non" [formControlName]="'choiceRead'"> Non
+            <label> <b>Combien de secondes pour afficher un indices ? (Memory)</b> <br>
+                <input type="number" min="0" step="1" max="300" value="0" [formControlName]="'secTipsForMemory'"
+                    required>
             </label>
-        </label>
+            <label> <b>Afficher un indice après une erreur ? (Quiz)</b> <br>
+                <label>
+                    <input type="radio" name="choicePrintTipsAfterError" value="oui"
+                        [formControlName]="'choicePrintTipsAfterError'" required> Oui
+                </label>
+                <label>
+                    <input type="radio" name="choicePrintTipsAfterError" value="non"
+                        [formControlName]="'choicePrintTipsAfterError'"> Non
+                </label>
+            </label>
+            <label> <b>Afficher un indice après click sur le bouton "indices" ? (Quiz)</b> <br>
+                <label>
+                    <input type="radio" name="choicePrintTipsAfterClick" value="oui"
+                        [formControlName]="'choicePrintTipsAfterClick'" required> Oui
+                </label>
+                <label>
+                    <input type="radio" name="choicePrintTipsAfterClick" value="non"
+                        [formControlName]="'choicePrintTipsAfterClick'"> Non
+                </label>
+            </label>
+            <label> <b>Afficher un indice 1 par 1 ? (Quiz)</b> <br>
+                <label>
+                    <input type="radio" name="choicePrintTipsOneByOne" value="oui"
+                        [formControlName]="'choicePrintTipsOneByOne'" required> Oui
+                </label>
+                <label>
+                    <input type="radio" name="choicePrintTipsOneByOne" value="non"
+                        [formControlName]="'choicePrintTipsOneByOne'"> Non
+                </label>
+            </label>
+        </div>
         <button type="submit" class="createUserButton" [disabled]="!isFormValid()" (click)="addUser()">
             Créer l'utilisateur
         </button>

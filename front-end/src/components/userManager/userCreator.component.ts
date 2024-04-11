@@ -21,10 +21,10 @@ import { NgClass } from '@angular/common';
   styleUrl: './userCreator.component.scss'
 })
 export class UserCreatorComponent {
-  public userCreatorForm: FormGroup;
+  protected userCreatorForm: FormGroup;
 
 
-  constructor(public formBuilder: FormBuilder) {
+  constructor(protected formBuilder: FormBuilder) {
 
     this.userCreatorForm = this.formBuilder.group({
       firstName: ['', Validators.required],
@@ -34,7 +34,12 @@ export class UserCreatorComponent {
       hobbies: ['', Validators.required],
       baseZoom: [100, Validators.required],
       choiceSimon: ['', Validators.required],
-      choiceRead: ['', Validators.required]
+      choicePrintTipsAfterError: ['', Validators.required],
+      choicePrintTipsAfterStart: ['', Validators.required],
+      choicePrintTipsAfterClick: ['', Validators.required],
+      choicePrintTipsOneByOne: ['', Validators.required],
+      secTipsForMemory: [0, Validators.required],
+      secTipsForSimon: [0, Validators.required]
     });
   }
 

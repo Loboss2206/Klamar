@@ -29,7 +29,7 @@ import { GraphicComponent } from "../components/graphic/graphic.component";
 import { SimonGameComponent } from "../components/simon-game/simon-game.component";
 import { SelectUserContainerComponent } from '../components/select-user-container/select-user-container.component';
 import { SelectUserItemComponent } from '../components/select-user-item/select-user-item.component';
-import {HttpClientModule} from "@angular/common/http";
+import { HttpClientModule } from "@angular/common/http";
 
 const routes: Routes = [
   { path: '', component: SelectUserContainerComponent, data: { title: 'Sélection utilisateur' } },
