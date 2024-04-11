@@ -58,6 +58,10 @@ export class UserService {
     }
   }
 
+  getUserConfig() {
+    return this.getTheUser(this.currentUser).config;
+  }
+
   setUser(id: number) {
     this.currentUser = id;
   }

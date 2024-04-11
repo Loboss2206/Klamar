@@ -12,6 +12,8 @@ import { EventEmitter } from '@angular/core';
 export class MemoryItemComponent {
   isFlipped: boolean = false;
   isInactive: boolean = false;
+  isHighlighted: boolean = false;
+  isHidden: boolean = false;
 
   @Input() picURL!: string;
   @Output() onFlip: EventEmitter<void> = new EventEmitter<void>();
@@ -22,7 +24,15 @@ export class MemoryItemComponent {
     this.onFlip.emit();
   }
 
-  toggleFlip() {
-    this.isFlipped = !this.isFlipped;
+  setFlipped(value: boolean) {
+    this.isFlipped = value;
+  }
+
+  setHighlightCard(value: boolean) {
+    this.isHighlighted = value;
+  }
+
+  setHidden(value: boolean) {
+    this.isHidden = value;
   }
 }

@@ -1,4 +1,4 @@
-import {Injectable} from '@angular/core';
+import { Injectable } from '@angular/core';
 import IQuestion from "../interfaces/IQuestion";
 import IQuiz from "../interfaces/IQuiz";
 import {quizzes} from "../mocks/quizzes";
@@ -152,8 +152,16 @@ export class QuizService {
     this.updateCurrentQuestion(this.getQuestions()[this.currentQuestionIndex]);
   }
 
+  get getPicsMemory(): string[] {
+    return this.getTheQuiz(this.currentQuiz).picsMemory;
+  }
+
   getSimonRules(): ISimonConfig | undefined{
     return this.getTheQuiz(this.currentQuiz).specials.find((special) => special.name === 'Simon')?.rulesForSimon;
+  }
+
+  getMemoryRules() {
+    return this.getTheQuiz(this.currentQuiz).specials.find((special) => special.name === 'Memory')?.rules;
   }
 
   questionsFinished() {
