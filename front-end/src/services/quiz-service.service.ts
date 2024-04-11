@@ -1,10 +1,12 @@
 import {Injectable} from '@angular/core';
 import IQuestion from "../interfaces/IQuestion";
 import IQuiz from "../interfaces/IQuiz";
-import { quizzes } from "../mocks/quizzes";
-import { questionsList } from "../mocks/questions";
-import { BehaviorSubject, Observable } from "rxjs";
+import {quizzes} from "../mocks/quizzes";
+import {questionsList} from "../mocks/questions";
+import {BehaviorSubject, Observable, of} from "rxjs";
 import {Router} from "@angular/router";
+import ISimonConfig from "../interfaces/ISimonConfig";
+import {ImageBank} from "../mocks/ImageBank";
 
 @Injectable({
   providedIn: 'root'
@@ -27,19 +29,50 @@ export class QuizService {
   private MemoryGameMode: boolean = false;
   private isInQuestionMode: boolean = true;
 
+  private currentQuizSubject: BehaviorSubject<IQuiz> = new BehaviorSubject<IQuiz>({} as IQuiz);
+
+  getQuestionsPickListData(): Observable<{ allQuestions: IQuestion[], existingQuizQuestions: IQuestion[] }> {
+    const allQuestions = this.getAllQuestions();
+    const existingQuizQuestions = this.getQuestionsForQuiz(this.currentQuiz);
+    return of({allQuestions, existingQuizQuestions});
+  }
+
+  getImagesPickListData(): Observable<{ allImages: string[], imageAlreadyOnTheMemory: string[] }> {
+    const allImages = ImageBank;
+    const imageAlreadyOnTheMemory = this.getPicsMemory();
+    return of({allImages, imageAlreadyOnTheMemory});
+  }
+
   constructor(private router: Router) {
+  }
+
+  getPicsMemory(): string[] {
+    return this.getTheQuiz(this.currentQuiz).picsMemory || [];
   }
 
   getTheQuiz(id: number) {
     let quiz: IQuiz | undefined = this.quizzes.find((quiz) => quiz.quizId === id);
     if (!quiz) {
-      throw new Error('Quiz not found');
+     console.error('Quiz not found');
+     return {
+        title: 'Nouveau Quiz',
+        quizDescription: 'Insérez une description',
+        questions: [],
+        specials: [],
+        imageUrl: 'https://placehold.co/400',
+        quizId: 0
+      } as IQuiz;
     }
     return quiz;
   }
 
   setQuiz(id: number) {
     this.setCurrentQuiz(id);
+    this.currentQuizSubject.next(this.getTheQuiz(id));
+  }
+
+  getCurrentQuiz(): Observable<IQuiz> {
+    return this.currentQuizSubject.asObservable();
   }
 
   get getWaitingTimeBeforeNextQuestion(): number {
@@ -48,6 +81,10 @@ export class QuizService {
 
   getQuestions(): IQuestion[] {
     return this.questions.filter((question) => this.getTheQuiz(this.currentQuiz).questions.includes(parseInt(question.id)));
+  }
+
+  getAllQuestions(): IQuestion[] {
+    return this.questions;
   }
 
   get getTips(): string[][] {
@@ -115,8 +152,8 @@ export class QuizService {
     this.updateCurrentQuestion(this.getQuestions()[this.currentQuestionIndex]);
   }
 
-  getSimonRules() {
-    return this.getTheQuiz(this.currentQuiz).specials.find((special) => special.name === 'Simon')?.rules;
+  getSimonRules(): ISimonConfig | undefined{
+    return this.getTheQuiz(this.currentQuiz).specials.find((special) => special.name === 'Simon')?.rulesForSimon;
   }
 
   questionsFinished() {
@@ -157,5 +194,41 @@ export class QuizService {
 
   searchQuizzes(searchTerm: string) {
     return this.quizzes.filter((quiz) => quiz.title.toLowerCase().includes(searchTerm.toLowerCase()));
+  }
+
+  deleteQuiz(quizId: number) {
+    // TODO: BACKEND LOGIC TO DELETE QUIZ
+    console.log('Quiz "' + this.getTheQuiz(quizId).title + '" deleted');
+  }
+
+  createEmptyQuiz() {
+    // TODO: BACKEND LOGIC TO CREATE EMPTY QUIZ (Just for not having to have concurrent ids in the database)
+    //temporary solution
+    console.log('New empty quiz created with id ' + (this.quizzes.length + 1));
+
+    this.setQuiz(this.quizzes.length + 1);
+    return this.quizzes.length + 1;
+  }
+
+  saveQuiz(quizId: number, quiz: IQuiz) {
+    // TODO: BACKEND LOGIC TO SAVE QUIZ
+    console.log('Quiz "' + quiz.title + '" saved');
+  }
+
+  getQuestionsForQuiz(quizId: number) {
+    return this.getTheQuiz(quizId).questions.map((questionId) => {
+      let question: IQuestion | undefined = this.questions.find((question) => parseInt(question.id) === questionId);
+      if (!question) {
+        console.error('It seems that a question is missing from the Database, have you deleted it?');
+        return {
+          id: '0',
+          question: 'Oups, la question n\'a pas été trouvée l\'avez vous supprimée ?',
+          answer: 'Answer not found',
+          tips: ['Tip not found']
+        } as IQuestion;
+      }
+      return question;
+    });
+
   }
 }

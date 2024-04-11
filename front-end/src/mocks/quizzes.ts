@@ -4,7 +4,10 @@ export const quizzes: IQuiz[]= [{
   "title": "Capitales et géographie",
   "quizDescription": "Testez vos connaissances sur les capitales et la géographie",
   "questions": [1,2,3,4,5,6],
-  "specials": [{name: "Simon", rules: {numberOfRound: 5, numberOfBoxes: 4, numberOfRetriesAllowed: 2}}, {name: "Memory", rules: {}}],
+  "specials": [{name: "Simon", rulesForSimon: {numberOfRound: 5, numberOfBoxes: 4, numberOfRetriesAllowed: 2}}, {name: "Memory"}],
+  picsMemory: [
+    "https://placehold.co/400",
+    ],
   "imageUrl": "https://previews.123rf.com/images/yupiramos/yupiramos2203/yupiramos220302216/183817525-mati%C3%A8re-scolaire-de-g%C3%A9ographie.jpg",
   "quizId": 1
 },
@@ -20,15 +23,15 @@ export const quizzes: IQuiz[]= [{
     "title": "Musique",
     "quizDescription": "Testez vos connaissances sur la musique",
     "questions": [12,13,14,15,16],
-    "specials": [{name: "Simon", rules: {numberOfRound: 5}}],
+    "specials": [{name: "Simon", rulesForSimon: {numberOfRound: 5, numberOfBoxes: 4, numberOfRetriesAllowed: 2}}],
     "imageUrl" : "https://images.rtl.fr/~c/770v513/rtl/www/1076683-leonardo-dicaprio-est-l-un-des-acteurs-les-plus-payes-avec-45-millions-de-dollars-entre-2013-et-2014.jpg",
     "quizId": 3
   },
   {
     "title": "Sport",
     "quizDescription": "Testez vos connaissances sur le sport",
-    "questions": [17,18,19,20,21],
-    "specials": [{name: "Memory", rules: {}}],
+    "questions": [],
+    "specials": [{name: "Memory"}],
     "imageUrl" : "https://www.pourquoidocteur.fr/media/article/COPY_istock-1213864843-1625666281.jpg",
     "quizId": 4
   }
