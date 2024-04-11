@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { users } from "../mocks/users";
 import IUser from 'src/interfaces/IUser';
+import {of} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
@@ -27,6 +28,11 @@ export class UserService {
     }
     return user;
   }
+  getCharts(id: number) {
+    let user = users.find(user => user.id === id);
+    return of(user?.charts);
+  }
+
 
   setUser(id: number) {
     this.currentUser = id;
