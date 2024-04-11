@@ -42,7 +42,11 @@ const routes: Routes = [
   { path: 'memory', component: MemoryContainerComponent, data: { title: 'Memory' } },
   { path: 'users', component: SelectUserContainerComponent, data: { title: 'Sélection utilisateur' } },
   { path: 'selectQuiz', component: QuizSelectorComponent, data: { title: 'Sélection du quiz' } },
-  { path: 'createUser', component: UserCreatorComponent, data: { title: "Création d'un utilisateur" } }
+  { path: 'createUser', component: UserCreatorComponent, data: { title: "Création d'un utilisateur" } },
+  { path: 'graphics/:id', component: GraphicPageComponent, data: { title: "Graphiques" } },
+  { path: 'simonStat', component: StatSimonPageComponent, data: { title: "Stats Simon" } },
+  { path: 'questionStat', component: StatQuestionPageComponent, data: { title: "Stats Questions" } },
+  { path: 'memory', component: StatMemoyPageComponent, data: { title: "Stats Memory" } },
 ];
 
 @NgModule({

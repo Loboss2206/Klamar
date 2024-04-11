@@ -3,6 +3,11 @@ import {titlePageComponent} from "../titlePage/titlePage.component";
 import {sortComponent} from "../sort/sort.component";
 import {ZoomSliderComponent} from "../zoomSlider/zoomSlider.component";
 import {GraphicComponent} from "../graphic/graphic.component";
+import {GraphicService} from "../../services/graphic.service";
+import {ActivatedRoute} from "@angular/router";
+import {UserService} from "../../services/user-service.service";
+import {NgForOf} from "@angular/common";
+import IGraphic from "../../interfaces/IGraphic";
 
 
 @Component({
@@ -13,13 +18,37 @@ import {GraphicComponent} from "../graphic/graphic.component";
     sortComponent,
     ZoomSliderComponent,
     GraphicComponent,
+    NgForOf,
 
   ],
   templateUrl: './graphic-page.component.html',
   styleUrl: './graphic-page.component.scss'
 })
 export class GraphicPageComponent implements OnInit{
+  id : number | undefined
+  chartIDs : string[] | undefined
+  charts : IGraphic[] = []
+
+  constructor(private _graphicService : GraphicService , private _userService : UserService , private route : ActivatedRoute) {
+  }
+
   ngOnInit(): void {
+    this.id = Number(this.route.snapshot.paramMap.get('id'))
+    this._userService.getCharts(this.id).subscribe(charts =>{
+      this.chartIDs=charts
+    })
+    console.log(this.charts)
+    if (this.chartIDs) {
+      for (let chartId of this.chartIDs) {
+        this._graphicService.getGraphic(chartId).subscribe(chart => {
+          if (chart) {
+            this.charts.push(chart)
+            console.log(chart)
+          }
+        })
+      }
+    }
+
   }
 
 }
