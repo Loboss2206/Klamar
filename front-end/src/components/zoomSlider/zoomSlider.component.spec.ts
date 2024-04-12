@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { ZoomSliderComponent } from './zoomSlider.component';
+import {ZoomSliderComponent} from './zoomSlider.component';
 
 describe('ZoomSliderComponent', () => {
   let component: ZoomSliderComponent;

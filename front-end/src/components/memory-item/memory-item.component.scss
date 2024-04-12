@@ -4,7 +4,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: white;
+    background-color: var(--memory-item-bg-color);
     margin: 0.6vw auto;
 }
 
@@ -32,7 +32,7 @@
 }
 
 .highlighted {
-    border: 0.5vw solid green;
+    border: var(--memory-item-highlighted-bg-color);
     margin: 0;
     padding: 0;
 }

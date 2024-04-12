@@ -1,8 +1,8 @@
 #userInput {
-    background-color: #D9D9D9;
+    background-color: var(--user-input);
     border-radius: 200px;
     padding: 5px;
-    border: #D9D9D9;
+    border: var(--user-input-border);
 }
 
 .nameUserInput {

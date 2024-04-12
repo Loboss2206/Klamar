@@ -1,6 +1,6 @@
 .login {
   overflow: hidden;
-  background-color: white;
+  background-color: var(--login-background-color);
   padding: 40px 30px 30px 30px;
   border-radius: 10px;
   position: absolute;
@@ -15,7 +15,7 @@
   -webkit-transition: -webkit-transform 300ms, box-shadow 300ms;
   -moz-transition: -moz-transform 300ms, box-shadow 300ms;
   transition: transform 300ms, box-shadow 300ms;
-  box-shadow: 5px 10px 10px rgba(35, 38, 234, 0.2);
+  box-shadow: 5px 10px 10px var(--login-box-shadow-color);
 }
 .login::before, .login::after {
   content: "";
@@ -28,7 +28,7 @@
 .login::before {
   left: 40%;
   bottom: -130%;
-  background-color: rgba(69, 79, 144, 0.15);
+  background-color: var(--login-before-background-color);
   -webkit-animation: wawes 6s infinite linear;
   -moz-animation: wawes 6s infinite linear;
   animation: wawes 6s infinite linear;
@@ -36,7 +36,7 @@
 .login::after {
   left: 35%;
   bottom: -125%;
-  background-color: rgba(2, 4, 144, 0.2);
+  background-color: var(--login-afeter-background-color);
   -webkit-animation: wawes 7s infinite;
   -moz-animation: wawes 7s infinite;
   animation: wawes 7s infinite;
@@ -46,7 +46,7 @@
   display: block;
   border-radius: 5px;
   font-size: 16px;
-  background: white;
+  background-color : var(--login-input-background-color);
   width: 100%;
   border: 0;
   padding: 10px 10px;
@@ -55,7 +55,7 @@
 .login > button {
   font-family: "Asap", sans-serif;
   cursor: pointer;
-  color: #fff;
+  color: var(--login-button-color);
   font-size: 16px;
   text-transform: uppercase;
   width: 160px;
@@ -64,13 +64,13 @@
   margin-top: 10px;
   margin-left: -5px;
   border-radius: 5px;
-  background-color: #5ba8f4;
+  background-color: var(--login-button-background-color);
   -webkit-transition: background-color 300ms;
   -moz-transition: background-color 300ms;
   transition: background-color 300ms;
 }
 .login > button:hover {
-  background-color: #436cf2;
+  background-color: var(--login-button-hover-background-color);
 }
 
 @-webkit-keyframes wawes {
@@ -107,7 +107,7 @@
 }
 a {
   text-decoration: none;
-  color: rgba(255, 255, 255, 0.6);
+  color: var(--login-a);
   position: absolute;
   right: 10px;
   bottom: 10px;
