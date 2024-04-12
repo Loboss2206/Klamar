@@ -10,7 +10,7 @@ import { of } from "rxjs";
 })
 export class UserService {
   private users: IUser[] = users;
-  private currentUser: number = -1;
+  private currentUser: number = parseInt(sessionStorage.getItem('currentUser') || '-1', 10);
   private admins: IAdmin[] = adminList;
 
   getUsers(): IUser[] {
@@ -42,6 +42,7 @@ export class UserService {
     }
     return user;
   }
+
   getCharts(id: number) {
     let user = users.find(user => user.id === id);
     return of(user?.charts);
@@ -65,5 +66,6 @@ export class UserService {
 
   setUser(id: number) {
     this.currentUser = id;
+    sessionStorage.setItem('currentUser', JSON.stringify(id));
   }
 }
