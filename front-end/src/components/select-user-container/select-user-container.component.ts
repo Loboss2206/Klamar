@@ -5,17 +5,19 @@ import { UserService } from '../../services/user-service.service';
 import IUser from '../../interfaces/IUser';
 import { SelectUserItemComponent } from '../select-user-item/select-user-item.component';
 import IAdmin from 'src/interfaces/IAdmin';
+import {SearchQuizSelectorComponent} from "../search-quiz-selector/search-quiz-selector.component";
 
 @Component({
   standalone: true,
   selector: 'app-select-user-container',
   templateUrl: './select-user-container.component.html',
   styleUrls: ['./select-user-container.component.scss'],
-  imports: [
-    SelectUserItemComponent,
-    NgForOf,
-    RouterLink
-  ]
+    imports: [
+        SelectUserItemComponent,
+        NgForOf,
+        RouterLink,
+        SearchQuizSelectorComponent
+    ]
 })
 export class SelectUserContainerComponent implements OnInit {
   users: IUser[] = [];
@@ -38,5 +40,9 @@ export class SelectUserContainerComponent implements OnInit {
   defineUser(userId: number) {
     this.userService.setUser(userId);
     this.router.navigate(['/selectQuiz']);
+  }
+
+  searchUsers(searchTerm: string) {
+    this.users = this.userService.searchUsers(searchTerm);
   }
 }

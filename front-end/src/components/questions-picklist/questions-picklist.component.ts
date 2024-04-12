@@ -7,9 +7,10 @@ import {
   moveItemInArray,
   transferArrayItem
 } from "@angular/cdk/drag-drop";
-import {NgForOf} from "@angular/common";
+import {NgForOf, NgIf} from "@angular/common";
 import IQuestion from "../../interfaces/IQuestion";
 import {BehaviorSubject} from "rxjs";
+import {SearchQuizSelectorComponent} from "../search-quiz-selector/search-quiz-selector.component";
 
 @Component({
   selector: 'app-questions-picklist',
@@ -18,7 +19,9 @@ import {BehaviorSubject} from "rxjs";
     CdkDropList,
     CdkDrag,
     NgForOf,
-    CdkDragHandle
+    CdkDragHandle,
+    SearchQuizSelectorComponent,
+    NgIf
   ],
   templateUrl: './questions-picklist.component.html',
   styleUrl: './questions-picklist.component.scss'
@@ -28,6 +31,8 @@ export class QuestionsPicklistComponent implements OnInit {
   @Input() questionsAlreadyInTheQuiz: IQuestion[] = [];
 
   questionsOrder: IQuestion[] = [];
+  filteredQuestions: IQuestion[] = [];
+  keeper: IQuestion[] = [];
   availableQuestions: BehaviorSubject<IQuestion[]> = new BehaviorSubject<IQuestion[]>([]);
   questionsInTheQuiz: BehaviorSubject<IQuestion[]> = new BehaviorSubject<IQuestion[]>([]);
 
@@ -36,7 +41,6 @@ export class QuestionsPicklistComponent implements OnInit {
     new KanbanCol('Questions disponibles', '1', []),
     new KanbanCol('Questions dans le quiz ', '2', [])
   ]);
-
   constructor() {}
 
   public ngOnInit(): void {
@@ -65,6 +69,16 @@ export class QuestionsPicklistComponent implements OnInit {
         event.currentIndex);
     }
     this.questionsOrder = this.kanban.col[1].questions;
+  }
+
+  SearchQuestions($event: string) {
+    if ($event === "") {
+      this.availableQuestions.next(this.keeper);
+      return;
+    }
+    this.keeper = this.allQuestions.filter((question) => !this.questionsAlreadyInTheQuiz.includes(question));
+    this.filteredQuestions = this.allQuestions.filter((question) => question.question?.toLowerCase().includes($event.toLowerCase()) && !this.questionsAlreadyInTheQuiz.includes(question));
+    this.availableQuestions.next(this.filteredQuestions);
   }
 }
 

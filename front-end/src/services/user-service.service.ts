@@ -68,4 +68,8 @@ export class UserService {
     this.currentUser = id;
     sessionStorage.setItem('currentUser', JSON.stringify(id));
   }
+
+  searchUsers(searchTerm: string) {
+    return this.users.filter((user) => user.name.toLowerCase().includes(searchTerm.toLowerCase()) || user.firstname.toLowerCase().includes(searchTerm.toLowerCase()));
+  }
 }
