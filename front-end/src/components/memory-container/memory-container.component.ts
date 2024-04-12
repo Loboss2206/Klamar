@@ -42,7 +42,7 @@ export class MemoryContainerComponent {
 
   ngOnInit(): void {
     this.startInactivityCheck();
-    this.pics = this.quizService.getPicsMemory;
+    this.pics = this.quizService.getPicsMemory();
     this.timeBeforeSwitching = this.userService.getUserConfig().memory.timeBeforeSwitching;
     this.timeBeforeHints = this.userService.getUserConfig().memoryHints.timeBeforeHints;
     this.pics = this.pics.concat(this.pics);

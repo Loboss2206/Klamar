@@ -6,5 +6,5 @@ export default interface IUser {
   firstname: string;
   config: IUserConfig;
   avatar: string;
-  charts : string[]
+  charts: string[];
 }

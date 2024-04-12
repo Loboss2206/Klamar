@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
 import IQuestion from "../interfaces/IQuestion";
 import IQuiz from "../interfaces/IQuiz";
-import {quizzes} from "../mocks/quizzes";
-import {questionsList} from "../mocks/questions";
-import {BehaviorSubject, Observable, of} from "rxjs";
-import {Router} from "@angular/router";
+import { quizzes } from "../mocks/quizzes";
+import { questionsList } from "../mocks/questions";
+import { BehaviorSubject, Observable, of } from "rxjs";
+import { Router } from "@angular/router";
 import ISimonConfig from "../interfaces/ISimonConfig";
-import {ImageBank} from "../mocks/ImageBank";
+import { ImageBank } from "../mocks/ImageBank";
 
 @Injectable({
   providedIn: 'root'
@@ -34,13 +34,13 @@ export class QuizService {
   getQuestionsPickListData(): Observable<{ allQuestions: IQuestion[], existingQuizQuestions: IQuestion[] }> {
     const allQuestions = this.getAllQuestions();
     const existingQuizQuestions = this.getQuestionsForQuiz(this.currentQuiz);
-    return of({allQuestions, existingQuizQuestions});
+    return of({ allQuestions, existingQuizQuestions });
   }
 
   getImagesPickListData(): Observable<{ allImages: string[], imageAlreadyOnTheMemory: string[] }> {
     const allImages = ImageBank;
     const imageAlreadyOnTheMemory = this.getPicsMemory();
-    return of({allImages, imageAlreadyOnTheMemory});
+    return of({ allImages, imageAlreadyOnTheMemory });
   }
 
   constructor(private router: Router) {
@@ -53,8 +53,8 @@ export class QuizService {
   getTheQuiz(id: number) {
     let quiz: IQuiz | undefined = this.quizzes.find((quiz) => quiz.quizId === id);
     if (!quiz) {
-     console.error('Quiz not found');
-     return {
+      console.error('Quiz not found');
+      return {
         title: 'Nouveau Quiz',
         quizDescription: 'Insérez une description',
         questions: [],
@@ -152,17 +152,15 @@ export class QuizService {
     this.updateCurrentQuestion(this.getQuestions()[this.currentQuestionIndex]);
   }
 
-  get getPicsMemory(): string[] {
-    return this.getTheQuiz(this.currentQuiz).picsMemory;
-  }
-
-  getSimonRules(): ISimonConfig | undefined{
+  getSimonRules(): ISimonConfig | undefined {
     return this.getTheQuiz(this.currentQuiz).specials.find((special) => special.name === 'Simon')?.rulesForSimon;
   }
 
+  /*
   getMemoryRules() {
     return this.getTheQuiz(this.currentQuiz).specials.find((special) => special.name === 'Memory')?.rules;
   }
+  */
 
   questionsFinished() {
     this.isInQuestionMode = false;
