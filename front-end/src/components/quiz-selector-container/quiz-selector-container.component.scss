@@ -4,7 +4,7 @@
     justify-content: center;
     width: 80vw;
     border-radius: 5px;
-    background-color: #726e6e28;
+    background-color: var(--quiz-selector-container-bg-color);
     height: 50vh;
     overflow-y: auto;
 }
@@ -14,10 +14,10 @@
 }
 
 .quizContainer::-webkit-scrollbar-track {
-    background-color: #dddddd;
+    background-color: var(--quiz-selector-container-bg-color);
 }
 
 .quizContainer::-webkit-scrollbar-thumb {
-    background-color: #888888;
-    border-radius: 5px;
+    background-color: var(--quiz-selector-scrollbar-thumb-color);
+    border-radius: var(--quiz-selector-scrollbar-radius);
 }
