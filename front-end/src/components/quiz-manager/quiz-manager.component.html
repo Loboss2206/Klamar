@@ -3,7 +3,10 @@
     <app-genericButton (click)="createQuiz()">Créer un quiz</app-genericButton>
   </div>
 
-  <div *ngIf="!editMode && !isInMemoryEdit">
+  <div *ngIf="!editMode && !isInMemoryEdit" >
+    <div style="display: flex; justify-content: center; flex-direction: column; align-items: center;">
+      <app-search-quiz-selector (searchTerm)="SearchQuizzes($event)"></app-search-quiz-selector>
+    </div>
     <app-material-table (callback)="takeAction($event[0],$event[1] )" [headers]="getHeaders()"
                         [elements]="getQuizzesToDisplay()" [actions]="getActions()"
                         ></app-material-table>

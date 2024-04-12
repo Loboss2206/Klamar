@@ -66,4 +66,8 @@ export class UserService {
   setUser(id: number) {
     this.currentUser = id;
   }
+
+  searchUsers(searchTerm: string) {
+    return this.users.filter((user) => user.name.toLowerCase().includes(searchTerm.toLowerCase()) || user.firstname.toLowerCase().includes(searchTerm.toLowerCase()));
+  }
 }
