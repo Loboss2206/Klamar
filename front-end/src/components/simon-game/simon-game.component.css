@@ -22,7 +22,7 @@
   height: 20vh;
   margin: -10vh; /* half of width/height */
   border-radius: 50%;
-  background-color: #9f9f9f;
+  background-color: var(--simon-button-default-bg-color);
   opacity: 0.8;
   transition: all 0.5s ease;
 }

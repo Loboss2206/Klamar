@@ -2,8 +2,8 @@
 
 .card {
   border-radius: 2px;
-  background-color: #fff;
-  box-shadow: 0 2px 2px 0 rgba(0,0,0,.14), 0 3px 1px -2px rgba(0,0,0,.2), 0 1px 5px 0 rgba(0,0,0,.12);
+  background-color: var(--material-table-table-bg-color);
+  box-shadow: var(--material-table-shadow);
 }
 
 .table {
@@ -24,12 +24,12 @@
   content: '';
   top: 0;
   height: 48px;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.075);
+  border-bottom: 1px solid var(--material-table-border-bottom);
 }
 
 table {
   white-space: nowrap;
-  color: rgba(0, 0, 0, 0.87);
+  color: var(--material-table);
   width: 100%;
   font-size: 12px;
   overflow-x: hidden;
@@ -55,11 +55,11 @@ table td {
 
 table th:not(:first-child) div,
 table td:not(:first-child) {
-  border-left: 1px solid rgba(0, 0, 0, 0.075);
+  border-left: 1px solid var(--material-table-border-left);
 }
 
 table td {
-  border-bottom: 1px solid rgba(0, 0, 0, 0.075);
+  border-bottom: 1px solid var(--material-table-border-bottom);
 }
 
 table thead tr:last-child th {
@@ -75,7 +75,7 @@ table thead th div {
 
 table tbody tr:hover {
   cursor: pointer;
-  background-color: #EDEDF2;
+  background-color: var(--material-table-table-bg-color);
 }
 
 .cellspacing{
