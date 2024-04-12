@@ -1,0 +1,11 @@
+.memoryContainer {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    justify-content: center;
+    width: 80vw;
+    border-radius: 5px;
+    margin: 5vw auto;
+    background-color: #726e6e28;
+    border: 5px groove #000000;
+}

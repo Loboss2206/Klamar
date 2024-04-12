@@ -1,0 +1,24 @@
+h1 {
+  font-family: "Roboto", sans-serif;
+}
+
+
+
+main {
+  position: relative;
+  margin: 40px 10% 50px;
+}
+
+footer {
+  margin: 10px;
+  position: fixed;
+  bottom: 0;
+  right: 0;
+}
+
+.differentGame {
+  display: flex;
+  justify-content: space-evenly;
+  margin-bottom: 30px;
+}
+

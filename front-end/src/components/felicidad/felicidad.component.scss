@@ -1,0 +1,70 @@
+.title_wrapper{
+  font-size: 1.5em;
+  text-align: center;
+  font-family: Roboto, serif;
+  color: #ffffff;
+  margin-top: 0;
+  width: 100%;
+  display: block;
+  margin-bottom: 50px;
+  background-color: #434343;
+  border-radius: 10px;
+}
+
+.finish{
+  height: 10vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+}
+.buttonWrapper > app-quizButton{
+  width: 100%;
+  margin-top: 30px;
+}
+
+.felicidad{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+body{
+  overflow: hidden !important;
+}
+
+.buttonWrapper{
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+}
+
+.finish_text{
+  font-size: 10em;
+  font-family: "Fenix", Serif;
+  text-shadow: 2px 2px 2px #000000;
+  margin-bottom: 0;
+}
+.gradient {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  margin: 0;
+  background-size: 200% 200%;
+  background-image: linear-gradient(45deg, #d78e78, #c06989, #234dd5, #23d56a);
+  animation: gradient 15s ease infinite;
+}
+@keyframes gradient {
+  0% {
+    background-position: 0 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0 50%;
+  }
+}

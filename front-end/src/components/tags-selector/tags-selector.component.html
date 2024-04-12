@@ -1,0 +1,7 @@
+<div class="tagsContainer">
+  <label for="tagsSelector" class="tagsLabel">Tags</label>
+  <select id="tagsSelector" class="tagsSelector" multiple>
+    <option *ngFor="let tag of tags" [value]="tag">{{ tag }}</option>
+  </select>
+  <img src="../../assets/filter.svg" alt="filter" class="filterLogo" />
+</div>

@@ -1,0 +1,5 @@
+<div class="quizContainer">
+    <div *ngFor="let quiz of quizzes">
+        <app-quiz-selector-item [quiz]="quiz" (click)="defineQuiz(quiz.quizId)"></app-quiz-selector-item>
+    </div>
+</div>

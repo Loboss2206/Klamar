@@ -1,0 +1,51 @@
+<div class="userAvatar">
+    <input type="file">
+    <p>Ajouter une photo</p>
+</div>
+<main class="userCreator">
+    <form [formGroup]="userCreatorForm" class="user-creator-form">
+        <label>
+            <b>Nom</b> <br>
+            <input type=" text" id="userInput" name="userInput" [formControlName]="'lastName'" required />
+        </label>
+        <label>
+            <b>Prénom</b> <br>
+            <input type="text" id="userInput" name="userInput" [formControlName]="'firstName'" required />
+        </label>
+        <label>
+            <b>Date de naissance</b> <br>
+            <input type="text" id="userInput" name="userInput" [formControlName]="'userBirth'" required />
+        </label>
+        <label>
+            <b>Intérêt/hobbies</b> <br>
+            <input type="text" id="userInput" name="userInput" [formControlName]="'hobbies'" required />
+        </label>
+
+        <label><b>Stade d'Alzheimer</b><br>
+            <input type="number" min="1" step="1" max="7" value="3" [formControlName]="'alzheimerState'" required>
+        </label>
+
+        <label><b>Zoom de base</b> <br>
+            <input type="number" min="0" step="1" max="300" value="100" [formControlName]="'baseZoom'" required>
+        </label>
+        <label> <b>Simon monochrome ?</b> <br>
+            <label>
+                <input type="radio" name="choiceSimon" value="oui" [formControlName]="'choiceSimon'" required> Oui
+            </label>
+            <label>
+                <input type="radio" name="choiceSimon" value="non" [formControlName]="'choiceSimon'"> Non
+            </label>
+        </label>
+        <label> <b>Sait-il lire ?</b> <br>
+            <label>
+                <input type="radio" name="choiceRead" value="oui" [formControlName]="'choiceRead'" required> Oui
+            </label>
+            <label>
+                <input type="radio" name="choiceRead" value="non" [formControlName]="'choiceRead'"> Non
+            </label>
+        </label>
+        <button type="submit" class="createUserButton" [disabled]="!isFormValid()" (click)="addUser()">
+            Créer l'utilisateur
+        </button>
+    </form>
+</main>

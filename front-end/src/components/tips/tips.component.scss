@@ -1,0 +1,54 @@
+.AstuceDialogContainer {
+  position: absolute;
+  top: 20vh;
+  left: 10vw;
+  width: 80vw;
+  font-size: 2rem;
+  font-family: Roboto, serif;
+  color: #ffffff;
+  background-color: #07336b;
+  z-index: 100;
+  border-radius: 20px;
+}
+
+.closeAstuce {
+  position: absolute;
+  top: 1vh;
+  right: 1vw;
+  width: 5rem;
+  height: 5rem;
+  background-color: transparent;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  filter: invert(1);
+}
+
+.AstuceLine {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 2vh;
+}
+
+.AstuceLine img {
+  width: 5rem;
+  height: 5rem;
+  margin-right: 2vw;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  z-index: 99;
+}
+
+.white {
+  filter: invert(1);
+}

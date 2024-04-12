@@ -1,0 +1,42 @@
+.memoryItem {
+    width: 10vw;
+    height: 10vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    margin: 0.6vw auto;
+}
+
+.front-face {
+    width: 9vw;
+    height: 9vw;
+}
+
+.back-face {
+    width: 10vw;
+    height: 10vw;
+    display: flex;
+}
+
+.back-face img {
+    vertical-align: top;
+}
+
+.back-face img {
+    margin: 0;
+}
+
+.inactive-item {
+    pointer-events: none;
+}
+
+.highlighted {
+    border: 0.5vw solid green;
+    margin: 0;
+    padding: 0;
+}
+
+.hidden {
+    visibility: hidden;
+}

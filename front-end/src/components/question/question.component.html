@@ -1,0 +1,28 @@
+<p class="question">{{ questionText }}</p>
+<div class="question-image-container">
+  <img *ngIf="questionImage" src="{{questionImage}}" alt=""/>
+</div>
+
+<div class="tipsContainer">
+  <app-genericButton class="tutorialButton" (click)=goToHowToPlay()>Tutoriel</app-genericButton>
+  <app-tips #tipsComponent canBeClicked="canOpenTipsOnClick">
+    <ul *ngIf="currentTipIndex === -1">
+      <li *ngFor="let tip of tips">
+        {{ tip }}
+      </li>
+    </ul>
+    <ul *ngIf="currentTipIndex !== -1">
+      <li>
+      {{ tips[currentTipIndex] }}
+      </li>
+    </ul>
+  </app-tips>
+</div>
+
+
+<div class="griddy">
+  <app-quizButton *ngFor="let answer of answers" (click)="!blockUI && onAnswer(answer)"
+                  [color]="{correct: answer === correctAnswer ,wrong: answer !== correctAnswer && wrongAnswers.includes(answer)}"
+                  [img]="areResponsesImages ?  answer : ''">{{ answer }}
+  </app-quizButton>
+</div>
