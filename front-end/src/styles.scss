@@ -9,7 +9,7 @@ body.background-opacity {
   position: relative;
   margin: 0;
   padding: 0;
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
   background-size: 10%;
 
   &::before {
@@ -22,11 +22,10 @@ body.background-opacity {
     background-image: url("assets/background.jpg");
     opacity: 0.1;
     background-repeat: repeat;
-    background-size: 20% ;
+    background-size: 20%;
     z-index: -1;
   }
 }
-
 
 :root {
   --background-color: #f5f5f5;
@@ -41,7 +40,7 @@ body.background-opacity {
   --button-generic-delete-hover-background-color: #700404;
   --kanban-column-bg-color: #b0b7b7;
   --kanban-bg-color: white;
-  --kanban-border-bottom-color: solid 1px  #ddd;
+  --kanban-border-bottom-color: solid 1px #ddd;
   --login-background-color: #f5f5f5;
   --login-box-shadow-color: rgba(35, 38, 234, 0.2);
   --login-before-background-color: rgba(69, 79, 144, 0.15);
@@ -50,13 +49,14 @@ body.background-opacity {
   --login-button-color: white;
   --login-button-background-color: #5ba8f4;
   --login-button-hover-background-color: #436cf2;
-  --login-a: rgba(255,255,255,0.6);
+  --login-a: rgba(255, 255, 255, 0.6);
   --material-table-table-bg-color: white;
   --material-table-border-left: rgba(0, 0, 0, 0.075);
   --material-table-border-bottom: rgba(0, 0, 0, 0.075);
   --material-table: rgba(0, 0, 0, 0.87);
   --material-table-header: rgba(0, 0, 0, 0.075);
-  --material-table-shadow: 0 2px 2px 0 rgba(0,0,0,.14), 0 3px 1px -2px rgba(0,0,0,.2), 0 1px 5px 0 rgba(0,0,0,.12);
+  --material-table-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14),
+    0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
   --memory-container-bg-color: #726e6e28;
   --memory-container-border-color: #000000;
   --memory-item-bg-color: white;
@@ -64,9 +64,8 @@ body.background-opacity {
   --navbar-title-container-bg-color: #000000;
   --navabar-title-color: white;
   --kanban-drag-preview: 0 5px 5px -5px rgba(0, 0, 0, 0.2),
-  0 10px 10px 1px rgba(0, 0, 0, 0.14),
-  0 5px 15px 2px rgba(0, 0, 0, 0.12);
-  --quiz-manager-input-bg-color: #D9D9D9;
+    0 10px 10px 1px rgba(0, 0, 0, 0.14), 0 5px 15px 2px rgba(0, 0, 0, 0.12);
+  --quiz-manager-input-bg-color: #d9d9d9;
   --quiz-manager-overlay: rgba(0, 0, 0, 0.67);
   --quiz-manager-overlay-form: rgba(0, 0, 0, 0.67);
   --quiz-selector-bg-color: #e0e2e3;
@@ -78,15 +77,15 @@ body.background-opacity {
   --button-green-background-color: #008000;
   --text-shadow: 0 3px 3px rgb(0, 0, 0, 0.2);
   --result-border: 1px solid black;
-  --result-scrollbar-color: #575757 #D9D9D9;
-  --question-result-stat-border:  1px solid black;
+  --result-scrollbar-color: #575757 #d9d9d9;
+  --question-result-stat-border: 1px solid black;
   --question-result-text-shadow: 0 3px 3px rgb(0, 0, 0, 0.2);
   --search-container-border: 1px solid white;
   --search-container-bg-color: #ffffff;
   --search-input-bg-color: var(--search-container-bg-color);
   --search-input-color: #000000;
   --simon-button-default-bg-color: #f5f5f5;
-  --user-input: #D9D9D9;
+  --user-input: #d9d9d9;
   --user-input-border: 1px solid var(--user-input);
   --tips-bg-color: #07336b;
   --tips-color: white;
@@ -94,8 +93,8 @@ body.background-opacity {
   --title-span-color: white;
   --button-disabled-background-color: gray;
   --createuser-button-color: rgb(0, 0, 0);
-  --zoom-bg-color: #EEE;
+  --zoom-bg-color: #eee;
   --zoom-slider-bg: #854545;
   --zoom-slider-thumb: #436cf2;
-  --zoom-darker: darken(--zoom-slider-thumb,10%);
+  --zoom-darker: darken(--zoom-slider-thumb, 10%);
 }
