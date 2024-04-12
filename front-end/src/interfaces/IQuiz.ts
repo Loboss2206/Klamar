@@ -4,5 +4,6 @@ export default interface IQuiz {
   questions: number[];
   quizDescription: string;
   quizId: number;
-  specials:{name: string, rules: any}[];
+  specials: { name: string, rules: any }[];
+  picsMemory: string[];
 }

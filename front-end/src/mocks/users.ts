@@ -9,13 +9,14 @@ export const users: IUser[] = [
       simon: {
         isColorful: true,
       },
+      memory: {
+        timeBeforeSwitching: 2,
+      },
       simonHints: {
         displayTheFullSequenceAfter: 2000,
-
       },
       memoryHints: {
-        displayTheFullSequenceAfter: 2000,
-
+        timeBeforeHints: 10,
       },
       quiz: {
         showHintAfterError: true,
@@ -35,11 +36,14 @@ export const users: IUser[] = [
       simon: {
         isColorful: false,
       },
+      memory: {
+        timeBeforeSwitching: 2,
+      },
       simonHints: {
         displayTheFullSequenceAfter: 2000,
       },
       memoryHints: {
-        displayTheFullSequenceAfter: 2000,
+        timeBeforeHints: 10,
       },
       quiz: {
         showHintAfterError: false,
@@ -59,13 +63,15 @@ export const users: IUser[] = [
       simon: {
         isColorful: true,
       },
+      memory: {
+        timeBeforeSwitching: 2,
+      },
       simonHints: {
         displayTheFullSequenceAfter: 2000,
 
       },
       memoryHints: {
-        displayTheFullSequenceAfter: 2000,
-
+        timeBeforeHints: 10,
       },
       quiz: {
         showHintAfterError: true,
@@ -85,13 +91,15 @@ export const users: IUser[] = [
       simon: {
         isColorful: true,
       },
+      memory: {
+        timeBeforeSwitching: 2,
+      },
       simonHints: {
         displayTheFullSequenceAfter: 2000,
 
       },
       memoryHints: {
-        displayTheFullSequenceAfter: 2000,
-
+        timeBeforeHints: 10,
       },
       quiz: {
         showHintAfterError: false,

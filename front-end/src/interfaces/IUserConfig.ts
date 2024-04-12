@@ -2,11 +2,14 @@ export interface IUserConfig {
   simon: {
     isColorful: boolean;
   },
+  memory: {
+    timeBeforeSwitching: number;
+  },
   simonHints: {
     displayTheFullSequenceAfter: number;
   };
   memoryHints: {
-    displayTheFullSequenceAfter: number;
+    timeBeforeHints: number;
   };
   quiz: {
     showHintAfterError: boolean;

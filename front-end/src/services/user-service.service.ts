@@ -28,6 +28,10 @@ export class UserService {
     return user;
   }
 
+  getUserConfig() {
+    return this.getTheUser(this.currentUser).config;
+  }
+
   setUser(id: number) {
     this.currentUser = id;
   }

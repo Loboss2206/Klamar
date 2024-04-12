@@ -1,10 +1,10 @@
-import {Injectable} from '@angular/core';
+import { Injectable } from '@angular/core';
 import IQuestion from "../interfaces/IQuestion";
 import IQuiz from "../interfaces/IQuiz";
 import { quizzes } from "../mocks/quizzes";
 import { questionsList } from "../mocks/questions";
 import { BehaviorSubject, Observable } from "rxjs";
-import {Router} from "@angular/router";
+import { Router } from "@angular/router";
 
 @Injectable({
   providedIn: 'root'
@@ -115,8 +115,16 @@ export class QuizService {
     this.updateCurrentQuestion(this.getQuestions()[this.currentQuestionIndex]);
   }
 
+  get getPicsMemory(): string[] {
+    return this.getTheQuiz(this.currentQuiz).picsMemory;
+  }
+
   getSimonRules() {
     return this.getTheQuiz(this.currentQuiz).specials.find((special) => special.name === 'Simon')?.rules;
+  }
+
+  getMemoryRules() {
+    return this.getTheQuiz(this.currentQuiz).specials.find((special) => special.name === 'Memory')?.rules;
   }
 
   questionsFinished() {
