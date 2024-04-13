@@ -29,17 +29,16 @@ export class UserCreatorComponent {
     this.userCreatorForm = this.formBuilder.group({
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
-      alzheimerState: [3, Validators.required],
       userBirth: ['', Validators.required],
       hobbies: ['', Validators.required],
       baseZoom: [100, Validators.required],
       choiceSimon: ['', Validators.required],
       choicePrintTipsAfterError: ['', Validators.required],
-      choicePrintTipsAfterStart: ['', Validators.required],
       choicePrintTipsAfterClick: ['', Validators.required],
       choicePrintTipsOneByOne: ['', Validators.required],
       secTipsForMemory: [0, Validators.required],
-      secTipsForSimon: [0, Validators.required]
+      secTipsForSimon: [0, Validators.required],
+      secVisibleCardForMemory: [0, Validators.required]
     });
   }
 
