@@ -36,21 +36,20 @@ table {
   overflow-y: auto;
 }
 
-table td, table th {
-  line-height: 45px;
-}
-
 table th {
   height: 0;
   border: none;
   padding: 0;
-  font-weight: 500;
+  font-weight: bold;
+  font-size: 1.2em;
+  text-align: center;
 }
+
 
 table th div,
 table thead tr:last-child th,
 table td {
-  padding: 0 8px 0 24px;
+  padding: 0 0 0 0;
 }
 
 table th:not(:first-child) div,
@@ -78,7 +77,7 @@ table tbody tr:hover {
   background-color: var(--material-table-table-bg-color);
 }
 
-.cellspacing{
+.cellspacing {
   border-collapse: collapse;
   border-spacing: 0;
 }
@@ -88,4 +87,16 @@ table tbody tr:hover {
   justify-content: space-between;
   padding: 0 16px;
   height: 48px;
+}
+
+.material-table-cell {
+  font-size: 1.2em;
+  text-align: center;
+}
+
+.material-table-image {
+  width: 100px;
+  height: 100px;
+  margin: 1vw;
+  object-fit: cover;
 }
