@@ -29,10 +29,12 @@ import { GraphicComponent } from "../components/graphic/graphic.component";
 import { SimonGameComponent } from "../components/simon-game/simon-game.component";
 import { SelectUserContainerComponent } from '../components/select-user-container/select-user-container.component';
 import { SelectUserItemComponent } from '../components/select-user-item/select-user-item.component';
-import {HttpClientModule} from "@angular/common/http";
-import {LoginComponent} from "../components/login/login.component";
-import {AdminComponent} from "../components/admin-component/admin-component.component";
-import {QuizManagerComponent} from "../components/quiz-manager/quiz-manager.component";
+import { HttpClientModule } from "@angular/common/http";
+import { LoginComponent } from "../components/login/login.component";
+import { AdminComponent } from "../components/admin-component/admin-component.component";
+import { QuizManagerComponent } from "../components/quiz-manager/quiz-manager.component";
+import { UserModifierComponent } from 'src/components/modifUser/userModifier.component';
+import { SelectUserContainerForModificationComponent } from 'src/components/select-user-container-for-modification/select-user-container-for-modification.component';
 
 const routes: Routes = [
   { path: '', component: SelectUserContainerComponent, data: { title: 'Sélection utilisateur' } },
@@ -50,9 +52,11 @@ const routes: Routes = [
   { path: 'simonStat', component: StatSimonPageComponent, data: { title: "Stats Simon" } },
   { path: 'questionStat', component: StatQuestionPageComponent, data: { title: "Stats Questions" } },
   { path: 'memory', component: StatMemoyPageComponent, data: { title: "Stats Memory" } },
-  {path: 'login', component: LoginComponent, data: { title: "Login"}},
-  {path: 'admin', component: AdminComponent, data: { title: "Admin" }},
+  { path: 'login', component: LoginComponent, data: { title: "Login" } },
+  { path: 'admin', component: AdminComponent, data: { title: "Admin" } },
   { path: 'quizManager', component: QuizManagerComponent, data: { title: 'Gestion des quiz' } },
+  { path: 'modifyUser', component: UserModifierComponent, data: { title: 'Modifier un utilisateur' } },
+  { path: 'selectUserToModify', component: SelectUserContainerForModificationComponent, data: { title: "Sélection d'un utilisateur à modifier" } },
 ];
 
 @NgModule({
