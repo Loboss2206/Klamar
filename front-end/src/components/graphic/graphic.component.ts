@@ -1,5 +1,6 @@
 import {Component, OnInit, Input, input} from '@angular/core';
 import Chart from 'chart.js/auto';
+import {GraphicService} from "../../services/graphic.service";
 
 
 @Component({
@@ -13,11 +14,9 @@ export class GraphicComponent implements OnInit {
 
   @Input() chartId!: string;
   @Input() data: number[] = [];
-  @Input() titre: string = "Default";
+  @Input() titre!: string;
   @Input() date: string[] = [];
   public percentageSuccess: number = 0;
-
-  constructor() { }
 
   ngOnInit(): void {
     setTimeout(()=>{

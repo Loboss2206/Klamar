@@ -1,7 +1,7 @@
 <div class="selectContainer">
     <div class="topContainer">
         <app-tags-selector></app-tags-selector>
-        <app-search-quiz-selector></app-search-quiz-selector>
+        <app-search-quiz-selector (searchTerm)="searchQuizzes($event)"></app-search-quiz-selector>
     </div>
-    <app-quiz-selector-container></app-quiz-selector-container>
+    <app-quiz-selector-container [quizzes]="quizzes"></app-quiz-selector-container>
 </div>

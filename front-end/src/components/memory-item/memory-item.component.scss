@@ -1,23 +1,42 @@
 .memoryItem {
-    width: 13vw;
-    height: 13vw;
+    width: 10vw;
+    height: 10vw;
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: white;
-    margin: auto;
+    background-color: var(--memory-item-bg-color);
+    margin: 0.6vw auto;
 }
 
 .front-face {
-    width: 10vw;
-    height: 10vw;
+    width: 9vw;
+    height: 9vw;
 }
 
 .back-face {
-    width: 13vw;
-    height: 13vw;
+    width: 10vw;
+    height: 10vw;
+    display: flex;
+}
+
+.back-face img {
+    vertical-align: top;
+}
+
+.back-face img {
+    margin: 0;
 }
 
 .inactive-item {
     pointer-events: none;
+}
+
+.highlighted {
+    border: var(--memory-item-highlighted-bg-color);
+    margin: 0;
+    padding: 0;
+}
+
+.hidden {
+    visibility: hidden;
 }

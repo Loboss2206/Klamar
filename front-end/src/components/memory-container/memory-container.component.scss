@@ -5,7 +5,7 @@
     justify-content: center;
     width: 80vw;
     border-radius: 5px;
-    margin: auto;
-    background-color: #726e6e28;
-    border: 5px groove #000000;
+    margin: 5vw auto;
+    background-color: var(--memory-container-bg-color);
+    border: 5px groove var(--memory-container-border-color);
 }

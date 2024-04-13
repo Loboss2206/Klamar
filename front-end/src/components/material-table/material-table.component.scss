@@ -1,0 +1,91 @@
+@import url(https://fonts.googleapis.com/css?family=Roboto:400,100,500,300italic,500italic,700italic,900,300);
+
+.card {
+  border-radius: 2px;
+  background-color: var(--material-table-table-bg-color);
+  box-shadow: var(--material-table-shadow);
+}
+
+.table {
+  margin: 30px;
+  font-family: "Roboto", sans-serif;
+  min-width: 90%;
+  height: fit-content;
+  position: relative;
+}
+
+.body {
+  overflow-x: hidden;
+  overflow-y: auto;
+  height: calc(100% - 48px);
+}
+
+.header {
+  content: '';
+  top: 0;
+  height: 48px;
+  border-bottom: 1px solid var(--material-table-border-bottom);
+}
+
+table {
+  white-space: nowrap;
+  color: var(--material-table);
+  width: 100%;
+  font-size: 12px;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+table td, table th {
+  line-height: 45px;
+}
+
+table th {
+  height: 0;
+  border: none;
+  padding: 0;
+  font-weight: 500;
+}
+
+table th div,
+table thead tr:last-child th,
+table td {
+  padding: 0 8px 0 24px;
+}
+
+table th:not(:first-child) div,
+table td:not(:first-child) {
+  border-left: 1px solid var(--material-table-border-left);
+}
+
+table td {
+  border-bottom: 1px solid var(--material-table-border-bottom);
+}
+
+table thead tr:last-child th {
+  line-height: 0;
+  opacity: 0;
+}
+
+table thead th div {
+  position: absolute;
+  line-height: 48px;
+  top: 0;
+}
+
+table tbody tr:hover {
+  cursor: pointer;
+  background-color: var(--material-table-table-bg-color);
+}
+
+.cellspacing{
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+.material-table-actions {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 16px;
+  height: 48px;
+}
