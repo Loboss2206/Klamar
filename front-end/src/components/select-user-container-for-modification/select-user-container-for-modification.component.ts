@@ -9,9 +9,9 @@ import { SearchQuizSelectorComponent } from "../search-quiz-selector/search-quiz
 
 @Component({
   standalone: true,
-  selector: 'app-select-user-container',
-  templateUrl: './select-user-container.component.html',
-  styleUrls: ['./select-user-container.component.scss'],
+  selector: 'app-select-user-container-for-modification',
+  templateUrl: './select-user-container-for-modification.component.html',
+  styleUrls: ['./select-user-container-for-modification.component.scss'],
   imports: [
     SelectUserItemComponent,
     NgForOf,
@@ -19,16 +19,8 @@ import { SearchQuizSelectorComponent } from "../search-quiz-selector/search-quiz
     SearchQuizSelectorComponent
   ]
 })
-export class SelectUserContainerComponent implements OnInit {
+export class SelectUserContainerForModificationComponent implements OnInit {
   users: IUser[] = [];
-  admin: IUser = {
-    id: 0,
-    name: "",
-    firstname: "Admin",
-    config: {} as any,
-    avatar: "https://journalmetro.com/wp-content/uploads/2017/04/default_profile_400x400.png?fit=400%2C400",
-    charts: []
-  };
 
   constructor(private userService: UserService, private router: Router) {
   }
@@ -37,9 +29,9 @@ export class SelectUserContainerComponent implements OnInit {
     this.users = this.userService.getUsers();
   }
 
-  defineUser(userId: number) {
-    this.userService.setUser(userId);
-    this.router.navigate(['/selectQuiz']);
+  defineUserToModify(user: IUser) {
+    sessionStorage.setItem("userToModify", JSON.stringify(user));
+    this.router.navigate(['/modifyUser']);
   }
 
   searchUsers(searchTerm: string) {
