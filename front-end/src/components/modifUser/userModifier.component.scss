@@ -4,11 +4,11 @@
 }
 
 
-.user-creator-form>.inputs {
+.user-modifier-form>.inputs {
     margin-bottom: 50px;
 }
 
-.user-creator-form>.inputs>div {
+.user-modifier-form>.inputs>div {
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;
@@ -16,7 +16,7 @@
     text-align: center;
 }
 
-.user-creator-form>.inputs>p {
+.user-modifier-form>.inputs>p {
     font-size: 1.5em;
     width: 200px;
     font-size: 1.5em;
@@ -32,7 +32,7 @@
 
 
 
-.user-creator-form>.inputs>div>* {
+.user-modifier-form>.inputs>div>* {
     flex: 1 0 calc(33.33% - 10px);
     margin-bottom: 2%;
     font-size: 1.5em;
@@ -60,7 +60,7 @@ input[type="radio"] {
     background-color: var(--button-disabled-background-color);
 }
 
-.createUserButton {
+.modifyUserButton {
     margin: 0;
     border-radius: 20px;
     font-size: 2.0em;
@@ -75,7 +75,7 @@ input[type="radio"] {
     left: 0;
 }
 
-.createUserButton:enabled {
+.modifyUserButton:enabled {
     margin: 0;
     border-radius: 20px;
     background-color: var(--button-generic-background-color);
@@ -94,7 +94,7 @@ input[type="radio"] {
 
 
 
-.createUserButton:enabled:hover {
+.modifyUserButton:enabled:hover {
     background: rgba(0, 0, 0, 0.7);
 }
 
