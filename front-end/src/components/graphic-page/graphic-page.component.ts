@@ -8,6 +8,8 @@ import {ActivatedRoute} from "@angular/router";
 import {UserService} from "../../services/user-service.service";
 import {NgForOf} from "@angular/common";
 import IGraphic from "../../interfaces/IGraphic";
+import IUser from "../../interfaces/IUser";
+import IAdmin from "../../interfaces/IAdmin";
 
 
 @Component({
@@ -28,22 +30,21 @@ export class GraphicPageComponent implements OnInit{
   id : number | undefined
   chartIDs : string[] | undefined
   charts : IGraphic[] = []
-
+  user ?: IUser | IAdmin
   constructor(private _graphicService : GraphicService , private _userService : UserService , private route : ActivatedRoute) {
   }
 
   ngOnInit(): void {
     this.id = Number(this.route.snapshot.paramMap.get('id'))
+    this.user = this._userService.getTheUser(this.id)
     this._userService.getCharts(this.id).subscribe(charts =>{
       this.chartIDs=charts
     })
-    console.log(this.charts)
     if (this.chartIDs) {
       for (let chartId of this.chartIDs) {
         this._graphicService.getGraphic(chartId).subscribe(chart => {
           if (chart) {
             this.charts.push(chart)
-            console.log(chart)
           }
         })
       }

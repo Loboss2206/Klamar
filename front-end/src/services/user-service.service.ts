@@ -48,6 +48,11 @@ export class UserService {
     return of(user?.charts);
   }
 
+  getStats(id: number) {
+    let user = users.find(user => user.id === id);
+    return of(user?.statsId);
+  }
+
 
   connectAsAdmin(username: string, password: string) {
     let admin = this.admins.find((adminElement: { username: any; mdp: any; }) => adminElement.username === username && adminElement.mdp === password);
