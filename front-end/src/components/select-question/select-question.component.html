@@ -1,0 +1,19 @@
+<div class="container">
+  <button (click)="createQuestion()" class="create-button">Créer une question</button>
+  <table class="question-table">
+    <thead>
+    <tr>
+      <th>Intitulé de la question</th>
+      <th>Modifier</th>
+      <th>Supprimer</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let question of questions">
+      <td>{{ question.question }}</td>
+      <td><button (click)="editQuestion(question)" class="edit-button">Modifier</button></td>
+      <td><button (click)="deleteQuestion(question)" class="delete-button">Supprimer</button></td>
+    </tr>
+    </tbody>
+  </table>
+</div>
