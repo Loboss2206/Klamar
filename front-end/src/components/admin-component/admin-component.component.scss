@@ -6,12 +6,3 @@
   width: 100vw;
   height: 80vh;
 }
-
-::ng-deep app-genericButton > button {
-  height: 15vh;
-  width: 30vw;
-  font-size: 2em;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}

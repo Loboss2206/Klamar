@@ -27,11 +27,12 @@ export class UserModifierComponent {
   @Input() user!: IUser;
 
   constructor(private userService: UserService, protected formBuilder: FormBuilder) {
-    const userDataString = sessionStorage.getItem('userToModify');
+    let userDataString = sessionStorage.getItem('userToModify');
     if (userDataString) {
       this.user = JSON.parse(userDataString);
     }
     this.userModifierComponent = this.formBuilder.group({
+      userImg: [""],
       firstName: [this.user.firstname, Validators.required],
       lastName: [this.user.name, Validators.required],
       userBirth: ['', Validators.required],
@@ -48,6 +49,13 @@ export class UserModifierComponent {
 
   }
 
+  ngAfterViewInit(): void {
+    let img = document.getElementById("userToModifyImg");
+    if (img) {
+      console.log(this.user.avatar);
+      img.setAttribute('src', this.user.avatar);
+    }
+  }
 
   isFormValid(): boolean {
     return this.userModifierComponent.valid;

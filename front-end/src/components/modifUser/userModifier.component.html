@@ -1,10 +1,12 @@
-<div class="userAvatar">
-    <input type="file">
-    <p>Ajouter une photo</p>
-</div>
 <main class="userModifier">
     <form [formGroup]="userModifierComponent" class="user-modifier-form">
+        <div class="userAvatar">
+            <img id="userToModifyImg" alt="Photos de l'utilisateur">
+            <input type="file" [formControlName]="'userImg'">
+            <p>Ajouter une photo</p>
+        </div>
         <div class="inputs">
+            <p>Informations personnelles</p>
             <div class="personnal-information">
                 <label>
                     <b>Nom</b> <br>

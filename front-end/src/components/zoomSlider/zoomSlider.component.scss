@@ -7,6 +7,10 @@ body {
   height: 100%;
 }
 
+.zoom-slider {
+  display: flex;
+}
+
 body {
   display: flex;
   align-items: center;
@@ -67,18 +71,17 @@ body {
   }
 }
 
+#slider-text {
+  margin-right: 15px;
+  font-size: 1.2em;
+  font-weight: bold;
+}
+
 .slider-container {
   position: relative;
   width: 300px;
-  display: flex;
   align-items: center;
   justify-content: center;
-
-  & #slider-text {
-    margin-right: 15px;
-    font-size: 1.2em;
-    font-weight: bold;
-  }
 
   & #slider-value {
     position: relative;

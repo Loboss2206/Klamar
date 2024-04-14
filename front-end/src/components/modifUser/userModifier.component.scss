@@ -1,8 +1,30 @@
 .userAvatar {
     margin-top: 3%;
+    margin-bottom: 7%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     text-align: center;
 }
 
+#userToModifyImg {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    margin-bottom: 10px;
+}
+
+.user-modifier-form {
+    border: black 10px solid;
+    margin-left: 15%;
+    margin-right: 15%;
+    margin-left: 15%;
+    margin-top: 4%;
+    padding: 20px;
+    opacity: 0.8;
+    text-align: center;
+    background-color: #f0eaea;
+}
 
 .user-modifier-form>.inputs {
     margin-bottom: 50px;
@@ -18,7 +40,7 @@
 
 .user-modifier-form>.inputs>p {
     font-size: 1.5em;
-    width: 200px;
+    width: auto;
     font-size: 1.5em;
     text-align: center;
     font-family: Roboto, serif;
@@ -27,7 +49,7 @@
     border-radius: 10px;
     margin-left: auto;
     margin-right: auto;
-    margin-bottom: 20px;
+    margin-top: 50px;
 }
 
 
@@ -41,12 +63,13 @@
 
 input[type="text"] {
     margin-top: 10px;
-    font-size: 0.7em;
+    font-size: 1.1em;
+    box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.7);
 }
 
 input[type="number"] {
     margin-top: 10px;
-    font-size: 20px;
+    font-size: 1.1em;
 }
 
 input[type="radio"] {
