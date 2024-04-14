@@ -1,8 +1,8 @@
 <main class="userModifier">
     <form [formGroup]="userModifierComponent" class="user-modifier-form">
         <div class="userAvatar">
-            <img id="userToModifyImg" alt="Photos de l'utilisateur">
-            <input type="file" [formControlName]="'userImg'">
+            <img *ngIf="imageUrl" [src]="imageUrl" id="userToModifyImg" alt="Photos de l'utilisateur">
+            <input type="file" (change)="onFileSelected($event)" [formControlName]="'userImg'">
             <p>Ajouter une photo</p>
         </div>
         <div class="inputs">

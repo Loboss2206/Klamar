@@ -4,7 +4,7 @@ import { ZoomSliderComponent } from '../zoomSlider/zoomSlider.component';
 import { NavbarComponent } from '../navbar/navbar.component';
 import { GenericButtonComponent } from '../genericButton/genericButton.component';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { NgClass } from '@angular/common';
+import { NgClass, NgIf } from '@angular/common';
 
 
 @Component({
@@ -15,13 +15,15 @@ import { NgClass } from '@angular/common';
     ZoomSliderComponent, NavbarComponent,
     GenericButtonComponent,
     ReactiveFormsModule,
-    NgClass
+    NgClass,
+    NgIf
   ],
   templateUrl: './userCreator.component.html',
   styleUrl: './userCreator.component.scss'
 })
 export class UserCreatorComponent {
   protected userCreatorForm: FormGroup;
+  protected imageUrl: any;
 
 
   constructor(protected formBuilder: FormBuilder) {
@@ -53,6 +55,16 @@ export class UserCreatorComponent {
     console.log(this.userCreatorForm.getRawValue());
   }
 
+  onFileSelected(event: any) {
+    const file: File = event.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = () => {
+        this.imageUrl = reader.result;
+      };
+    }
+  }
 
 
 }

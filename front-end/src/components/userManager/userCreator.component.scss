@@ -1,7 +1,17 @@
 .userAvatar {
     margin-top: 3%;
     margin-bottom: 7%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     text-align: center;
+}
+
+#userToCreateImg {
+    width: 300px;
+    height: 200px;
+    object-fit: cover;
+    margin-bottom: 10px;
 }
 
 .user-creator-form {
@@ -53,7 +63,7 @@
 
 input[type="text"] {
     margin-top: 10px;
-    font-size: 1.1em;
+    font-size: 0.8em;
     box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.7);
 }
 

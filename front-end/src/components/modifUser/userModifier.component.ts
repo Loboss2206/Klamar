@@ -4,7 +4,7 @@ import { ZoomSliderComponent } from '../zoomSlider/zoomSlider.component';
 import { NavbarComponent } from '../navbar/navbar.component';
 import { GenericButtonComponent } from '../genericButton/genericButton.component';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { NgClass } from '@angular/common';
+import { NgClass, NgIf } from '@angular/common';
 import IUser from '../../interfaces/IUser';
 import { UserService } from 'src/services/user-service.service';
 
@@ -17,7 +17,8 @@ import { UserService } from 'src/services/user-service.service';
     ZoomSliderComponent, NavbarComponent,
     GenericButtonComponent,
     ReactiveFormsModule,
-    NgClass
+    NgClass,
+    NgIf
   ],
   templateUrl: './userModifier.component.html',
   styleUrl: './userModifier.component.scss'
@@ -25,12 +26,15 @@ import { UserService } from 'src/services/user-service.service';
 export class UserModifierComponent {
   protected userModifierComponent: FormGroup;
   @Input() user!: IUser;
+  imageUrl: any;
 
   constructor(private userService: UserService, protected formBuilder: FormBuilder) {
     let userDataString = sessionStorage.getItem('userToModify');
     if (userDataString) {
       this.user = JSON.parse(userDataString);
     }
+    console.log(this.user.avatar)
+    this.imageUrl = this.user.avatar;
     this.userModifierComponent = this.formBuilder.group({
       userImg: [""],
       firstName: [this.user.firstname, Validators.required],
@@ -49,16 +53,20 @@ export class UserModifierComponent {
 
   }
 
-  ngAfterViewInit(): void {
-    let img = document.getElementById("userToModifyImg");
-    if (img) {
-      console.log(this.user.avatar);
-      img.setAttribute('src', this.user.avatar);
-    }
-  }
 
   isFormValid(): boolean {
     return this.userModifierComponent.valid;
+  }
+
+  onFileSelected(event: any) {
+    const file: File = event.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = () => {
+        this.imageUrl = reader.result;
+      };
+    }
   }
 
 
