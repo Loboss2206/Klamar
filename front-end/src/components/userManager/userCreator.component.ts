@@ -27,6 +27,7 @@ export class UserCreatorComponent {
   constructor(protected formBuilder: FormBuilder) {
 
     this.userCreatorForm = this.formBuilder.group({
+      userImg: [''],
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
       userBirth: ['', Validators.required],
