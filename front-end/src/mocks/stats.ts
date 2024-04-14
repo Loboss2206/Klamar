@@ -4,7 +4,7 @@ import IQuiz from "../interfaces/IQuiz";
 
 export const stats: IStats[] = [{
   "id" : 1,
-  "pointQuestion" : [2,0,4,0.5],
+  "pointQuestion" : [2,0.4,0.5],
   "maxPointQuestion" : [2,3,1],
   "erreurQuiz" : [0,2,1],
   "indicesQuiz" : [1,2,0],
@@ -54,7 +54,7 @@ export const stats: IStats[] = [{
 },
   {
     "id" : 2,
-    "pointQuestion" : [2,0,4,0.5],
+    "pointQuestion" : [2,0.4,0.5],
     "maxPointQuestion" : [2,3,1],
     "erreurQuiz" : [4,5,0],
     "indicesQuiz" : [1,2,4],

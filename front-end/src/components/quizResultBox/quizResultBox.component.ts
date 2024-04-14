@@ -1,5 +1,6 @@
 import { Component, Input, SimpleChanges } from '@angular/core';
-
+import IUser from "../../interfaces/IUser";
+import IAdmin from "../../interfaces/IAdmin";
 
 @Component({
   selector: 'app-quizResultBox',
@@ -11,8 +12,9 @@ import { Component, Input, SimpleChanges } from '@angular/core';
 })
 export class quizResultBoxComponent {
 
-
-  constructor() {
-  }
-
+  user ?: IUser | IAdmin
+  id: number | undefined
+  @Input() sucessSimon ?: number
+  @Input() sucessMemory ?: number
+  @Input() sucessQuiz ?: string
 }

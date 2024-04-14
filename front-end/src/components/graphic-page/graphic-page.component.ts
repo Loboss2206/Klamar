@@ -4,12 +4,13 @@ import {sortComponent} from "../sort/sort.component";
 import {ZoomSliderComponent} from "../zoomSlider/zoomSlider.component";
 import {GraphicComponent} from "../graphic/graphic.component";
 import {GraphicService} from "../../services/graphic.service";
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, RouterLink} from "@angular/router";
 import {UserService} from "../../services/user-service.service";
 import {NgForOf} from "@angular/common";
 import IGraphic from "../../interfaces/IGraphic";
 import IUser from "../../interfaces/IUser";
 import IAdmin from "../../interfaces/IAdmin";
+import {GenericButtonComponent} from "../genericButton/genericButton.component";
 
 
 @Component({
@@ -21,6 +22,8 @@ import IAdmin from "../../interfaces/IAdmin";
     ZoomSliderComponent,
     GraphicComponent,
     NgForOf,
+    GenericButtonComponent,
+    RouterLink,
 
   ],
   templateUrl: './graphic-page.component.html',

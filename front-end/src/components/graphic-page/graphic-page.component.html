@@ -4,7 +4,9 @@
   </app-titlePage>
 </h1>
 
-
+  <div class="historique">
+    <app-genericButton class="historicButton" [routerLink]="['/quizResultPage/'+user?.id]">Appuyez pour voir l'historique des parties de {{user?.name}} {{user?.firstname}}</app-genericButton>
+  </div>
   <div class="differentGame">
    <div class = 1a3 *ngFor="let chart of this.charts.slice(0,3)">
      <app-graphic [chartId]="chart.chartId" [titre]="chart.title" [date]="chart.date" [data]="chart.data"></app-graphic>
