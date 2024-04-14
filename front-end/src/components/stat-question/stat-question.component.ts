@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, Input} from '@angular/core';
 
 @Component({
   selector: 'app-stat-question',
@@ -8,5 +8,12 @@ import { Component } from '@angular/core';
   styleUrl: './stat-question.component.scss'
 })
 export class StatQuestionComponent {
+
+  @Input() erreur ?: number
+  @Input() indices ?: number
+  @Input() temps ?: number
+
+
+
 
 }

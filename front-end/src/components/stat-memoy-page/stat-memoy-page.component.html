@@ -1,15 +1,15 @@
 <h1>
   <app-titlePage>
-    <p>Résultats du Memory du quiz Nom du quizz joués par M.Nom du patient</p>
+    <p>Résultats du Memory joués par {{user?.name}} {{user?.firstname}}</p>
   </app-titlePage>
 </h1>
-<main>
-  <div class="resultatMemory">
-    <h1 class="memoryTitle">Memory</h1>
-    <app-stat-question></app-stat-question>
-    <img src="../../assets/Memory.png" class="memory">
+<div class="resultatMemory">
+  <div class = statMemory *ngFor="let stat of this.stats">
+    <div *ngFor="let memory of stat.erreurMemory; let questionIndex = index">
+      <app-result-memory [largeur]=stat.largeurMemory[questionIndex] [hauteur]=stat.hauteurMemory[questionIndex] [indices]=stat.indicesQuiz[questionIndex] [erreur]=stat.erreurQuiz[questionIndex] [temps]=stat.tempsQuiz[questionIndex]></app-result-memory>
+    </div>
   </div>
-</main>
+</div>
 <footer>
   <app-zoomSlider></app-zoomSlider>
 </footer>

@@ -7,4 +7,5 @@ export default interface IUser {
   config: IUserConfig;
   avatar: string;
   charts: string[];
+  statsId: number;
 }

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, Input} from '@angular/core';
 import {StatQuestionComponent} from "../stat-question/stat-question.component";
 import {QuestionComponent} from "../question/question.component";
 
@@ -13,5 +13,11 @@ import {QuestionComponent} from "../question/question.component";
   styleUrl: './result-question.component.scss'
 })
 export class ResultQuestionComponent {
+
+  @Input() point ?: number
+  @Input() maxPoint ?: number
+  @Input() erreur ?: number
+  @Input() indices ?: number
+  @Input() temps ?: number
 
 }

@@ -27,7 +27,8 @@ export class SelectUserContainerComponent implements OnInit {
     firstname: "Admin",
     config: {} as any,
     avatar: "https://journalmetro.com/wp-content/uploads/2017/04/default_profile_400x400.png?fit=400%2C400",
-    charts: []
+    charts: [],
+    statsId: 0
   };
 
   constructor(private userService: UserService, private router: Router) {
