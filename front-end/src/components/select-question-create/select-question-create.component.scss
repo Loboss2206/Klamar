@@ -1,0 +1,109 @@
+.user-modifier-form{
+  margin-top: 50px;
+}
+
+.user-modifier-form>.inputs {
+  margin-bottom: 50px;
+}
+
+.user-modifier-form>.inputs>div {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  align-items: center;
+  text-align: center;
+}
+
+.user-modifier-form>.inputs>p {
+  font-size: 1.5em;
+  width: 200px;
+  font-size: 1.5em;
+  text-align: center;
+  font-family: Roboto, serif;
+  color: #ffffff;
+  background-color: #434343;
+  border-radius: 10px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 20px;
+}
+
+
+
+.user-modifier-form>.inputs>div>* {
+  flex: 1 0 calc(33.33% - 10px);
+  margin-bottom: 2%;
+  font-size: 1.5em;
+
+}
+
+input[type="text"] {
+  margin-top: 10px;
+  font-size: 0.7em;
+}
+
+input[type="number"] {
+  margin-top: 10px;
+  font-size: 20px;
+}
+
+input[type="radio"] {
+  margin-top: 10px;
+  font-size: 20px;
+}
+
+
+
+.disabled-button {
+  background-color: var(--button-disabled-background-color);
+}
+
+.modifyQuestionButton {
+  margin: 0;
+  border-radius: 20px;
+  font-size: 2.0em;
+  color: var(--createuser-button-color);
+  padding: 10px;
+  cursor: pointer;
+  position: relative;
+  transition: background 0.3s ease;
+  text-align: center;
+  margin: 10px;
+  bottom: 0;
+  left: 0;
+}
+
+.modifyQuestionButton:enabled {
+  margin: 0;
+  border-radius: 20px;
+  background-color: var(--button-generic-background-color);
+  font-size: 2.0em;
+  color: var(--button-generic-color);
+  padding: 10px;
+  cursor: pointer;
+  position: relative;
+  transition: background 0.3s ease;
+  text-align: center;
+  margin: 10px;
+  bottom: 0;
+  left: 0;
+}
+
+
+
+
+.modifyQuestionButton:enabled:hover {
+  background: rgba(0, 0, 0, 0.7);
+}
+
+select {
+  font-size: 20px;
+}
+
+
+.userInput {
+  background-color: var(--user-input);
+  border-radius: 200px;
+  padding: 10px 100px 10px 10px;
+  border: var(--user-input-border);
+}

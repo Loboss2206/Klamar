@@ -34,6 +34,8 @@ import { AdminComponent } from "../components/admin-component/admin-component.co
 import { QuizManagerComponent } from "../components/quiz-manager/quiz-manager.component";
 import { UserModifierComponent } from 'src/components/modifUser/userModifier.component';
 import { SelectUserContainerForModificationComponent } from 'src/components/select-user-container-for-modification/select-user-container-for-modification.component';
+import { SelectQuestionComponent} from "../components/select-question/select-question.component";
+import { SelectQuestionCreateComponent} from "../components/select-question-create/select-question-create.component";
 
 const routes: Routes = [
   { path: '', component: SelectUserContainerComponent, data: { title: 'Sélection utilisateur' } },
@@ -56,6 +58,8 @@ const routes: Routes = [
   { path: 'quizManager', component: QuizManagerComponent, data: { title: 'Gestion des quiz' } },
   { path: 'modifyUser', component: UserModifierComponent, data: { title: 'Modifier un utilisateur' } },
   { path: 'selectUserToModify', component: SelectUserContainerForModificationComponent, data: { title: "Sélection d'un utilisateur à modifier" } },
+  { path: 'selectQuestion', component: SelectQuestionComponent, data: {title: "Gestionnaire des questions"}},
+  { path: 'createQuestion', component: SelectQuestionCreateComponent, data: {title: "Création/modification de question"}}
 ];
 
 @NgModule({

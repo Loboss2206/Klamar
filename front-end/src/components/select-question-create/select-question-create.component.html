@@ -1,0 +1,96 @@
+<main class="userModifier">
+  <form [formGroup]="userModifierComponent" class="user-modifier-form">
+    <div class="inputs">
+      <p>Intitulé de la question</p>
+      <div class="IntituleQuestion">
+        <label>
+          <b>Intititulé de la question</b> <br>
+          <input type="text" class="userInput" name="userInput" [formControlName]="'question'" required />
+        </label>
+        <label>
+          <input type="file">
+          <p>Optionnel : Ajoutez une image</p>
+        </label>
+      </div>
+      <p>Réponses</p>
+      <div class="ResponsesImage">
+        <label> <b>Les réponses sont t-elles des images ?</b> <br>
+          <label>
+            <input type="radio" name="choiceSimon" value="true" [formControlName]="'choiceSimon'" required>
+            Oui
+          </label>
+          <label>
+            <input type="radio" name="choiceSimon" value="false" [formControlName]="'choiceSimon'"> Non
+          </label>
+        </label>
+      </div>
+      <div *ngIf="userModifierComponent.controls['choiceSimon'].value === 'false'" class="proposition1">
+        <label>
+          <b>Proposition 1</b> <br>
+          <input type="text" class="userInput" name="userInput" [formControlName]="'reponse1'" required />
+        </label>
+        <label>
+          <b>Proposition 2</b> <br>
+          <input type="text" class="userInput" name="userInput" [formControlName]="'reponse2'" required />
+        </label>
+      </div>
+      <div *ngIf="userModifierComponent.controls['choiceSimon'].value === 'false'" class="proposition2">
+        <label>
+          <b>Proposition 3</b> <br>
+          <input type="text" class="userInput" name="userInput" [formControlName]="'reponse3'" required />
+        </label>
+        <label>
+        <b>Proposition 4</b>> <br>
+          <input type="text" class="userInput" name="userInput" [formControlName]="'reponse4'" required />
+        </label>
+      </div>
+
+      <div *ngIf="userModifierComponent.controls['choiceSimon'].value === 'true'" class="proposition1">
+        <label>
+          <b>Proposition 1</b> <br>
+          <input type="file">
+          <p>Ajoutez une image</p>
+        </label>
+        <label>
+          <b>Proposition 2</b> <br>
+          <input type="file">
+          <p>Ajoutez une image</p>
+        </label>
+      </div>
+      <div *ngIf="userModifierComponent.controls['choiceSimon'].value === 'true'" class="proposition2">
+        <label>
+          <b>Proposition 3</b> <br>
+          <input type="file">
+          <p>Ajoutez une image</p>
+        </label>
+        <label>
+          <b>Proposition 4</b>> <br>
+          <input type="file">
+          <p>Ajoutez une image</p>
+        </label>
+      </div>
+
+      <p>Indices</p>
+      <div class="indices">
+        <label>
+          <b>Indice 1</b> <br>
+          <input type="text" class="userInput" name="userInput" [formControlName]="'indice1'" required />
+        </label>
+        <label>
+          <b>Indice 2</b> <br>
+          <input type="text" class="userInput" name="userInput" [formControlName]="'indice2'" required />
+        </label>
+      </div>
+      <p>Catégorie</p>
+      <div class="categorie">
+        <label>
+          <b>catégorie</b> <br>
+          <input type="text" class="userInput" name="userInput" [formControlName]="'categorie'" required />
+        </label>
+      </div>
+    </div>
+    <button type="submit" class="modifyQuestionButton" [disabled]="!isFormValid()" (click)="navigateToSelectQuestion()">
+      Créer/modifier la question
+    </button>
+  </form>
+</main>
