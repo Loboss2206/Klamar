@@ -7,10 +7,12 @@
     padding: 5px;
     margin-bottom: 10px;
     width: 40vw;
+    box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.7);
 }
-input{
-  background-color: var(--search-input-bg-color);
-  color: var(--search-input-color);
+
+input {
+    background-color: var(--search-input-bg-color);
+    color: var(--search-input-color);
 }
 
 input::placeholder {
@@ -29,4 +31,5 @@ input::placeholder {
     width: 30px;
     height: 30px;
     margin-left: 5px;
+    padding: 5px 10px;
 }

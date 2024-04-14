@@ -1,4 +1,5 @@
 <div class="slider-container">
+  <span id="slider-text">Zoom</span>
   <input type="range" min="0" max="200" value="100" class="slider" (input)="onSliderChange($event)">
   <span id="slider-value" [style.left]="sliderValueLeft">{{parsedValue}}</span>
 </div>
