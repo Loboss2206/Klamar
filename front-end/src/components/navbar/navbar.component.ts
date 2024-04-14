@@ -1,8 +1,8 @@
-import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute, NavigationEnd, Router, RouterLink} from "@angular/router";
-import {filter} from "rxjs";
-import {UserService} from "../../services/user-service.service";
-import {NgIf} from "@angular/common";
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, NavigationEnd, Router, RouterLink } from "@angular/router";
+import { filter } from "rxjs";
+import { UserService } from "../../services/user-service.service";
+import { NgIf } from "@angular/common";
 
 @Component({
   standalone: true,
@@ -15,7 +15,7 @@ import {NgIf} from "@angular/common";
   styleUrls: ['./navbar.component.scss'],
 })
 
-export class NavbarComponent implements OnInit{
+export class NavbarComponent implements OnInit {
 
   currentState = 'initial';
 
@@ -37,12 +37,12 @@ export class NavbarComponent implements OnInit{
       let route = this.activatedRoute.root;
       while (route.firstChild) route = route.firstChild;
       route.data.subscribe(data => {
-          this.title = data['title'];
-          if (this.title !== 'Sélection utilisateur' && this.title !== 'Login'){
-            this.userName = this.userService.getCurrentUser()?.name + ' ' + this.userService.getCurrentUser()?.firstname || '';
-          }else{
-            this.userName = '';
-          }
+        this.title = data['title'];
+        if (this.title !== 'Sélection utilisateur' && this.title !== 'Login') {
+          this.userName = this.userService.getCurrentUser()?.firstname + ' ' + this.userService.getCurrentUser()?.name || '';
+        } else {
+          this.userName = '';
+        }
       });
     });
   }
