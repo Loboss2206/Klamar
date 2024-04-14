@@ -10,25 +10,8 @@
         </app-sort>
     </div>
     <div class=" result">
-        <app-quizResultBox class="item">
-        </app-quizResultBox>
-        <app-quizResultBox class="item">
-        </app-quizResultBox>
-        <app-quizResultBox class="item">
-        </app-quizResultBox>
-        <app-quizResultBox class="item">
-        </app-quizResultBox>
-        <app-quizResultBox class="item">
-        </app-quizResultBox>
-        <app-quizResultBox class="item">
-        </app-quizResultBox>
-        <app-quizResultBox class="item">
-        </app-quizResultBox>
-        <app-quizResultBox class="item">
-        </app-quizResultBox>
+      <div class = statQuestions *ngFor="let stat of this.stats">
+        <app-quizResultBox class="item" [sucessMemory]=stat.sucessMemory [sucessSimon]=stat.sucessSimon [sucessQuiz]=stat.sucessQuiz [date]=stat.date></app-quizResultBox>
+      </div>
     </div>
 </main>
-
-<footer>
-    <app-zoomSlider></app-zoomSlider>
-</footer>
