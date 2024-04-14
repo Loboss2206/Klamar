@@ -4,6 +4,10 @@ import { titlePageComponent } from '../titlePage/titlePage.component';
 import { quizResultBoxComponent } from '../quizResultBox/quizResultBox.component';
 import { NavbarComponent } from '../navbar/navbar.component';
 import { ZoomSliderComponent } from '../zoomSlider/zoomSlider.component';
+import {UserService} from "../../services/user-service.service";
+import {ActivatedRoute} from "@angular/router";
+import IUser from "../../interfaces/IUser";
+import IAdmin from "../../interfaces/IAdmin";
 
 
 @Component({
@@ -18,9 +22,13 @@ import { ZoomSliderComponent } from '../zoomSlider/zoomSlider.component';
   styleUrl: './quizResultPage.component.scss'
 })
 export class quizResultPageComponent {
-
-
-  constructor() {
+  id ?: number
+  user ?: IUser | IAdmin
+  constructor(private _userService : UserService, private route : ActivatedRoute) {
   }
 
+  ngOnInit(){
+    this.id = Number(this.route.snapshot.paramMap.get('id'))
+    this.user = this._userService.getTheUser(this.id)
+  }
 }

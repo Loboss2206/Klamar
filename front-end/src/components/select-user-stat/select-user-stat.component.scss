@@ -1,0 +1,20 @@
+.userContainer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 80vw;
+  margin: 5vw auto;
+}
+
+.userContainer::-webkit-scrollbar {
+  width: 10px;
+}
+
+.userContainer::-webkit-scrollbar-track {
+  background-color: var(--scrollbar-track-color);
+}
+
+.userContainer::-webkit-scrollbar-thumb {
+  background-color: var(--scrollbar-thumb-color);
+  border-radius: var(--scrollbar-radius);
+}
