@@ -20,5 +20,9 @@ export default interface IStats {
   tempsMemory ?: number[]
   largeurMemory : number[]
   hauteurMemory : number[]
+  sucessSimon : number
+  sucessMemory : number
+  sucessQuiz : number
+  date : string
 
 }

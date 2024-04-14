@@ -31,7 +31,7 @@ import {StatQuestionComponent} from "../stat-question/stat-question.component";
 export class StatQuestionPageComponent {
   id : number | undefined
   user ?: IUser | IAdmin
-  statsId ?: number
+  statsId ?: number[]
   stats : IStats[] = []
   constructor(private _statsService : StatsService , private _userService : UserService , private route : ActivatedRoute) {
   }
@@ -43,11 +43,13 @@ export class StatQuestionPageComponent {
       this.statsId=stats
     })
     if (this.statsId) {
-      this._statsService.getStat(this.statsId).subscribe(stat => {
+      for (let statId of this.statsId) {
+        this._statsService.getStat(statId).subscribe(stat => {
           if (stat) {
             this.stats.push(stat)
           }
         })
       }
     }
+  }
 }
