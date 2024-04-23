@@ -40,7 +40,7 @@ const routes: Routes = [
     path: 'admin',
     canActivate: [AuthGuard],
     children: [
-      { path: 'gestion', component: AdminComponent, data: { title: "Création d'un utilisateur" } },
+      { path: 'gestion', component: AdminComponent, data: { title: "Page de gestion" } },
       { path: 'createUser', component: UserCreatorComponent, data: { title: "Création d'un utilisateur" } },
       { path: 'quizManager', component: QuizManagerComponent, data: { title: 'Gestion des quiz' } },
       { path: 'modifyUser', component: UserModifierComponent, data: { title: 'Modifier un utilisateur' } },
