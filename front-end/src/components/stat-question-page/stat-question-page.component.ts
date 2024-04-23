@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {titlePageComponent} from "../titlePage/titlePage.component";
 import {ZoomSliderComponent} from "../zoomSlider/zoomSlider.component";
 import {ResultQuestionComponent} from "../result-question/result-question.component";
@@ -7,7 +7,7 @@ import {NgForOf} from "@angular/common";
 import {GraphicService} from "../../services/graphic.service";
 import {UserService} from "../../services/user-service.service";
 import {ActivatedRoute} from "@angular/router";
-import {StatsService} from "../../services/stats-service";
+import {StatsService} from "../../services/stats.service";
 import IUser from "../../interfaces/IUser";
 import IAdmin from "../../interfaces/IAdmin";
 import {stats} from "../../mocks/stats";
@@ -28,7 +28,7 @@ import {StatQuestionComponent} from "../stat-question/stat-question.component";
   templateUrl: './stat-question-page.component.html',
   styleUrl: './stat-question-page.component.scss'
 })
-export class StatQuestionPageComponent {
+export class StatQuestionPageComponent implements OnInit{
   id : number | undefined
   user ?: IUser | IAdmin
   statsId ?: number[]

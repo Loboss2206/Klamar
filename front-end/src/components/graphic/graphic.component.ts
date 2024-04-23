@@ -1,4 +1,4 @@
-import {Component, OnInit, Input, input} from '@angular/core';
+import {Component, OnInit, Input, input, OnDestroy} from '@angular/core';
 import Chart from 'chart.js/auto';
 import {GraphicService} from "../../services/graphic.service";
 
@@ -10,7 +10,7 @@ import {GraphicService} from "../../services/graphic.service";
   standalone: true,
   imports: [],
 })
-export class GraphicComponent implements OnInit {
+export class GraphicComponent implements OnInit, OnDestroy {
 
   @Input() chartId!: string;
   @Input() data: number[] = [];
@@ -58,4 +58,13 @@ export class GraphicComponent implements OnInit {
     const average = sum / this.data.length;
     this.percentageSuccess = Math.round(average);
   }
+
+  unload() {
+    this.chart.destroy();
+  }
+
+  ngOnDestroy() {
+    this.unload();
+  }
+
 }

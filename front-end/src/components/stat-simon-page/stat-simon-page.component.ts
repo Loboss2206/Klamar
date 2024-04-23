@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {StatQuestionComponent} from "../stat-question/stat-question.component";
 import {titlePageComponent} from "../titlePage/titlePage.component";
 import {ZoomSliderComponent} from "../zoomSlider/zoomSlider.component";
@@ -8,7 +8,7 @@ import {ResultQuestionComponent} from "../result-question/result-question.compon
 import IUser from "../../interfaces/IUser";
 import IAdmin from "../../interfaces/IAdmin";
 import IStats from "../../interfaces/IStats";
-import {StatsService} from "../../services/stats-service";
+import {StatsService} from "../../services/stats.service";
 import {UserService} from "../../services/user-service.service";
 import {ActivatedRoute} from "@angular/router";
 import {ResultSimonComponent} from "../result-simon/result-simon.component";
@@ -28,7 +28,7 @@ import {ResultSimonComponent} from "../result-simon/result-simon.component";
   templateUrl: './stat-simon-page.component.html',
   styleUrl: './stat-simon-page.component.scss'
 })
-export class StatSimonPageComponent {
+export class StatSimonPageComponent implements OnInit{
   id : number | undefined
   user ?: IUser | IAdmin
   statsId ?: number[]

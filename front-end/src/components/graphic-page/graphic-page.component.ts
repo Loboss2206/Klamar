@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {titlePageComponent} from "../titlePage/titlePage.component";
 import {sortComponent} from "../sort/sort.component";
 import {ZoomSliderComponent} from "../zoomSlider/zoomSlider.component";
@@ -11,6 +11,7 @@ import IGraphic from "../../interfaces/IGraphic";
 import IUser from "../../interfaces/IUser";
 import IAdmin from "../../interfaces/IAdmin";
 import {GenericButtonComponent} from "../genericButton/genericButton.component";
+import {Subscription} from "rxjs";
 
 
 @Component({
@@ -29,11 +30,12 @@ import {GenericButtonComponent} from "../genericButton/genericButton.component";
   templateUrl: './graphic-page.component.html',
   styleUrl: './graphic-page.component.scss'
 })
-export class GraphicPageComponent implements OnInit{
+export class GraphicPageComponent implements OnInit, OnDestroy {
   id : number | undefined
   chartIDs : string[] | undefined
   charts : IGraphic[] = []
   user ?: IUser | IAdmin
+  private subscriptions : Subscription[] = [];
   constructor(private _graphicService : GraphicService , private _userService : UserService , private route : ActivatedRoute) {
   }
 
@@ -45,14 +47,21 @@ export class GraphicPageComponent implements OnInit{
     })
     if (this.chartIDs) {
       for (let chartId of this.chartIDs) {
-        this._graphicService.getGraphic(chartId).subscribe(chart => {
+        const sub = this._graphicService.getGraphic(chartId).subscribe(chart => {
           if (chart) {
             this.charts.push(chart)
           }
-        })
+        });
+        this.subscriptions.push(sub);
       }
     }
 
+  }
+
+  ngOnDestroy(): void {
+    this.subscriptions.forEach(sub => sub.unsubscribe());
+    this.chartIDs = undefined
+    this.charts = []
   }
 
 }

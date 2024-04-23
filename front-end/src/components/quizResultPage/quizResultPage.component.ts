@@ -1,4 +1,4 @@
-import { Component, Input, SimpleChanges } from '@angular/core';
+import {Component, Input, OnInit, SimpleChanges} from '@angular/core';
 import { sortComponent } from '../sort/sort.component';
 import { titlePageComponent } from '../titlePage/titlePage.component';
 import { quizResultBoxComponent } from '../quizResultBox/quizResultBox.component';
@@ -9,7 +9,7 @@ import {ActivatedRoute} from "@angular/router";
 import IUser from "../../interfaces/IUser";
 import IAdmin from "../../interfaces/IAdmin";
 import IStats from "../../interfaces/IStats";
-import {StatsService} from "../../services/stats-service";
+import {StatsService} from "../../services/stats.service";
 import {NgForOf} from "@angular/common";
 
 
@@ -24,7 +24,7 @@ import {NgForOf} from "@angular/common";
   templateUrl: './quizResultPage.component.html',
   styleUrl: './quizResultPage.component.scss'
 })
-export class quizResultPageComponent {
+export class quizResultPageComponent implements OnInit{
   id : number | undefined
   user ?: IUser | IAdmin
   statsId ?: number[]

@@ -3,7 +3,7 @@ import IUser from "../../interfaces/IUser";
 import IAdmin from "../../interfaces/IAdmin";
 import {GenericButtonComponent} from "../genericButton/genericButton.component";
 import {ActivatedRoute, RouterLink} from "@angular/router";
-import {StatsService} from "../../services/stats-service";
+import {StatsService} from "../../services/stats.service";
 import {UserService} from "../../services/user-service.service";
 
 @Component({

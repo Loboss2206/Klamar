@@ -9,6 +9,5 @@ import {stats} from "../mocks/stats";
 export class StatsService {
   getStat(id : number) : Observable<IStats | undefined>{
     return of(stats.find(stats => stats.id === id))
-
   }
 }

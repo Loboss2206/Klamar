@@ -1,11 +1,11 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {titlePageComponent} from "../titlePage/titlePage.component";
 import {StatQuestionComponent} from "../stat-question/stat-question.component";
 import {ZoomSliderComponent} from "../zoomSlider/zoomSlider.component";
 import IUser from "../../interfaces/IUser";
 import IAdmin from "../../interfaces/IAdmin";
 import IStats from "../../interfaces/IStats";
-import {StatsService} from "../../services/stats-service";
+import {StatsService} from "../../services/stats.service";
 import {UserService} from "../../services/user-service.service";
 import {ActivatedRoute} from "@angular/router";
 import {NgForOf} from "@angular/common";
@@ -26,7 +26,7 @@ import {ResultMemoryComponent} from "../result-memory/result-memory.component";
   templateUrl: './stat-memoy-page.component.html',
   styleUrl: './stat-memoy-page.component.scss'
 })
-export class StatMemoyPageComponent {
+export class StatMemoyPageComponent implements OnInit{
   id : number | undefined
   user ?: IUser | IAdmin
   statsId ?: number[]

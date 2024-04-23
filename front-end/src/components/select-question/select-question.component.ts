@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {QuizService} from "../../services/quiz-service.service";
 import IQuestion from "../../interfaces/IQuestion";
 import { Router } from '@angular/router';
@@ -17,7 +17,7 @@ import {MaterialTableComponent} from "../material-table/material-table.component
   templateUrl: './select-question.component.html',
   styleUrl: './select-question.component.scss'
 })
-export class SelectQuestionComponent {
+export class SelectQuestionComponent implements OnInit{
   questions: IQuestion[] = []; // Array to store the questions
 
   constructor(private _router: Router, private _quizService : QuizService) {
