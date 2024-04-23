@@ -32,13 +32,9 @@ export class LoginComponent {
   }
 
   login() {
-    console.log(adminList);
-    let admin = this.userService.connectAsAdmin(this.loginForm.value.username, this.loginForm.value.password);
-    console.log(admin);
-    if (admin) {
-      this.router.navigate(['/admin']);
-    }else {
-      alert('Invalid credentials');
-    }
+    this.userService.connectAsAdmin(this.loginForm.value.username, this.loginForm.value.password);
+    let colorblind = document.querySelector('#colorblinder');
+    if (colorblind)
+      colorblind.className = '';
   }
 }
