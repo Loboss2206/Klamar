@@ -19,6 +19,8 @@
 
 .btnGray{
   background-color: var(--button-gray-background-color);
+  visibility: hidden;
+  pointer-events: none;
 }
 
 .btnGreen{
