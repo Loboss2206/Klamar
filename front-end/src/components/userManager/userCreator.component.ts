@@ -94,6 +94,10 @@ export class UserCreatorComponent {
     }
   }
 
+  ngOnDestroy() {
+    sessionStorage.removeItem('userToModify');
+  }
+
 
 }
 
