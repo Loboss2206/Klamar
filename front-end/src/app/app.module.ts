@@ -34,9 +34,9 @@ import { AdminComponent } from "../components/admin-component/admin-component.co
 import { QuizManagerComponent } from "../components/quiz-manager/quiz-manager.component";
 import { UserModifierComponent } from 'src/components/modifUser/userModifier.component';
 import { SelectUserContainerForModificationComponent } from 'src/components/select-user-container-for-modification/select-user-container-for-modification.component';
-import { SelectQuestionComponent} from "../components/select-question/select-question.component";
-import { SelectQuestionCreateComponent} from "../components/select-question-create/select-question-create.component";
-import { SelectUserStatComponent} from "../components/select-user-stat/select-user-stat.component";
+import { SelectQuestionComponent } from "../components/select-question/select-question.component";
+import { SelectQuestionCreateComponent } from "../components/select-question-create/select-question-create.component";
+import { SelectUserStatComponent } from "../components/select-user-stat/select-user-stat.component";
 
 const routes: Routes = [
   { path: '', component: SelectUserContainerComponent, data: { title: 'Sélection utilisateur' } },
@@ -49,7 +49,7 @@ const routes: Routes = [
   { path: 'memory', component: MemoryContainerComponent, data: { title: 'Memory' } },
   { path: 'users', component: SelectUserContainerComponent, data: { title: 'Sélection utilisateur' } },
   { path: 'selectQuiz', component: QuizSelectorComponent, data: { title: 'Sélection du quiz' } },
-  { path: 'createUser', component: UserCreatorComponent, data: { title: "Création d'un utilisateur" } },
+  { path: 'createUser', component: UserCreatorComponent, data: { title: "Création/modification de d'utilisateur" } },
   { path: 'graphics/:id', component: GraphicPageComponent, data: { title: "Graphiques" } },
   { path: 'simonStat/:id', component: StatSimonPageComponent, data: { title: "Stats Simon" } },
   { path: 'questionStat/:id', component: StatQuestionPageComponent, data: { title: "Stats Questions" } },
@@ -59,9 +59,9 @@ const routes: Routes = [
   { path: 'quizManager', component: QuizManagerComponent, data: { title: 'Gestion des quiz' } },
   { path: 'modifyUser', component: UserModifierComponent, data: { title: 'Modifier un utilisateur' } },
   { path: 'selectUserToModify', component: SelectUserContainerForModificationComponent, data: { title: "Sélection d'un utilisateur à modifier" } },
-  { path: 'selectQuestion', component: SelectQuestionComponent, data: {title: "Gestionnaire des questions"}},
-  { path: 'createQuestion', component: SelectQuestionCreateComponent, data: {title: "Création/modification de question"}},
-  { path: 'selectUserStat', component: SelectUserStatComponent, data: {title: "Sélection de l'utilisateur pour afficher les statistiques"}}
+  { path: 'selectQuestion', component: SelectQuestionComponent, data: { title: "Gestionnaire des questions" } },
+  { path: 'createQuestion', component: SelectQuestionCreateComponent, data: { title: "Création/modification de question" } },
+  { path: 'selectUserStat', component: SelectUserStatComponent, data: { title: "Sélection de l'utilisateur pour afficher les statistiques" } }
 ];
 
 @NgModule({
