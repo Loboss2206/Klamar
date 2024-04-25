@@ -1,9 +1,11 @@
 @import url(https://fonts.googleapis.com/css?family=Roboto:400,100,500,300italic,500italic,700italic,900,300);
 
 .card {
-  border-radius: 2px;
-  background-color: #fff;
-  box-shadow: 0 2px 2px 0 rgba(0,0,0,.14), 0 3px 1px -2px rgba(0,0,0,.2), 0 1px 5px 0 rgba(0,0,0,.12);
+  border-radius: 10px;
+  /*background-color: var(--material-table-table-bg-color);
+  box-shadow: var(--material-table-shadow);*/
+  box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.7);
+  background-color: #F6F6F6;
 }
 
 .table {
@@ -20,46 +22,41 @@
   height: calc(100% - 48px);
 }
 
-.header {
-  content: '';
-  top: 0;
-  height: 48px;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.075);
-}
+
 
 table {
   white-space: nowrap;
-  color: rgba(0, 0, 0, 0.87);
+  color: var(--material-table);
   width: 100%;
   font-size: 12px;
   overflow-x: hidden;
   overflow-y: auto;
 }
 
-table td, table th {
-  line-height: 45px;
-}
-
 table th {
   height: 0;
   border: none;
   padding: 0;
-  font-weight: 500;
+  font-weight: bold;
+  font-size: 1.6em;
+  text-align: center;
 }
+
 
 table th div,
 table thead tr:last-child th,
 table td {
-  padding: 0 8px 0 24px;
+  padding: 0 0 0 0;
 }
 
-table th:not(:first-child) div,
-table td:not(:first-child) {
-  border-left: 1px solid rgba(0, 0, 0, 0.075);
+table th:not(:last-child) div,
+table td:not(:last-child) {
+  border-right: 1px solid rgb(159, 157, 157);
 }
 
 table td {
-  border-bottom: 1px solid rgba(0, 0, 0, 0.075);
+  border-bottom: 1px solid rgb(159, 157, 157);
+  padding: 10px;
 }
 
 table thead tr:last-child th {
@@ -68,24 +65,36 @@ table thead tr:last-child th {
 }
 
 table thead th div {
-  position: absolute;
+  border-bottom: 4px solid rgb(0, 0, 0);
   line-height: 48px;
   top: 0;
 }
 
 table tbody tr:hover {
-  cursor: pointer;
-  background-color: #EDEDF2;
+  cursor: var(--pointer-cursor);
+  background-color: var(--material-table-table-bg-color-hover);
 }
 
-.cellspacing{
+.cellspacing {
   border-collapse: collapse;
   border-spacing: 0;
 }
 
 .material-table-actions {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-evenly;
   padding: 0 16px;
   height: 48px;
+}
+
+.material-table-cell {
+  font-size: 1.4em;
+  text-align: center;
+}
+
+.material-table-image {
+  width: 100px;
+  height: 100px;
+  margin: 1vw;
+  object-fit: cover;
 }

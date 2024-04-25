@@ -1,46 +1,112 @@
 .userAvatar {
     margin-top: 3%;
-    text-align: center;
-}
-
-.user-creator-form {
+    margin-bottom: 7%;
     display: flex;
-    flex-wrap: wrap;
+    flex-direction: column;
     align-items: center;
     text-align: center;
 }
 
-.user-creator-form>* {
+#userToCreateImg {
+    width: 300px;
+    height: 200px;
+    object-fit: cover;
+    margin-bottom: 10px;
+}
+
+.user-creator-form {
+    border-radius: 20px;
+    box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.7);
+    margin-left: 15%;
+    margin-right: 15%;
+    margin-left: 15%;
+    margin-top: 4%;
+    padding: 20px;
+    text-align: center;
+    //background-color: #f0eaea;
+    background-color: #F6F6F6;
+
+}
+
+.user-creator-form>.inputs {
+    margin-bottom: 50px;
+}
+
+.user-creator-form>.inputs>div {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    align-items: center;
+    text-align: center;
+}
+
+.user-creator-form>.inputs>p {
+    font-size: 1.5em;
+    width: auto;
+    font-size: 1.5em;
+    text-align: center;
+    font-family: Roboto, serif;
+    color: #ffffff;
+    background-color: #434343;
+    border-radius: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 50px;
+}
+
+
+
+.user-creator-form>.inputs>div>* {
     flex: 1 0 calc(33.33% - 10px);
-    margin-bottom: 5%;
-    font-size: 1.9em;
+    margin-bottom: 2%;
+    font-size: 1.5em;
+
 }
 
+input[type="text"] {
+    /*background-color: white;
+    margin-top: 10px;
+    font-size: 0.8em;
+    box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.7);*/
+    font-family: "Asap", sans-serif;
+    display: block;
+    border-radius: 5px;
+    font-size: 16px;
+    background-color: var(--login-input-background-color);
+    width: 92%;
+    border: 0;
+    padding: 10px 10px;
+    box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.7);
+    margin-top: 7px;
+}
 
 input[type="number"] {
+    margin-top: 10px;
+    font-size: 1.1em;
+}
+
+input[type="radio"] {
+    margin-top: 10px;
     font-size: 20px;
 }
 
-input[type="number"] {
-    font-size: 20px;
-}
+
 
 .disabled-button {
-    background-color: gray;
+    background-color: var(--button-disabled-background-color);
 }
 
 .createUserButton {
     margin: 0;
     border-radius: 20px;
     font-size: 2.0em;
-    color: rgb(0, 0, 0);
+    color: var(--createuser-button-color);
     padding: 10px;
-    cursor: pointer;
+    cursor: var(--pointer-cursor);
+    position: relative;
     transition: background 0.3s ease;
     text-align: center;
     margin: 10px;
-    position: fixed;
-    float: left;
     bottom: 0;
     left: 0;
 }
@@ -48,16 +114,15 @@ input[type="number"] {
 .createUserButton:enabled {
     margin: 0;
     border-radius: 20px;
-    background-color: blue;
+    background-color: var(--button-generic-background-color);
     font-size: 2.0em;
-    color: white;
+    color: var(--button-generic-color);
     padding: 10px;
-    cursor: pointer;
+    cursor: var(--pointer-cursor);
+    position: relative;
     transition: background 0.3s ease;
     text-align: center;
     margin: 10px;
-    position: fixed;
-    float: left;
     bottom: 0;
     left: 0;
 }
@@ -65,7 +130,7 @@ input[type="number"] {
 
 
 
-#createUserButton:hover {
+.createUserButton:enabled:hover {
     background: rgba(0, 0, 0, 0.7);
 }
 
@@ -74,9 +139,9 @@ select {
 }
 
 
-#userInput {
-    background-color: #D9D9D9;
+.userInput {
+    background-color: var(--user-input);
     border-radius: 200px;
-  padding: 10px 100px 10px 10px;
-  border: #D9D9D9;
+    padding: 10px 100px 10px 10px;
+    border: var(--user-input-border);
 }

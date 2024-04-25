@@ -1,17 +1,22 @@
-import { Injectable } from '@angular/core';
-import { users } from "../mocks/users";
+import {Injectable} from '@angular/core';
+import {users} from "../mocks/users";
 import IUser from 'src/interfaces/IUser';
 import IAdmin from "../interfaces/IAdmin";
-import { adminList } from "../mocks/admin";
-import { of } from "rxjs";
+import {adminList} from "../mocks/admin";
+import {BehaviorSubject, of} from "rxjs";
+import {Router} from "@angular/router";
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
   private users: IUser[] = users;
-  private currentUser: number = -1;
+  private currentUser: number = parseInt(sessionStorage.getItem('currentUser') || '-1', 10);
   private admins: IAdmin[] = adminList;
+  private currentUserSubject: BehaviorSubject<IUser> = new BehaviorSubject<IUser>({} as IUser);
+  public readonly listOfColorsBlind = ["protanopia", "deuteranopia", "tritanopia", "protanomaly", "deuteranomaly", "tritanomaly", "achromatopsia", "achromatomaly"];
+  private connectedAdminTokens: { [token: string]: number }[] = [];
+
 
   getUsers(): IUser[] {
     return this.users;
@@ -25,10 +30,17 @@ export class UserService {
   }
 
   getCurrentAdmin(): IAdmin | null {
-    if (this.currentUser === -1) {
-      return null;
+    let token = JSON.parse(sessionStorage.getItem('currentUser') as string);
+    console.log(this.connectedAdminTokens);
+    let parsedToken = this.connectedAdminTokens.find((tokenElement) => tokenElement[token]);
+    let adminIDFromToken = parsedToken ? parsedToken[token] : null;
+    if (adminIDFromToken) {
+      if (this.currentUser === -1 && !token) {
+        return null;
+      }
+      return this.admins.find((admin) => admin.id === adminIDFromToken) as IAdmin;
     }
-    return this.getTheUser(this.currentUser) as IAdmin;
+    return null;
   }
 
   getTheUser(id: number) {
@@ -42,20 +54,45 @@ export class UserService {
     }
     return user;
   }
+
   getCharts(id: number) {
     let user = users.find(user => user.id === id);
     return of(user?.charts);
   }
 
+  getStats(id: number) {
+    let user = users.find(user => user.id === id);
+    return of(user?.statsId);
+  }
+
 
   connectAsAdmin(username: string, password: string) {
-    let admin = this.admins.find((adminElement: { username: any; mdp: any; }) => adminElement.username === username && adminElement.mdp === password);
+    let admin = this.admins.find((adminElement: {
+      username: any;
+      mdp: any;
+    }) => adminElement.username === username && adminElement.mdp === password);
     if (admin) {
-      this.setUser(admin.id);
-      return true;
+      this.setUserAsAdmin(admin.id).then(() => {
+        this.router.navigate(['/admin/gestion']);
+      });
     } else {
-      return false;
+      alert('Mauvais identifiants');
     }
+  }
+
+  async tokenGenerator() {
+    const token = Math.random().toString(36).substring(7) + Math.random().toString(36).substring(7) + Math.random().toString(36).substring(7) + new Date().getTime();
+    const encoder = new TextEncoder();
+    const data = encoder.encode(token);
+    const hash = await window.crypto.subtle.digest('SHA-256', data);
+    return Array.from(new Uint8Array(hash)).map(b => b.toString(16).padStart(2, '0')).join('');
+  }
+
+  async setUserAsAdmin(id: number) {
+    this.currentUser = id;
+    let token = await this.tokenGenerator()
+    this.connectedAdminTokens.push({[token]: id});
+    sessionStorage.setItem('currentUser', JSON.stringify(token));
   }
 
   getUserConfig() {
@@ -65,5 +102,20 @@ export class UserService {
 
   setUser(id: number) {
     this.currentUser = id;
+    sessionStorage.setItem('currentUser', JSON.stringify(id));
+    this.currentUserSubject.next(this.getTheUser(id) as IUser);
+  }
+
+  searchUsers(searchTerm: string) {
+    return this.users.filter((user) => user.name.toLowerCase().includes(searchTerm.toLowerCase()) || user.firstname.toLowerCase().includes(searchTerm.toLowerCase()));
+  }
+
+  getUserColorBlind(id: number) {
+    let user = this.getTheUser(id) as IUser;
+    console.log(user.colorBlind);
+    return user.colorBlind;
+  }
+
+  constructor(private router: Router) {
   }
 }

@@ -1,22 +1,21 @@
 <div class="quizResultBox">
   <div>
-    <p>Quiz pour Jacques C.</p>
-    <p>12/02/2024 15:00</p>
-  </div>
-  <div>
-    <p>Identifiant</p>
-    <p>4020</p>
+    <p>Quiz du</p>
+    <p>{{date}}</p>
   </div>
   <div>
     <p>Question</p>
-    <p>10/15</p>
+    <p>{{sucessQuiz}}%</p>
+    <app-genericButton [routerLink]="['/stats/questionStat/'+user?.id]">Plus d'informations</app-genericButton>
   </div>
   <div>
     <p>Simon</p>
-    <p>20%</p>
+    <p>{{sucessSimon}}%</p>
+    <app-genericButton [routerLink]="['/stats/simonStat/'+user?.id]">Plus d'informations</app-genericButton>
   </div>
   <div>
     <p>Memory</p>
-    <p>50%</p>
+    <p>{{sucessMemory}}%</p>
+    <app-genericButton [routerLink]="['/stats/memoryStat/'+user?.id]">Plus d'informations</app-genericButton>
   </div>
 </div>

@@ -10,11 +10,12 @@ import {Subscription} from "rxjs";
 import IQuestion from "../../interfaces/IQuestion";
 import ISimonConfig from "../../interfaces/ISimonConfig";
 import {ImagesPicklistComponent} from "../images-picklist/images-picklist.component";
+import {SearchQuizSelectorComponent} from "../search-quiz-selector/search-quiz-selector.component";
 
 @Component({
   selector: 'app-quiz-manager',
   standalone: true,
-  imports: [MaterialTableComponent, QuestionsPicklistComponent, NgIf, GenericButtonComponent, FormsModule, NgClass, ReactiveFormsModule, ImagesPicklistComponent],
+    imports: [MaterialTableComponent, QuestionsPicklistComponent, NgIf, GenericButtonComponent, FormsModule, NgClass, ReactiveFormsModule, ImagesPicklistComponent, SearchQuizSelectorComponent],
   templateUrl: './quiz-manager.component.html',
   styleUrl: './quiz-manager.component.scss'
 })
@@ -234,5 +235,9 @@ export class QuizManagerComponent implements OnInit {
   closeMemoryConfig() {
     this.editMode = true;
     this.isInMemoryEdit = false;
+  }
+
+  SearchQuizzes($event: string) {
+    this.allQuizzes = this.quizService.searchQuizzes($event);
   }
 }

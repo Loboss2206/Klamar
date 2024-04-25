@@ -1,10 +1,12 @@
-import { Component, OnInit } from '@angular/core';
-import { NgForOf } from "@angular/common";
-import { Router, RouterLink } from "@angular/router";
-import { UserService } from '../../services/user-service.service';
+import {Component, OnInit} from '@angular/core';
+import {NgForOf} from "@angular/common";
+import {Router, RouterLink} from "@angular/router";
+import {UserService} from '../../services/user-service.service';
 import IUser from '../../interfaces/IUser';
-import { SelectUserItemComponent } from '../select-user-item/select-user-item.component';
+import {SelectUserItemComponent} from '../select-user-item/select-user-item.component';
 import IAdmin from 'src/interfaces/IAdmin';
+import {SearchQuizSelectorComponent} from "../search-quiz-selector/search-quiz-selector.component";
+import {color} from "chart.js/helpers";
 
 @Component({
   standalone: true,
@@ -14,7 +16,8 @@ import IAdmin from 'src/interfaces/IAdmin';
   imports: [
     SelectUserItemComponent,
     NgForOf,
-    RouterLink
+    RouterLink,
+    SearchQuizSelectorComponent
   ]
 })
 export class SelectUserContainerComponent implements OnInit {
@@ -25,7 +28,9 @@ export class SelectUserContainerComponent implements OnInit {
     firstname: "Admin",
     config: {} as any,
     avatar: "https://journalmetro.com/wp-content/uploads/2017/04/default_profile_400x400.png?fit=400%2C400",
-    charts: []
+    charts: [],
+    statsId: [],
+    colorBlind: ""
   };
 
   constructor(private userService: UserService, private router: Router) {
@@ -37,6 +42,27 @@ export class SelectUserContainerComponent implements OnInit {
 
   defineUser(userId: number) {
     this.userService.setUser(userId);
+    this.changeColorBlind(this.userService.getUserColorBlind(userId));
     this.router.navigate(['/selectQuiz']);
+  }
+
+  changeColorBlind(indexOfColorBlind: string) {
+    this.clearColorBlind();
+    let colorblind = document.querySelector('#colorblinder');
+    if (colorblind) {
+      colorblind.className = ("colorblind-overlay");
+      colorblind.classList.add(this.userService.listOfColorsBlind[this.userService.listOfColorsBlind.indexOf(indexOfColorBlind)] + "-filter");
+    }
+  }
+
+  clearColorBlind() {
+    let colorblind = document.querySelector('#colorblinder');
+    if (colorblind) {
+      colorblind.classList.remove(...this.userService.listOfColorsBlind.map((color) => color + "-filter"));
+    }
+  }
+
+  searchUsers(searchTerm: string) {
+    this.users = this.userService.searchUsers(searchTerm);
   }
 }

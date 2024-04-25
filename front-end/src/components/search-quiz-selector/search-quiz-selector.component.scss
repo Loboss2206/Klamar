@@ -1,12 +1,22 @@
 .searchContainer {
     display: flex;
     align-items: center;
-    border: 1px solid #ffffff;
-    background-color: #ffffff;
+    border: var(--search-container-border);
+    background-color: var(--search-container-bg-color);
     border-radius: 5px;
     padding: 5px;
     margin-bottom: 10px;
     width: 40vw;
+    box-shadow: 5px 5px 10px 5px rgba(0, 0, 0, 0.2);
+}
+
+input {
+    background-color: var(--search-input-bg-color);
+    color: var(--search-input-color);
+}
+
+input::placeholder {
+    color: var(--search-input-placeholder-color);
 }
 
 #search {
@@ -21,4 +31,5 @@
     width: 30px;
     height: 30px;
     margin-left: 5px;
+    padding: 5px 10px;
 }

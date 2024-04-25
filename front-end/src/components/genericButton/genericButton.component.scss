@@ -1,26 +1,25 @@
 button {
-    background-color: #0d3af3;
-    border-radius: 20px;
-    font-size: 2.0em;
-    color: white;
-    border: 0px;
-    padding: 10px;
-    cursor: pointer;
-    transition: background 0.3s ease;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
+  background-color: var(--button-generic-background-color);
+  border-radius: 10px;
+  font-size: 2em;
+  color: var(--button-generic-color);
+  border: 0;
+  padding: 10px;
+  transition: background 0.3s ease;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 }
 
 button.delete-button {
-    background-color: #cc0505;
+  background-color: var(--button-generic-delete-background-color);
 }
 
 button.delete-button:hover {
-    background-color: #a10303;
+  background-color: var(--button-generic-delete-hover-background-color);
 }
 
 button:hover {
-    background-color: #0d9bf3;
+  background-color: var(--button-generic-hover-background-color);
   transition: background-color 0.3s ease;
 }

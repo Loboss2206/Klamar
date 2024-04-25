@@ -1,0 +1,10 @@
+.simonStat {
+  border: var(--question-result-stat-border);
+  padding: 20px;
+  flex-direction: row;
+  justify-content: space-around;
+  font-family: "Roboto", sans-serif;
+  text-shadow: var(--question-result-text-shadow);
+}
+
+

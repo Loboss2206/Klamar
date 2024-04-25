@@ -1,15 +1,15 @@
-import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
+import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { ButtonComponent } from "../quizButton/button.component";
 import { NgClass, NgForOf, NgIf, NgOptimizedImage } from "@angular/common";
 import { QuizService } from "../../services/quiz-service.service";
 import IQuestion from "../../interfaces/IQuestion";
 import { TipsComponent } from "../tips/tips.component";
 import { GenericButtonComponent } from '../genericButton/genericButton.component';
-import {Observable} from "rxjs";
-import {Router} from "@angular/router";
+import { Observable } from "rxjs";
+import { Router } from "@angular/router";
 import * as Tone from "tone";
 import IUser from "../../interfaces/IUser";
-import {UserService} from "../../services/user-service.service";
+import { UserService } from "../../services/user-service.service";
 
 @Component({
   selector: 'app-question',
@@ -39,11 +39,11 @@ export class QuestionComponent implements OnInit, AfterViewInit {
   tips: string[] = [];
   questionImage: string | undefined = '';
   areResponsesImages: boolean = false;
-  user : IUser | null = this.userService.getCurrentUser();
+  user: IUser | null = this.userService.getCurrentUser();
   canOpenTipsOnClick: boolean = this.user ? this.user.config.quiz.showHintAfterClick : false;
   currentTipIndex: number = this.user ? this.user.config.quiz.showHintOneByOne ? 0 : -1 : -1;
 
-  constructor(private quizService: QuizService, private router: Router, private userService: UserService){
+  constructor(private quizService: QuizService, private router: Router, private userService: UserService) {
 
   }
 
@@ -90,6 +90,12 @@ export class QuestionComponent implements OnInit, AfterViewInit {
     synth.triggerAttackRelease("C4", "16n");
   }
 
+  incrementIndex() {
+    if (this.currentTipIndex > -1 && this.currentTipIndex < this.tips.length - 1) {
+      this.currentTipIndex++;
+    }
+  }
+
   onAnswer(answer: string) {
     if (this.quizService.checkAnswer(answer)) {
       this.playCorrectTune();
@@ -105,7 +111,7 @@ export class QuestionComponent implements OnInit, AfterViewInit {
     } else {
       this.playWrongTune();
       if (this.user && this.user.config.quiz.showHintAfterError) {
-        if (this.currentTipIndex > -1 && this.currentTipIndex<this.tips.length-1) {
+        if (this.currentTipIndex > -1 && this.currentTipIndex < this.tips.length - 1) {
           this.currentTipIndex++;
         }
         this.tipsComponent.openATip();

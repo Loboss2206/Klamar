@@ -1,14 +1,12 @@
 <h1>
   <app-titlePage>
-    <p>Résultats du Simon du quiz Nom du quizz joués par M.Nom du patient</p>
+    <p>Résultats du Simon joués par {{user?.name}} {{user?.firstname}}</p>
   </app-titlePage>
 </h1>
   <div class="resultatSimon">
-    <h1 class="simonTitle">Simon</h1>
-    <app-stat-question></app-stat-question>
-    <simon-game></simon-game>
+    <div class = statSimon *ngFor="let stat of this.stats">
+      <div *ngFor="let simon of stat.erreurSimon; let questionIndex = index">
+        <app-result-simon [taille]=stat.tailleFinalSimon[questionIndex] [indices]=stat.indicesQuiz[questionIndex] [erreur]=stat.erreurQuiz[questionIndex] [temps]=stat.tempsQuiz[questionIndex] [couleur]=stat.nombreDeCouleurs[questionIndex]></app-result-simon>
+      </div>
   </div>
-
-<footer>
-  <app-zoomSlider></app-zoomSlider>
-</footer>
+  </div>

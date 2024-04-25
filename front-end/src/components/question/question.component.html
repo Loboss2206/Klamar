@@ -1,11 +1,11 @@
 <p class="question">{{ questionText }}</p>
 <div class="question-image-container">
-  <img *ngIf="questionImage" src="{{questionImage}}" alt=""/>
+  <img *ngIf="questionImage" src="{{questionImage}}" alt="" />
 </div>
 
 <div class="tipsContainer">
   <app-genericButton class="tutorialButton" (click)=goToHowToPlay()>Tutoriel</app-genericButton>
-  <app-tips #tipsComponent canBeClicked="canOpenTipsOnClick">
+  <app-tips (click)="incrementIndex()" #tipsComponent canBeClicked="canOpenTipsOnClick">
     <ul *ngIf="currentTipIndex === -1">
       <li *ngFor="let tip of tips">
         {{ tip }}
@@ -13,7 +13,7 @@
     </ul>
     <ul *ngIf="currentTipIndex !== -1">
       <li>
-      {{ tips[currentTipIndex] }}
+        {{ tips[currentTipIndex] }}
       </li>
     </ul>
   </app-tips>
@@ -22,7 +22,7 @@
 
 <div class="griddy">
   <app-quizButton *ngFor="let answer of answers" (click)="!blockUI && onAnswer(answer)"
-                  [color]="{correct: answer === correctAnswer ,wrong: answer !== correctAnswer && wrongAnswers.includes(answer)}"
-                  [img]="areResponsesImages ?  answer : ''">{{ answer }}
+    [color]="{correct: answer === correctAnswer ,wrong: answer !== correctAnswer && wrongAnswers.includes(answer)}"
+    [img]="areResponsesImages ?  answer : ''">{{ answer }}
   </app-quizButton>
 </div>

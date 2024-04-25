@@ -1,0 +1,10 @@
+<div style="display: flex; flex-direction: column; align-items: center; margin-top: 20px;">
+  <div class="userContainerWrapper">
+    <app-search-quiz-selector (searchTerm)="searchUsers($event)"></app-search-quiz-selector>
+    <div class="userContainer">
+      <div *ngFor="let user of users">
+        <app-select-user-item [user]="user" (click)="defineUserToModify(user)"></app-select-user-item>
+      </div>
+    </div>
+  </div>
+</div>

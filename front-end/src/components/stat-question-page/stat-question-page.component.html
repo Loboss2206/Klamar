@@ -1,17 +1,16 @@
 <h1>
   <app-titlePage>
-    <p>Résultats des questions du quiz Nom du quizz joués par M.Nom du patient</p>
+    <p>Résultats des questions du quiz Nom du quizz joués par {{user?.name}} {{user?.firstname}}</p>
   </app-titlePage>
 </h1>
-<div class="resultat">
-  <app-result-question></app-result-question>
-  <app-result-question></app-result-question>
-  <app-result-question></app-result-question>
-  <app-result-question></app-result-question>
-  <app-result-question></app-result-question>
-  <app-result-question></app-result-question>
-  <app-result-question></app-result-question>
+<div class="differentResultat">
+  <div class = statQuestions *ngFor="let stat of this.stats">
+    <div *ngFor="let question of stat.question; let questionIndex = index">
+      <app-result-question [point]=stat.pointQuestion[questionIndex] [maxPoint]=stat.maxPointQuestion[questionIndex] [indices]=stat.indicesQuiz[questionIndex] [erreur]=stat.erreurQuiz[questionIndex] [temps]=stat.tempsQuiz[questionIndex]></app-result-question>
+      <div *ngFor="let indice of question.tips; let indiceIndex = index">
+        <h2>Indice {{indiceIndex}} : {{indice}}</h2>
+      </div>
+    </div>
+
+  </div>
 </div>
-<footer>
-  <app-zoomSlider></app-zoomSlider>
-</footer>

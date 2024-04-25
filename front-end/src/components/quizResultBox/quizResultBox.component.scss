@@ -1,11 +1,11 @@
 .quizResultBox {
-    border: 1px solid black;
+    border: var(--result-border);
     padding: 20px;
     display: flex;
     flex-direction: row;
     justify-content: space-around;
     font-family: "Noto Sans Thai Looped", sans-serif;
-    text-shadow: 0px 3px 3px rgb(0, 0, 0, 0.2);
+    text-shadow: var(--text-shadow);
 }
 
 .quizResultBox>div:first-child {
@@ -22,15 +22,17 @@
 
 .quizResultBox>div>p:nth-child(1) {
     font-weight: 900;
-    font-size: 1.05em;
+    font-size: 2em;
+    text-align: center;
 }
 
 .quizResultBox>div:first-child>p:nth-child(2) {
     text-align: center;
+    font-size: 2em;
 }
 
 .quizResultBox>div>p:nth-child(2) {
     text-align: center;
     font-weight: 600;
-    font-size: 0.9em;
+    font-size: 2em;
 }

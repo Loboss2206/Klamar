@@ -9,4 +9,12 @@ export const adminList: IAdmin[] = [
     avatar: "https://avatars.githubusercontent.com/u/34894524?v=4",
     mdp: "arnaud"
   },
+  {
+    id: -3,
+    username: "admin",
+    name: "Admin",
+    firstname: "ISTRATOR",
+    avatar: "https://avatars.githubusercontent.com/u/34894524?v=4",
+    mdp: "admin"
+  },
   ];
