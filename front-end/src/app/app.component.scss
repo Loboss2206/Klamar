@@ -2,12 +2,21 @@
   margin-top: 2vh;
 }
 
+.space {
+  margin-bottom: 100px
+}
+
 #zoomSlider {
-  margin: 50px;
-  position: static;
-  float: right;
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  background-color: #e0e2e3;
+  margin-top: 20px;
+  width: 100%;
+  height: 50px;
+  padding: 5px;
+  justify-content: center;
   bottom: 0;
-  right: 0;
 }
 
 .colorblind-overlay {
@@ -54,10 +63,4 @@
 
 .colorblind-overlay.achromatomaly-filter{
   filter: url("/assets/filters.svg#achromatomaly");
-}
-
-#zoomSlider{
-  position: fixed;
-  bottom: -30px;
-  right: 30px;
 }

@@ -1,5 +1,14 @@
-.user-modifier-form{
-  margin-top: 50px;
+.user-modifier-form {
+  border-radius: 20px;
+  box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.7);
+  margin-left: 15%;
+  margin-right: 15%;
+  margin-left: 15%;
+  margin-top: 4%;
+  padding: 20px;
+  text-align: center;
+  //background-color: #f0eaea;
+  background-color: #F6F6F6;
 }
 
 .user-modifier-form>.inputs {
@@ -16,7 +25,7 @@
 
 .user-modifier-form>.inputs>p {
   font-size: 1.5em;
-  width: 200px;
+  width: auto;
   font-size: 1.5em;
   text-align: center;
   font-family: Roboto, serif;
@@ -38,8 +47,16 @@
 }
 
 input[type="text"] {
-  margin-top: 10px;
-  font-size: 0.7em;
+  font-family: "Asap", sans-serif;
+  display: block;
+  border-radius: 5px;
+  font-size: 16px;
+  background-color: var(--login-input-background-color);
+  width: 92%;
+  border: 0;
+  padding: 10px 10px;
+  box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.7);
+  margin-top: 7px;
 }
 
 input[type="number"] {
