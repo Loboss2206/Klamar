@@ -6,16 +6,16 @@
   <div>
     <p>Question</p>
     <p>{{sucessQuiz}}%</p>
-    <app-genericButton [routerLink]="['/questionStat/'+user?.id]">Plus d'informations</app-genericButton>
+    <app-genericButton [routerLink]="['/stats/questionStat/'+user?.id]">Plus d'informations</app-genericButton>
   </div>
   <div>
     <p>Simon</p>
     <p>{{sucessSimon}}%</p>
-    <app-genericButton [routerLink]="['/simonStat/'+user?.id]">Plus d'informations</app-genericButton>
+    <app-genericButton [routerLink]="['/stats/simonStat/'+user?.id]">Plus d'informations</app-genericButton>
   </div>
   <div>
     <p>Memory</p>
     <p>{{sucessMemory}}%</p>
-    <app-genericButton [routerLink]="['/memoryStat/'+user?.id]">Plus d'informations</app-genericButton>
+    <app-genericButton [routerLink]="['/stats/memoryStat/'+user?.id]">Plus d'informations</app-genericButton>
   </div>
 </div>

@@ -42,7 +42,7 @@
 .quit {
   margin: 0;
   display: flex;
-  cursor: pointer;
+  cursor: var(--pointer-cursor);
 }
 
 .logo-icon {

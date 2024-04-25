@@ -31,7 +31,7 @@ export class SelectUserContainerForModificationComponent implements OnInit {
 
   defineUserToModify(user: IUser) {
     sessionStorage.setItem("userToModify", JSON.stringify(user));
-    this.router.navigate(['/createUser']);
+    this.router.navigate(['/admin/modifyUser']);
   }
 
   searchUsers(searchTerm: string) {

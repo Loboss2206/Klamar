@@ -8,4 +8,5 @@ export default interface IUser {
   avatar: string;
   charts: string[];
   statsId: number[];
+  colorBlind: string;
 }
