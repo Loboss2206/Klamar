@@ -89,7 +89,7 @@ input[type="radio"] {
     font-size: 2.0em;
     color: var(--createuser-button-color);
     padding: 10px;
-    cursor: pointer;
+    cursor: var(--pointer-cursor);
     position: relative;
     transition: background 0.3s ease;
     text-align: center;
@@ -105,7 +105,7 @@ input[type="radio"] {
     font-size: 2.0em;
     color: var(--button-generic-color);
     padding: 10px;
-    cursor: pointer;
+    cursor: var(--pointer-cursor);
     position: relative;
     transition: background 0.3s ease;
     text-align: center;

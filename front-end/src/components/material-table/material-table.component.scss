@@ -71,7 +71,7 @@ table thead th div {
 }
 
 table tbody tr:hover {
-  cursor: pointer;
+  cursor: var(--pointer-cursor);
   background-color: var(--material-table-table-bg-color-hover);
 }
 

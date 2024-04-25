@@ -18,3 +18,49 @@
   justify-content: center;
   bottom: 0;
 }
+
+.colorblind-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 9999;
+  pointer-events: all;
+}
+
+.disabled{
+  display: none;
+}
+
+.colorblind-overlay.protanopia-filter {
+  filter: url("/assets/filters.svg#protanopia");
+}
+
+.colorblind-overlay.deuteranopia-filter {
+  filter: url("/assets/filters.svg#deuteranopia");
+}
+
+.colorblind-overlay.tritanopia-filter {
+  filter: url("/assets/filters.svg#tritanopia");
+}
+
+.colorblind-overlay.protanomaly-filter {
+  filter: url("/assets/filters.svg#protanomaly");
+}
+
+.colorblind-overlay.deuteranomaly-filter {
+  filter: url("/assets/filters.svg#deuteranomaly");
+}
+
+.colorblind-overlay.tritanomaly-filter {
+  filter: url("/assets/filters.svg#tritanomaly");
+}
+
+.colorblind-overlay.achromatopsia-filter {
+  filter: url("/assets/filters.svg#achromatopsia");
+}
+
+.colorblind-overlay.achromatomaly-filter{
+  filter: url("/assets/filters.svg#achromatomaly");
+}

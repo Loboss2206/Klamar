@@ -28,11 +28,11 @@ export class SelectQuestionComponent implements OnInit{
     console.log(this.questions)
   }
   createQuestion() {
-    this._router.navigate(['/createQuestion']);
+    this._router.navigate(['/admin/createQuestion']);
   }
 
   editQuestion(question: IQuestion) {
-    this._router.navigate(['/createQuestion']);
+    this._router.navigate(['/admin/createQuestion']);
   }
 
   deleteQuestion(question: IQuestion) {

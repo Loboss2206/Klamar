@@ -1,4 +1,5 @@
 .userItem {
+
   margin: 20px;
   text-align: center;
   padding: 10px;
@@ -6,6 +7,8 @@
   border-radius: 5px;
   background-color: white;
   transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;
+  cursor: var(--pointer-cursor);
+
 
 }
 
@@ -16,15 +19,25 @@
   transform: scale(1.1);
 }
 
-.imgUser {
-  width: 200px;
-  height: 200px;
-  object-fit: cover;
-  border-radius: 5px;
-}
 
 .userName {
   margin: 0.4vw auto;
   font-size: 1.2em;
-  font-weight: bold;
+  fnt-weight: bold;
+    background-color: #f0f0f0;
+}
+
+.imgUser {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 5px;
+  cursor: var(--pointer-cursor);
+
+}
+
+.userName {
+    margin: 0.4vw auto;
+    font-size: 1.2em;
+    font-weight: bold;
 }

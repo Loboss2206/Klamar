@@ -28,7 +28,7 @@ export class UserModifierComponent {
   @Input() user!: IUser;
   imageUrl: any;
 
-  constructor(private userService: UserService, protected formBuilder: FormBuilder) {
+  constructor(protected formBuilder: FormBuilder) {
     let userDataString = sessionStorage.getItem('userToModify');
     if (userDataString) {
       this.user = JSON.parse(userDataString);

@@ -11,9 +11,12 @@
 
 .quizItem:hover {
   background-color: #f0f0f0;
-  cursor: pointer;
+  cursor: var(--pointer-cursor);
   box-shadow: 5px 10px 10px 10px rgba(0, 0, 0, 0.2);
   transform: scale(1.1);
+    margin: 20px;
+    text-align: center;
+    padding: 10px;
 }
 
 .imgQuiz {
@@ -21,6 +24,8 @@
     height: 140px;
     object-fit: cover;
     border-radius: 5px;
+  cursor: var(--pointer-cursor);
+
 }
 
 .quizTitle {

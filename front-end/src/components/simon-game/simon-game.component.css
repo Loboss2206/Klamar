@@ -27,7 +27,7 @@
   transition: all 0.5s ease;
 }
 .simon-button:hover {
-  cursor: pointer;
+  cursor: var(--pointer-cursor);
   filter: brightness(0.8);
 }
 
@@ -49,7 +49,7 @@
   transform: translate(-50%, -25%);
   background-color: #3a4eff;
   text-align: center;
-  cursor: pointer;
+  cursor: var(--pointer-cursor);
 }
 
 .circle:hover {
