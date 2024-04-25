@@ -10,7 +10,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  cursor: pointer;
+  cursor: var(--pointer-cursor);
 }
 
 .btnRed {
@@ -19,6 +19,8 @@
 
 .btnGray{
   background-color: var(--button-gray-background-color);
+  visibility: hidden;
+  pointer-events: none;
 }
 
 .btnGreen{

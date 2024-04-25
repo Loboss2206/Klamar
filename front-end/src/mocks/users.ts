@@ -28,7 +28,8 @@ export const users: IUser[] = [
     },
     charts: ['Chart1', 'Chart2', 'Chart3', 'Chart4', 'Chart5', 'Chart6', 'Chart7'],
     statsId: [2,4],
-    avatar: "https://st3.depositphotos.com/3584053/33351/i/450/depositphotos_333513864-stock-photo-senior-mushroomer-happy-ol-man.jpg"
+    avatar: "https://st3.depositphotos.com/3584053/33351/i/450/depositphotos_333513864-stock-photo-senior-mushroomer-happy-ol-man.jpg",
+    colorBlind: "protanopia"
   },
   {
     id: 2,
@@ -57,7 +58,8 @@ export const users: IUser[] = [
     },
     charts: ['Chart1', 'Chart2', 'Chart3', 'Chart4', 'Chart5', 'Chart6', 'Chart7'],
     statsId: [1,3],
-    avatar: "https://ts2.mm.bing.net/th?q=des%20vieilles%20femmes"
+    avatar: "https://ts2.mm.bing.net/th?q=des%20vieilles%20femmes",
+    colorBlind: "achromatopsia"
   },
   {
     id: 3,
@@ -87,7 +89,8 @@ export const users: IUser[] = [
     },
     charts: ['Chart1', 'Chart2', 'Chart3', 'Chart4', 'Chart5', 'Chart6', 'Chart7'],
     statsId: [1,2,3,4],
-    avatar: "https://images.unsplash.com/photo-1566616213894-2d4e1baee5d8?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8dmllaWxsZSUyMGZlbW1lfGVufDB8fDB8fHww"
+    avatar: "https://images.unsplash.com/photo-1566616213894-2d4e1baee5d8?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8dmllaWxsZSUyMGZlbW1lfGVufDB8fDB8fHww",
+    colorBlind: "tritanopia"
   },
   {
     id: 4,
@@ -117,7 +120,8 @@ export const users: IUser[] = [
     },
     charts: ['Chart1', 'Chart2', 'Chart3', 'Chart4', 'Chart5', 'Chart6', 'Chart7'],
     statsId: [1],
-    avatar: "https://img.freepik.com/photos-premium/vieil-homme-age-fait-grimaces-fait-grimace-montre-sa-langue-homme-drole-fou_340855-1537.jpg"
+    avatar: "https://img.freepik.com/photos-premium/vieil-homme-age-fait-grimaces-fait-grimace-montre-sa-langue-homme-drole-fou_340855-1537.jpg",
+    colorBlind: ""
   }
 ]
 

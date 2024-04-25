@@ -26,6 +26,6 @@ export class SelectUserStatComponent {
   }
 
   defineUserToModify(user: IUser) {
-    this.router.navigate(['/graphics/'+user.id]);
+    this.router.navigate(['/stats/graphics/'+user.id]);
   }
 }
