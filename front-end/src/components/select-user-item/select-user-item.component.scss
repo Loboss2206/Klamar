@@ -1,26 +1,30 @@
 .userItem {
-    margin: 20px;
-    text-align: center;
-    padding: 10px;
-    box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.7);
-    border-radius: 5px;
-    background-color: white;
+  margin: 20px;
+  text-align: center;
+  padding: 10px;
+  box-shadow: 5px 5px 10px 5px rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
+  background-color: white;
+  transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;
+
 }
 
 .userItem:hover {
-    background-color: #f0f0f0;
-    cursor: pointer;
+  background-color: #f0f0f0;
+  cursor: pointer;
+  box-shadow: 5px 10px 10px 10px rgba(0, 0, 0, 0.2);
+  transform: scale(1.1);
 }
 
 .imgUser {
-    width: 200px;
-    height: 200px;
-    object-fit: cover;
-    border-radius: 5px;
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 5px;
 }
 
 .userName {
-    margin: 0.4vw auto;
-    font-size: 1.2em;
-    font-weight: bold;
+  margin: 0.4vw auto;
+  font-size: 1.2em;
+  font-weight: bold;
 }

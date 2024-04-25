@@ -1,6 +1,6 @@
-<div class="selectContainer">
-    <div class="topContainer">
-        <app-search-quiz-selector (searchTerm)="searchQuizzes($event)"></app-search-quiz-selector>
-    </div>
+<div style="display: flex; justify-content: center; align-items: center; flex-direction: column;">
+  <div class="selectContainer quizContainerWrapper">
+    <app-search-quiz-selector (searchTerm)="searchQuizzes($event)"></app-search-quiz-selector>
     <app-quiz-selector-container [quizzes]="quizzes"></app-quiz-selector-container>
+  </div>
 </div>
