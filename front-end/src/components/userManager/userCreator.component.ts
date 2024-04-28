@@ -48,7 +48,8 @@ export class UserCreatorComponent {
         choicePrintTipsOneByOne: [this.user.config.quiz.showHintOneByOne.toString(), Validators.required],
         secTipsForMemory: [this.user.config.memoryHints.timeBeforeHints, Validators.required],
         secTipsForSimon: [this.user.config.simonHints.displayTheFullSequenceAfter, Validators.required],
-        secVisibleCardForMemory: [this.user.config.memory.timeBeforeSwitching, Validators.required]
+        secVisibleCardForMemory: [this.user.config.memory.timeBeforeSwitching, Validators.required],
+        typeOfDalto: [this.user.colorBlind]
       });
     } else {
       this.userCreatorForm = this.formBuilder.group({
@@ -64,7 +65,8 @@ export class UserCreatorComponent {
         choicePrintTipsOneByOne: ['', Validators.required],
         secTipsForMemory: [0, Validators.required],
         secTipsForSimon: [0, Validators.required],
-        secVisibleCardForMemory: [0, Validators.required]
+        secVisibleCardForMemory: [0, Validators.required],
+        typeOfDalto: [""]
       });
     }
   }
