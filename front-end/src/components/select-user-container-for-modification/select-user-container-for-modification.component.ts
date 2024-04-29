@@ -6,6 +6,7 @@ import IUser from '../../interfaces/IUser';
 import { SelectUserItemComponent } from '../select-user-item/select-user-item.component';
 import IAdmin from 'src/interfaces/IAdmin';
 import { SearchQuizSelectorComponent } from "../search-quiz-selector/search-quiz-selector.component";
+import { GenericButtonComponent } from '../genericButton/genericButton.component';
 
 @Component({
   standalone: true,
@@ -16,7 +17,8 @@ import { SearchQuizSelectorComponent } from "../search-quiz-selector/search-quiz
     SelectUserItemComponent,
     NgForOf,
     RouterLink,
-    SearchQuizSelectorComponent
+    SearchQuizSelectorComponent,
+    GenericButtonComponent
   ]
 })
 export class SelectUserContainerForModificationComponent implements OnInit {

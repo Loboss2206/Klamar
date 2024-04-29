@@ -1,27 +1,29 @@
-<h1>
-  <app-titlePage>
-    <p> Graphiques des quiz joués par {{user?.name}} {{user?.firstname}}</p>
-  </app-titlePage>
-</h1>
-<div class="container">
-  <div class="historique">
-    <app-genericButton class="historicButton" [routerLink]="['/stats/quizResultPage/'+user?.id]">Appuyez pour voir l'historique des parties de {{user?.name}} {{user?.firstname}}</app-genericButton>
-  </div>
-  <div class="differentGame">
-   <div class = 1a3 *ngFor="let chart of this.charts.slice(0,3)">
-     <app-graphic [chartId]="chart.chartId" [titre]="chart.title" [date]="chart.date" [data]="chart.data"></app-graphic>
-   </div>
-  </div>
+<div class="graphics">
+  <h1>
+    <app-titlePage>
+      <p> Graphiques des quiz joués par {{user?.name}} {{user?.firstname}}</p>
+    </app-titlePage>
+  </h1>
+  <div class="container">
+    <div class="differentGame">
+      <div class=1a3 *ngFor="let chart of this.charts.slice(0,3)">
+        <app-graphic [chartId]="chart.chartId" [titre]="chart.title" [date]="chart.date"
+          [data]="chart.data"></app-graphic>
+      </div>
+    </div>
 
-  <div class="type1">
-   <div class = 4a5 *ngFor="let chart of this.charts.slice(3,5)">
-    <app-graphic [chartId]="chart.chartId" [titre]="chart.title" [date]="chart.date" [data]="chart.data"></app-graphic>
-   </div>
-  </div>
+    <div class="type1">
+      <div class=4a5 *ngFor="let chart of this.charts.slice(3,5)">
+        <app-graphic [chartId]="chart.chartId" [titre]="chart.title" [date]="chart.date"
+          [data]="chart.data"></app-graphic>
+      </div>
+    </div>
 
-  <div class="type2">
-   <div class =  6a7  *ngFor="let chart of this.charts.slice(5,7)">
-    <app-graphic [chartId]="chart.chartId" [titre]="chart.title" [date]="chart.date" [data]="chart.data"></app-graphic>
-   </div>
+    <div class="type2">
+      <div class=6a7 *ngFor="let chart of this.charts.slice(5,7)">
+        <app-graphic [chartId]="chart.chartId" [titre]="chart.title" [date]="chart.date"
+          [data]="chart.data"></app-graphic>
+      </div>
+    </div>
   </div>
 </div>

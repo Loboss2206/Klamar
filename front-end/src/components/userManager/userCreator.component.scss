@@ -23,9 +23,7 @@
     margin-top: 4%;
     padding: 20px;
     text-align: center;
-    //background-color: #f0eaea;
     background-color: #F6F6F6;
-
 }
 
 .user-creator-form>.inputs {
@@ -54,8 +52,6 @@
     margin-top: 50px;
 }
 
-
-
 .user-creator-form>.inputs>div>* {
     flex: 1 0 calc(33.33% - 10px);
     margin-bottom: 2%;
@@ -81,13 +77,15 @@ input[type="text"] {
 }
 
 input[type="number"] {
+    font-family: "Asap", sans-serif;
+    font-size: 20px;
     margin-top: 10px;
-    font-size: 1.1em;
 }
 
 input[type="radio"] {
-    margin-top: 10px;
+    font-family: "Asap", sans-serif;
     font-size: 20px;
+    margin-top: 10px;
 }
 
 
