@@ -4,7 +4,11 @@
     </app-titlePage>
 </h1>
 
-<main style="background-color: whitesmoke">
+<div class="graphics">
+  <app-genericButton class="graphicsButton" [routerLink]="['/stats/graphics/'+user?.id]">Appuyez pour voir les graphiques de {{user?.name}} {{user?.firstname}}</app-genericButton>
+</div>
+
+<main class="container">
     <div class="sort">
         <app-sort>
         </app-sort>

@@ -26,6 +26,7 @@ import {GraphicComponent} from "../components/graphic/graphic.component";
 import {SelectUserContainerComponent} from '../components/select-user-container/select-user-container.component';
 import {SelectUserItemComponent} from '../components/select-user-item/select-user-item.component';
 import {HttpClientModule} from "@angular/common/http";
+import {SelectStatComponent} from "../components/select-stat/select-stat.component";
 
 const routes: Routes = [];
 
@@ -53,6 +54,7 @@ const routes: Routes = [];
     StatMemoyPageComponent,
     StatSimonPageComponent,
     StatQuestionPageComponent,
+    SelectStatComponent,
     HighchartsChartModule,
     GraphicComponent,
     HowToPlayQuestionComponent,

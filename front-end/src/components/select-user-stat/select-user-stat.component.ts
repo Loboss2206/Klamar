@@ -29,7 +29,7 @@ export class SelectUserStatComponent {
   }
 
   defineUserToModify(user: IUser) {
-    this.router.navigate(['/stats/graphics/'+user.id]);
+    this.router.navigate(['/stats/selectStat/'+user.id]);
   }
 
   searchUsers(searchTerm: string) {

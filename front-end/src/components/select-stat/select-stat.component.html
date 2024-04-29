@@ -1,0 +1,5 @@
+<div class="center">
+  <app-genericButton style="padding: 20px;" [routerLink]="['/stats/graphics', id]">Appuyez pour voir les graphiques de {{user?.name}} {{user?.firstname}}</app-genericButton>
+  <app-genericButton style="padding: 20px;" [routerLink]="['/stats/quizResultPage', id]">Appuyez pour voir l'historique des parties de {{user?.name}} {{user?.firstname}}</app-genericButton>
+  <app-genericButton style="padding: 20px;" [routerLink]="['/stats/selectUserStat']">Retour à la selection de l'utilisateur</app-genericButton>
+</div>

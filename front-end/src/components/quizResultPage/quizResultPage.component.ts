@@ -5,12 +5,13 @@ import { quizResultBoxComponent } from '../quizResultBox/quizResultBox.component
 import { NavbarComponent } from '../navbar/navbar.component';
 import { ZoomSliderComponent } from '../zoomSlider/zoomSlider.component';
 import {UserService} from "../../services/user-service.service";
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, RouterLink} from "@angular/router";
 import IUser from "../../interfaces/IUser";
 import IAdmin from "../../interfaces/IAdmin";
 import IStats from "../../interfaces/IStats";
 import {StatsService} from "../../services/stats.service";
 import {NgForOf} from "@angular/common";
+import {GenericButtonComponent} from "../genericButton/genericButton.component";
 
 
 @Component({
@@ -19,7 +20,7 @@ import {NgForOf} from "@angular/common";
   imports: [
     sortComponent,
     titlePageComponent,
-    quizResultBoxComponent, NavbarComponent, ZoomSliderComponent, NgForOf
+    quizResultBoxComponent, NavbarComponent, ZoomSliderComponent, NgForOf, GenericButtonComponent, RouterLink
   ],
   templateUrl: './quizResultPage.component.html',
   styleUrl: './quizResultPage.component.scss'
