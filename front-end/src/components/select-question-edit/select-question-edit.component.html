@@ -1,5 +1,5 @@
 <main class="userModifier">
-  <form [formGroup]="questionCreatorComponent" class="user-modifier-form">
+  <form [formGroup]="questionModificatorComponent" class="user-modifier-form">
     <div class="inputs">
       <p>Intitulé de la question</p>
       <div class="IntituleQuestion">
@@ -24,7 +24,7 @@
           </label>
         </label>
       </div>
-      <div *ngIf="questionCreatorComponent.controls['choicePicture'].value === 'false'" class="proposition1">
+      <div *ngIf="questionModificatorComponent.controls['choicePicture'].value === 'false'" class="proposition1">
         <label>
           <b>Proposition 1</b> <br>
           <input type="text" class="userInput" name="userInput" [formControlName]="'reponse1'" required />
@@ -34,18 +34,18 @@
           <input type="text" class="userInput" name="userInput" [formControlName]="'reponse2'" required />
         </label>
       </div>
-      <div *ngIf="questionCreatorComponent.controls['choicePicture'].value === 'false'" class="proposition2">
+      <div *ngIf="questionModificatorComponent.controls['choicePicture'].value === 'false'" class="proposition2">
         <label>
           <b>Proposition 3</b> <br>
           <input type="text" class="userInput" name="userInput" [formControlName]="'reponse3'" required />
         </label>
         <label>
-        <b>Proposition 4</b>> <br>
+          <b>Proposition 4</b>> <br>
           <input type="text" class="userInput" name="userInput" [formControlName]="'reponse4'" required />
         </label>
       </div>
 
-      <div *ngIf="questionCreatorComponent.controls['choicePicture'].value === 'true'" class="proposition1">
+      <div *ngIf="questionModificatorComponent.controls['choicePicture'].value === 'true'" class="proposition1">
         <label>
           <b>Proposition 1</b> <br>
           <input type="file">
@@ -57,7 +57,7 @@
           <p>Ajoutez une image</p>
         </label>
       </div>
-      <div *ngIf="questionCreatorComponent.controls['choicePicture'].value === 'true'" class="proposition2">
+      <div *ngIf="questionModificatorComponent.controls['choicePicture'].value === 'true'" class="proposition2">
         <label>
           <b>Proposition 3</b> <br>
           <input type="file">

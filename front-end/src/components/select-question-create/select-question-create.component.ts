@@ -1,9 +1,7 @@
-import {Component, Input} from '@angular/core';
-import {NgForOf, NgIf} from "@angular/common";
+import {Component} from '@angular/core';
+import {NgForOf} from "@angular/common";
 import {SelectUserItemComponent} from "../select-user-item/select-user-item.component";
 import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
-import IUser from "../../interfaces/IUser";
-import {UserService} from "../../services/user-service.service";
 import { Router } from '@angular/router';
 @Component({
   selector: 'app-select-question-create',
@@ -12,23 +10,17 @@ import { Router } from '@angular/router';
     NgForOf,
     SelectUserItemComponent,
     ReactiveFormsModule,
-    NgIf
   ],
   templateUrl: './select-question-create.component.html',
   styleUrl: './select-question-create.component.scss'
 })
 export class SelectQuestionCreateComponent {
-  protected userModifierComponent: FormGroup;
-  @Input() user!: IUser;
+  protected questionCreatorComponent: FormGroup;
 
   constructor(private router: Router, protected formBuilder: FormBuilder) {
-    const userDataString = sessionStorage.getItem('userToModify');
-    if (userDataString) {
-      this.user = JSON.parse(userDataString);
-    }
-    this.userModifierComponent = this.formBuilder.group({
+    this.questionCreatorComponent = this.formBuilder.group({
       question: ['', Validators.required],
-      choiceSimon: ['', Validators.required],
+      choicePicture: ['', Validators.required],
       reponse1: ['', Validators.required],
       reponse2: ['', Validators.required],
       reponse3: ['', Validators.required],
@@ -39,7 +31,7 @@ export class SelectQuestionCreateComponent {
     });
   }
   isFormValid(): boolean {
-    return this.userModifierComponent.valid;
+    return this.questionCreatorComponent.valid;
   }
 
 

@@ -25,6 +25,7 @@ import {StatQuestionPageComponent} from "../components/stat-question-page/stat-q
 import {StatMemoyPageComponent} from "../components/stat-memoy-page/stat-memoy-page.component";
 import {quizResultPageComponent} from "../components/quizResultPage/quizResultPage.component";
 import {SelectStatComponent} from "../components/select-stat/select-stat.component";
+import {SelectQuestionEditComponent} from "../components/select-question-edit/select-question-edit.component";
 
 const routes: Routes = [
   { path: '', component: SelectUserContainerComponent, data: { title: 'Sélection utilisateur' } },
@@ -47,7 +48,8 @@ const routes: Routes = [
       { path: 'modifyUser', component: UserModifierComponent, data: { title: 'Modifier un utilisateur' } },
       { path: 'selectUserToModify', component: SelectUserContainerForModificationComponent, data: { title: "Sélection d'un utilisateur à modifier" } },
       { path: 'selectQuestion', component: SelectQuestionComponent, data: {title: "Gestionnaire des questions"}},
-      { path: 'createQuestion', component: SelectQuestionCreateComponent, data: {title: "Création/modification de question"}},
+      { path: 'createQuestion', component: SelectQuestionCreateComponent, data: {title: "Création de question"}},
+      { path: 'editQuestion', component: SelectQuestionEditComponent, data: {title: "Modification de question"}}
     ],
     data: { title: 'Admin' }
   },
