@@ -55,12 +55,10 @@ const routes: Routes = [
     path: 'stats',
     children: [
       { path: 'selectUserStat', component: SelectUserStatComponent, data: { title: "Sélection de l'utilisateur pour afficher les statistiques" } },
-      { path: 'graphics/:id', component: GraphicPageComponent, data: { title: "Graphiques" } },
       { path: 'simonStat/:id', component: StatSimonPageComponent, data: { title: "Stats Simon" } },
       { path: 'questionStat/:id', component: StatQuestionPageComponent, data: { title: "Stats Questions" } },
       { path: 'memoryStat/:id', component: StatMemoyPageComponent, data: { title: "Stats Memory" } },
-      { path: 'selectStat/:id', component: SelectStatComponent, data: { title: "Sélection statistique" } },
-      { path: 'quizResultPage/:id', component: quizResultPageComponent, data: { title: 'Résultat du quiz' } },
+      { path: 'selectStat/:id', component: SelectStatComponent, data: { title: "Page de statistiques globales" } },
     ],
     canActivate: [AuthGuard],
     data: { title: 'Statistiques' },

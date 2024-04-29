@@ -1,18 +1,20 @@
-<h1>
-  <app-titlePage>
-    <p>Liste des résultats de tous les quiz joués par {{user?.name}} {{user?.firstname}}</p>
-  </app-titlePage>
-</h1>
+<div class="history">
+  <h1>
+    <app-titlePage>
+      <p>Liste des résultats de tous les quiz joués par {{user?.name}} {{user?.firstname}}</p>
+    </app-titlePage>
+  </h1>
 
-<main class="container">
-  <div class="sort">
-    <app-sort>
-    </app-sort>
-  </div>
-  <div class=" result">
-    <div class=statQuestions *ngFor="let stat of this.stats">
-      <app-quizResultBox class="item" [sucessMemory]=stat.sucessMemory [sucessSimon]=stat.sucessSimon
-        [sucessQuiz]=stat.sucessQuiz [date]=stat.date></app-quizResultBox>
+  <div class="container">
+    <div class="sort">
+      <app-sort>
+      </app-sort>
+    </div>
+    <div class="result">
+      <div class=statQuestions *ngFor="let stat of this.stats">
+        <app-quizResultBox class="item" [sucessMemory]=stat.sucessMemory [sucessSimon]=stat.sucessSimon
+          [sucessQuiz]=stat.sucessQuiz [date]=stat.date></app-quizResultBox>
+      </div>
     </div>
   </div>
-</main>
+</div>

@@ -1,3 +1,7 @@
+.history {
+    width: 65vw;
+}
+
 h1 {
     font-size: 1.5em;
     width: 80%;
@@ -12,10 +16,39 @@ h1 {
     margin-bottom: 20px;
 }
 
+footer {
+    margin: 10px;
+    position: fixed;
+    bottom: 0;
+    right: 0;
+}
+
+.differentGame {
+    display: flex;
+    justify-content: space-evenly;
+    margin-bottom: 30px;
+}
+
+.type1 {
+    display: flex;
+    justify-content: space-evenly;
+    margin-bottom: 30px;
+}
+
+.type2 {
+    display: flex;
+    justify-content: space-evenly;
+    margin-bottom: 30px;
+}
+
+.historique {
+    display: flex;
+    justify-content: center;
+}
+
 .result {
     align-items: center;
-    font-size: 1.1em;
-    width: 90%;
+    font-size: 0.7em;
     margin: auto;
     margin-bottom: 4vh;
 }
@@ -29,14 +62,8 @@ h1 {
     margin-bottom: 10px;
 }
 
-footer {
-    margin: 10px;
-    position: fixed;
-    bottom: 0;
-    right: 0;
-}
-
 .graphics {
     display: flex;
-    justify-content: center;
+    justify-content: space-evenly;
+    margin-bottom: 30px;
 }
