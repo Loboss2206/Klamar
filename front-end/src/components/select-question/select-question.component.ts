@@ -19,6 +19,7 @@ import {MaterialTableComponent} from "../material-table/material-table.component
 })
 export class SelectQuestionComponent implements OnInit{
   questions: IQuestion[] = []; // Array to store the questions
+  private question: IQuestion | undefined;
 
   constructor(private _router: Router, private _quizService : QuizService) {
   }
@@ -31,30 +32,29 @@ export class SelectQuestionComponent implements OnInit{
     this._router.navigate(['/admin/createQuestion']);
   }
 
-  editQuestion(question: IQuestion) {
-    this._router.navigate(['/admin/createQuestion']);
+  editQuestion(question: IQuestion | undefined) {
+    console.log(question)
+    this._router.navigate(['/admin/editQuestion', question?.id]);
   }
 
-  deleteQuestion(question: IQuestion) {
-    // Logic to delete a question
-    const index = this.questions.indexOf(question);
-    if (index !== -1) {
-      this.questions.splice(index, 1);
-    }
+  deleteQuestion(question : IQuestion | undefined) {
+    if (question?.id != undefined)
+      this.questions.splice(Number(question.id), 1);
   }
 
   getHeaders() {
     return ["Intitulé"];
   }
 
-  takeAction(question: IQuestion, action: string) {
+  takeAction(id : string, action: string) {
+    this.question = this.questions.find(question => question.id === id);
     switch (action) {
       case "rowClick":
       case "Editer":
-        this.editQuestion(question);
+        this.editQuestion(this.question);
         break;
       case "Supprimer":
-        this.deleteQuestion(question);
+        this.deleteQuestion(this.question);
         break;
     }
 
