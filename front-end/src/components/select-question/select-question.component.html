@@ -1,6 +1,5 @@
 <div class="container">
-  <app-genericButton (click)="createQuestion()" class="create-button">Créer une question</app-genericButton>
+  <app-genericButton (click)="createQuestion()">Créer une question</app-genericButton>
 </div>
-  <app-material-table (callback)="takeAction($event[0],$event[1] )" [headers]="getHeaders()"
-                      [elements]="questionsToDisplay()" [actions]="getActions()"></app-material-table>
-
+<app-material-table (callback)="takeAction($event[0],$event[1] )" [headers]="getHeaders()"
+  [elements]="questionsToDisplay()" [actions]="getActions()"></app-material-table>
