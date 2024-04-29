@@ -23,5 +23,17 @@ footer {
 }
 
 .differentResultat{
-  background-color: whitesmoke;
+  border: 1px solid black;
+  padding: 20px;
+  flex-direction: row;
+  justify-content: space-around;
+  font-family: "Noto Sans Thai Looped", sans-serif;
+  text-shadow: 0 3px 3px rgb(0, 0, 0, 0.2);
+  align-items: center;
+  font-size: 1.1em;
+  border-radius: 20px;
+  box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.7);
+  margin-top: 4%;
+  text-align: center;
+  background-color: #F6F6F6;
 }

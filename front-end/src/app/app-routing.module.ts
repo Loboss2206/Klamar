@@ -24,6 +24,7 @@ import {StatSimonPageComponent} from "../components/stat-simon-page/stat-simon-p
 import {StatQuestionPageComponent} from "../components/stat-question-page/stat-question-page.component";
 import {StatMemoyPageComponent} from "../components/stat-memoy-page/stat-memoy-page.component";
 import {quizResultPageComponent} from "../components/quizResultPage/quizResultPage.component";
+import {SelectStatComponent} from "../components/select-stat/select-stat.component";
 
 const routes: Routes = [
   { path: '', component: SelectUserContainerComponent, data: { title: 'Sélection utilisateur' } },
@@ -58,6 +59,7 @@ const routes: Routes = [
       { path: 'simonStat/:id', component: StatSimonPageComponent, data: { title: "Stats Simon" } },
       { path: 'questionStat/:id', component: StatQuestionPageComponent, data: { title: "Stats Questions" } },
       { path: 'memoryStat/:id', component: StatMemoyPageComponent, data: { title: "Stats Memory" } },
+      { path: 'selectStat/:id', component: SelectStatComponent, data: { title: "Sélection statistique" } },
       { path: 'quizResultPage/:id', component: quizResultPageComponent, data: { title: 'Résultat du quiz' } },
     ],
     canActivate: [AuthGuard],

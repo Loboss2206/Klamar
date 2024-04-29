@@ -3,7 +3,7 @@
     <p> Graphiques des quiz joués par {{user?.name}} {{user?.firstname}}</p>
   </app-titlePage>
 </h1>
-
+<div class="container">
   <div class="historique">
     <app-genericButton class="historicButton" [routerLink]="['/stats/quizResultPage/'+user?.id]">Appuyez pour voir l'historique des parties de {{user?.name}} {{user?.firstname}}</app-genericButton>
   </div>
@@ -24,3 +24,4 @@
     <app-graphic [chartId]="chart.chartId" [titre]="chart.title" [date]="chart.date" [data]="chart.data"></app-graphic>
    </div>
   </div>
+</div>
