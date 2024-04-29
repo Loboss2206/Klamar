@@ -22,7 +22,7 @@ import {SelectUserStatComponent} from "../components/select-user-stat/select-use
 import {GraphicPageComponent} from "../components/graphic-page/graphic-page.component";
 import {StatSimonPageComponent} from "../components/stat-simon-page/stat-simon-page.component";
 import {StatQuestionPageComponent} from "../components/stat-question-page/stat-question-page.component";
-import {StatMemoyPageComponent} from "../components/stat-memoy-page/stat-memoy-page.component";
+import {StatMemoryPageComponent} from "../components/stat-memory-page/stat-memory-page.component";
 import {quizResultPageComponent} from "../components/quizResultPage/quizResultPage.component";
 import {SelectStatComponent} from "../components/select-stat/select-stat.component";
 import {SelectQuestionEditComponent} from "../components/select-question-edit/select-question-edit.component";
@@ -49,7 +49,7 @@ const routes: Routes = [
       { path: 'selectUserToModify', component: SelectUserContainerForModificationComponent, data: { title: "Sélection d'un utilisateur à modifier" } },
       { path: 'selectQuestion', component: SelectQuestionComponent, data: {title: "Gestionnaire des questions"}},
       { path: 'createQuestion', component: SelectQuestionCreateComponent, data: {title: "Création de question"}},
-      { path: 'editQuestion', component: SelectQuestionEditComponent, data: {title: "Modification de question"}}
+      { path: 'editQuestion/:id', component: SelectQuestionEditComponent, data: {title: "Modification de question"}}
     ],
     data: { title: 'Admin' }
   },
@@ -60,7 +60,7 @@ const routes: Routes = [
       { path: 'graphics/:id', component: GraphicPageComponent, data: { title: "Graphiques" } },
       { path: 'simonStat/:id', component: StatSimonPageComponent, data: { title: "Stats Simon" } },
       { path: 'questionStat/:id', component: StatQuestionPageComponent, data: { title: "Stats Questions" } },
-      { path: 'memoryStat/:id', component: StatMemoyPageComponent, data: { title: "Stats Memory" } },
+      { path: 'memoryStat/:id', component: StatMemoryPageComponent, data: { title: "Stats Memory" } },
       { path: 'selectStat/:id', component: SelectStatComponent, data: { title: "Sélection statistique" } },
       { path: 'quizResultPage/:id', component: quizResultPageComponent, data: { title: 'Résultat du quiz' } },
     ],

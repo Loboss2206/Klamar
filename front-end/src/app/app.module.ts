@@ -19,7 +19,7 @@ import {ZoomSliderComponent} from 'src/components/zoomSlider/zoomSlider.componen
 import {NavbarComponent} from "../components/navbar/navbar.component";
 import {RouterModule, Routes} from "@angular/router";
 import {GraphicPageComponent} from "../components/graphic-page/graphic-page.component"
-import {StatMemoyPageComponent} from "../components/stat-memoy-page/stat-memoy-page.component";
+import {StatMemoryPageComponent} from "../components/stat-memory-page/stat-memory-page.component";
 import {StatSimonPageComponent} from "../components/stat-simon-page/stat-simon-page.component";
 import {StatQuestionPageComponent} from "../components/stat-question-page/stat-question-page.component";
 import {GraphicComponent} from "../components/graphic/graphic.component";
@@ -51,7 +51,7 @@ const routes: Routes = [];
     QuizSelectorComponent,
     NavbarComponent,
     GraphicPageComponent,
-    StatMemoyPageComponent,
+    StatMemoryPageComponent,
     StatSimonPageComponent,
     StatQuestionPageComponent,
     SelectStatComponent,

@@ -34,9 +34,7 @@ export class SelectQuestionComponent implements OnInit{
 
   editQuestion(question: IQuestion | undefined) {
     console.log(question)
-    this._router.navigate(['/admin/editQuestion']);
-    sessionStorage.setItem("questionToModify", <string>question?.id)
-
+    this._router.navigate(['/admin/editQuestion', question?.id]);
   }
 
   deleteQuestion(question : IQuestion | undefined) {

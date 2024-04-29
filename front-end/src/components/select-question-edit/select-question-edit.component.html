@@ -8,7 +8,8 @@
           <input type="text" class="userInput" name="userInput" [formControlName]="'question'" required />
         </label>
         <label>
-          <input type="file">
+          <img *ngIf="imageUrlQuestion" [src]="imageUrlQuestion" id="imageQuestion">
+          <input type="file" (change)="onFileSelected($event, 'imageUrlQuestion')" [formControlName]="'imageQuestion'">
           <p>Optionnel : Ajoutez une image</p>
         </label>
       </div>
@@ -48,24 +49,28 @@
       <div *ngIf="questionModificatorComponent.controls['choicePicture'].value === 'true'" class="proposition1">
         <label>
           <b>Proposition 1</b> <br>
-          <input type="file">
+          <img *ngIf="imageUrlResponse1" [src]="imageUrlResponse1" id="imageResponse1">
+          <input type="file" (change)="onFileSelected($event, 'imageUrlResponse1')" [formControlName]="'imageResponse1'">
           <p>Ajoutez une image</p>
         </label>
         <label>
           <b>Proposition 2</b> <br>
-          <input type="file">
+          <img *ngIf="imageUrlResponse2" [src]="imageUrlResponse2" id="imageResponse2">
+          <input type="file" (change)="onFileSelected($event, 'imageUrlResponse2')" [formControlName]="'imageResponse2'">
           <p>Ajoutez une image</p>
         </label>
       </div>
       <div *ngIf="questionModificatorComponent.controls['choicePicture'].value === 'true'" class="proposition2">
         <label>
           <b>Proposition 3</b> <br>
-          <input type="file">
+          <img *ngIf="imageUrlResponse3" [src]="imageUrlResponse3" id="imageResponse3">
+          <input type="file" (change)="onFileSelected($event, 'imageUrlResponse3')" [formControlName]="'imageResponse3'">
           <p>Ajoutez une image</p>
         </label>
         <label>
           <b>Proposition 4</b>> <br>
-          <input type="file">
+          <img *ngIf="imageUrlResponse4" [src]="imageUrlResponse4" id="imageResponse4">
+          <input type="file" (change)="onFileSelected($event, 'imageUrlResponse4')" [formControlName]="'imageResponse4'">
           <p>Ajoutez une image</p>
         </label>
       </div>

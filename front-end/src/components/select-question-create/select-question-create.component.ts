@@ -1,8 +1,9 @@
 import {Component} from '@angular/core';
-import {NgForOf} from "@angular/common";
+import {NgForOf,NgIf} from "@angular/common";
 import {SelectUserItemComponent} from "../select-user-item/select-user-item.component";
 import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
 import { Router } from '@angular/router';
+
 @Component({
   selector: 'app-select-question-create',
   standalone: true,
@@ -10,6 +11,7 @@ import { Router } from '@angular/router';
     NgForOf,
     SelectUserItemComponent,
     ReactiveFormsModule,
+    NgIf
   ],
   templateUrl: './select-question-create.component.html',
   styleUrl: './select-question-create.component.scss'

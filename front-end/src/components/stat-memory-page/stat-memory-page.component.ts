@@ -13,7 +13,7 @@ import {ResultSimonComponent} from "../result-simon/result-simon.component";
 import {ResultMemoryComponent} from "../result-memory/result-memory.component";
 
 @Component({
-  selector: 'app-stat-memoy-page',
+  selector: 'app-stat-memory-page',
   standalone: true,
   imports: [
     titlePageComponent,
@@ -23,10 +23,10 @@ import {ResultMemoryComponent} from "../result-memory/result-memory.component";
     ResultSimonComponent,
     ResultMemoryComponent
   ],
-  templateUrl: './stat-memoy-page.component.html',
-  styleUrl: './stat-memoy-page.component.scss'
+  templateUrl: './stat-memory-page.component.html',
+  styleUrl: './stat-memory-page.component.scss'
 })
-export class StatMemoyPageComponent implements OnInit{
+export class StatMemoryPageComponent implements OnInit{
   id : number | undefined
   user ?: IUser | IAdmin
   statsId ?: number[]

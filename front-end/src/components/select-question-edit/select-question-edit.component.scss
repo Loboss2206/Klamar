@@ -124,3 +124,13 @@ select {
   padding: 10px 100px 10px 10px;
   border: var(--user-input-border);
 }
+
+img {
+  width: 250px;
+  height: 250px;
+  object-fit: cover;
+  display: block;
+  margin: 0 auto;
+}
+
+
