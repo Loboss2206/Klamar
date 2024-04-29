@@ -1,21 +1,18 @@
 <h1>
-    <app-titlePage>
-        <p>Liste des résultats de tous les quiz joués par {{user?.name}} {{user?.firstname}}</p>
-    </app-titlePage>
+  <app-titlePage>
+    <p>Liste des résultats de tous les quiz joués par {{user?.name}} {{user?.firstname}}</p>
+  </app-titlePage>
 </h1>
 
-<div class="graphics">
-  <app-genericButton class="graphicsButton" [routerLink]="['/stats/graphics/'+user?.id]">Appuyez pour voir les graphiques de {{user?.name}} {{user?.firstname}}</app-genericButton>
-</div>
-
 <main class="container">
-    <div class="sort">
-        <app-sort>
-        </app-sort>
+  <div class="sort">
+    <app-sort>
+    </app-sort>
+  </div>
+  <div class=" result">
+    <div class=statQuestions *ngFor="let stat of this.stats">
+      <app-quizResultBox class="item" [sucessMemory]=stat.sucessMemory [sucessSimon]=stat.sucessSimon
+        [sucessQuiz]=stat.sucessQuiz [date]=stat.date></app-quizResultBox>
     </div>
-    <div class=" result">
-      <div class = statQuestions *ngFor="let stat of this.stats">
-        <app-quizResultBox class="item" [sucessMemory]=stat.sucessMemory [sucessSimon]=stat.sucessSimon [sucessQuiz]=stat.sucessQuiz [date]=stat.date></app-quizResultBox>
-      </div>
-    </div>
+  </div>
 </main>
