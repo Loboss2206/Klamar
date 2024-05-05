@@ -6,6 +6,8 @@ import { GenericButtonComponent } from '../genericButton/genericButton.component
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import IUser from '../../interfaces/IUser';
 import { NgClass, NgIf } from '@angular/common';
+import { UserService } from 'src/services/user-service.service';
+import { ActivatedRoute, RouterLink } from '@angular/router';
 
 
 @Component({
@@ -17,23 +19,22 @@ import { NgClass, NgIf } from '@angular/common';
     GenericButtonComponent,
     ReactiveFormsModule,
     NgClass,
-    NgIf
+    NgIf,
+    RouterLink
   ],
   templateUrl: './userCreator.component.html',
   styleUrl: './userCreator.component.scss'
 })
 export class UserCreatorComponent {
   protected userCreatorForm: FormGroup;
-  @Input() user!: IUser;
+  protected user!: IUser;
   protected imageUrl: any;
 
 
-  constructor(protected formBuilder: FormBuilder) {
-    let userDataString;
-    if (userDataString = sessionStorage.getItem('userToModify')) {
-      if (userDataString) {
-        this.user = JSON.parse(userDataString);
-      }
+  constructor(protected formBuilder: FormBuilder, private userService: UserService, private route: ActivatedRoute) {
+    let userId;
+    if ((Number(this.route.snapshot.paramMap.get('id')))) {
+      this.user = userService.getTheUser(Number(this.route.snapshot.paramMap.get('id'))) as IUser;
       this.imageUrl = this.user.avatar;
       this.userCreatorForm = this.formBuilder.group({
         userImg: [""],
@@ -95,11 +96,5 @@ export class UserCreatorComponent {
       };
     }
   }
-
-  ngOnDestroy() {
-    sessionStorage.removeItem('userToModify');
-  }
-
-
 }
 

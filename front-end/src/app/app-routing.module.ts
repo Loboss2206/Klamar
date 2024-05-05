@@ -17,16 +17,16 @@ import {
   SelectUserContainerForModificationComponent
 } from "../components/select-user-container-for-modification/select-user-container-for-modification.component";
 
-import {SelectQuestionComponent} from "../components/select-question/select-question.component";
-import {SelectQuestionCreateComponent} from "../components/select-question-create/select-question-create.component";
-import {SelectUserStatComponent} from "../components/select-user-stat/select-user-stat.component";
-import {GraphicPageComponent} from "../components/graphic-page/graphic-page.component";
-import {StatSimonPageComponent} from "../components/stat-simon-page/stat-simon-page.component";
-import {StatQuestionPageComponent} from "../components/stat-question-page/stat-question-page.component";
-import {StatMemoryPageComponent} from "../components/stat-memory-page/stat-memory-page.component";
-import {quizResultPageComponent} from "../components/quizResultPage/quizResultPage.component";
-import {SelectStatComponent} from "../components/select-stat/select-stat.component";
-import {SelectQuestionEditComponent} from "../components/select-question-edit/select-question-edit.component";
+import { SelectQuestionComponent } from "../components/select-question/select-question.component";
+import { SelectQuestionCreateComponent } from "../components/select-question-create/select-question-create.component";
+import { SelectUserStatComponent } from "../components/select-user-stat/select-user-stat.component";
+import { GraphicPageComponent } from "../components/graphic-page/graphic-page.component";
+import { StatSimonPageComponent } from "../components/stat-simon-page/stat-simon-page.component";
+import { StatQuestionPageComponent } from "../components/stat-question-page/stat-question-page.component";
+import { StatMemoryPageComponent } from "../components/stat-memory-page/stat-memory-page.component";
+import { quizResultPageComponent } from "../components/quizResultPage/quizResultPage.component";
+import { SelectStatComponent } from "../components/select-stat/select-stat.component";
+import { SelectQuestionEditComponent } from "../components/select-question-edit/select-question-edit.component";
 
 
 const routes: Routes = [
@@ -47,11 +47,11 @@ const routes: Routes = [
       { path: 'gestion', component: AdminComponent, data: { title: "Page de gestion" } },
       { path: 'createUser', component: UserCreatorComponent, data: { title: "Création d'un utilisateur" } },
       { path: 'quizManager', component: QuizManagerComponent, data: { title: 'Gestion des quiz' } },
-      { path: 'modifyUser', component: UserCreatorComponent, data: { title: 'Modifier un utilisateur' } },
+      { path: 'modifyUser/:id', component: UserCreatorComponent, data: { title: 'Modifier un utilisateur' } },
       { path: 'selectUserToModify', component: SelectUserContainerForModificationComponent, data: { title: "Sélection d'un utilisateur à modifier" } },
-      { path: 'selectQuestion', component: SelectQuestionComponent, data: {title: "Gestionnaire des questions"}},
-      { path: 'createQuestion', component: SelectQuestionCreateComponent, data: {title: "Création de question"}},
-      { path: 'editQuestion/:id', component: SelectQuestionEditComponent, data: {title: "Modification de question"}}
+      { path: 'selectQuestion', component: SelectQuestionComponent, data: { title: "Gestionnaire des questions" } },
+      { path: 'createQuestion', component: SelectQuestionCreateComponent, data: { title: "Création de question" } },
+      { path: 'editQuestion/:id', component: SelectQuestionEditComponent, data: { title: "Modification de question" } }
     ],
     data: { title: 'Admin' }
   },
