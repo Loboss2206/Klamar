@@ -76,6 +76,23 @@ input[type="text"] {
     margin-top: 7px;
 }
 
+input[type="date"] {
+    /*background-color: white;
+    margin-top: 10px;
+    font-size: 0.8em;
+    box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.7);*/
+    font-family: "Asap", sans-serif;
+    display: block;
+    border-radius: 5px;
+    font-size: 16px;
+    background-color: var(--login-input-background-color);
+    width: 92%;
+    border: 0;
+    padding: 10px 10px;
+    box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.7);
+    margin-top: 7px;
+}
+
 input[type="number"] {
     font-family: "Asap", sans-serif;
     font-size: 20px;

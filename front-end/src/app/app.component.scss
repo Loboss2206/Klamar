@@ -3,7 +3,7 @@
 }
 
 .space {
-  margin-bottom: 100px
+  margin-bottom: 2000px;
 }
 
 #zoomSlider {
@@ -29,7 +29,7 @@
   pointer-events: all;
 }
 
-.disabled{
+.disabled {
   display: none;
 }
 
@@ -61,6 +61,6 @@
   filter: url("/assets/filters.svg#achromatopsia");
 }
 
-.colorblind-overlay.achromatomaly-filter{
+.colorblind-overlay.achromatomaly-filter {
   filter: url("/assets/filters.svg#achromatomaly");
 }
