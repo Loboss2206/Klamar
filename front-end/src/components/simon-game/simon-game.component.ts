@@ -59,10 +59,14 @@ export class SimonGameComponent implements OnInit {
     if (this.sequencePlaying) {
       return;
     }
+    this.stopInactivityInterval();
     this.lastButtonClickedTime = Date.now();
     this.playSound(index);
     this.playerInput.push(index);
     this.checkPlayerInput();
+    setTimeout(() => {
+      this.startInactivityInterval();
+    }, 1000);
   }
 
   playSound(index: number) {
@@ -76,7 +80,7 @@ export class SimonGameComponent implements OnInit {
   }
 
   startInactivityInterval() {
-    const X_SECONDS = this.intervalTime + (800 * this.playerInput.length + 1000 * this.gameInput.length);
+    const X_SECONDS = this.intervalTime + (800 * this.playerInput.length + 5000 * this.gameInput.length);
     console.log(X_SECONDS);
     this.inactivityInterval = setInterval(() => {
       if (Date.now() - this.lastButtonClickedTime > X_SECONDS) {
