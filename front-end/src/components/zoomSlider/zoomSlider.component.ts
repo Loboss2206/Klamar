@@ -1,4 +1,4 @@
-import {Component, Input} from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 
 
@@ -31,6 +31,39 @@ export class ZoomSliderComponent {
     } else {
       this.sliderValueLeft = (sliderPosition * 100) + '%';
     }
+    //document.documentElement.style.fontSize = `${slider.value}%`;
+    var texts = document.querySelectorAll('p');
+    texts.forEach(function (txt) {
+      txt.style.fontSize = `${slider.value}%`;
+    });
+    var inputs = document.querySelectorAll('input');
+    inputs.forEach(function (txt) {
+      if (txt.className != "slider") txt.style.fontSize = `${slider.value}%`;
+    });
+    var spans = document.querySelectorAll('span');
+    spans.forEach(function (txt) {
+      if (txt.id != "slider-text") txt.style.fontSize = `${slider.value}%`;
+    });
+    var buttons = document.querySelectorAll('button');
+    buttons.forEach(function (txt) {
+      txt.style.fontSize = `${slider.value}%`;
+    });
+
+    var labels = document.querySelectorAll('label');
+    labels.forEach(function (txt) {
+      txt.style.fontSize = `${slider.value}%`;
+    });
+    const sliderValueElement = document.getElementById("slider-value") as HTMLDivElement | null;
+    if (sliderValueElement) {
+      sliderValueElement.style.fontSize = "20px";
+    }
+
+    var images = document.querySelectorAll('img');
+
+    images.forEach(function (image) {
+      image.style.width = `${slider.value}px`;
+      image.style.height = `${slider.value}px`;
+    });
   }
 
 }
