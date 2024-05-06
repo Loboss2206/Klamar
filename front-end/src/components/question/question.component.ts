@@ -99,6 +99,7 @@ export class QuestionComponent implements OnInit, AfterViewInit {
   onAnswer(answer: string) {
     if (this.quizService.checkAnswer(answer)) {
       this.playCorrectTune();
+      this.hideAllOtherAnswers(answer);
       this.correctAnswer = answer;
       this.setBlockUI(true);
       setTimeout(() => {
@@ -126,5 +127,20 @@ export class QuestionComponent implements OnInit, AfterViewInit {
 
   private setBlockUI(blocked: boolean) {
     this.blockUI = blocked;
+  }
+
+  private hideAllOtherAnswers(answer: string) {
+    document.querySelectorAll('app-quizButton').forEach((element: any) => {
+      let isImage = false;
+      if (element && element.children[0] && element.children[0].children[0] && element.children[0].children[0].children[0]) {
+        isImage = element.children[0].children[0].children[0].src !== undefined;
+      }
+      if ((isImage && element.children[0].children[0].children[0].src === answer)) {
+        element.children[0].style.backgroundColor = 'transparent !important';
+      }
+      if ((!isImage && element.innerText !== answer) || (isImage && element.children[0].children[0].children[0].src !== answer)) {
+        element.style.display = 'none';
+      }
+    });
   }
 }
