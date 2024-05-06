@@ -5,7 +5,7 @@ export const users: IUser[] = [
     id: 1,
     name: "Boulet",
     firstname: "John",
-    birthdate: "01/08/1950",
+    birthdate: "1950-08-01",
     hobbies: "Pétanque, Chasse, Pêche, Champignons",
     config: {
       simon: {
@@ -37,7 +37,7 @@ export const users: IUser[] = [
     id: 2,
     name: "Malouin",
     firstname: "Jeanne",
-    birthdate: "11/11/1947",
+    birthdate: "1947-11-11",
     hobbies: "Tricot, Cuisine, Jardinage, Scrabble",
     config: {
       simon: {
@@ -69,7 +69,7 @@ export const users: IUser[] = [
     id: 3,
     name: "Henry",
     firstname: "Genevieve",
-    birthdate: "28/09/1956",
+    birthdate: "1956-09-28",
     hobbies: "Couture, Lecture, Randonnée",
     config: {
       simon: {
@@ -102,7 +102,7 @@ export const users: IUser[] = [
     id: 4,
     name: "Dylan",
     firstname: "Bob",
-    birthdate: "24/05/1961",
+    birthdate: "1961-05-24",
     hobbies: "Musique, Peinture, Ecriture",
     config: {
       simon: {
