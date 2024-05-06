@@ -1,6 +1,4 @@
-import { Component, Input } from '@angular/core';
-
-
+import {Component, Input} from '@angular/core';
 
 
 @Component({
@@ -22,48 +20,15 @@ export class ZoomSliderComponent {
 
   onSliderChange(event: any) {
     const slider = event.target;
-    const sliderPosition = slider.value / slider.max;
+    const oldValue = this.parsedValue;
+    const zoomLevel = slider.value;
     this.parsedValue = Math.floor(slider.value).toString();
-    if (slider.value === slider.min) {
-      this.sliderValueLeft = ((sliderPosition * 100) + 2) + '%';
-    } else if (slider.value === slider.max) {
-      this.sliderValueLeft = ((sliderPosition * 100) - 2) + '%';
-    } else {
-      this.sliderValueLeft = (sliderPosition * 100) + '%';
-    }
-    //document.documentElement.style.fontSize = `${slider.value}%`;
-    var texts = document.querySelectorAll('p');
-    texts.forEach(function (txt) {
-      txt.style.fontSize = `${slider.value}%`;
-    });
-    var inputs = document.querySelectorAll('input');
-    inputs.forEach(function (txt) {
-      if (txt.className != "slider") txt.style.fontSize = `${slider.value}%`;
-    });
-    var spans = document.querySelectorAll('span');
-    spans.forEach(function (txt) {
-      if (txt.id != "slider-text") txt.style.fontSize = `${slider.value}%`;
-    });
-    var buttons = document.querySelectorAll('button');
-    buttons.forEach(function (txt) {
-      txt.style.fontSize = `${slider.value}%`;
+
+    (document.getElementsByTagName('html')[0].style as any).zoom = zoomLevel + "%"
+    document.querySelectorAll('.zoomSlider').forEach((element) => {
+      ((element as HTMLElement).style as any).zoom = oldValue + "%";
     });
 
-    var labels = document.querySelectorAll('label');
-    labels.forEach(function (txt) {
-      txt.style.fontSize = `${slider.value}%`;
-    });
-    const sliderValueElement = document.getElementById("slider-value") as HTMLDivElement | null;
-    if (sliderValueElement) {
-      sliderValueElement.style.fontSize = "20px";
-    }
-
-    var images = document.querySelectorAll('img');
-
-    images.forEach(function (image) {
-      image.style.width = `${slider.value}px`;
-      image.style.height = `${slider.value}px`;
-    });
   }
 
 }
