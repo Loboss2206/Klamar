@@ -39,7 +39,9 @@ export class SelectUserContainerComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.users = this.userService.getUsers();
+    this.userService.users$.subscribe((users: IUser[]) => {
+      this.users = users;
+    });
   }
 
   defineUser(userId: number) {
