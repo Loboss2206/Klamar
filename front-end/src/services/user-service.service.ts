@@ -1,24 +1,36 @@
-import {Injectable} from '@angular/core';
-import {users} from "../mocks/users";
+import { Injectable } from '@angular/core';
 import IUser from 'src/interfaces/IUser';
 import IAdmin from "../interfaces/IAdmin";
-import {adminList} from "../mocks/admin";
-import {BehaviorSubject, of} from "rxjs";
-import {Router} from "@angular/router";
+import { adminList } from "../mocks/admin";
+import { BehaviorSubject, Subject, of } from "rxjs";
+import { Router } from "@angular/router";
+import { HttpClient } from '@angular/common/http';
+import { serverUrl, httpOptionsBase } from '../configs/server.config';
+import { users } from 'src/mocks/users';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
-  private users: IUser[] = users;
+  constructor(private http: HttpClient, private router: Router) {
+    console.log('UserService created');
+    this.retrieveUsers();
+  }
+
+  private users: IUser[] = [];
+  public users$: BehaviorSubject<IUser[]> = new BehaviorSubject<IUser[]>([]);
+  public userSelected$: Subject<IUser> = new Subject();
+
   private currentUser: number = parseInt(sessionStorage.getItem('currentUser') || '-1', 10);
   private admins: IAdmin[] = adminList;
   private currentUserSubject: BehaviorSubject<IUser> = new BehaviorSubject<IUser>({} as IUser);
   public readonly listOfColorsBlind = ["protanopia", "deuteranopia", "tritanopia", "protanomaly", "deuteranomaly", "tritanomaly", "achromatopsia", "achromatomaly"];
   private connectedAdminTokens: { [token: string]: number }[] = [];
-
+  private userUrl = serverUrl + '/users';
+  private httpOptions = httpOptionsBase;
 
   getUsers(): IUser[] {
+    console.log(this.users);
     return this.users;
   }
 
@@ -56,12 +68,12 @@ export class UserService {
   }
 
   getCharts(id: number) {
-    let user = users.find(user => user.id === id);
+    let user = this.users.find(user => user.id === id);
     return of(user?.charts);
   }
 
   getStats(id: number) {
-    let user = users.find(user => user.id === id);
+    let user = this.users.find(user => user.id === id);
     return of(user?.statsId);
   }
 
@@ -91,7 +103,7 @@ export class UserService {
   async setUserAsAdmin(id: number) {
     this.currentUser = id;
     let token = await this.tokenGenerator()
-    this.connectedAdminTokens.push({[token]: id});
+    this.connectedAdminTokens.push({ [token]: id });
     sessionStorage.setItem('currentUser', JSON.stringify(token));
   }
 
@@ -116,6 +128,19 @@ export class UserService {
     return user.colorBlind;
   }
 
-  constructor(private router: Router) {
+  addUser(user: IUser): void {
+    this.http.post<IUser>(this.userUrl, user, this.httpOptions).subscribe(() => this.retrieveUsers());
+  }
+
+  retrieveUsers(): void {
+    this.http.get<IUser[]>(this.userUrl).subscribe((userList: IUser[]) => {
+      this.users = userList;
+      this.users$.next(this.users);
+    });
+  }
+
+  deleteUser(user: IUser): void {
+    const urlWithId = this.userUrl + '/' + user.id;
+    this.http.delete<IUser>(urlWithId, this.httpOptions).subscribe(() => this.retrieveUsers());
   }
 }

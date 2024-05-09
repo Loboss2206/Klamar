@@ -28,7 +28,9 @@ export class SelectUserContainerForModificationComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.users = this.userService.getUsers();
+    this.userService.users$.subscribe((users: IUser[]) => {
+      this.users = users;
+    });
   }
 
   defineUserToModify(user: IUser) {
