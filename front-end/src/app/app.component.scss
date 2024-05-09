@@ -12,16 +12,16 @@
   display: flex;
   flex-direction: column;
   background-color: #e0e2e3;
-  margin-top: 20px;
   width: 100%;
   height: 50px;
   padding: 5px;
   justify-content: center;
   bottom: 0;
+  z-index: 9999;
 }
 
 .colorblind-overlay {
-  position: fixed;
+  position: sticky;
   top: 0;
   left: 0;
   width: 100%;

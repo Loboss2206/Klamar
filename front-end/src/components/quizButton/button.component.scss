@@ -61,11 +61,11 @@
 
 .overlay {
   border-radius: 30px;
-  position: absolute;
+  position: sticky;
   top: 0;
   left: 0;
-  width: 100%;
-  height: 100%;
+  width: 100vh;
+  height: 100vh;
   opacity: 0.8;
 }
 

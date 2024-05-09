@@ -1,20 +1,31 @@
-input {
-  background-color: var(--quiz-manager-input-bg-color);
-  border-radius: 200px;
-  padding: 10px 100px 10px 10px;
-  border: var(--quiz-manager-input-bg-color);
-  width: 200px;
+input[type="text"] {
+  font-family: "Asap", sans-serif;
+  display: block;
+  border-radius: 5px;
+  font-size: 16px;
+  background-color: var(--login-input-background-color);
+  width: 100%;
+  border: 0;
+  padding: 10px 10px;
+  margin: 15px -10px;
+  box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.7);
 }
 
 textarea {
-  background-color: var(--quiz-manager-input-bg-color);
-  border-radius: 10px;
-  padding: 10px 100px 10px 10px;
   border: var(--quiz-manager-input-bg-color);
   overflow: scroll;
   height: 50px;
-  width: 200px;
   resize: both;
+  font-family: "Asap", sans-serif;
+  display: block;
+  border-radius: 5px;
+  font-size: 16px;
+  background-color: var(--login-input-background-color);
+  width: 100%;
+  border: 0;
+  padding: 10px 10px;
+  margin: 15px -10px;
+  box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.7);
 }
 
 #overlaySimonConfig {
@@ -45,4 +56,16 @@ textarea {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.editContainer {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  background: var(--kanban-column-bg-color);
+  box-shadow: 5px 5px 10px 5px rgba(0, 0, 0, 0.2);
+  border-radius: 20px;
+  width: 20vw;
+  padding: 24px;
 }
