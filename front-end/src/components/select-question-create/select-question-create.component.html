@@ -2,13 +2,14 @@
   <form [formGroup]="questionCreatorComponent" class="user-modifier-form">
     <div class="inputs">
       <p>Intitulé de la question</p>
-      <div class="IntituleQuestion">
+      <div class="filing">
         <label>
           <b>Intititulé de la question</b> <br>
           <input type="text" class="userInput" name="userInput" [formControlName]="'question'" required />
         </label>
         <label>
-          <input type="file">
+          <img *ngIf="imageUrlQuestion" [src]="imageUrlQuestion" id="imageQuestion">
+          <input type="file" (change)="onFileSelected($event, 'imageUrlQuestion')" [formControlName]="'imageQuestion'">
           <p>Optionnel : Ajoutez une image</p>
         </label>
       </div>
@@ -24,7 +25,7 @@
           </label>
         </label>
       </div>
-      <div *ngIf="questionCreatorComponent.controls['choicePicture'].value === 'false'" class="proposition1">
+      <div *ngIf="questionCreatorComponent.controls['choicePicture'].value === 'false'" class="filing">
         <label>
           <b>Proposition 1</b> <br>
           <input type="text" class="userInput" name="userInput" [formControlName]="'reponse1'" required />
@@ -34,7 +35,7 @@
           <input type="text" class="userInput" name="userInput" [formControlName]="'reponse2'" required />
         </label>
       </div>
-      <div *ngIf="questionCreatorComponent.controls['choicePicture'].value === 'false'" class="proposition2">
+      <div *ngIf="questionCreatorComponent.controls['choicePicture'].value === 'false'" class="filing">
         <label>
           <b>Proposition 3</b> <br>
           <input type="text" class="userInput" name="userInput" [formControlName]="'reponse3'" required />
@@ -45,33 +46,37 @@
         </label>
       </div>
 
-      <div *ngIf="questionCreatorComponent.controls['choicePicture'].value === 'true'" class="proposition1">
+      <div *ngIf="questionCreatorComponent.controls['choicePicture'].value === 'true'" class="filing">
         <label>
           <b>Proposition 1</b> <br>
-          <input type="file">
+          <img *ngIf="imageUrlResponse1" [src]="imageUrlResponse1" id="imageResponse1">
+          <input type="file" (change)="onFileSelected($event, 'imageUrlResponse1')" [formControlName]="'imageResponse1'">
           <p>Ajoutez une image</p>
         </label>
         <label>
           <b>Proposition 2</b> <br>
-          <input type="file">
+          <img *ngIf="imageUrlResponse2" [src]="imageUrlResponse2" id="imageResponse2">
+          <input type="file" (change)="onFileSelected($event, 'imageUrlResponse2')" [formControlName]="'imageResponse2'">
           <p>Ajoutez une image</p>
         </label>
       </div>
-      <div *ngIf="questionCreatorComponent.controls['choicePicture'].value === 'true'" class="proposition2">
+      <div *ngIf="questionCreatorComponent.controls['choicePicture'].value === 'true'" class="filing">
         <label>
           <b>Proposition 3</b> <br>
-          <input type="file">
+          <img *ngIf="imageUrlResponse3" [src]="imageUrlResponse3" id="imageResponse3">
+          <input type="file" (change)="onFileSelected($event, 'imageUrlResponse3')" [formControlName]="'imageResponse3'">
           <p>Ajoutez une image</p>
         </label>
         <label>
-          <b>Proposition 4</b>> <br>
-          <input type="file">
+          <b>Proposition 4</b> <br>
+          <img *ngIf="imageUrlResponse4" [src]="imageUrlResponse4" id="imageResponse4">
+          <input type="file" (change)="onFileSelected($event, 'imageUrlResponse4')" [formControlName]="'imageResponse4'">
           <p>Ajoutez une image</p>
         </label>
       </div>
 
       <p>Indices</p>
-      <div class="indices">
+      <div class="filing">
         <label>
           <b>Indice 1</b> <br>
           <input type="text" class="userInput" name="userInput" [formControlName]="'indice1'" required />
@@ -82,9 +87,8 @@
         </label>
       </div>
       <p>Catégorie</p>
-      <div class="categorie">
+      <div class="filing">
         <label>
-          <b>catégorie</b> <br>
           <input type="text" class="userInput" name="userInput" [formControlName]="'categorie'" required />
         </label>
       </div>

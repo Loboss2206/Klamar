@@ -3,11 +3,9 @@
   box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.7);
   margin-left: 15%;
   margin-right: 15%;
-  margin-left: 15%;
   margin-top: 4%;
   padding: 20px;
   text-align: center;
-  //background-color: #f0eaea;
   background-color: #F6F6F6;
 }
 
@@ -17,16 +15,27 @@
 
 .user-modifier-form>.inputs>div {
   display: flex;
-  flex-wrap: wrap;
   flex-direction: row;
   align-items: center;
   text-align: center;
+}
+.user-modifier-form>.inputs>.filing {
+  label {
+    margin-left: 10px;
+    margin-right: 10px;
+    display: block; // Permet de passer à la ligne et de prendre toute la largeur disponible
+    margin-bottom: 10px; // Espacement entre chaque input, facultatif
+  }
+
+  input.userInput {
+    width: 100%; // Prend toute la largeur du conteneur label
+    box-sizing: border-box; // Inclut les bordures et le rembourrage dans la largeur
+  }
 }
 
 .user-modifier-form>.inputs>p {
   font-size: 1.5em;
   width: auto;
-  font-size: 1.5em;
   text-align: center;
   font-family: Roboto, serif;
   color: #ffffff;
@@ -40,10 +49,8 @@
 
 
 .user-modifier-form>.inputs>div>* {
-  flex: 1 0 calc(33.33% - 10px);
   margin-bottom: 2%;
   font-size: 1.5em;
-
 }
 
 input[type="text"] {
@@ -76,7 +83,6 @@ input[type="radio"] {
 }
 
 .modifyQuestionButton {
-  margin: 0;
   border-radius: 20px;
   font-size: 2.0em;
   color: var(--createuser-button-color);
@@ -91,7 +97,6 @@ input[type="radio"] {
 }
 
 .modifyQuestionButton:enabled {
-  margin: 0;
   border-radius: 20px;
   background-color: var(--button-generic-background-color);
   font-size: 2.0em;
@@ -123,4 +128,12 @@ select {
   border-radius: 200px;
   padding: 10px 100px 10px 10px;
   border: var(--user-input-border);
+}
+
+img {
+  width: 250px;
+  height: 250px;
+  object-fit: contain;
+  display: block;
+  margin: 0 auto;
 }
