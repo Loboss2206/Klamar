@@ -143,4 +143,9 @@ export class UserService {
     const urlWithId = this.userUrl + '/' + user.id;
     this.http.delete<IUser>(urlWithId, this.httpOptions).subscribe(() => this.retrieveUsers());
   }
+
+  modifyUser(user: IUser): void {
+    const urlWithId = this.userUrl + '/' + user.id;
+    this.http.put<IUser>(urlWithId, user, this.httpOptions).subscribe(() => this.retrieveUsers());
+  }
 }

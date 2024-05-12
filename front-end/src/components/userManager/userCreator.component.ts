@@ -8,6 +8,7 @@ import IUser from '../../interfaces/IUser';
 import { NgClass, NgIf } from '@angular/common';
 import { UserService } from 'src/services/user-service.service';
 import { ActivatedRoute, RouterLink } from '@angular/router';
+import { IUserConfig } from 'src/interfaces/IUserConfig';
 
 
 @Component({
@@ -79,11 +80,79 @@ export class UserCreatorComponent {
 
 
   addUser(): void {
-    console.log(this.userCreatorForm.getRawValue());
+    const newUserConfig: IUserConfig = {
+      id: (this.userService.getUsers().length + 1) as number,
+      simon: {
+        isColorful: this.userCreatorForm.get('choiceSimon')?.getRawValue(),
+      },
+      memory: {
+        timeBeforeSwitching: this.userCreatorForm.get('secVisibleCardForMemory')?.getRawValue(),
+      },
+      simonHints: {
+        displayTheFullSequenceAfter: this.userCreatorForm.get('secTipsForSimon')?.getRawValue(),
+      },
+      memoryHints: {
+        timeBeforeHints: this.userCreatorForm.get('secTipsForMemory')?.getRawValue(),
+      },
+      quiz: {
+        showHintAfterError: this.userCreatorForm.get('choicePrintTipsAfterError')?.getRawValue(),
+        showHintAfterStart: false,
+        showHintAfterClick: this.userCreatorForm.get('choicePrintTipsAfterClick')?.getRawValue(),
+        showHintOneByOne: this.userCreatorForm.get('choicePrintTipsOneByOne')?.getRawValue(),
+      },
+      zoomLevel: this.userCreatorForm.get('baseZoom')?.getRawValue(),
+    };
+    const newUser: IUser = {
+      id: (this.userService.getUsers().length + 1) as number,
+      name: this.userCreatorForm.get('lastName')?.getRawValue(),
+      firstname: this.userCreatorForm.get('firstName')?.getRawValue(),
+      hobbies: this.userCreatorForm.get('hobbies')?.getRawValue(),
+      avatar: this.userCreatorForm.get('userImg')?.getRawValue(),
+      birthdate: this.userCreatorForm.get('userBirth')?.getRawValue(),
+      config: newUserConfig,
+      charts: [],
+      statsId: [],
+      colorBlind: this.userCreatorForm.get('typeOfDalto')?.getRawValue()
+    };
+    this.userService.addUser(newUser);
   }
 
   modifyUser(): void {
-    console.log(this.userCreatorForm.getRawValue());
+    const newUserConfig: IUserConfig = {
+      id: this.user.config.id,
+      simon: {
+        isColorful: this.userCreatorForm.get('choiceSimon')?.getRawValue(),
+      },
+      memory: {
+        timeBeforeSwitching: this.userCreatorForm.get('secVisibleCardForMemory')?.getRawValue(),
+      },
+      simonHints: {
+        displayTheFullSequenceAfter: this.userCreatorForm.get('secTipsForSimon')?.getRawValue(),
+      },
+      memoryHints: {
+        timeBeforeHints: this.userCreatorForm.get('secTipsForMemory')?.getRawValue(),
+      },
+      quiz: {
+        showHintAfterError: this.userCreatorForm.get('choicePrintTipsAfterError')?.getRawValue(),
+        showHintAfterStart: false,
+        showHintAfterClick: this.userCreatorForm.get('choicePrintTipsAfterClick')?.getRawValue(),
+        showHintOneByOne: this.userCreatorForm.get('choicePrintTipsOneByOne')?.getRawValue(),
+      },
+      zoomLevel: this.userCreatorForm.get('baseZoom')?.getRawValue(),
+    };
+    const newUser: IUser = {
+      id: this.user.id,
+      name: this.userCreatorForm.get('lastName')?.getRawValue(),
+      firstname: this.userCreatorForm.get('firstName')?.getRawValue(),
+      hobbies: this.userCreatorForm.get('hobbies')?.getRawValue(),
+      avatar: this.userCreatorForm.get('userImg')?.getRawValue(),
+      birthdate: this.userCreatorForm.get('userBirth')?.getRawValue(),
+      config: newUserConfig,
+      charts: [],
+      statsId: [],
+      colorBlind: this.userCreatorForm.get('typeOfDalto')?.getRawValue()
+    };
+    this.userService.modifyUser(newUser);
   }
 
   onFileSelected(event: any) {
