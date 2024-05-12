@@ -2,7 +2,9 @@
     <form [formGroup]="userCreatorForm" class="user-creator-form">
         <div class="userAvatar">
             <img *ngIf="imageUrl" [src]="imageUrl" alt="Uploaded Image" id="userToCreateImg">
-            <input type="file" (change)="onFileSelected($event)" [formControlName]="'userImg'">
+            <input type="file" id="userImg" (change)="onFileSelected($event)" [formControlName]="'userImg'"
+                style="display: none;">
+            <input type="button" value="Choisir un fichier" (click)="triggerFileInput()" />
             <p>Ajouter une photo</p>
         </div>
         <div class="inputs">

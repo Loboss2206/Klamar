@@ -32,6 +32,7 @@ export class UserCreatorComponent {
   protected imageUrl: any;
 
 
+
   constructor(protected formBuilder: FormBuilder, private userService: UserService, private route: ActivatedRoute) {
     let userId;
     if ((Number(this.route.snapshot.paramMap.get('id')))) {
@@ -73,6 +74,10 @@ export class UserCreatorComponent {
     }
   }
 
+
+  triggerFileInput() {
+    document.getElementById('userImg')?.click();
+  }
 
   isFormValid(): boolean {
     return this.userCreatorForm.valid;
