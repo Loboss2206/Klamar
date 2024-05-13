@@ -8,6 +8,7 @@ export const users: IUser[] = [
     birthdate: "1950-08-01",
     hobbies: "Pétanque, Chasse, Pêche, Champignons",
     config: {
+      id: 1,
       simon: {
         isColorful: true,
       },
@@ -40,6 +41,7 @@ export const users: IUser[] = [
     birthdate: "1947-11-11",
     hobbies: "Tricot, Cuisine, Jardinage, Scrabble",
     config: {
+      id: 2,
       simon: {
         isColorful: false,
       },
@@ -72,6 +74,7 @@ export const users: IUser[] = [
     birthdate: "1956-09-28",
     hobbies: "Couture, Lecture, Randonnée",
     config: {
+      id: 3,
       simon: {
         isColorful: true,
       },
@@ -105,6 +108,7 @@ export const users: IUser[] = [
     birthdate: "1961-05-24",
     hobbies: "Musique, Peinture, Ecriture",
     config: {
+      id: 4,
       simon: {
         isColorful: true,
       },

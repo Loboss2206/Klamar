@@ -2,7 +2,9 @@
     <form [formGroup]="userCreatorForm" class="user-creator-form">
         <div class="userAvatar">
             <img *ngIf="imageUrl" [src]="imageUrl" alt="Uploaded Image" id="userToCreateImg">
-            <input type="file" (change)="onFileSelected($event)" [formControlName]="'userImg'">
+            <input type="file" id="userImg" (change)="onFileSelected($event)" [formControlName]="'userImg'"
+                style="display: none;">
+            <input type="button" value="Choisir un fichier" (click)="triggerFileInput()" />
             <p>Ajouter une photo</p>
         </div>
         <div class="inputs">
@@ -32,7 +34,7 @@
                 </label>
                 <label><b>Daltonisme</b> <br>
                     <select name="dalto" id="dalto-select" [formControlName]="'typeOfDalto'">
-                        <option value="">Pas de daltonisme</option>
+                        <option value="nodaltonisme">Pas de daltonisme</option>
                         <option value="achromatopsia">Achromatopsie</option>
                         <option value="achromatomaly">Achromatomie</option>
                         <option value="tritanopia">Tritanopie</option>
@@ -110,4 +112,9 @@
             Modifier l'utilisateur
         </button>
     </form>
+    <div *ngIf="showMessage" class="showMessage">
+        <div>
+            <p>{{ message }}</p>
+        </div>
+    </div>
 </main>

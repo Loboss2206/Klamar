@@ -1,4 +1,5 @@
 export interface IUserConfig {
+  id: number;
   simon: {
     isColorful: boolean;
   },

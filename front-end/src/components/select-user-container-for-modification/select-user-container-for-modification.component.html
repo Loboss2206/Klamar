@@ -3,10 +3,10 @@
     <app-search-quiz-selector (searchTerm)="searchUsers($event)"></app-search-quiz-selector>
     <div class="userContainer">
       <div *ngFor="let user of users">
-        <app-select-user-item [user]="user" (click)="defineUserToModify(user)"></app-select-user-item>
+        <app-select-user-item [user]="user" (click)="setModifyUser(user, $event)"></app-select-user-item>
       </div>
     </div>
   </div>
-  <app-genericButton style="padding: 20px;" [routerLink]="['/admin/createUser']">Création
+  <app-genericButton style=" padding: 20px;" [routerLink]="['/admin/createUser']">Création
     d'un nouvel utilisateur</app-genericButton>
 </div>
