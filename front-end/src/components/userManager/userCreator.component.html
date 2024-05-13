@@ -112,4 +112,9 @@
             Modifier l'utilisateur
         </button>
     </form>
+    <div *ngIf="showMessage" class="showMessage">
+        <div>
+            <p>{{ message }}</p>
+        </div>
+    </div>
 </main>
