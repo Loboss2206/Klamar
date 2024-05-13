@@ -1,20 +1,14 @@
 import IQuestionStat from "./IQuestionStat"
+import IMemoryStat from "./IMemoryStat"
+import ISimonStat from "./ISimonStat"
 
 export default interface IStats {
-  id: number
-  questions: IQuestionStat[]
-  erreurSimon?: number[]
-  indicesSimon?: number[]
-  tempsSimon?: number[]
-  tailleFinalSimon: number[]
-  nombreDeCouleurs: number[]
-  erreurMemory?: number[]
-  indicesMemory?: number[]
-  tempsMemory?: number[]
-  largeurMemory: number[]
-  hauteurMemory: number[]
-  sucessSimon: number
-  sucessMemory: number
-  sucessQuiz: number
-  date: string
+  id: number;
+  questions: IQuestionStat[];
+  memoryStats: IMemoryStat;
+  simonStats: ISimonStat;
+  sucessSimon: number;
+  sucessMemory: number;
+  sucessQuiz: number;
+  date: string;
 }
