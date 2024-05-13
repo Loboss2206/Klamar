@@ -2,7 +2,9 @@
     <form [formGroup]="userCreatorForm" class="user-creator-form">
         <div class="userAvatar">
             <img *ngIf="imageUrl" [src]="imageUrl" alt="Uploaded Image" id="userToCreateImg">
-            <input type="file" (change)="onFileSelected($event)" [formControlName]="'userImg'">
+            <input type="file" id="userImg" (change)="onFileSelected($event)" [formControlName]="'userImg'"
+                style="display: none;">
+            <input type="button" value="Choisir un fichier" (click)="triggerFileInput()" />
             <p>Ajouter une photo</p>
         </div>
         <div class="inputs">
@@ -11,17 +13,16 @@
                 <label>
                     <b>Prénom</b> <br>
                     <input type="text" class="userInput" name="userInput" [formControlName]="'firstName'"
-                        placeholder="Ex: Aymeric" required />
+                        placeholder="Ex: John" required />
                 </label>
                 <label>
                     <b>Nom</b> <br>
                     <input type="text" class="userInput" name="userInput" [formControlName]="'lastName'"
-                        placeholder="Ex: Brunet" required />
+                        placeholder="Ex: Doe" required />
                 </label>
                 <label>
                     <b>Date de naissance</b> <br>
-                    <input type="text" class="userInput" name="userInput" [formControlName]="'userBirth'"
-                        placeholder="Ex: 2/02/2002" required />
+                    <input type="date" class="userInput" name="userInput" [formControlName]="'userBirth'" required />
                 </label>
                 <label>
                     <b>Intérêt/hobbies</b> <br>
@@ -30,6 +31,19 @@
                 </label>
                 <label><b>Zoom de base</b> <br>
                     <input type="number" min="0" step="1" max="300" value="100" [formControlName]="'baseZoom'" required>
+                </label>
+                <label><b>Daltonisme</b> <br>
+                    <select name="dalto" id="dalto-select" [formControlName]="'typeOfDalto'">
+                        <option value="nodaltonisme">Pas de daltonisme</option>
+                        <option value="achromatopsia">Achromatopsie</option>
+                        <option value="achromatomaly">Achromatomie</option>
+                        <option value="tritanopia">Tritanopie</option>
+                        <option value="tritanomaly">Tritanomalie</option>
+                        <option value="protanopia">Protanopia</option>
+                        <option value="protanomaly">Protanomalie</option>
+                        <option value="deuteranopia">Deuteranopie</option>
+                        <option value="deuteranomaly">Deuteranomalie</option>
+                    </select>
                 </label>
             </div>
             <p>Simon</p>
@@ -98,4 +112,9 @@
             Modifier l'utilisateur
         </button>
     </form>
+    <div *ngIf="showMessage" class="showMessage">
+        <div>
+            <p>{{ message }}</p>
+        </div>
+    </div>
 </main>

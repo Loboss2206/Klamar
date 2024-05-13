@@ -1,12 +1,12 @@
-import {Component, OnInit} from '@angular/core';
-import {NgForOf} from "@angular/common";
-import {Router, RouterLink} from "@angular/router";
-import {UserService} from '../../services/user-service.service';
+import { Component, OnInit } from '@angular/core';
+import { NgForOf } from "@angular/common";
+import { Router, RouterLink } from "@angular/router";
+import { UserService } from '../../services/user-service.service';
 import IUser from '../../interfaces/IUser';
-import {SelectUserItemComponent} from '../select-user-item/select-user-item.component';
+import { SelectUserItemComponent } from '../select-user-item/select-user-item.component';
 import IAdmin from 'src/interfaces/IAdmin';
-import {SearchQuizSelectorComponent} from "../search-quiz-selector/search-quiz-selector.component";
-import {color} from "chart.js/helpers";
+import { SearchQuizSelectorComponent } from "../search-quiz-selector/search-quiz-selector.component";
+import { color } from "chart.js/helpers";
 
 @Component({
   standalone: true,
@@ -26,6 +26,8 @@ export class SelectUserContainerComponent implements OnInit {
     id: 0,
     name: "",
     firstname: "Admin",
+    birthdate: "",
+    hobbies: "",
     config: {} as any,
     avatar: "https://journalmetro.com/wp-content/uploads/2017/04/default_profile_400x400.png?fit=400%2C400",
     charts: [],
@@ -37,7 +39,9 @@ export class SelectUserContainerComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.users = this.userService.getUsers();
+    this.userService.users$.subscribe((users: IUser[]) => {
+      this.users = users;
+    });
   }
 
   defineUser(userId: number) {

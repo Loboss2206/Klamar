@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { StatMemoyPageComponent } from './stat-memoy-page.component';
+import { StatMemoryPageComponent } from './stat-memory-page.component';
 
 describe('StatMemoyPageComponent', () => {
-  let component: StatMemoyPageComponent;
-  let fixture: ComponentFixture<StatMemoyPageComponent>;
+  let component: StatMemoryPageComponent;
+  let fixture: ComponentFixture<StatMemoryPageComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [StatMemoyPageComponent]
+      imports: [StatMemoryPageComponent]
     })
     .compileComponents();
-    
-    fixture = TestBed.createComponent(StatMemoyPageComponent);
+
+    fixture = TestBed.createComponent(StatMemoryPageComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

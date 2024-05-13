@@ -1,8 +1,6 @@
 import {Component, Input} from '@angular/core';
 
 
-
-
 @Component({
   selector: 'app-zoomSlider',
   standalone: true,
@@ -22,15 +20,15 @@ export class ZoomSliderComponent {
 
   onSliderChange(event: any) {
     const slider = event.target;
-    const sliderPosition = slider.value / slider.max;
+    const oldValue = this.parsedValue;
+    const zoomLevel = slider.value;
     this.parsedValue = Math.floor(slider.value).toString();
-    if (slider.value === slider.min) {
-      this.sliderValueLeft = ((sliderPosition * 100) + 2) + '%';
-    } else if (slider.value === slider.max) {
-      this.sliderValueLeft = ((sliderPosition * 100) - 2) + '%';
-    } else {
-      this.sliderValueLeft = (sliderPosition * 100) + '%';
-    }
+
+    (document.getElementsByTagName('html')[0].style as any).zoom = zoomLevel + "%"
+    document.querySelectorAll('.zoomSlider').forEach((element) => {
+      ((element as HTMLElement).style as any).zoom = oldValue + "%";
+    });
+
   }
 
 }

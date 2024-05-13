@@ -1,12 +1,19 @@
-h1 {
-  font-family: "Roboto", sans-serif;
+.graphics {
+  width: 65vw;
 }
 
-
-
-main {
-  position: relative;
-  margin: 40px 10% 50px;
+h1 {
+  font-size: 1.5em;
+  width: 80%;
+  font-size: 1.5em;
+  text-align: center;
+  font-family: Roboto, serif;
+  color: #ffffff;
+  background-color: #434343;
+  border-radius: 10px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 20px;
 }
 
 footer {
@@ -33,6 +40,7 @@ footer {
   justify-content: space-evenly;
   margin-bottom: 30px;
 }
+
 .historique {
   display: flex;
   justify-content: center;

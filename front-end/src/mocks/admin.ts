@@ -3,18 +3,10 @@ import IAdmin from "../interfaces/IAdmin";
 export const adminList: IAdmin[] = [
   {
     id: -2,
-    username: "arnaud",
-    name: "Arnaud",
-    firstname: "BEUX",
-    avatar: "https://avatars.githubusercontent.com/u/34894524?v=4",
-    mdp: "arnaud"
-  },
-  {
-    id: -3,
     username: "admin",
-    name: "Admin",
-    firstname: "ISTRATOR",
+    name: "ISTRATOR",
+    firstname: "Admin",
     avatar: "https://avatars.githubusercontent.com/u/34894524?v=4",
     mdp: "admin"
   },
-  ];
+];

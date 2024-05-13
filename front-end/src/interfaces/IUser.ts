@@ -4,8 +4,10 @@ export default interface IUser {
   id: number;
   name: string;
   firstname: string;
+  birthdate: string;
+  hobbies: string;
   config: IUserConfig;
-  avatar: string;
+  avatar: string | undefined;
   charts: string[];
   statsId: number[];
   colorBlind: string;

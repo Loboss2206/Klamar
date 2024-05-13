@@ -1,5 +1,7 @@
-// const YourModel = require('./your-model.model.js')
+const User = require('./user.model.js')
+const UserConfig = require('./user-config.model.js')
 
 module.exports = {
-  // YourModel,
+  User,
+  UserConfig
 }

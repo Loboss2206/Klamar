@@ -12,6 +12,7 @@
   padding: 25px;
   border-radius: 10px;
   background: var(--kanban-column-bg-color);
+  box-shadow: 5px 5px 10px 5px rgba(0, 0, 0, 0.2);
 }
 
 .kanbanColumn:not(:first-child) {
@@ -27,13 +28,14 @@
   flex-grow: 1;
   overflow-y: scroll;
   max-height: 40vh;
+  padding: 20px;
 }
 
 .question {
   display: flex;
   padding: 15px 15px;
   background: var(--kanban-bg-color);
-  border-bottom: var(--kanban-border-bottom-color);
+  box-shadow: 5px 5px 10px 5px rgba(0, 0, 0, 0.2);
   border-radius: 5px;
   margin-bottom: 15px;
 }

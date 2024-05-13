@@ -10,6 +10,9 @@
   width: 40%;
   box-sizing: border-box;
 }
+.expandables {
+width: 60vw !important;
+}
 
 @media (max-width: 768px) {
   .griddy>app-quizButton {
@@ -47,4 +50,8 @@
   justify-content: center;
   gap: 10px;
   margin-top: 10px;
+}
+
+.quizContainer {
+  height: 110vh;
 }

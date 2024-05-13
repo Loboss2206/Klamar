@@ -19,13 +19,14 @@ import {ZoomSliderComponent} from 'src/components/zoomSlider/zoomSlider.componen
 import {NavbarComponent} from "../components/navbar/navbar.component";
 import {RouterModule, Routes} from "@angular/router";
 import {GraphicPageComponent} from "../components/graphic-page/graphic-page.component"
-import {StatMemoyPageComponent} from "../components/stat-memoy-page/stat-memoy-page.component";
+import {StatMemoryPageComponent} from "../components/stat-memory-page/stat-memory-page.component";
 import {StatSimonPageComponent} from "../components/stat-simon-page/stat-simon-page.component";
 import {StatQuestionPageComponent} from "../components/stat-question-page/stat-question-page.component";
 import {GraphicComponent} from "../components/graphic/graphic.component";
 import {SelectUserContainerComponent} from '../components/select-user-container/select-user-container.component';
 import {SelectUserItemComponent} from '../components/select-user-item/select-user-item.component';
 import {HttpClientModule} from "@angular/common/http";
+import {SelectStatComponent} from "../components/select-stat/select-stat.component";
 
 const routes: Routes = [];
 
@@ -50,9 +51,10 @@ const routes: Routes = [];
     QuizSelectorComponent,
     NavbarComponent,
     GraphicPageComponent,
-    StatMemoyPageComponent,
+    StatMemoryPageComponent,
     StatSimonPageComponent,
     StatQuestionPageComponent,
+    SelectStatComponent,
     HighchartsChartModule,
     GraphicComponent,
     HowToPlayQuestionComponent,

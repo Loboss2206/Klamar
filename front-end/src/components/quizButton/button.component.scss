@@ -6,7 +6,7 @@
   width: 100%;
   background-color: var(--button-generic-background-color);
   text-align: center;
-  transition: background, width, height 0.3s ease;
+  transition: all 0.3s ease;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -25,7 +25,14 @@
 
 .btnGreen{
   background-color: var(--button-green-background-color);
+  max-height: 100vh !important;
+  height: 40vh !important;
 }
+
+.expandables {
+  width: 60vw !important;
+}
+
 .buttonBackground::after {
   content: "";
   position: absolute;
@@ -54,11 +61,11 @@
 
 .overlay {
   border-radius: 30px;
-  position: absolute;
+  position: sticky;
   top: 0;
   left: 0;
-  width: 100%;
-  height: 100%;
+  width: 100vh;
+  height: 100vh;
   opacity: 0.8;
 }
 

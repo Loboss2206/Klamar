@@ -1,0 +1,148 @@
+.user-modifier-form {
+  border-radius: 20px;
+  box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.7);
+  margin-left: 15%;
+  margin-right: 15%;
+  margin-left: 15%;
+  margin-top: 4%;
+  padding: 20px;
+  text-align: center;
+  //background-color: #f0eaea;
+  background-color: #F6F6F6;
+}
+
+.user-modifier-form>.inputs {
+  margin-bottom: 50px;
+}
+
+.user-modifier-form>.inputs>div {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  align-items: center;
+  text-align: center;
+}
+
+.user-modifier-form>.inputs>p {
+  font-size: 1.5em;
+  width: auto;
+  font-size: 1.5em;
+  text-align: center;
+  font-family: Roboto, serif;
+  color: #ffffff;
+  background-color: #434343;
+  border-radius: 10px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 20px;
+}
+
+.user-modifier-form>.inputs>.filing {
+  label {
+    margin-left: 10px;
+    margin-right: 10px;
+    display: block; // Permet de passer à la ligne et de prendre toute la largeur disponible
+    margin-bottom: 10px; // Espacement entre chaque input, facultatif
+  }
+
+  input.userInput {
+    width: 100%; // Prend toute la largeur du conteneur label
+    box-sizing: border-box; // Inclut les bordures et le rembourrage dans la largeur
+  }
+}
+
+.user-modifier-form>.inputs>div>* {
+  flex: 1 0 calc(33.33% - 10px);
+  margin-bottom: 2%;
+  font-size: 1.5em;
+
+}
+
+input[type="text"] {
+  font-family: "Asap", sans-serif;
+  display: block;
+  border-radius: 5px;
+  font-size: 16px;
+  background-color: var(--login-input-background-color);
+  width: 92%;
+  border: 0;
+  padding: 10px 10px;
+  box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.7);
+  margin-top: 7px;
+}
+
+input[type="number"] {
+  margin-top: 10px;
+  font-size: 20px;
+}
+
+input[type="radio"] {
+  margin-top: 10px;
+  font-size: 20px;
+}
+
+
+
+.disabled-button {
+  background-color: var(--button-disabled-background-color);
+}
+
+.modifyQuestionButton {
+  margin: 0;
+  border-radius: 20px;
+  font-size: 2.0em;
+  color: var(--createuser-button-color);
+  padding: 10px;
+  cursor: var(--pointer-cursor);
+  position: relative;
+  transition: background 0.3s ease;
+  text-align: center;
+  margin: 10px;
+  bottom: 0;
+  left: 0;
+}
+
+.modifyQuestionButton:enabled {
+  margin: 0;
+  border-radius: 20px;
+  background-color: var(--button-generic-background-color);
+  font-size: 2.0em;
+  color: var(--button-generic-color);
+  padding: 10px;
+  cursor: var(--pointer-cursor);
+  position: relative;
+  transition: background 0.3s ease;
+  text-align: center;
+  margin: 10px;
+  bottom: 0;
+  left: 0;
+}
+
+
+
+
+.modifyQuestionButton:enabled:hover {
+  background: rgba(0, 0, 0, 0.7);
+}
+
+select {
+  font-size: 20px;
+}
+
+
+.userInput {
+  background-color: var(--user-input);
+  border-radius: 200px;
+  padding: 10px 100px 10px 10px;
+  border: var(--user-input-border);
+}
+
+img {
+  width: 250px;
+  height: 250px;
+  object-fit: cover;
+  display: block;
+  margin: 0 auto;
+}
+
+
