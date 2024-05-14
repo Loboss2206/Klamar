@@ -2,4 +2,4 @@
   <app-genericButton (click)="createQuestion()">Créer une question</app-genericButton>
 </div>
 <app-material-table (callback)="takeAction($event[0],$event[1] )" [headers]="getHeaders()"
-  [elements]="questionsToDisplay()" [actions]="getActions()"></app-material-table>
+  [otherElements]="questionsToDisplay()" [actions]="getActions()" type="other"></app-material-table>

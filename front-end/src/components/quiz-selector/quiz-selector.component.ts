@@ -1,7 +1,7 @@
-import { Component } from '@angular/core';
-import { SearchQuizSelectorComponent } from '../search-quiz-selector/search-quiz-selector.component';
-import { QuizSelectorContainerComponent } from '../quiz-selector-container/quiz-selector-container.component';
-import { QuizService } from "../../services/quiz-service.service";
+import {Component} from '@angular/core';
+import {SearchQuizSelectorComponent} from '../search-quiz-selector/search-quiz-selector.component';
+import {QuizSelectorContainerComponent} from '../quiz-selector-container/quiz-selector-container.component';
+import {QuizService} from "../../services/quiz-service.service";
 import IQuiz from "../../interfaces/IQuiz";
 
 @Component({
@@ -24,11 +24,13 @@ export class QuizSelectorComponent {
   }
 
   ngOnInit(): void {
-    this.quizzes = this.quizService.getQuizzes();
+    this.quizService.getQuizzesObservable().subscribe((quizzes) => {
+      this.quizzes = quizzes;
+    });
   }
 
   searchQuizzes(searchTerm: string) {
-    this.quizzes = this.quizService.searchQuizzes(searchTerm);
+    this.quizService.searchQuizzes(searchTerm);
   }
 
 }

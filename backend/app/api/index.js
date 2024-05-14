@@ -1,8 +1,10 @@
 const { Router } = require('express')
 const UserRouter = require('./users')
+const QuizRouter = require('./quizzes')
 
 const router = new Router()
 router.get('/status', (req, res) => res.status(200).json('ok'))
 router.use('/users', UserRouter)
+router.use('/quizzes', QuizRouter)
 
 module.exports = router
