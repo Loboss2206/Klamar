@@ -5,7 +5,7 @@ import { quizResultBoxComponent } from '../quizResultBox/quizResultBox.component
 import { NavbarComponent } from '../navbar/navbar.component';
 import { ZoomSliderComponent } from '../zoomSlider/zoomSlider.component';
 import {UserService} from "../../services/user-service.service";
-import {ActivatedRoute, RouterLink} from "@angular/router";
+import {ActivatedRoute, Router, RouterLink} from "@angular/router";
 import IUser from "../../interfaces/IUser";
 import IAdmin from "../../interfaces/IAdmin";
 import IStats from "../../interfaces/IStats";
@@ -30,7 +30,7 @@ export class quizResultPageComponent implements OnInit{
   user ?: IUser | IAdmin
   statsId ?: number[]
   stats : IStats[] = []
-  constructor(private _statsService : StatsService , private _userService : UserService , private route : ActivatedRoute) {
+  constructor(private _statsService : StatsService , private _userService : UserService,private router: Router , private route : ActivatedRoute) {
   }
 
   ngOnInit(): void {

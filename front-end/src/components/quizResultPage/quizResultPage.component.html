@@ -12,8 +12,7 @@
     </div>
     <div class="result">
       <div class=statQuestions *ngFor="let stat of this.stats">
-        <app-quizResultBox class="item" [sucessMemory]=stat.sucessMemory [sucessSimon]=stat.sucessSimon
-          [sucessQuiz]=stat.sucessQuiz [date]=stat.date></app-quizResultBox>
+        <app-quizResultBox class="item" [statForButton]= stat></app-quizResultBox>
       </div>
     </div>
   </div>

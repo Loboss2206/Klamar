@@ -4,9 +4,7 @@
   </app-titlePage>
 </h1>
 <div class="differentResultat">
-  <div class = statQuestions *ngFor="let stat of this.stats">
-    <div *ngFor="let question of stat.question; let questionIndex = index">
-      <app-result-question [point]=stat.pointQuestion[questionIndex] [maxPoint]=stat.maxPointQuestion[questionIndex] [indices]=stat.indicesQuiz[questionIndex] [erreur]=stat.erreurQuiz[questionIndex] [temps]=stat.tempsQuiz[questionIndex]></app-result-question>
-    </div>
+  <div *ngFor="let question of stat?.questions">
+    <app-result-question [point]=question.pointQuestion [maxPoint]=question.maxPointQuestion [indices]=question.indicesQuiz [erreur]=question.erreurQuiz [temps]=question.erreurQuiz></app-result-question>
   </div>
 </div>
