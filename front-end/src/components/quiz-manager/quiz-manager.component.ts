@@ -15,7 +15,7 @@ import {SearchQuizSelectorComponent} from "../search-quiz-selector/search-quiz-s
 @Component({
   selector: 'app-quiz-manager',
   standalone: true,
-    imports: [MaterialTableComponent, QuestionsPicklistComponent, NgIf, GenericButtonComponent, FormsModule, NgClass, ReactiveFormsModule, ImagesPicklistComponent, SearchQuizSelectorComponent],
+  imports: [MaterialTableComponent, QuestionsPicklistComponent, NgIf, GenericButtonComponent, FormsModule, NgClass, ReactiveFormsModule, ImagesPicklistComponent, SearchQuizSelectorComponent],
   templateUrl: './quiz-manager.component.html',
   styleUrl: './quiz-manager.component.scss'
 })
@@ -24,7 +24,6 @@ export class QuizManagerComponent implements OnInit {
 
   editMode: boolean = false;
   currentQuizID: number = 0;
-  allQuizzes: IQuiz[] = this.quizService.getQuizzes();
   quizName: string = "";
   quizDescription: string = "";
   quizImage: string = "";
@@ -42,17 +41,16 @@ export class QuizManagerComponent implements OnInit {
   imagesAlreadyInTheMemory: string[] = [];
 
 
-
   constructor(private quizService: QuizService, private fb: FormBuilder) {
   }
 
   ngOnInit(): void {
     this.quizService.getCurrentQuiz().subscribe((quizId) => {
-      this.currentQuizID = quizId.quizId;
+      this.currentQuizID = quizId.id;
       this.quizName = quizId.title;
       this.quizDescription = quizId.quizDescription;
       this.quizImage = quizId.imageUrl;
-      this.existingQuizQuestions = this.quizService.getQuestionsForQuiz(quizId.quizId);
+      this.existingQuizQuestions = this.quizService.getQuestionsForQuiz(quizId.id);
       if (quizId.specials) {
         this.isSimonGameOnQuiz = quizId.specials.some(special => special.name === "Simon");
         this.isMemoryGameOnQuiz = quizId.specials.some(special => special.name === "Memory");
@@ -117,23 +115,9 @@ export class QuizManagerComponent implements OnInit {
     });
   }
 
-  getQuizzesToDisplay(): any[] {
-    let quizzesToDisplay: any[] = [];
-    for (let quiz of this.allQuizzes) {
-      let quizToDisplay = {
-        image: quiz.imageUrl,
-        title: quiz.title,
-        quizDescription: quiz.quizDescription,
-        information: "Questions : " + quiz.questions.length + "  |  Simon : " + (quiz.specials.some(special => special.name === "Simon") ? "Oui" : "Non") + "  |  Memory: " + (quiz.specials.some(special => special.name === "Memory") ? "Oui" : "Non"),
-        id: quiz.quizId
-      }
-      quizzesToDisplay.push(quizToDisplay);
-    }
-    return quizzesToDisplay;
-  }
-
   editQuiz(quizId: number) {
     this.currentQuizID = quizId;
+    console.log("Editing quiz with id " + quizId);
     this.quizService.setQuiz(quizId);
     this.editMode = true;
   }
@@ -143,14 +127,18 @@ export class QuizManagerComponent implements OnInit {
   }
 
   createQuiz() {
-    let newQuizId = this.quizService.createEmptyQuiz();
     this.editMode = true;
-    this.currentQuizID = newQuizId;
+    this.currentQuizID = -1;
+    this.clearQuiz();
   }
 
   saveQuiz(id: number, quiz: IQuiz) {
     console.log("Saving quiz with id " + id);
     console.log(quiz);
+    if (id <= 0) {
+      this.quizService.createQuiz(quiz);
+      return;
+    }
     this.quizService.saveQuiz(id, quiz);
   }
 
@@ -194,7 +182,7 @@ export class QuizManagerComponent implements OnInit {
       picsMemory = this.imagesAlreadyInTheMemory;
     }
     let quiz: IQuiz = {
-      quizId: this.currentQuizID,
+      id: this.currentQuizID,
       title: this.quizName,
       quizDescription: this.quizDescription,
       imageUrl: this.quizImage,
@@ -203,6 +191,7 @@ export class QuizManagerComponent implements OnInit {
       picsMemory: picsMemory
     }
     this.editMode = false;
+    console.log(quiz, this.currentQuizID);
     this.saveQuiz(this.currentQuizID, quiz);
   }
 
@@ -238,6 +227,24 @@ export class QuizManagerComponent implements OnInit {
   }
 
   SearchQuizzes($event: string) {
-    this.allQuizzes = this.quizService.searchQuizzes($event);
+    let newQ = this.quizService.searchQuizzes($event);
+  }
+
+  private clearQuiz() {
+    this.quizName = "";
+    this.quizDescription = "";
+    this.quizImage = "";
+    this.existingQuizQuestions = [];
+    this.isSimonGameOnQuiz = false;
+    this.isMemoryGameOnQuiz = false;
+    this.simonConfig = {numberOfRound: 5, numberOfBoxes: 4, numberOfRetriesAllowed: 2};
+    this.simonConfigForm = this.fb.group({
+      numberOfRound: [5, Validators.required],
+      numberOfBoxes: [4, Validators.required],
+      numberOfRetriesAllowed: [2, Validators.required]
+    });
+    this.simonConfigOpened = false;
+    this.isInMemoryEdit = false;
+    this.imagesAlreadyInTheMemory = [];
   }
 }

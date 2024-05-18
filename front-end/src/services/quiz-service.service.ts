@@ -1,12 +1,13 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import IQuestion from "../interfaces/IQuestion";
 import IQuiz from "../interfaces/IQuiz";
-import { quizzes } from "../mocks/quizzes";
-import { questionsList } from "../mocks/questions";
-import { BehaviorSubject, Observable, of } from "rxjs";
-import { Router } from "@angular/router";
+import {questionsList} from "../mocks/questions";
+import {BehaviorSubject, Observable, of} from "rxjs";
+import {Router} from "@angular/router";
 import ISimonConfig from "../interfaces/ISimonConfig";
-import { ImageBank } from "../mocks/ImageBank";
+import {ImageBank} from "../mocks/ImageBank";
+import {HttpClient} from "@angular/common/http";
+import {serverUrl} from "../configs/server.config";
 
 @Injectable({
   providedIn: 'root'
@@ -23,7 +24,7 @@ export class QuizService {
   private waitingTimeBeforeNextQuestion: number = 1000;
   private currentQuiz: number = JSON.parse(sessionStorage.getItem('currentQuiz') || '0');
 
-  private quizzes: IQuiz[] = quizzes;
+  private quizzes: BehaviorSubject<IQuiz[]> = new BehaviorSubject<IQuiz[]>([] as IQuiz[])
   private questions: IQuestion[] = questionsList;
   private SimonGameMode: boolean = false;
   private MemoryGameMode: boolean = false;
@@ -34,16 +35,21 @@ export class QuizService {
   getQuestionsPickListData(): Observable<{ allQuestions: IQuestion[], existingQuizQuestions: IQuestion[] }> {
     const allQuestions = this.getAllQuestions();
     const existingQuizQuestions = this.getQuestionsForQuiz(this.currentQuiz);
-    return of({ allQuestions, existingQuizQuestions });
+    return of({allQuestions, existingQuizQuestions});
   }
 
   getImagesPickListData(): Observable<{ allImages: string[], imageAlreadyOnTheMemory: string[] }> {
     const allImages = ImageBank;
     const imageAlreadyOnTheMemory = this.getPicsMemory();
-    return of({ allImages, imageAlreadyOnTheMemory });
+    return of({allImages, imageAlreadyOnTheMemory});
   }
 
-  constructor(private router: Router) {
+  constructor(private router: Router, private http: HttpClient) {
+    this.refreshQuizzes();
+  }
+
+  getQuizzesObservable(): Observable<IQuiz[]> {
+    return this.quizzes.asObservable();
   }
 
   getPicsMemory(): string[] {
@@ -51,16 +57,16 @@ export class QuizService {
   }
 
   getTheQuiz(id: number) {
-    let quiz: IQuiz | undefined = this.quizzes.find((quiz) => quiz.quizId === id);
+    let quiz: IQuiz | undefined = this.quizzes.value.find((quiz) => quiz.id === id);
     if (!quiz) {
       console.error('Quiz not found');
       return {
-        title: 'Nouveau Quiz',
-        quizDescription: 'Insérez une description',
+        title: '',
+        quizDescription: '',
         questions: [],
         specials: [],
         imageUrl: 'https://placehold.co/400',
-        quizId: 0
+        id: 0
       } as IQuiz;
     }
     return quiz;
@@ -139,8 +145,10 @@ export class QuizService {
     return this.getQuestionIndex() === this.getQuestionsLength() - 1;
   }
 
-  getQuizzes(): IQuiz[] {
-    return this.quizzes;
+  refreshQuizzes() {
+    this.http.get<IQuiz[]>(serverUrl + "/quizzes").subscribe((quizzes) => {
+      this.quizzes.next(quizzes);
+    });
   }
 
   nextQuestion() {
@@ -199,26 +207,26 @@ export class QuizService {
   }
 
   searchQuizzes(searchTerm: string) {
-    return this.quizzes.filter((quiz) => quiz.title.toLowerCase().includes(searchTerm.toLowerCase()));
+    this.quizzes.next(this.quizzes.value.filter((quiz) => quiz.title.toLowerCase().includes(searchTerm.toLowerCase())));
   }
 
   deleteQuiz(quizId: number) {
-    // TODO: BACKEND LOGIC TO DELETE QUIZ
-    console.log('Quiz "' + this.getTheQuiz(quizId).title + '" deleted');
+    this.http.delete(serverUrl + "/quizzes/" + quizId).subscribe(res => {
+      this.refreshQuizzes();
+    });
   }
 
-  createEmptyQuiz() {
-    // TODO: BACKEND LOGIC TO CREATE EMPTY QUIZ (Just for not having to have concurrent ids in the database)
-    //temporary solution
-    console.log('New empty quiz created with id ' + (this.quizzes.length + 1));
-
-    this.setQuiz(this.quizzes.length + 1);
-    return this.quizzes.length + 1;
+  createQuiz(quiz: IQuiz) {
+    this.http.post(serverUrl + "/quizzes", quiz).subscribe(res => {
+      this.refreshQuizzes();
+    });
   }
 
   saveQuiz(quizId: number, quiz: IQuiz) {
-    // TODO: BACKEND LOGIC TO SAVE QUIZ
-    console.log('Quiz "' + quiz.title + '" saved');
+    this.http.put(serverUrl + "/quizzes/" + quizId, quiz).subscribe(res => {
+      this.refreshQuizzes();
+    });
+
   }
 
   getQuestionsForQuiz(quizId: number) {
