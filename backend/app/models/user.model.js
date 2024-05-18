@@ -11,6 +11,6 @@ module.exports = new BaseModel('User', {
     config: UserConfig.schema,
     charts: Joi.array().items(Joi.string()).required(),
     statsId: Joi.array().items(Joi.number()).required(),
-    avatar: Joi.string().required(),
+    avatar: Joi.string().allow('').required(),
     colorBlind: Joi.string().required()
 })

@@ -37,7 +37,19 @@
   margin-bottom: 20px;
 }
 
+.user-modifier-form>.inputs>.filing {
+  label {
+    margin-left: 10px;
+    margin-right: 10px;
+    display: block; // Permet de passer à la ligne et de prendre toute la largeur disponible
+    margin-bottom: 10px; // Espacement entre chaque input, facultatif
+  }
 
+  input.userInput {
+    width: 100%; // Prend toute la largeur du conteneur label
+    box-sizing: border-box; // Inclut les bordures et le rembourrage dans la largeur
+  }
+}
 
 .user-modifier-form>.inputs>div>* {
   flex: 1 0 calc(33.33% - 10px);

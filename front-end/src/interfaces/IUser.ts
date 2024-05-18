@@ -7,7 +7,7 @@ export default interface IUser {
   birthdate: string;
   hobbies: string;
   config: IUserConfig;
-  avatar: string;
+  avatar: string | undefined;
   charts: string[];
   statsId: number[];
   colorBlind: string;
