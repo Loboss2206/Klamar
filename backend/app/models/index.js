@@ -11,5 +11,5 @@ module.exports = {
   StatQuestion,
   StatMemory,
   StatSimon,
-  Stat
+  Stat,
 }

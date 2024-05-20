@@ -9,7 +9,7 @@ module.exports = new BaseModel('Stat', {
 
   simonStats: StatSimon.schema,
   memoryStats: StatMemory.schema,
-  questions: StatQuestion.schema,
+  questions: Joi.array().items(StatQuestion.schema),
 
   sucessSimon: Joi.number().required(),
   sucessMemory: Joi.number().required(),
