@@ -66,6 +66,7 @@ export class FelicidadComponent implements OnInit {
   restartQuiz() {
     this.quizService.restartQuiz();
     this.router.navigate(['/quiz']);
+    this.statsService.createStat()
   }
 
   ngOnDestroy() {
