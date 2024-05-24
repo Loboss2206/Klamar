@@ -229,6 +229,7 @@ export class MemoryContainerComponent {
 
   saveMemoryStats() {
     const memoryStat: IMemoryStat = {
+      id:1,
       erreurMemory: this.numberOfError,
       indicesMemory: this.numberOfTips,
       tempsMemory: this.getTimeSpentOnMemory(),

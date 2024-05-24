@@ -21,11 +21,12 @@ router.get('/:statId', (req, res) => {
   }
 })
 
-router.post('/', (req, res) => {
+router.post('/', async (req, res) => {
   try {
-    res.status(201).json(Stat.create(req.body))
+    const newStat = await Stat.create(req.body) // Utilisation d'await pour attendre la création
+    res.status(201).json(newStat) // Répondre avec le nouvel objet créé
   } catch (err) {
-    manageAllErrors(res, err)
+    manageAllErrors(res, err) // Gérer les erreurs
   }
 })
 

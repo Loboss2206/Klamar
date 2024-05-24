@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {catchError, Observable} from "rxjs";
 import IStats from "../interfaces/IStats";
-import {HttpClient} from "@angular/common/http";
+import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {serverUrl} from "../configs/server.config";
 import IQuestionStat from "../interfaces/IQuestionStat";
 import IMemoryStat from "../interfaces/IMemoryStat";
@@ -11,7 +11,7 @@ import ISimonStat from "../interfaces/ISimonStat";
   providedIn: 'root'
 })
 export class StatsService {
-  private apiURL = serverUrl + '/stats'
+  private apiURL = serverUrl + '/stats/'
 
   private currentInGameStat ?: IStats
   constructor(private http : HttpClient) {
@@ -75,14 +75,29 @@ export class StatsService {
             console.error('Current stats not initialized.');
         }
     }
-  sendStat(): Observable<IStats>{
+  sendStat(): void{
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
     console.log("ça post");
     console.log(this.currentInGameStat);
-    return this.http.post<IStats>(this.apiURL, this.currentInGameStat).pipe(
+    console.log(this.apiURL);
+    this.http.post<IStats>(this.apiURL, this.currentInGameStat, {headers}).pipe(
       catchError((error) => {
         console.error('Error sending stat:', error);
         throw error;
       })
-    );
+    ).subscribe();
+  }
+
+  sendSpecificStat(stat : IStats): void {
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+    console.log("ça post");
+    console.log(stat);
+    console.log(this.apiURL);
+    this.http.post<IStats>(this.apiURL, stat, {headers}).pipe(
+      catchError((error) => {
+        console.error('Error sending stat:', error);
+        throw error;
+      })
+    ).subscribe();
   }
 }

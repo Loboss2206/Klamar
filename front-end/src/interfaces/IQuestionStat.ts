@@ -1,4 +1,5 @@
 export default interface IQuestionStat {
+    id: number;
     idQuestion: number;
     pointQuestion: number;
     maxPointQuestion: number;

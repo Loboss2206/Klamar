@@ -108,6 +108,7 @@ export class QuestionComponent implements OnInit, AfterViewInit {
     if (this.quizService.checkAnswer(answer)) {
       let answerIndex = this.answers.findIndex((ans: any) => ans === answer);
       const questionStat: IQuestionStat = {
+        id:1,
         idQuestion: Number(this.idQuestion),
         pointQuestion: this.pointOnQuestion(),
         maxPointQuestion: this.maxPointQuestion,

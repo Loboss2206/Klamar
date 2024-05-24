@@ -233,6 +233,7 @@ export class SimonGameComponent implements OnInit {
 
   saveSimonStats(){
     const simonStat : ISimonStat= {
+      id: 1,
       erreurSimon: this.numberOfRetries,
       indicesSimon: this.tipsMeter,
       tempsSimon: this.getTimeSpentOnMemory(),
