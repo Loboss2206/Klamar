@@ -24,7 +24,7 @@ export class SelectQuestionEditComponent {
   imageUrlResponse4: any;
 
 
-  constructor(private router: Router, protected formBuilder: FormBuilder, private _questionService: QuestionService, private route: ActivatedRoute) {
+  constructor(private router: Router, protected formBuilder: FormBuilder, _questionService: QuestionService, private route: ActivatedRoute) {
     let questionToModify = _questionService.getQuestionById(this.idQuestionToModify)
 
     const responsesAreImages = questionToModify?.AreResponsesImages === true;

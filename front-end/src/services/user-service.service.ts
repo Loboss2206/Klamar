@@ -143,4 +143,23 @@ export class UserService {
     const urlWithId = this.userUrl + '/' + user.id;
     this.http.delete<IUser>(urlWithId, this.httpOptions).subscribe(() => this.retrieveUsers());
   }
+
+  verifyTokenValidity(token: string, admin: boolean) {
+    if (admin) {
+      let tokenFound;
+      this.connectedAdminTokens.forEach((tokenElement, index: number) => {
+        let key = Object.keys(tokenElement)[0];
+        if (key === token) {
+          tokenFound = tokenElement;
+        }
+      });
+      return !!tokenFound;
+    }
+    return false;
+  }
+
+  modifyUser(user: IUser): void {
+    const urlWithId = this.userUrl + '/' + user.id;
+    this.http.put<IUser>(urlWithId, user, this.httpOptions).subscribe(() => this.retrieveUsers());
+  }
 }
