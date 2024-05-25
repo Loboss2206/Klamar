@@ -1,4 +1,4 @@
-import {Component, ElementRef, Input, OnInit, Renderer2, ViewChild} from '@angular/core';
+import {Component, ElementRef, Input, OnDestroy, OnInit, Renderer2, ViewChild} from '@angular/core';
 import {NgForOf, NgIf} from "@angular/common";
 import {ActivatedRoute} from "@angular/router";
 import {QuizService} from "../../services/quiz-service.service";
@@ -19,14 +19,15 @@ import {GenericButtonComponent} from "../genericButton/genericButton.component";
   ],
   styleUrls: ['./simon-game.component.css']
 })
-export class SimonGameComponent implements OnInit {
+export class SimonGameComponent implements OnInit, OnDestroy {
   @ViewChild('simonButton') simonButton: ElementRef | undefined;
+  @ViewChild('congratsButton') congratsButton: ElementRef | undefined;
 
   playerInput: number[] = [];
   gameInput: number[] = [];
   sequencePlaying: boolean = false;
   roundToWin: number = 5;
-  numberOfBoxes: number = 4;
+  numberOfBoxes: number = 10;
   numberOfRetries: number = 0;
   numberMaxOfRetries: number = 0;
   numberOfBoxesArray: number[] = Array.from({length: this.numberOfBoxes}, (_, i) => i);
@@ -60,9 +61,15 @@ export class SimonGameComponent implements OnInit {
       return;
     }
     this.stopInactivityInterval();
+    const button = this.el.nativeElement.querySelector(`#button-${index}` as string);
     this.lastButtonClickedTime = Date.now();
-    this.playSound(index);
-    this.playerInput.push(index);
+    this.renderer.setStyle(button, 'box-shadow', `0 0 30px 15px ${this.buttonColors[index]}`);
+    this.renderer.addClass(button, 'active');
+    this.playSound(index)
+    setTimeout(() => {
+      this.renderer.setStyle(button, 'box-shadow', 'none');
+      this.renderer.removeClass(button, 'active');
+    }, 800);    this.playerInput.push(index);
     this.checkPlayerInput();
     setTimeout(() => {
       this.startInactivityInterval();
@@ -180,13 +187,34 @@ export class SimonGameComponent implements OnInit {
         this.startGame();
       }
       this.isGoodSequence = true;
+      this.bigIt();
       setTimeout(() => {
         this.isGoodSequence = false;
-      }, 1000);
-      this.playerInput = [];
-      this.generateGameInput();
-      this.playSequence();
+        this.playerInput = [];
+        this.generateGameInput();
+        this.playSequence();
+      }, 4000);
+
     }
+  }
+
+  bigIt() {
+    setTimeout(
+      () => {
+        this.renderer.setStyle(this.congratsButton?.nativeElement, 'width', '30vw');
+        this.renderer.setStyle(this.congratsButton?.nativeElement, 'height', '30vw');
+
+      },
+      200
+    );
+    setTimeout(
+      () => {
+        this.renderer.setStyle(this.congratsButton?.nativeElement, 'width', '10vw')
+        this.renderer.setStyle(this.congratsButton?.nativeElement, 'height', '10vw')
+
+      },
+      3500
+    );
   }
 
   generateDistinctColors(n: number): string[] {
