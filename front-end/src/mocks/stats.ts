@@ -10,7 +10,7 @@ export const stats: IStats[] = [{
   "indicesQuiz": [1, 2, 0],
   "tempsQuiz": [20, 5, 12],
   "question": [{
-    "id": "1",
+    "id": 1,
     "question": "Quelle est la capitale de la France ?",
     "tips": [
       "La ville de l\\'amour", "La ville lumière"
@@ -22,7 +22,7 @@ export const stats: IStats[] = [{
     "tags": ["géographie"]
   },
   {
-    "id": "2",
+    "id": 2,
     "question": "Quelle est la capitale de l\"Allemagne ?",
     "tips": ["Elle a un mur célèbre", "Elle n\"est pas Munich"],
     "AreResponsesImages": true,
@@ -31,7 +31,7 @@ export const stats: IStats[] = [{
     "tags": ["géographie"]
   },
   {
-    "id": "3",
+    "id": 3,
     "question": "Quelle est la capitale du Royaume-Uni ?",
     "questionImage": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cd/London_Montage_L.jpg/280px-London_Montage_L.jpg",
     "tips": ["Elle a un grand ben", "Elle n\"est pas Manchester"],
@@ -64,7 +64,7 @@ export const stats: IStats[] = [{
   "indicesQuiz": [1, 2, 4],
   "tempsQuiz": [20, 4, 12],
   "question": [{
-    "id": "1",
+    "id": 1,
     "question": "Quelle est la capitale de la France ?",
     "tips": [
       "La ville de l\\'amour", "La ville lumière"
@@ -76,7 +76,7 @@ export const stats: IStats[] = [{
     "tags": ["géographie"]
   },
   {
-    "id": "2",
+    "id": 2,
     "question": "Quelle est la capitale de l\"Allemagne ?",
     "tips": ["Elle a un mur célèbre", "Elle n\"est pas Munich"],
     "AreResponsesImages": true,
@@ -85,7 +85,7 @@ export const stats: IStats[] = [{
     "tags": ["géographie"]
   },
   {
-    "id": "3",
+    "id": 3,
     "question": "Quelle est la capitale du Royaume-Uni ?",
     "questionImage": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cd/London_Montage_L.jpg/280px-London_Montage_L.jpg",
     "tips": ["Elle a un grand ben", "Elle n\"est pas Manchester"],
@@ -118,7 +118,7 @@ export const stats: IStats[] = [{
   "indicesQuiz": [0, 2, 0],
   "tempsQuiz": [100, 5, 12],
   "question": [{
-    "id": "1",
+    "id": 1,
     "question": "Quelle est la capitale de la France ?",
     "tips": [
       "La ville de l\\'amour", "La ville lumière"
@@ -130,7 +130,7 @@ export const stats: IStats[] = [{
     "tags": ["géographie"]
   },
   {
-    "id": "2",
+    "id": 2,
     "question": "Quelle est la capitale de l\"Allemagne ?",
     "tips": ["Elle a un mur célèbre", "Elle n\"est pas Munich"],
     "AreResponsesImages": true,
@@ -139,7 +139,7 @@ export const stats: IStats[] = [{
     "tags": ["géographie"]
   },
   {
-    "id": "3",
+    "id": 3,
     "question": "Quelle est la capitale du Royaume-Uni ?",
     "questionImage": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cd/London_Montage_L.jpg/280px-London_Montage_L.jpg",
     "tips": ["Elle a un grand ben", "Elle n\"est pas Manchester"],
@@ -173,7 +173,7 @@ export const stats: IStats[] = [{
   "indicesQuiz": [1, 1, 0],
   "tempsQuiz": [20, 10, 12],
   "question": [{
-    "id": "1",
+    "id": 1,
     "question": "Quelle est la capitale de la France ?",
     "tips": [
       "La ville de l\\'amour", "La ville lumière"
@@ -185,7 +185,7 @@ export const stats: IStats[] = [{
     "tags": ["géographie"]
   },
   {
-    "id": "2",
+    "id": 2,
     "question": "Quelle est la capitale de l\"Allemagne ?",
     "tips": ["Elle a un mur célèbre", "Elle n\"est pas Munich"],
     "AreResponsesImages": true,
@@ -194,7 +194,7 @@ export const stats: IStats[] = [{
     "tags": ["géographie"]
   },
   {
-    "id": "3",
+    "id": 3,
     "question": "Quelle est la capitale du Royaume-Uni ?",
     "questionImage": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cd/London_Montage_L.jpg/280px-London_Montage_L.jpg",
     "tips": ["Elle a un grand ben", "Elle n\"est pas Manchester"],

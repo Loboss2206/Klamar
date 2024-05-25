@@ -50,7 +50,7 @@ export class QuestionComponent implements OnInit, AfterViewInit {
   ngOnInit() {
     this.question = this.quizService.getCurrentQuestion();
     this.question.subscribe((question: IQuestion) => {
-      console.log(this.question);
+      console.log(question.responses);
       this.answers = question.responses;
       this.questionText = question.question;
       this.currentTipIndex = this.user ? this.user.config.quiz.showHintOneByOne ? 0 : -1 : -1;
