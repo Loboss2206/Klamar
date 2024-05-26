@@ -22,6 +22,8 @@ import { Time } from 'tone';
 export class MemoryContainerComponent {
   @ViewChildren(MemoryItemComponent) memoryItems!: QueryList<MemoryItemComponent>;
 
+  textHints: string = "";
+
   private initialFlip = true;
   private hintsGiven = false;
 
@@ -31,6 +33,7 @@ export class MemoryContainerComponent {
   numberOfError: number = 0;
   timeBeforeSwitching: number = 1;
   timeBeforeHints: number = 5;
+  timeForSeeingAllCards: number = 5;
   lastCardClickedTime: number = 0;
   lastUserActionTime: number = Date.now();
 
@@ -63,7 +66,7 @@ export class MemoryContainerComponent {
           });
 
           this.initialFlip = false;
-        }, 2000);
+        }, this.timeForSeeingAllCards * 1000);
       });
       this.initialFlip = false;
     }
@@ -86,6 +89,10 @@ export class MemoryContainerComponent {
   }
 
   constructor(private router: Router, private quizService: QuizService, private userService: UserService) {
+  }
+
+  updateTextHints(newTextHints: string): void {
+    this.textHints = newTextHints;
   }
 
   getFlippedItems(): MemoryItemComponent[] {
@@ -134,6 +141,7 @@ export class MemoryContainerComponent {
       this.memoryItems.forEach((item) => {
         item.setHighlightCard(false);
       });
+      this.updateTextHints("");
     }
   }
 
@@ -171,6 +179,7 @@ export class MemoryContainerComponent {
         if (this.getNotFlippedItems().length > 1) {
           let item2 = this.secondCardToHighlight(index, 4);
           if (item2 !== null) {
+            this.updateTextHints("La deuxième carte à retourner est dans les 2 qui sont entourées !");
             item2.setHighlightCard(true);
           }
         }

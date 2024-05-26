@@ -5,7 +5,17 @@
     justify-content: center;
     width: 80vw;
     border-radius: 5px;
-    margin: 5vw auto 1vw auto;
+    margin: 1vw auto;
     background-color: var(--memory-container-bg-color);
     border: 5px groove var(--memory-container-border-color);
+}
+
+#textHints {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 1vw auto;
+    font-size: 2vw;
+    font-weight: bold;
+    color: green;
 }
