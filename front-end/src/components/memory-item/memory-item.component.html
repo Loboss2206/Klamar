@@ -1,9 +1,10 @@
 <div class="memoryItem" [ngClass]="{ 'front': isFlipped, 'back': !isFlipped, 'hidden': isHidden }"
     (click)="clickOnCard()">
     <div class="memoryItemFront" *ngIf="isFlipped">
-        <img class="front-face" [src]="picURL" alt="FrontFace">
+        <img class="front-face" [src]="picURL" alt="FrontFace" draggable="false">
     </div>
     <div [ngClass]="{ 'highlighted': isHighlighted}">
-        <img class="back-face" *ngIf="!isFlipped" src="../../assets/backCardMemory.png" alt="BackFace">
+        <img class="back-face" *ngIf="!isFlipped" src="../../assets/backCardMemory.png" alt="BackFace"
+            draggable="false">
     </div>
 </div>
