@@ -15,4 +15,5 @@ module.exports = new BaseModel('Stat', {
   sucessMemory: Joi.number().required(),
   sucessQuiz: Joi.number().required(),
   date: Joi.string().required(),
+  userId: Joi.number().required(),
 })

@@ -4,6 +4,7 @@ import ISimonStat from "./ISimonStat"
 
 export default interface IStats {
   id: number;
+  userId: number;
   questions: IQuestionStat[];
   memoryStats?: IMemoryStat;
   simonStats?: ISimonStat;
