@@ -6,11 +6,11 @@
          (click)="onButtonClick(i)"></div>
   </div>
 </div>
-<div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);">
-  <div #congratsButton class="circle" (click)="takeAction()">
-    <span *ngIf="!isGoodSequence && !isGameStarted">Appuyer pour commencer</span>
+
+  <div #congratsButton class="congrats" (click)="takeAction()">
+    <span *ngIf="!isGoodSequence && !isGameStarted">Appuyez pour commencer</span>
     <span *ngIf="!isGoodSequence && isGameRunning">Votre tour</span>
-    <span *ngIf="!isGoodSequence && !isGameRunning && isGameStarted">Regarder la séquence</span>
+    <span *ngIf="!isGoodSequence && !isGameRunning && isGameStarted">Regardez la séquence</span>
     <span *ngIf="isGoodSequence">Bravo !</span>
   </div>
-</div>
+
