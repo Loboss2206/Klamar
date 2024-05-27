@@ -1,10 +1,11 @@
-import {Component, OnInit} from '@angular/core';
-import {QuizService} from "../../services/quiz-service.service";
+import { Component, OnInit } from '@angular/core';
+import { QuizService } from "../../services/quiz-service.service";
 import IQuestion from "../../interfaces/IQuestion";
 import { Router } from '@angular/router';
-import {NgForOf} from "@angular/common";
-import {GenericButtonComponent} from "../genericButton/genericButton.component";
-import {MaterialTableComponent} from "../material-table/material-table.component";
+import { NgForOf } from "@angular/common";
+import { GenericButtonComponent } from "../genericButton/genericButton.component";
+import { MaterialTableComponent } from "../material-table/material-table.component";
+import { QuestionService } from 'src/services/question.service';
 
 @Component({
   selector: 'app-select-question',
@@ -17,15 +18,17 @@ import {MaterialTableComponent} from "../material-table/material-table.component
   templateUrl: './select-question.component.html',
   styleUrl: './select-question.component.scss'
 })
-export class SelectQuestionComponent implements OnInit{
+export class SelectQuestionComponent implements OnInit {
   questions: IQuestion[] = []; // Array to store the questions
   private question: IQuestion | undefined;
 
-  constructor(private _router: Router, private _quizService : QuizService) {
+  constructor(private _router: Router, private _questionService: QuestionService) {
   }
 
   ngOnInit(): void {
-    this.questions = this._quizService.getAllQuestions()
+    this._questionService.questions$.subscribe((questions: IQuestion[]) => {
+      this.questions = questions;
+    });
     console.log(this.questions)
   }
   createQuestion() {
@@ -33,20 +36,18 @@ export class SelectQuestionComponent implements OnInit{
   }
 
   editQuestion(question: IQuestion | undefined) {
-    console.log(question)
-    this._router.navigate(['/admin/editQuestion', question?.id]);
+    this._router.navigate(['/admin/editQuestion/' + question?.id]);
   }
 
-  deleteQuestion(question : IQuestion | undefined) {
-    if (question?.id != undefined)
-      this.questions.splice(Number(question.id), 1);
+  deleteQuestion(question: IQuestion | undefined) {
+    this._questionService.deleteQuestion(question as IQuestion);
   }
 
   getHeaders() {
     return ["Intitulé"];
   }
 
-  takeAction(id : string, action: string) {
+  takeAction(id: number, action: string) {
     this.question = this.questions.find(question => question.id === id);
     switch (action) {
       case "rowClick":
@@ -62,8 +63,8 @@ export class SelectQuestionComponent implements OnInit{
 
   getActions() {
     return [
-      {name: "Editer", className: "edit"},
-      {name: "Supprimer", className: "delete"}
+      { name: "Editer", className: "edit" },
+      { name: "Supprimer", className: "delete" }
     ];
   }
 

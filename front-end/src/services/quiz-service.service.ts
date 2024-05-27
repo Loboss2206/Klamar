@@ -8,6 +8,7 @@ import ISimonConfig from "../interfaces/ISimonConfig";
 import { ImageBank } from "../mocks/ImageBank";
 import { HttpClient } from "@angular/common/http";
 import { serverUrl } from "../configs/server.config";
+import { QuestionService } from './question.service';
 
 @Injectable({
   providedIn: 'root'
@@ -33,7 +34,7 @@ export class QuizService {
   private currentQuizSubject: BehaviorSubject<IQuiz> = new BehaviorSubject<IQuiz>({} as IQuiz);
 
   getQuestionsPickListData(): Observable<{ allQuestions: IQuestion[], existingQuizQuestions: IQuestion[] }> {
-    const allQuestions = this.getAllQuestions();
+    const allQuestions = this.questionService.getQuestions();
     const existingQuizQuestions = this.getQuestionsForQuiz(this.currentQuiz);
     return of({ allQuestions, existingQuizQuestions });
   }
@@ -44,7 +45,7 @@ export class QuizService {
     return of({ allImages, imageAlreadyOnTheMemory });
   }
 
-  constructor(private router: Router, private http: HttpClient) {
+  constructor(private router: Router, private http: HttpClient, private questionService: QuestionService) {
     this.refreshQuizzes();
   }
 
@@ -86,7 +87,7 @@ export class QuizService {
   }
 
   getQuestions(): IQuestion[] {
-    return this.questions.filter((question) => this.getTheQuiz(this.currentQuiz).questions.includes(parseInt(question.id)));
+    return this.questionService.getQuestions().filter((question) => this.getTheQuiz(this.currentQuiz).questions.includes(question.id));
   }
 
   getAllQuestions(): IQuestion[] {
@@ -95,7 +96,7 @@ export class QuizService {
 
   get getTips(): string[][] {
     return this.getTheQuiz(this.currentQuiz).questions.map((questionId) => {
-      let question: IQuestion | undefined = this.questions.find((question) => parseInt(question.id) === questionId);
+      let question: IQuestion | undefined = this.questions.find((question) => question.id === questionId);
       if (!question) {
         throw new Error('Question not found');
       }
@@ -235,11 +236,11 @@ export class QuizService {
 
   getQuestionsForQuiz(quizId: number) {
     return this.getTheQuiz(quizId).questions.map((questionId) => {
-      let question: IQuestion | undefined = this.questions.find((question) => parseInt(question.id) === questionId);
+      let question: IQuestion | undefined = this.questionService.getQuestions().find((question) => question.id === questionId);
       if (!question) {
         console.error('It seems that a question is missing from the Database, have you deleted it?');
         return {
-          id: '0',
+          id: 0,
           question: 'Oups, la question n\'a pas été trouvée l\'avez vous supprimée ?',
           answer: 'Answer not found',
           tips: ['Tip not found']

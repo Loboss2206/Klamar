@@ -1,6 +1,6 @@
 export default interface IQuestion {
   question: string | undefined;
-  questionImage? : string | undefined;
+  questionImage?: string | undefined;
   tips: string[];
   AreResponsesImages: boolean;
   AreTipsImages?: boolean;
@@ -8,5 +8,5 @@ export default interface IQuestion {
   responses: string[];
   answer: string;
   tags: string[];
-  id: string;
+  id: number;
 }

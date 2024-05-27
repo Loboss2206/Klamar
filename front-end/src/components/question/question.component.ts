@@ -56,7 +56,7 @@ export class QuestionComponent implements OnInit, AfterViewInit {
     this.question = this.quizService.getCurrentQuestion();
     this.startTime = Date.now();
     this.question.subscribe((question: IQuestion) => {
-      console.log(this.question);
+      console.log(question.responses);
       this.answers = question.responses;
       this.questionText = question.question;
       this.currentTipIndex = this.user ? this.user.config.quiz.showHintOneByOne ? 0 : -1 : -1;
@@ -65,7 +65,7 @@ export class QuestionComponent implements OnInit, AfterViewInit {
       this.areResponsesImages = question.AreResponsesImages;
       this.correctAnswer = null;
       this.wrongAnswers = [];
-      this.idQuestion = question.id;
+      this.idQuestion = parseInt(question.id.toString()).toString()
       this.setBlockUI(false);
       if (this.user && this.user.config.quiz.showHintAfterStart) {
         this.tipsComponent.openATip();
