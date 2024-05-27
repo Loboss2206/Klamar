@@ -1,8 +1,8 @@
-import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from "@angular/forms";
-import { ActivatedRoute, Router } from "@angular/router";
-import { QuestionService } from "../../services/question.service";
-import { NgIf } from "@angular/common";
+import {Component} from '@angular/core';
+import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
+import {ActivatedRoute, Router} from "@angular/router";
+import {QuestionService} from "../../services/question.service";
+import {NgIf} from "@angular/common";
 import IQuestion from 'src/interfaces/IQuestion';
 
 @Component({
@@ -17,7 +17,7 @@ import IQuestion from 'src/interfaces/IQuestion';
 })
 export class SelectQuestionEditComponent {
   protected questionModificatorComponent: FormGroup;
-  idQuestionToModify: string | null = this.route.snapshot.paramMap.get('id')
+  idQuestionToModify: string | null = this.route.snapshot.paramMap.get('id');
   imageUrlQuestion: any;
   imageUrlResponse1: any;
   imageUrlResponse2: any;
@@ -29,6 +29,13 @@ export class SelectQuestionEditComponent {
   imageBase64Response3: any = "";
   imageBase64Response4: any = "";
 
+  getTheRightAnswer(question: IQuestion): string {
+    let responses = question.responses;
+    let answer = question.answer;
+    let diff = responses.filter((response) => response === answer);
+    let answerIndex = responses.indexOf(diff[0]);
+    return (answerIndex + 1).toString();
+  }
 
   constructor(private router: Router, protected formBuilder: FormBuilder, private questionService: QuestionService, private route: ActivatedRoute) {
     if ((Number(this.route.snapshot.paramMap.get('id')))) {
@@ -62,50 +69,94 @@ export class SelectQuestionEditComponent {
       this.questionModificatorComponent = this.formBuilder.group({
 
         question: [questionToModify.question, Validators.required],
-        choicePicture: [questionToModify.AreResponsesImages, Validators.required],
+        choicePicture: [String
+        (questionToModify.AreResponsesImages), Validators.required],
+        imageQuestion: questionToModify.questionImage,
+        imageResponse1: questionToModify.responses[0],
+        imageResponse2: questionToModify.responses[1],
+        imageResponse3: questionToModify.responses[2],
+        imageResponse4: questionToModify.responses[3],
+        reponse1: response1Value,
+        reponse2: response2Value,
+        reponse3: response3Value,
+        reponse4: response4Value,
+        indice1: [questionToModify.tips[0], Validators.required],
+        indice2: [questionToModify.tips[1], Validators.required],
+        categorie: [questionToModify.tags.join(","), Validators.required],
+        correctAnswer: [this.getTheRightAnswer(questionToModify), Validators.required]
+      });
+    } else {
+      this.idQuestionToModify = null;
+      this.questionModificatorComponent = this.formBuilder.group({
+        question: ['', Validators.required],
+        choicePicture: ['', Validators.required],
         imageQuestion: "",
         imageResponse1: "",
         imageResponse2: "",
         imageResponse3: "",
         imageResponse4: "",
-        reponse1: [response1Value, Validators.required],
-        reponse2: [response2Value, Validators.required],
-        reponse3: [response3Value, Validators.required],
-        reponse4: [response4Value, Validators.required],
-        indice1: [questionToModify.tips[0], Validators.required],
-        indice2: [questionToModify.tips[1], Validators.required],
-        categorie: [questionToModify.tags, Validators.required]
+        reponse1: "",
+        reponse2: "",
+        reponse3: "",
+        reponse4: "",
+        indice1: "",
+        indice2: "",
+        categorie: ['', Validators.required],
+        correctAnswer: "1"
       });
-    } else {
-      this.questionModificatorComponent = this.formBuilder.group({});
     }
   }
 
-  ngOnInit() {
-
-  }
   isFormValid(): boolean {
     return this.questionModificatorComponent.valid;
   }
 
+  getTheQuestionOfAnswerId(answerId: number, isImage: boolean): string {
+    if (!isImage) {
+      if (answerId == 1) {
+        return this.questionModificatorComponent.get('reponse1')?.value;
+      } else if (answerId == 2) {
+        return this.questionModificatorComponent.get('reponse2')?.value;
+      } else if (answerId == 3) {
+        return this.questionModificatorComponent.get('reponse3')?.value;
+      } else if (answerId == 4) {
+        return this.questionModificatorComponent.get('reponse4')?.value;
+      }
+    }else {
+      console.log("isImage")
+      if (answerId == 1) {
+        console.log("1", answerId)
+        return this.questionModificatorComponent.get('imageResponse1')?.value;
+      } else if (answerId == 2) {
+        console.log("2", answerId)
+        return this.questionModificatorComponent.get('imageResponse2')?.value;
+      } else if (answerId == 3) {
+        console.log("3", answerId)
+        return this.questionModificatorComponent.get('imageResponse3')?.value;
+      } else if (answerId == 4) {
+        console.log("4", answerId)
+        return this.questionModificatorComponent.get('imageResponse4')?.value;
+      }
+    }
+    return "";
+  }
 
   navigateToSelectQuestion(): void {
     let newQuestion: IQuestion = {
-      id: Number(this.route.snapshot.paramMap.get('id')),
+      id: Number(this.route.snapshot.paramMap.get('id')) || -1,
       question: this.questionModificatorComponent.get('question')?.getRawValue(),
       questionImage: this.questionModificatorComponent.get('imageQuestion')?.getRawValue(),
       tips: [this.questionModificatorComponent.get('indice1')?.getRawValue(), this.questionModificatorComponent.get('indice2')?.getRawValue()],
-      AreResponsesImages: this.questionModificatorComponent.get('choicePicture')?.getRawValue(),
+      AreResponsesImages: this.questionModificatorComponent.get('choicePicture')?.getRawValue().toString() === "true",
       responses: [this.questionModificatorComponent.get('reponse1')?.getRawValue(), this.questionModificatorComponent.get('reponse2')?.getRawValue(), this.questionModificatorComponent.get('reponse3')?.getRawValue(), this.questionModificatorComponent.get('reponse4')?.getRawValue()],
-      answer: this.questionModificatorComponent.get('reponse1')?.getRawValue(),
-      tags: this.questionModificatorComponent.get('categorie')?.getRawValue(),
+      answer:  this.getTheQuestionOfAnswerId(parseInt(this.questionModificatorComponent.get('correctAnswer')?.getRawValue()), this.questionModificatorComponent.get('choicePicture')?.getRawValue().toString() === "true"),
+      tags: this.questionModificatorComponent.get('categorie')?.getRawValue().split(",")
     };
     if (this.imageBase64Question != "") {
       newQuestion.questionImage = this.imageBase64Question;
     }
     if (this.imageBase64Response1 != "") {
       newQuestion.responses[0] = this.imageBase64Response1;
-      newQuestion.answer = this.imageBase64Response1;
     }
     if (this.imageBase64Response2 != "") {
       newQuestion.responses[1] = this.imageBase64Response2;
@@ -116,53 +167,11 @@ export class SelectQuestionEditComponent {
     if (this.imageBase64Response4 != "") {
       newQuestion.responses[3] = this.imageBase64Response4;
     }
-    this.questionService.modifyQuestion(newQuestion);
-    setTimeout(() => {
-      this.router.navigate(['/admin/selectQuestion']);
-    }, 2000);
-  }
-
-  resizedImage(reader: FileReader, typeOfImage: string): void {
-    const img = new Image();
-    img.src = reader.result as string;
-    img.onload = () => {
-      const canvas = document.createElement('canvas');
-      const maxWidth = 200; // taille maximale souhaitée
-      const maxHeight = 200; // taille maximale souhaitée
-      let width = img.width;
-      let height = img.height;
-
-      if (width > height) {
-        if (width > maxWidth) {
-          height *= maxWidth / width;
-          width = maxWidth;
-        }
-      } else {
-        if (height > maxHeight) {
-          width *= maxHeight / height;
-          height = maxHeight;
-        }
-      }
-
-      canvas.width = width;
-      canvas.height = height;
-
-      const ctx = canvas.getContext('2d');
-      ctx?.drawImage(img, 0, 0, width, height);
-
-      // Récupérer l'image redimensionnée au format base64
-      const resizedImageData = canvas.toDataURL('image/jpeg');
-      if (typeOfImage === "imageUrlQuestion") {
-        this.imageBase64Question = resizedImageData;
-      } else if (typeOfImage === "imageUrlResponse1") {
-        this.imageBase64Response1 = resizedImageData;
-      } else if (typeOfImage === "imageUrlResponse2") {
-        this.imageBase64Response2 = resizedImageData;
-      } else if (typeOfImage === "imageUrlResponse3") {
-        this.imageBase64Response3 = resizedImageData;
-      } else if (typeOfImage === "imageUrlResponse4") {
-        this.imageBase64Response4 = resizedImageData;
-      }
+    console.log(newQuestion);
+    if (newQuestion.id == -1) {
+      this.questionService.createNewQuestion(newQuestion);
+    } else {
+      this.questionService.modifyQuestion(newQuestion);
     }
   }
 
@@ -175,19 +184,19 @@ export class SelectQuestionEditComponent {
       reader.onload = () => {
         if (imageUrl === "imageUrlQuestion") {
           this.imageUrlQuestion = reader.result;
-          this.imageBase64Question = this.resizedImage(reader, "imageUrlQuestion");
+          this.imageBase64Question = reader.result;
         } else if (imageUrl === "imageUrlResponse1") {
           this.imageUrlResponse1 = reader.result;
-          this.imageBase64Response1 = this.resizedImage(reader, "imageUrlResponse1");
+          this.imageBase64Response1 = reader.result;
         } else if (imageUrl === "imageUrlResponse2") {
           this.imageUrlResponse2 = reader.result;
-          this.imageBase64Response2 = this.resizedImage(reader, "imageUrlResponse2");
+          this.imageBase64Response2 = reader.result;
         } else if (imageUrl === "imageUrlResponse3") {
           this.imageUrlResponse3 = reader.result;
-          this.imageBase64Response3 = this.resizedImage(reader, "imageUrlResponse3");
+          this.imageBase64Response3 = reader.result;
         } else if (imageUrl === "imageUrlResponse4") {
           this.imageUrlResponse4 = reader.result;
-          this.imageBase64Response4 = this.resizedImage(reader, "imageUrlResponse4");
+          this.imageBase64Response4 = reader.result;
         }
       }
     }
