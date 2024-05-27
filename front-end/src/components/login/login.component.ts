@@ -3,7 +3,6 @@ import {FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators} fr
 import {adminList} from "../../mocks/admin";
 import {Router} from "@angular/router";
 import {UserService} from "../../services/user-service.service";
-import {users} from "../../mocks/users";
 
 @Component({
   selector: 'app-login',

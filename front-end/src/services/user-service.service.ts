@@ -6,7 +6,6 @@ import { BehaviorSubject, Subject, of } from "rxjs";
 import { Router } from "@angular/router";
 import { HttpClient } from '@angular/common/http';
 import { serverUrl, httpOptionsBase } from '../configs/server.config';
-import { users } from 'src/mocks/users';
 
 @Injectable({
   providedIn: 'root'
