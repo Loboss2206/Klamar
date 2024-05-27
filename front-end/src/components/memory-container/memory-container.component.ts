@@ -7,7 +7,7 @@ import { QuizService } from "../../services/quiz-service.service";
 import { UserService } from "../../services/user-service.service";
 import { HostListener } from "@angular/core";
 import { Time } from 'tone';
-import {StatsService} from "../../services/stats.service";
+import { StatsService } from "../../services/stats.service";
 import IMemoryStat from "../../interfaces/IMemoryStat";
 
 @Component({
@@ -38,10 +38,10 @@ export class MemoryContainerComponent {
   timeForSeeingAllCards: number = 5;
   lastCardClickedTime: number = 0;
   lastUserActionTime: number = Date.now();
-  numberOfTips : number = 0;
+  numberOfTips: number = 0;
   startTime: number = 0;
-  width : number = 0;
-  height : number = 0;
+  width: number = 0;
+  height: number = 0;
 
   @HostListener('document:click', ['$event'])
   @HostListener('document:keypress', ['$event'])
@@ -96,7 +96,7 @@ export class MemoryContainerComponent {
     }, 1);
   }
 
-  constructor(private router: Router, private quizService: QuizService, private userService: UserService, private statsService : StatsService) {
+  constructor(private router: Router, private quizService: QuizService, private userService: UserService, private statsService: StatsService) {
   }
 
   updateTextHints(newTextHints: string): void {
@@ -238,18 +238,16 @@ export class MemoryContainerComponent {
 
   saveMemoryStats() {
     const memoryStat: IMemoryStat = {
-      id:1,
+      id: 1,
       erreurMemory: this.numberOfError,
       indicesMemory: this.numberOfTips,
       tempsMemory: this.getTimeSpentOnMemory(),
-      largeurMemory: this.width,
-      hauteurMemory: this.height
+      pictures: this.pics,
     };
     console.log(memoryStat.erreurMemory)
     console.log(memoryStat.indicesMemory)
     console.log(memoryStat.tempsMemory)
-    console.log(memoryStat.largeurMemory)
-    console.log(memoryStat.hauteurMemory)
+    console.log(memoryStat.pictures)
     this.statsService.addMemoryStat(memoryStat);
   }
 
@@ -258,8 +256,8 @@ export class MemoryContainerComponent {
     return Number(((currentTime - this.startTime) / 1000).toFixed(1));
   }
 
-  private getDimension(): void{
+  private getDimension(): void {
     this.width = this.pics.length >= 4 ? 4 : this.pics.length
-    this.height = Math.floor((this.pics.length - 1)/ 4)+1
+    this.height = Math.floor((this.pics.length - 1) / 4) + 1
   }
 }
