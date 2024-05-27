@@ -33,6 +33,10 @@ export class UserService {
     return this.users;
   }
 
+  getCurrentId(): number {
+    return this.currentUser;
+  }
+
   getCurrentUser(): IUser | null {
     if (this.currentUser === -1) {
       return null;

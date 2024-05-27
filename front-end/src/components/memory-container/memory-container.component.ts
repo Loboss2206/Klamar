@@ -7,6 +7,8 @@ import { QuizService } from "../../services/quiz-service.service";
 import { UserService } from "../../services/user-service.service";
 import { HostListener } from "@angular/core";
 import { Time } from 'tone';
+import {StatsService} from "../../services/stats.service";
+import IMemoryStat from "../../interfaces/IMemoryStat";
 
 @Component({
   standalone: true,
@@ -36,6 +38,10 @@ export class MemoryContainerComponent {
   timeForSeeingAllCards: number = 5;
   lastCardClickedTime: number = 0;
   lastUserActionTime: number = Date.now();
+  numberOfTips : number = 0;
+  startTime: number = 0;
+  width : number = 0;
+  height : number = 0;
 
   @HostListener('document:click', ['$event'])
   @HostListener('document:keypress', ['$event'])
@@ -51,6 +57,8 @@ export class MemoryContainerComponent {
     this.pics = this.pics.concat(this.pics);
     this.shuffleArray(this.pics);
     this.initialFlip = true;
+    this.startTime = Date.now();
+    this.getDimension();
   }
 
   ngAfterViewChecked(): void {
@@ -88,7 +96,7 @@ export class MemoryContainerComponent {
     }, 1);
   }
 
-  constructor(private router: Router, private quizService: QuizService, private userService: UserService) {
+  constructor(private router: Router, private quizService: QuizService, private userService: UserService, private statsService : StatsService) {
   }
 
   updateTextHints(newTextHints: string): void {
@@ -118,11 +126,13 @@ export class MemoryContainerComponent {
             item.setHidden(true);
 
             if (this.isFinished()) {
+              this.saveMemoryStats();
               this.quizService.endMemoryGame();
             }
           }, (this.timeBeforeSwitching * 1000));
         });
       } else {
+        this.numberOfError++;
         this.getNotFlippedItems().forEach((item) => {
           item.isInactive = true;
         });
@@ -171,6 +181,7 @@ export class MemoryContainerComponent {
 
 
   giveHints() {
+    this.numberOfTips++;
     let MemoryItemComponent = this.getFlippedItemsNotInactive()[0];
     this.memoryItems.forEach((item) => {
       if (item.picURL === MemoryItemComponent.picURL && MemoryItemComponent !== item) {
@@ -223,5 +234,32 @@ export class MemoryContainerComponent {
       const j = Math.floor(Math.random() * (i + 1));
       [array[i], array[j]] = [array[j], array[i]];
     }
+  }
+
+  saveMemoryStats() {
+    const memoryStat: IMemoryStat = {
+      id:1,
+      erreurMemory: this.numberOfError,
+      indicesMemory: this.numberOfTips,
+      tempsMemory: this.getTimeSpentOnMemory(),
+      largeurMemory: this.width,
+      hauteurMemory: this.height
+    };
+    console.log(memoryStat.erreurMemory)
+    console.log(memoryStat.indicesMemory)
+    console.log(memoryStat.tempsMemory)
+    console.log(memoryStat.largeurMemory)
+    console.log(memoryStat.hauteurMemory)
+    this.statsService.addMemoryStat(memoryStat);
+  }
+
+  private getTimeSpentOnMemory(): number {
+    const currentTime = Date.now();
+    return Number(((currentTime - this.startTime) / 1000).toFixed(1));
+  }
+
+  private getDimension(): void{
+    this.width = this.pics.length >= 4 ? 4 : this.pics.length
+    this.height = Math.floor((this.pics.length - 1)/ 4)+1
   }
 }

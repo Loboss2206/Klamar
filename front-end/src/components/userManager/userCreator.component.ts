@@ -36,7 +36,6 @@ export class UserCreatorComponent {
 
 
   constructor(private router: Router, protected formBuilder: FormBuilder, private userService: UserService, private route: ActivatedRoute) {
-    let userId;
     if ((Number(this.route.snapshot.paramMap.get('id')))) {
       this.user = userService.getTheUser(Number(this.route.snapshot.paramMap.get('id'))) as IUser;
       this.imageUrl = this.user.avatar;

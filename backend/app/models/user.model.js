@@ -10,7 +10,6 @@ module.exports = new BaseModel('User', {
     hobbies: Joi.string().required(),
     config: UserConfig.schema,
     charts: Joi.array().items(Joi.string()).required(),
-    statsId: Joi.array().items(Joi.number()).required(),
-    avatar: Joi.string().allow('').required(),
-    colorBlind: Joi.string().required()
+    avatar: Joi.string().required(),
+    colorBlind: Joi.string().required(),
 })

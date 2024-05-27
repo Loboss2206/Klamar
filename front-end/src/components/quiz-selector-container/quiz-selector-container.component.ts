@@ -4,6 +4,7 @@ import {QuizSelectorItemComponent} from '../quiz-selector-item/quiz-selector-ite
 import IQuiz from '../../interfaces/IQuiz';
 import {QuizService} from '../../services/quiz-service.service';
 import {Router} from "@angular/router";
+import {StatsService} from "../../services/stats.service";
 
 @Component({
   standalone: true,
@@ -18,7 +19,7 @@ import {Router} from "@angular/router";
 export class QuizSelectorContainerComponent implements OnInit {
   @Input() quizzes: IQuiz[] = [];
 
-  constructor(private quizService: QuizService, private router: Router) {
+  constructor(private quizService: QuizService, private router: Router, private statService : StatsService) {
   }
 
   ngOnInit(): void {
@@ -28,5 +29,6 @@ export class QuizSelectorContainerComponent implements OnInit {
     this.quizService.restartQuiz();
     this.quizService.setQuiz(quizId);
     this.router.navigate(['/quiz']);
+    this.statService.createStat();
   }
 }

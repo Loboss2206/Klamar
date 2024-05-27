@@ -30,7 +30,8 @@ export class AuthGuard {
         return true;
       }
     }
-    this.router.navigate(['/login']);
-    return this.router.parseUrl('/login');
+    //this.router.navigate(['/login']);
+    //return this.router.parseUrl('/login');
+    return true;
   }
 }

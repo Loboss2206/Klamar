@@ -1,5 +1,5 @@
-import {Component, Input, SimpleChanges} from '@angular/core';
-import {NgClass, NgIf, NgOptimizedImage} from "@angular/common";
+import { Component, Input, SimpleChanges } from '@angular/core';
+import { NgClass, NgIf, NgOptimizedImage } from "@angular/common";
 
 @Component({
   selector: 'app-quizButton',
