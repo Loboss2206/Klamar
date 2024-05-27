@@ -3,15 +3,15 @@ import {titlePageComponent} from "../titlePage/titlePage.component";
 import {sortComponent} from "../sort/sort.component";
 import {ZoomSliderComponent} from "../zoomSlider/zoomSlider.component";
 import {GraphicComponent} from "../graphic/graphic.component";
-import {GraphicService} from "../../services/graphic.service";
 import {ActivatedRoute, RouterLink} from "@angular/router";
 import {UserService} from "../../services/user-service.service";
-import {NgForOf} from "@angular/common";
+import {NgForOf, NgIf} from "@angular/common";
 import IGraphic from "../../interfaces/IGraphic";
 import IUser from "../../interfaces/IUser";
 import IAdmin from "../../interfaces/IAdmin";
 import {GenericButtonComponent} from "../genericButton/genericButton.component";
 import {Subscription} from "rxjs";
+import {StatsService} from "../../services/stats.service";
 
 
 @Component({
@@ -25,43 +25,49 @@ import {Subscription} from "rxjs";
     NgForOf,
     GenericButtonComponent,
     RouterLink,
+    NgIf,
 
   ],
   templateUrl: './graphic-page.component.html',
   styleUrl: './graphic-page.component.scss'
 })
 export class GraphicPageComponent implements OnInit, OnDestroy {
-  id : number | undefined
-  chartIDs : string[] | undefined
-  charts : IGraphic[] = []
+  id: number | undefined
+  chartIDs: string[] | undefined
+  charts: IGraphic[] = []
   user ?: IUser | IAdmin
-  private subscriptions : Subscription[] = [];
-  constructor(private _graphicService : GraphicService , private _userService : UserService , private route : ActivatedRoute) {
+  statGraphic ?: (string[] | number[])[] = []
+  private subscriptions: Subscription[] = [];
+  date: string[] = []
+  sucessQuestion: number[] = []
+  dateMemory: string[] = []
+  sucessMemory: number[] = []
+  dateSimon: string[] = []
+  sucessSimon: number[] = []
+
+  constructor(private _userService: UserService, private route: ActivatedRoute, private _statsService: StatsService) {
   }
 
   ngOnInit(): void {
     this.id = Number(this.route.snapshot.paramMap.get('id'))
     this.user = this._userService.getTheUser(this.id)
-    this._userService.getCharts(this.id).subscribe(charts =>{
-      this.chartIDs=charts
-    })
-    if (this.chartIDs) {
-      for (let chartId of this.chartIDs) {
-        const sub = this._graphicService.getGraphic(chartId).subscribe(chart => {
-          if (chart) {
-            this.charts.push(chart)
-          }
-        });
-        this.subscriptions.push(sub);
-      }
-    }
-
+    this.statGraphic = this._statsService.getGraphicStat(this.user.id)
+    console.log(this.statGraphic)
+    this.date = this.statGraphic[0] as string[]
+    this.sucessQuestion = this.statGraphic[1] as number[]
+    this.dateMemory = this.statGraphic[2] as string[]
+    this.sucessMemory = this.statGraphic[3] as number[]
+    this.dateSimon = this.statGraphic[4] as string[]
+    this.sucessSimon = this.statGraphic[5] as number[]
   }
 
   ngOnDestroy(): void {
     this.subscriptions.forEach(sub => sub.unsubscribe());
     this.chartIDs = undefined
     this.charts = []
+    this._statsService.dumpStat()
+    console.log(this.date)
+    console.log("cc")
+    console.log(this.statGraphic)
   }
-
 }

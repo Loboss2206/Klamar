@@ -8,8 +8,8 @@ export default interface IStats {
   questions: IQuestionStat[];
   memoryStats?: IMemoryStat;
   simonStats?: ISimonStat;
-  sucessSimon: number;
-  sucessMemory: number;
-  sucessQuiz: number;
+  sucessSimon: number | undefined;
+  sucessMemory: number | undefined;
+  sucessQuiz: number | undefined;
   date: string;
 }

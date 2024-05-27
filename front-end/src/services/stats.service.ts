@@ -15,6 +15,13 @@ export class StatsService {
   private apiURL = serverUrl + '/stats/'
 
   private currentInGameStat?: IStats
+
+  private dates: string[] = [];
+  private sucessMemory: number[] = [];
+  private sucessQuestion: number[] = [];
+  private sucessSimon: number[]= [];
+  private datesMemory : string[] = [];
+  private datesSimon : string[] = [];
   constructor(private http: HttpClient, private userService: UserService) {
   }
   private currentStatId: number | undefined;
@@ -46,7 +53,7 @@ export class StatsService {
       questions: [],
       memoryStats: undefined,
       simonStats: undefined,
-      sucessSimon: 0,
+      sucessSimon: undefined,
       sucessMemory: 0,
       sucessQuiz: 0,
       date: new Date().toLocaleString('fr-FR', {
@@ -98,6 +105,39 @@ export class StatsService {
       console.error('Current stats not initialized.');
     }
   }
+
+  dumpStat(){
+    this.dates = []
+    this.datesMemory = []
+    this.datesSimon = []
+    this.sucessSimon = []
+    this.sucessQuestion = []
+    this.sucessMemory = []
+  }
+
+  getGraphicStat(idUser: number) {
+    this.getStats().subscribe(stats => {
+      const filteredStats = stats.filter(stat => stat.userId === idUser);
+
+      for (const stat of filteredStats) {
+        this.dates.push(stat.date);
+        this.sucessQuestion.push(Number(stat.sucessQuiz));
+        if (stat.sucessMemory != undefined){
+          this.sucessMemory.push(Number(stat.sucessMemory))
+          this.datesMemory.push(String(stat.date))
+        }
+        if (stat.sucessSimon != undefined){
+          this.sucessSimon.push(Number(stat.sucessSimon))
+          this.datesSimon.push(String(stat.date))
+        }
+      }
+    });
+    return [this.dates,this.sucessQuestion,this.datesMemory,this.sucessMemory,this.datesSimon,this.sucessSimon]
+  }
+
+
+
+
 
   sendStat(): void {
     this.addSummaryStats();

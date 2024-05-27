@@ -1,7 +1,5 @@
-import {Component, OnInit, Input, input, OnDestroy} from '@angular/core';
+import { Component, OnInit, OnDestroy, AfterViewInit, Input } from '@angular/core';
 import Chart from 'chart.js/auto';
-import {GraphicService} from "../../services/graphic.service";
-
 
 @Component({
   selector: 'app-graphic',
@@ -10,49 +8,56 @@ import {GraphicService} from "../../services/graphic.service";
   standalone: true,
   imports: [],
 })
-export class GraphicComponent implements OnInit, OnDestroy {
+export class GraphicComponent implements OnInit, OnDestroy, AfterViewInit {
 
   @Input() chartId!: string;
   @Input() data: number[] = [];
   @Input() titre!: string;
   @Input() date: string[] = [];
   public percentageSuccess: number = 0;
-
-  ngOnInit(): void {
-    setTimeout(()=>{
-      this.createChart();
-      this.calculateSuccessPercentage();
-    },1)
-  }
-
   public chart: any;
 
+  ngOnInit(): void {
+    this.calculateSuccessPercentage();
+  }
+
+  ngAfterViewInit(): void {
+    setTimeout(() => {
+      this.unload();
+      this.createChart();
+    }, 500);
+  }
+
   createChart() {
-
-    this.chart = new Chart(this.chartId, {
-      type: 'line', //this denotes tha type of chart
-
-      data: {// values on X-Axis
-        labels: this.date,
-        datasets: [
-          {
-            label: "pourcentage de réussite",
-            data: this.data,
-            backgroundColor: 'blue'
-          },
-        ]
-      },
-      options: {
-        aspectRatio: 1.5,
-        scales: {
-          y: {
-            min: 0, // Valeur minimale de l'axe y
-            max: 100 // Valeur maximale de l'axe y
+    const canvas = document.getElementById(this.chartId) as HTMLCanvasElement;
+    if (canvas) {
+      this.chart = new Chart(canvas, {
+        type: 'line', // this denotes the type of chart
+        data: {
+          labels: this.date,
+          datasets: [
+            {
+              label: "pourcentage de réussite",
+              data: this.data,
+              backgroundColor: 'blue'
+            },
+          ]
+        },
+        options: {
+          aspectRatio: 1.5,
+          scales: {
+            y: {
+              min: 0, // Valeur minimale de l'axe y
+              max: 100 // Valeur maximale de l'axe y
+            }
           }
         }
-      }
-    });
+      });
+    } else {
+      console.error(`Element with id ${this.chartId} not found`);
+    }
   }
+
   calculateSuccessPercentage() {
     const sum = this.data.reduce((acc, curr) => acc + curr, 0);
     const average = sum / this.data.length;
@@ -60,11 +65,12 @@ export class GraphicComponent implements OnInit, OnDestroy {
   }
 
   unload() {
-    this.chart.destroy();
+    if (this.chart) {
+      this.chart.destroy();
+    }
   }
 
   ngOnDestroy() {
     this.unload();
   }
-
 }
