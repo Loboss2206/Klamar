@@ -1,4 +1,6 @@
 <div class="questionStat">
+  <app-question-display-stat [questionId]="questionId"></app-question-display-stat>
   <h1>Points remportées : {{point}}/{{maxPoint}}</h1>
-  <app-stat-question [indices]="indices" [erreur]="erreur" [temps]="temps"></app-stat-question>
+  <app-stat-question [questionId]="questionId" [indices]="indices" [erreur]="erreur"
+    [temps]="temps"></app-stat-question>
 </div>

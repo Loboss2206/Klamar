@@ -1,5 +1,5 @@
-import {Component, Input, SimpleChanges} from '@angular/core';
-import {NgClass, NgIf, NgOptimizedImage} from "@angular/common";
+import { Component, Input, SimpleChanges } from '@angular/core';
+import { NgClass, NgIf, NgOptimizedImage } from "@angular/common";
 
 @Component({
   selector: 'app-quizButton',
@@ -13,6 +13,7 @@ import {NgClass, NgIf, NgOptimizedImage} from "@angular/common";
   styleUrl: './button.component.scss'
 })
 export class ButtonComponent {
+  @Input() isStatsButton: boolean = false;
   @Input() color?: { correct: boolean; wrong: boolean };
   @Input() img?: string = '';
 

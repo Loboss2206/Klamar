@@ -1,13 +1,13 @@
-import {Injectable} from '@angular/core';
+import { Injectable } from '@angular/core';
 import IQuestion from "../interfaces/IQuestion";
 import IQuiz from "../interfaces/IQuiz";
-import {questionsList} from "../mocks/questions";
-import {BehaviorSubject, Observable, of} from "rxjs";
-import {Router} from "@angular/router";
+import { questionsList } from "../mocks/questions";
+import { BehaviorSubject, Observable, of } from "rxjs";
+import { Router } from "@angular/router";
 import ISimonConfig from "../interfaces/ISimonConfig";
-import {ImageBank} from "../mocks/ImageBank";
-import {HttpClient} from "@angular/common/http";
-import {serverUrl} from "../configs/server.config";
+import { ImageBank } from "../mocks/ImageBank";
+import { HttpClient } from "@angular/common/http";
+import { serverUrl } from "../configs/server.config";
 
 @Injectable({
   providedIn: 'root'
@@ -35,13 +35,13 @@ export class QuizService {
   getQuestionsPickListData(): Observable<{ allQuestions: IQuestion[], existingQuizQuestions: IQuestion[] }> {
     const allQuestions = this.getAllQuestions();
     const existingQuizQuestions = this.getQuestionsForQuiz(this.currentQuiz);
-    return of({allQuestions, existingQuizQuestions});
+    return of({ allQuestions, existingQuizQuestions });
   }
 
   getImagesPickListData(): Observable<{ allImages: string[], imageAlreadyOnTheMemory: string[] }> {
     const allImages = ImageBank;
     const imageAlreadyOnTheMemory = this.getPicsMemory();
-    return of({allImages, imageAlreadyOnTheMemory});
+    return of({ allImages, imageAlreadyOnTheMemory });
   }
 
   constructor(private router: Router, private http: HttpClient) {
@@ -121,6 +121,10 @@ export class QuizService {
 
   getQuestionsLength() {
     return this.getQuestions().length;
+  }
+
+  getQuestion(id: number): IQuestion {
+    return this.getAllQuestions().find((question) => parseInt(question.id) === id) || {} as IQuestion;
   }
 
   restartQuiz() {
