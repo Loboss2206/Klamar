@@ -4,6 +4,7 @@ import {QuizService} from "../../services/quiz-service.service";
 import {Router} from "@angular/router";
 import * as Tone from "tone";
 import * as victoryMidi from "../../assets/sounds/victory.json";
+import {StatsService} from "../../services/stats.service";
 
 @Component({
   selector: 'app-felicidad',
@@ -16,7 +17,7 @@ import * as victoryMidi from "../../assets/sounds/victory.json";
 })
 export class FelicidadComponent implements OnInit {
 
-  constructor(protected quizService: QuizService, private router: Router) {
+  constructor(protected quizService: QuizService, private router: Router, private statsService: StatsService) {
   }
 
   ngOnInit(): void {
@@ -24,6 +25,7 @@ export class FelicidadComponent implements OnInit {
       Tone.start();
         this.playMidi();
     });
+    this.statsService.sendStat();
   }
 
   playMidi() {
@@ -64,6 +66,7 @@ export class FelicidadComponent implements OnInit {
   restartQuiz() {
     this.quizService.restartQuiz();
     this.router.navigate(['/quiz']);
+    this.statsService.createStat()
   }
 
   ngOnDestroy() {

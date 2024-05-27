@@ -1,22 +1,25 @@
 .memoryItem {
-    width: 10vw;
-    height: 10vw;
+    width: calc(10vw + 15px);
+    height: calc(10vw + 15px);
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: var(--memory-item-bg-color);
     margin: 0.6vw auto;
 }
 
 .front-face {
-    width: 9vw;
-    height: 9vw;
+    width: calc(9vw + 15px);
+    height: calc(9vw + 15px);
+    padding: 1vw;
+    border-radius: 15px;
+    background-color: var(--memory-item-bg-color);
 }
 
 .back-face {
-    width: 10vw;
-    height: 10vw;
+    width: calc(10vw + 15px);
+    height: calc(10vw + 15px);
     display: flex;
+    border-radius: 15px;
 }
 
 .back-face img {
@@ -33,6 +36,7 @@
 
 .highlighted {
     border: var(--memory-item-highlighted-bg-color);
+    border-radius: 15px;
     margin: 0;
     padding: 0;
 }
