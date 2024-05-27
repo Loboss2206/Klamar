@@ -1,3 +1,9 @@
 <h1>Nombre d’erreurs : {{erreur}}</h1>
-<h1>Nombre d’indices utilisés : {{indices}}</h1>
+<div *ngIf="question && question.tips">
+    <h1>Indices utilisés : <span *ngIf="indices === 0">0</span></h1>
+
+    <h2 *ngFor=" let index of (question.tips ? question.tips.slice(0, indices) : []); let i=index">
+        {{i + 1}}. {{index}}
+    </h2>
+</div>
 <h1>Temps passé : {{temps}} secondes</h1>

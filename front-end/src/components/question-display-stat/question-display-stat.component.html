@@ -1,0 +1,13 @@
+<div class="quizContainer">
+  <p class="question">{{ questionText }}</p>
+  <div *ngIf="questionImage" class="question-image-container">
+    <img src="{{questionImage}}" alt="" />
+  </div>
+
+  <div class="griddy">
+    <app-quizButton [isStatsButton]="true" [class.expandables]="correctAnswer === answer" *ngFor="let answer of answers"
+      [color]="{correct: answer === correctAnswer ,wrong: answer !== correctAnswer && wrongAnswers.includes(answer)}"
+      [img]="areResponsesImages ? answer : ''">{{ answer }}
+    </app-quizButton>
+  </div>
+</div>

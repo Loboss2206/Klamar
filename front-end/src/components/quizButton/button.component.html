@@ -1,9 +1,9 @@
 <div class="buttonBackground"
-  [ngClass]="{'btnGreen': color?.correct, 'btnGray': color?.wrong, 'btnGrayImage': color?.wrong && img !== '', 'liteButton': lite}">
-  <span *ngIf="img == ''" class="buttonTxt">
+  [ngClass]="{'btnGreen': color?.correct, 'btnGray': color?.wrong, 'btnGrayImage': color?.wrong && img !== '', 'liteButton': lite, 'stat-button': isStatsButton}">
+  <span *ngIf="img === ''" class="buttonTxt">
     <ng-content></ng-content>
   </span>
-  <span *ngIf="img != ''">
+  <span *ngIf="img !== ''">
     <img src="{{img}}" class="buttonImg" alt="img" fill="preserve" />
     <div class="overlay" [ngClass]="{'btnGray': color?.wrong}" *ngIf="color?.correct || color?.wrong"></div>
   </span>

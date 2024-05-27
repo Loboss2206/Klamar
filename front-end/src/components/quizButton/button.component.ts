@@ -13,6 +13,7 @@ import {NgClass, NgIf, NgOptimizedImage} from "@angular/common";
   styleUrl: './button.component.scss'
 })
 export class ButtonComponent implements OnInit {
+  @Input() isStatsButton: boolean = false;
   @Input() color?: { correct: boolean; wrong: boolean };
   @Input() img?: string = '';
 
