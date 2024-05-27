@@ -65,7 +65,7 @@ export class QuestionComponent implements OnInit, AfterViewInit {
       this.areResponsesImages = question.AreResponsesImages;
       this.correctAnswer = null;
       this.wrongAnswers = [];
-      this.idQuestion = question.id;
+      this.idQuestion = parseInt(question.id.toString()).toString()
       this.setBlockUI(false);
       if (this.user && this.user.config.quiz.showHintAfterStart) {
         this.tipsComponent.openATip();
