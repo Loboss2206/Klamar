@@ -124,6 +124,10 @@ export class QuizService {
     return this.getQuestions().length;
   }
 
+  getQuestion(id: number): IQuestion {
+    return this.getAllQuestions().find((question) => parseInt(question.id) === id) || {} as IQuestion;
+  }
+
   restartQuiz() {
     this.setCurrentQuestionIndex(0);
     this.isInQuestionMode = true;

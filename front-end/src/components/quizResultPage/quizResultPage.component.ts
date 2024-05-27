@@ -36,24 +36,7 @@ export class quizResultPageComponent implements OnInit {
 
   ngOnInit(): void {
     this.id = Number(this.route.snapshot.paramMap.get('id'))
-    /*
-    this.user = this._userService.getTheUser(this.id)
-    console.log(this.user.firstname)
-    this._userService.getStats(this.id).subscribe(stats => {
-      this.statsId = stats
-      console.log(stats)
-    })
-    if (this.statsId) {
-      for (let statId of this.statsId) {
-        this._statsService.getStat(statId).subscribe(stat => {
-          console.log(stat)
-          if (stat) {
-            this.stats.push(stat)
-          }
-        })
-      }
-    }
-*/
+
     this._statsService.getStats().subscribe(stats => {
       if (stats) {
         console.log(stats)
