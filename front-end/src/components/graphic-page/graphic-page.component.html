@@ -6,13 +6,24 @@
   </h1>
   <div class="container">
     <div class="differentGame">
-      <div class=1a3 *ngFor="let chart of this.charts.slice(0,3)">
-        <app-graphic [chartId]="chart.chartId" [titre]="chart.title" [date]="chart.date"
-          [data]="chart.data"></app-graphic>
+      <div *ngIf="this.statGraphic && this.statGraphic[0]">
+        <app-graphic [chartId]="'1'" [titre]="'Statistique Questions'" [date]="this.date"
+                   [data]="this.sucessQuestion"></app-graphic>
+      </div>
+      <div *ngIf="this.statGraphic && this.statGraphic[2]">
+        <app-graphic [chartId]="'2'" [titre]="'Statistique Memory'" [date]="this.dateMemory"
+                     [data]="this.sucessMemory"></app-graphic>
+      </div>
+      <div *ngIf="this.statGraphic && this.statGraphic[4]">
+      <app-graphic [chartId]="'3'" [titre]="'Statistique Simon'" [date]="this.dateSimon"
+                 [data]="this.sucessSimon"></app-graphic>
       </div>
     </div>
 
-    <div class="type1">
+
+
+
+    <!--<div class="type1">
       <div class=4a5 *ngFor="let chart of this.charts.slice(3,5)">
         <app-graphic [chartId]="chart.chartId" [titre]="chart.title" [date]="chart.date"
           [data]="chart.data"></app-graphic>
@@ -24,6 +35,6 @@
         <app-graphic [chartId]="chart.chartId" [titre]="chart.title" [date]="chart.date"
           [data]="chart.data"></app-graphic>
       </div>
-    </div>
+    </div>-->
   </div>
 </div>
