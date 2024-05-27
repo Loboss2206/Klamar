@@ -1,12 +1,14 @@
 import { Injectable } from '@angular/core';
 import IQuestion from "../interfaces/IQuestion";
 import IQuiz from "../interfaces/IQuiz";
-import { quizzes } from "../mocks/quizzes";
 import { questionsList } from "../mocks/questions";
 import { BehaviorSubject, Observable, of } from "rxjs";
 import { Router } from "@angular/router";
 import ISimonConfig from "../interfaces/ISimonConfig";
 import { ImageBank } from "../mocks/ImageBank";
+import { HttpClient } from "@angular/common/http";
+import { serverUrl } from "../configs/server.config";
+import { QuestionService } from './question.service';
 
 @Injectable({
   providedIn: 'root'
@@ -23,7 +25,7 @@ export class QuizService {
   private waitingTimeBeforeNextQuestion: number = 1000;
   private currentQuiz: number = JSON.parse(sessionStorage.getItem('currentQuiz') || '0');
 
-  private quizzes: IQuiz[] = quizzes;
+  private quizzes: BehaviorSubject<IQuiz[]> = new BehaviorSubject<IQuiz[]>([] as IQuiz[])
   private questions: IQuestion[] = questionsList;
   private SimonGameMode: boolean = false;
   private MemoryGameMode: boolean = false;
@@ -32,7 +34,7 @@ export class QuizService {
   private currentQuizSubject: BehaviorSubject<IQuiz> = new BehaviorSubject<IQuiz>({} as IQuiz);
 
   getQuestionsPickListData(): Observable<{ allQuestions: IQuestion[], existingQuizQuestions: IQuestion[] }> {
-    const allQuestions = this.getAllQuestions();
+    const allQuestions = this.questionService.getQuestions();
     const existingQuizQuestions = this.getQuestionsForQuiz(this.currentQuiz);
     return of({ allQuestions, existingQuizQuestions });
   }
@@ -43,7 +45,12 @@ export class QuizService {
     return of({ allImages, imageAlreadyOnTheMemory });
   }
 
-  constructor(private router: Router) {
+  constructor(private router: Router, private http: HttpClient, private questionService: QuestionService) {
+    this.refreshQuizzes();
+  }
+
+  getQuizzesObservable(): Observable<IQuiz[]> {
+    return this.quizzes.asObservable();
   }
 
   getPicsMemory(): string[] {
@@ -51,16 +58,16 @@ export class QuizService {
   }
 
   getTheQuiz(id: number) {
-    let quiz: IQuiz | undefined = this.quizzes.find((quiz) => quiz.quizId === id);
+    let quiz: IQuiz | undefined = this.quizzes.value.find((quiz) => quiz.id === id);
     if (!quiz) {
       console.error('Quiz not found');
       return {
-        title: 'Nouveau Quiz',
-        quizDescription: 'Insérez une description',
+        title: '',
+        quizDescription: '',
         questions: [],
         specials: [],
         imageUrl: 'https://placehold.co/400',
-        quizId: 0
+        id: 0
       } as IQuiz;
     }
     return quiz;
@@ -80,7 +87,7 @@ export class QuizService {
   }
 
   getQuestions(): IQuestion[] {
-    return this.questions.filter((question) => this.getTheQuiz(this.currentQuiz).questions.includes(parseInt(question.id)));
+    return this.questionService.getQuestions().filter((question) => this.getTheQuiz(this.currentQuiz).questions.includes(question.id));
   }
 
   getAllQuestions(): IQuestion[] {
@@ -89,7 +96,7 @@ export class QuizService {
 
   get getTips(): string[][] {
     return this.getTheQuiz(this.currentQuiz).questions.map((questionId) => {
-      let question: IQuestion | undefined = this.questions.find((question) => parseInt(question.id) === questionId);
+      let question: IQuestion | undefined = this.questions.find((question) => question.id === questionId);
       if (!question) {
         throw new Error('Question not found');
       }
@@ -117,6 +124,10 @@ export class QuizService {
     return this.getQuestions().length;
   }
 
+  getQuestion(id: number): IQuestion {
+    return this.getAllQuestions().find((question) => parseInt(question.id) === id) || {} as IQuestion;
+  }
+
   restartQuiz() {
     this.setCurrentQuestionIndex(0);
     this.isInQuestionMode = true;
@@ -139,8 +150,10 @@ export class QuizService {
     return this.getQuestionIndex() === this.getQuestionsLength() - 1;
   }
 
-  getQuizzes(): IQuiz[] {
-    return this.quizzes;
+  refreshQuizzes() {
+    this.http.get<IQuiz[]>(serverUrl + "/quizzes").subscribe((quizzes) => {
+      this.quizzes.next(quizzes);
+    });
   }
 
   nextQuestion() {
@@ -199,35 +212,35 @@ export class QuizService {
   }
 
   searchQuizzes(searchTerm: string) {
-    return this.quizzes.filter((quiz) => quiz.title.toLowerCase().includes(searchTerm.toLowerCase()));
+    this.quizzes.next(this.quizzes.value.filter((quiz) => quiz.title.toLowerCase().includes(searchTerm.toLowerCase())));
   }
 
   deleteQuiz(quizId: number) {
-    // TODO: BACKEND LOGIC TO DELETE QUIZ
-    console.log('Quiz "' + this.getTheQuiz(quizId).title + '" deleted');
+    this.http.delete(serverUrl + "/quizzes/" + quizId).subscribe(res => {
+      this.refreshQuizzes();
+    });
   }
 
-  createEmptyQuiz() {
-    // TODO: BACKEND LOGIC TO CREATE EMPTY QUIZ (Just for not having to have concurrent ids in the database)
-    //temporary solution
-    console.log('New empty quiz created with id ' + (this.quizzes.length + 1));
-
-    this.setQuiz(this.quizzes.length + 1);
-    return this.quizzes.length + 1;
+  createQuiz(quiz: IQuiz) {
+    this.http.post(serverUrl + "/quizzes", quiz).subscribe(res => {
+      this.refreshQuizzes();
+    });
   }
 
   saveQuiz(quizId: number, quiz: IQuiz) {
-    // TODO: BACKEND LOGIC TO SAVE QUIZ
-    console.log('Quiz "' + quiz.title + '" saved');
+    this.http.put(serverUrl + "/quizzes/" + quizId, quiz).subscribe(res => {
+      this.refreshQuizzes();
+    });
+
   }
 
   getQuestionsForQuiz(quizId: number) {
     return this.getTheQuiz(quizId).questions.map((questionId) => {
-      let question: IQuestion | undefined = this.questions.find((question) => parseInt(question.id) === questionId);
+      let question: IQuestion | undefined = this.questionService.getQuestions().find((question) => question.id === questionId);
       if (!question) {
         console.error('It seems that a question is missing from the Database, have you deleted it?');
         return {
-          id: '0',
+          id: 0,
           question: 'Oups, la question n\'a pas été trouvée l\'avez vous supprimée ?',
           answer: 'Answer not found',
           tips: ['Tip not found']

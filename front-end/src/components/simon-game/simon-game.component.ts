@@ -1,4 +1,4 @@
-import {Component, ElementRef, Input, OnInit, Renderer2, ViewChild} from '@angular/core';
+import {Component, ElementRef, Input, OnDestroy, OnInit, Renderer2, ViewChild} from '@angular/core';
 import {NgForOf, NgIf} from "@angular/common";
 import {ActivatedRoute} from "@angular/router";
 import {QuizService} from "../../services/quiz-service.service";
@@ -7,6 +7,8 @@ import IUser from "../../interfaces/IUser";
 import {UserService} from "../../services/user-service.service";
 import ISimonConfig from "../../interfaces/ISimonConfig";
 import {GenericButtonComponent} from "../genericButton/genericButton.component";
+import ISimonStat from "../../interfaces/ISimonStat";
+import {StatsService} from "../../services/stats.service";
 
 @Component({
   selector: 'simon-game',
@@ -19,14 +21,15 @@ import {GenericButtonComponent} from "../genericButton/genericButton.component";
   ],
   styleUrls: ['./simon-game.component.css']
 })
-export class SimonGameComponent implements OnInit {
+export class SimonGameComponent implements OnInit, OnDestroy {
   @ViewChild('simonButton') simonButton: ElementRef | undefined;
+  @ViewChild('congratsButton') congratsButton: ElementRef | undefined;
 
   playerInput: number[] = [];
   gameInput: number[] = [];
   sequencePlaying: boolean = false;
   roundToWin: number = 5;
-  numberOfBoxes: number = 4;
+  numberOfBoxes: number = 10;
   numberOfRetries: number = 0;
   numberMaxOfRetries: number = 0;
   numberOfBoxesArray: number[] = Array.from({length: this.numberOfBoxes}, (_, i) => i);
@@ -39,9 +42,11 @@ export class SimonGameComponent implements OnInit {
   intervals: any[] = [];
   isGameStarted: boolean = false;
   isGameRunning: boolean = false;
-  isGoodSequence: boolean = false
+  isGoodSequence: boolean = false;
+  tipsMeter: number = 0;
+  startTime: number = 0;
 
-  constructor(private renderer: Renderer2, private el: ElementRef, private route: ActivatedRoute, private quizService: QuizService, private userService: UserService) {
+  constructor(private renderer: Renderer2, private el: ElementRef, private route: ActivatedRoute, private quizService: QuizService, private userService: UserService, private statsService : StatsService) {
   }
 
   ngOnInit(): void {
@@ -53,6 +58,7 @@ export class SimonGameComponent implements OnInit {
     this.numberMaxOfRetries = this.rulesForSimon?.numberOfRetriesAllowed || 0;
     this.intervalTime = this.user ? this.user.config.simonHints.displayTheFullSequenceAfter : 5000;
     this.numberOfBoxesArray = Array.from({length: this.numberOfBoxes}, (_, i) => i);
+    this.startTime = Date.now();
   }
 
   onButtonClick(index: number) {
@@ -60,9 +66,15 @@ export class SimonGameComponent implements OnInit {
       return;
     }
     this.stopInactivityInterval();
+    const button = this.el.nativeElement.querySelector(`#button-${index}` as string);
     this.lastButtonClickedTime = Date.now();
-    this.playSound(index);
-    this.playerInput.push(index);
+    this.renderer.setStyle(button, 'box-shadow', `0 0 30px 15px ${this.buttonColors[index]}`);
+    this.renderer.addClass(button, 'active');
+    this.playSound(index)
+    setTimeout(() => {
+      this.renderer.setStyle(button, 'box-shadow', 'none');
+      this.renderer.removeClass(button, 'active');
+    }, 800);    this.playerInput.push(index);
     this.checkPlayerInput();
     setTimeout(() => {
       this.startInactivityInterval();
@@ -84,6 +96,7 @@ export class SimonGameComponent implements OnInit {
     console.log(X_SECONDS);
     this.inactivityInterval = setInterval(() => {
       if (Date.now() - this.lastButtonClickedTime > X_SECONDS) {
+        this.tipsMeter++
         this.playSequence();
       }
     }, X_SECONDS);
@@ -156,6 +169,7 @@ export class SimonGameComponent implements OnInit {
         this.numberOfRetries++;
         if (this.numberOfRetries >= this.numberMaxOfRetries) {
           this.stopInactivityInterval();
+          this.saveSimonStats();
           this.quizService.endSimonGame();
         }
         this.playerInput = [];
@@ -167,6 +181,7 @@ export class SimonGameComponent implements OnInit {
           this.numberOfRetries++;
           if (this.numberOfRetries >= this.numberMaxOfRetries) {
             this.stopInactivityInterval();
+            this.saveSimonStats();
             this.quizService.endSimonGame();
           }
           this.playerInput = [];
@@ -176,17 +191,39 @@ export class SimonGameComponent implements OnInit {
       }
       if (this.playerInput.length >= this.roundToWin) {
         this.stopInactivityInterval();
+        this.saveSimonStats();
         this.quizService.endSimonGame();
         this.startGame();
       }
       this.isGoodSequence = true;
+      this.bigIt();
       setTimeout(() => {
         this.isGoodSequence = false;
-      }, 1000);
-      this.playerInput = [];
-      this.generateGameInput();
-      this.playSequence();
+        this.playerInput = [];
+        this.generateGameInput();
+        this.playSequence();
+      }, 4000);
+
     }
+  }
+
+  bigIt() {
+    setTimeout(
+      () => {
+        this.renderer.setStyle(this.congratsButton?.nativeElement, 'width', '30vw');
+        this.renderer.setStyle(this.congratsButton?.nativeElement, 'height', '30vw');
+
+      },
+      200
+    );
+    setTimeout(
+      () => {
+        this.renderer.setStyle(this.congratsButton?.nativeElement, 'width', '10vw')
+        this.renderer.setStyle(this.congratsButton?.nativeElement, 'height', '10vw')
+
+      },
+      3500
+    );
   }
 
   generateDistinctColors(n: number): string[] {
@@ -220,5 +257,22 @@ export class SimonGameComponent implements OnInit {
       this.stopInactivityInterval();
       this.playSequence();
     }
+  }
+
+  saveSimonStats(){
+    const simonStat : ISimonStat= {
+      id: 1,
+      erreurSimon: this.numberOfRetries,
+      indicesSimon: this.tipsMeter,
+      tempsSimon: this.getTimeSpentOnMemory(),
+      tailleFinalSimon: this.roundToWin,
+      nombreDeCouleurs: this.numberOfBoxes
+    };
+    this.statsService.addSimonStat(simonStat);
+  }
+
+  private getTimeSpentOnMemory(): number {
+    const currentTime = Date.now();
+    return Number(((currentTime - this.startTime) / 1000).toFixed(1));
   }
 }

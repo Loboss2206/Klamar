@@ -31,25 +31,23 @@ import {ResultSimonComponent} from "../result-simon/result-simon.component";
 export class StatSimonPageComponent implements OnInit{
   id : number | undefined
   user ?: IUser | IAdmin
-  statsId ?: number[]
-  stats : IStats[] = []
+  statId ?: number
+  stat ?: IStats
   constructor(private _statsService : StatsService , private _userService : UserService , private route : ActivatedRoute) {
   }
 
   ngOnInit(): void {
     this.id = Number(this.route.snapshot.paramMap.get('id'))
     this.user = this._userService.getTheUser(this.id)
-    this._userService.getStats(this.id).subscribe(stats =>{
-      this.statsId=stats
-    })
-    if (this.statsId) {
-      for (let statId of this.statsId) {
-        this._statsService.getStat(statId).subscribe(stat => {
-          if (stat) {
-            this.stats.push(stat)
-          }
-        })
+    this.statId = this._statsService.getTheStat()
+    console.log("Momen"+this.statId)
+    this._statsService.getStat(this.statId).subscribe(stat => {
+      if (stat) {
+        console.log('Stat:', stat);
+        this.stat=stat
+      } else {
+        console.log('Stat not found');
       }
-    }
+    });
   }
 }

@@ -1,5 +1,5 @@
-import {Component, Input} from '@angular/core';
-import {NgClass} from "@angular/common";
+import { Component, Input } from '@angular/core';
+import { NgClass } from "@angular/common";
 
 @Component({
   selector: 'app-genericButton',
@@ -11,7 +11,5 @@ import {NgClass} from "@angular/common";
   styleUrl: './genericButton.component.scss'
 })
 export class GenericButtonComponent {
-
   @Input() isDeleteButton: boolean = false;
-
 }

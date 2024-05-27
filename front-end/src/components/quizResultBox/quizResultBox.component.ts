@@ -5,6 +5,7 @@ import {GenericButtonComponent} from "../genericButton/genericButton.component";
 import {ActivatedRoute, RouterLink} from "@angular/router";
 import {StatsService} from "../../services/stats.service";
 import {UserService} from "../../services/user-service.service";
+import IStats from "../../interfaces/IStats";
 
 @Component({
   selector: 'app-quizResultBox',
@@ -24,11 +25,22 @@ export class quizResultBoxComponent {
   @Input() sucessSimon ?: number
   @Input() sucessMemory ?: number
   @Input() sucessQuiz ?: number
+  @Input() statForButton ?: IStats
 
   constructor(private _statsService : StatsService , private _userService : UserService , private route : ActivatedRoute) {
   }
   ngOnInit(): void {
     this.id = Number(this.route.snapshot.paramMap.get('id'))
     this.user = this._userService.getTheUser(this.id)
+  }
+
+  defineStat(statId: number | undefined) {
+    console.log("Jim"+statId);
+    if (statId == undefined){
+      console.log("undefined stat id")
+    }
+    else {
+      this._statsService.setStat(statId);
+    }
   }
 }

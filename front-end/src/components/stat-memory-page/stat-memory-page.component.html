@@ -4,9 +4,5 @@
   </app-titlePage>
 </h1>
 <div class="resultatMemory">
-  <div class = statMemory *ngFor="let stat of this.stats">
-    <div *ngFor="let memory of stat.erreurMemory; let questionIndex = index">
-      <app-result-memory [largeur]=stat.largeurMemory[questionIndex] [hauteur]=stat.hauteurMemory[questionIndex] [indices]=stat.indicesQuiz[questionIndex] [erreur]=stat.erreurQuiz[questionIndex] [temps]=stat.tempsQuiz[questionIndex]></app-result-memory>
-    </div>
-  </div>
+    <app-result-memory [largeur]=stat?.memoryStats?.largeurMemory [hauteur]=stat?.memoryStats?.hauteurMemory [indices]=stat?.memoryStats?.indicesMemory [erreur]=stat?.memoryStats?.erreurMemory [temps]=stat?.memoryStats?.tempsMemory></app-result-memory>
 </div>

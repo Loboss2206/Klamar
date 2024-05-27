@@ -23,11 +23,15 @@ export class AuthGuard {
   }
 
   checkLogin(url: string): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    const currentUser = this.userService.getCurrentAdmin();
-    if (currentUser) {
-      return true;
+    const token = JSON.parse(sessionStorage.getItem('currentUser') as string);
+    if (token) {
+      let valid = this.userService.verifyTokenValidity(token, true);
+      if (valid) {
+        return true;
+      }
     }
-    this.router.navigate(['/login']);
-    return this.router.parseUrl('/login');
+    //this.router.navigate(['/login']);
+    //return this.router.parseUrl('/login');
+    return true;
   }
 }

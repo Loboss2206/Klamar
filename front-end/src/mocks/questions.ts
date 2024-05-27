@@ -2,7 +2,7 @@ import IQuestion from "../interfaces/IQuestion";
 
 export const questionsList: IQuestion[] = [
   {
-    "id": "1",
+    "id": 1,
     "question": "Quelle est la capitale de la France ?",
     "tips": [
       "La ville de l\'amour", "La ville lumière"
@@ -14,7 +14,7 @@ export const questionsList: IQuestion[] = [
     "tags": ["géographie"]
   },
   {
-    "id": "2",
+    "id": 2,
     "question": "Quelle est la capitale de l\'Allemagne ?",
     "tips": ["Elle avait un mur très célèbre", "Elle n\'est pas Munich"],
     "AreResponsesImages": true,
@@ -23,7 +23,7 @@ export const questionsList: IQuestion[] = [
     "tags": ["géographie"]
   },
   {
-    "id": "3",
+    "id": 3,
     "question": "Quelle est la capitale du Royaume-Uni ?",
     "questionImage": "https://img.freepik.com/photos-gratuite/big-ben-westminster-bridge-au-coucher-du-soleil-londres-royaume-uni_268835-1395.jpg",
     "tips": ["Big Ben s'y trouve", "Elle n\'est pas Manchester"],
@@ -33,7 +33,7 @@ export const questionsList: IQuestion[] = [
     "tags": ["géographie"]
   },
   {
-    "id": "4",
+    "id": 4,
     "question": "Quelle est la capitale des États-Unis ?",
     "questionImage": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8e/Usa_edcp_%28%2BHI_%2BAK%29_relief_location_map.png/280px-Usa_edcp_%28%2BHI_%2BAK%29_relief_location_map.png",
     "tips": ["Un batiment célèbre de cette capitale est la maison blanche", "Elle n\'est pas Los Angeles"],
@@ -43,7 +43,7 @@ export const questionsList: IQuestion[] = [
     "tags": ["géographie"]
   },
   {
-    "id": "5",
+    "id": 5,
     "question": "Quel est le plus grand désert du monde ?",
     "tips": ["Il n'est pas en Afrique", "Il n\'est pas le Gobi"],
     "AreResponsesImages": false,
@@ -52,7 +52,7 @@ export const questionsList: IQuestion[] = [
     "tags": ["géographie"]
   },
   {
-    "id": "6",
+    "id": 6,
     "question": "Quel est le plus long fleuve du monde ?",
     "tips": [
       "Il est en Amérique du Sud",
@@ -71,7 +71,7 @@ export const questionsList: IQuestion[] = [
     ]
   },
   {
-    "id": "7",
+    "id": 7,
     "question": "Quel est le plus grand océan du monde ?",
     "tips": [
       "Il est au sud de l\'Asie",
@@ -90,7 +90,7 @@ export const questionsList: IQuestion[] = [
     ]
   },
   {
-    "id": "8",
+    "id": 8,
     "question": "Quelle est la capitale de l\'Australie ?",
     "tips": [
       "Elle est en Australie",
@@ -109,7 +109,7 @@ export const questionsList: IQuestion[] = [
     ]
   },
   {
-    "id": "9",
+    "id": 9,
     "question": "Quelle est la capitale de l\'Italie ?",
     "tips": [
       "Elle est en Italie",
@@ -128,7 +128,7 @@ export const questionsList: IQuestion[] = [
     ]
   },
   {
-    "id": "10",
+    "id": 10,
     "question": "Quelle est la capitale de l\'Espagne ?",
     "tips": [
       "Elle est en Espagne",
@@ -147,7 +147,7 @@ export const questionsList: IQuestion[] = [
     ]
   },
   {
-    "id": "11",
+    "id": 11,
     "question": "Quelle est la capitale de la Russie ?",
     "tips": [
       "Elle est en Russie",

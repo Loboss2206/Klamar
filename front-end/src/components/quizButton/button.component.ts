@@ -1,4 +1,4 @@
-import {Component, Input, SimpleChanges} from '@angular/core';
+import {Component, Input, OnInit, SimpleChanges} from '@angular/core';
 import {NgClass, NgIf, NgOptimizedImage} from "@angular/common";
 
 @Component({
@@ -12,7 +12,8 @@ import {NgClass, NgIf, NgOptimizedImage} from "@angular/common";
   templateUrl: './button.component.html',
   styleUrl: './button.component.scss'
 })
-export class ButtonComponent {
+export class ButtonComponent implements OnInit {
+  @Input() isStatsButton: boolean = false;
   @Input() color?: { correct: boolean; wrong: boolean };
   @Input() img?: string = '';
 
@@ -20,6 +21,10 @@ export class ButtonComponent {
   @Input() lite!: boolean;
 
   constructor() {
+  }
+
+  ngOnInit() {
+    console.log(this.img);
   }
 
 }

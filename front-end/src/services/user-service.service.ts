@@ -6,7 +6,6 @@ import { BehaviorSubject, Subject, of } from "rxjs";
 import { Router } from "@angular/router";
 import { HttpClient } from '@angular/common/http';
 import { serverUrl, httpOptionsBase } from '../configs/server.config';
-import { users } from 'src/mocks/users';
 
 @Injectable({
   providedIn: 'root'
@@ -32,6 +31,10 @@ export class UserService {
   getUsers(): IUser[] {
     console.log(this.users);
     return this.users;
+  }
+
+  getCurrentId(): number {
+    return this.currentUser;
   }
 
   getCurrentUser(): IUser | null {
@@ -142,6 +145,20 @@ export class UserService {
   deleteUser(user: IUser): void {
     const urlWithId = this.userUrl + '/' + user.id;
     this.http.delete<IUser>(urlWithId, this.httpOptions).subscribe(() => this.retrieveUsers());
+  }
+
+  verifyTokenValidity(token: string, admin: boolean) {
+    if (admin) {
+      let tokenFound;
+      this.connectedAdminTokens.forEach((tokenElement, index: number) => {
+        let key = Object.keys(tokenElement)[0];
+        if (key === token) {
+          tokenFound = tokenElement;
+        }
+      });
+      return !!tokenFound;
+    }
+    return false;
   }
 
   modifyUser(user: IUser): void {

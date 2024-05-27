@@ -10,6 +10,8 @@ import { Router } from "@angular/router";
 import * as Tone from "tone";
 import IUser from "../../interfaces/IUser";
 import { UserService } from "../../services/user-service.service";
+import IQuestionStat from "../../interfaces/IQuestionStat";
+import {StatsService} from "../../services/stats.service";
 
 @Component({
   selector: 'app-question',
@@ -42,15 +44,19 @@ export class QuestionComponent implements OnInit, AfterViewInit {
   user: IUser | null = this.userService.getCurrentUser();
   canOpenTipsOnClick: boolean = this.user ? this.user.config.quiz.showHintAfterClick : false;
   currentTipIndex: number = this.user ? this.user.config.quiz.showHintOneByOne ? 0 : -1 : -1;
+  idQuestion ?: string
+  startTime: number = 0;
+  answerIndex : number[] = []
+  maxPointQuestion : number = 1
 
-  constructor(private quizService: QuizService, private router: Router, private userService: UserService) {
+  constructor(private quizService: QuizService, private router: Router, private userService: UserService, private statsService : StatsService) {
 
   }
-
   ngOnInit() {
     this.question = this.quizService.getCurrentQuestion();
+    this.startTime = Date.now();
     this.question.subscribe((question: IQuestion) => {
-      console.log(this.question);
+      console.log(question.responses);
       this.answers = question.responses;
       this.questionText = question.question;
       this.currentTipIndex = this.user ? this.user.config.quiz.showHintOneByOne ? 0 : -1 : -1;
@@ -59,6 +65,7 @@ export class QuestionComponent implements OnInit, AfterViewInit {
       this.areResponsesImages = question.AreResponsesImages;
       this.correctAnswer = null;
       this.wrongAnswers = [];
+      this.idQuestion = parseInt(question.id.toString()).toString()
       this.setBlockUI(false);
       if (this.user && this.user.config.quiz.showHintAfterStart) {
         this.tipsComponent.openATip();
@@ -97,7 +104,29 @@ export class QuestionComponent implements OnInit, AfterViewInit {
   }
 
   onAnswer(answer: string) {
+    this.answerIndex
     if (this.quizService.checkAnswer(answer)) {
+      let answerIndex = this.answers.findIndex((ans: any) => ans === answer);
+      const questionStat: IQuestionStat = {
+        id:1,
+        idQuestion: Number(this.idQuestion),
+        pointQuestion: this.pointOnQuestion(),
+        maxPointQuestion: this.maxPointQuestion,
+        erreurQuiz: this.wrongAnswers.length,
+        indicesQuiz: this.currentTipIndex + 1,
+        tempsQuiz: this.getTimeSpentOnQuestion(),
+        reponseId: [answerIndex]
+      };
+      console.log("questionStat" + questionStat)
+      console.log(questionStat.idQuestion)
+      console.log(questionStat.pointQuestion)
+      console.log(questionStat.maxPointQuestion)
+      console.log(questionStat.erreurQuiz)
+      console.log(questionStat.indicesQuiz)
+      console.log(questionStat.tempsQuiz)
+      console.log(questionStat.reponseId)
+
+      this.statsService.addQuestionStat(questionStat);
       this.playCorrectTune();
       this.hideAllOtherAnswers(answer);
       this.correctAnswer = answer;
@@ -142,5 +171,18 @@ export class QuestionComponent implements OnInit, AfterViewInit {
         element.style.display = 'none';
       }
     });
+  }
+  private getTimeSpentOnQuestion(): number {
+    const currentTime = Date.now();
+    return Number(((currentTime - this.startTime) / 1000).toFixed(1));
+  }
+
+  private pointOnQuestion() : number{
+    let point : number = this.maxPointQuestion - (this.wrongAnswers.length/3)
+    point = Number(point.toFixed(2))
+    if (point > 0){
+      return point
+    }
+    return 0;
   }
 }

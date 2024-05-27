@@ -1,9 +1,7 @@
 import {Component} from '@angular/core';
 import {FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators} from "@angular/forms";
-import {adminList} from "../../mocks/admin";
 import {Router} from "@angular/router";
 import {UserService} from "../../services/user-service.service";
-import {users} from "../../mocks/users";
 
 @Component({
   selector: 'app-login',
