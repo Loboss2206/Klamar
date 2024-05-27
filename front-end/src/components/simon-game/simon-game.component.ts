@@ -7,6 +7,8 @@ import IUser from "../../interfaces/IUser";
 import {UserService} from "../../services/user-service.service";
 import ISimonConfig from "../../interfaces/ISimonConfig";
 import {GenericButtonComponent} from "../genericButton/genericButton.component";
+import ISimonStat from "../../interfaces/ISimonStat";
+import {StatsService} from "../../services/stats.service";
 
 @Component({
   selector: 'simon-game',
@@ -40,9 +42,11 @@ export class SimonGameComponent implements OnInit, OnDestroy {
   intervals: any[] = [];
   isGameStarted: boolean = false;
   isGameRunning: boolean = false;
-  isGoodSequence: boolean = false
+  isGoodSequence: boolean = false;
+  tipsMeter: number = 0;
+  startTime: number = 0;
 
-  constructor(private renderer: Renderer2, private el: ElementRef, private route: ActivatedRoute, private quizService: QuizService, private userService: UserService) {
+  constructor(private renderer: Renderer2, private el: ElementRef, private route: ActivatedRoute, private quizService: QuizService, private userService: UserService, private statsService : StatsService) {
   }
 
   ngOnInit(): void {
@@ -54,6 +58,7 @@ export class SimonGameComponent implements OnInit, OnDestroy {
     this.numberMaxOfRetries = this.rulesForSimon?.numberOfRetriesAllowed || 0;
     this.intervalTime = this.user ? this.user.config.simonHints.displayTheFullSequenceAfter : 5000;
     this.numberOfBoxesArray = Array.from({length: this.numberOfBoxes}, (_, i) => i);
+    this.startTime = Date.now();
   }
 
   onButtonClick(index: number) {
@@ -91,6 +96,7 @@ export class SimonGameComponent implements OnInit, OnDestroy {
     console.log(X_SECONDS);
     this.inactivityInterval = setInterval(() => {
       if (Date.now() - this.lastButtonClickedTime > X_SECONDS) {
+        this.tipsMeter++
         this.playSequence();
       }
     }, X_SECONDS);
@@ -163,6 +169,7 @@ export class SimonGameComponent implements OnInit, OnDestroy {
         this.numberOfRetries++;
         if (this.numberOfRetries >= this.numberMaxOfRetries) {
           this.stopInactivityInterval();
+          this.saveSimonStats();
           this.quizService.endSimonGame();
         }
         this.playerInput = [];
@@ -174,6 +181,7 @@ export class SimonGameComponent implements OnInit, OnDestroy {
           this.numberOfRetries++;
           if (this.numberOfRetries >= this.numberMaxOfRetries) {
             this.stopInactivityInterval();
+            this.saveSimonStats();
             this.quizService.endSimonGame();
           }
           this.playerInput = [];
@@ -183,6 +191,7 @@ export class SimonGameComponent implements OnInit, OnDestroy {
       }
       if (this.playerInput.length >= this.roundToWin) {
         this.stopInactivityInterval();
+        this.saveSimonStats();
         this.quizService.endSimonGame();
         this.startGame();
       }
@@ -248,5 +257,22 @@ export class SimonGameComponent implements OnInit, OnDestroy {
       this.stopInactivityInterval();
       this.playSequence();
     }
+  }
+
+  saveSimonStats(){
+    const simonStat : ISimonStat= {
+      id: 1,
+      erreurSimon: this.numberOfRetries,
+      indicesSimon: this.tipsMeter,
+      tempsSimon: this.getTimeSpentOnMemory(),
+      tailleFinalSimon: this.roundToWin,
+      nombreDeCouleurs: this.numberOfBoxes
+    };
+    this.statsService.addSimonStat(simonStat);
+  }
+
+  private getTimeSpentOnMemory(): number {
+    const currentTime = Date.now();
+    return Number(((currentTime - this.startTime) / 1000).toFixed(1));
   }
 }
