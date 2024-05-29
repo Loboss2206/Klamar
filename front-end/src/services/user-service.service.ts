@@ -75,10 +75,6 @@ export class UserService {
     return of(user?.charts);
   }
 
-  getStats(id: number) {
-    let user = this.users.find(user => user.id === id);
-    return of(user?.statsId);
-  }
 
 
   connectAsAdmin(username: string, password: string) {
