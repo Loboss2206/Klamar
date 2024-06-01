@@ -3,7 +3,7 @@ import IQuestion from "../interfaces/IQuestion";
 import { BehaviorSubject, Subject, of } from "rxjs";
 import { HttpClient } from '@angular/common/http';
 import { serverUrl, httpOptionsBase } from '../configs/server.config';
-import {Router} from "@angular/router";
+import { Router } from "@angular/router";
 
 @Injectable({
   providedIn: 'root'
@@ -22,7 +22,7 @@ export class QuestionService {
     this.retrieveQuestions();
   }
 
-  getQuestionById(id: number | null): IQuestion | undefined {
+  getQuestionById(id: number | undefined): IQuestion | undefined {
     let question: IQuestion | undefined = this.questions.find((question) => question.id == id);
     return question;
   }
