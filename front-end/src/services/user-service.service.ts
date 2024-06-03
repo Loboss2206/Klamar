@@ -6,12 +6,14 @@ import { BehaviorSubject, Subject, of } from "rxjs";
 import { Router } from "@angular/router";
 import { HttpClient } from '@angular/common/http';
 import { serverUrl, httpOptionsBase } from '../configs/server.config';
+import {Location} from '@angular/common';
+import {AuthGuard} from "./AuthGuard";
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
-  constructor(private http: HttpClient, private router: Router) {
+  constructor(private http: HttpClient, private router: Router, private location: Location) {
     console.log('UserService created');
     this.retrieveUsers();
   }
@@ -84,7 +86,9 @@ export class UserService {
     }) => adminElement.username === username && adminElement.mdp === password);
     if (admin) {
       this.setUserAsAdmin(admin.id).then(() => {
-        this.router.navigate(['/admin/gestion']);
+        let getReturnUrl = this.location.path().split(';returnUrl=')[1];
+        getReturnUrl = decodeURIComponent(getReturnUrl || '');
+        this.router.navigate([getReturnUrl || '/admin/gestion']);
       });
     } else {
       alert('Mauvais identifiants');

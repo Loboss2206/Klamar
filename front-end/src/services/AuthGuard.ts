@@ -30,7 +30,8 @@ export class AuthGuard {
         return true;
       }
     }
-    this.router.navigate(['/login']);
+    console.log('AuthGuard: User not logged in, redirecting to login page');
+    this.router.navigate(['/login', { returnUrl: url }]);
     return this.router.parseUrl('/login');
   }
 }

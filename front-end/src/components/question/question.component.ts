@@ -58,6 +58,7 @@ export class QuestionComponent implements OnInit, AfterViewInit {
     this.question.subscribe((question: IQuestion) => {
       if (!question) {
         this.quizService.questionsFinished();
+        return;
       }
       console.log(question.responses);
       this.answers = question.responses;
