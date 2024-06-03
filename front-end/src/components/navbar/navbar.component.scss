@@ -1,57 +1,71 @@
 .nav_current_page_head {
-  width: fit-content;
+  width: 60vw;
   height: fit-content;
   padding: 0.5vw;
   font-size: 1.5em;
+  font-family: "Fjalla One", sans-serif, serif;
   text-align: center;
-  font-family: Roboto, serif;
   color: var(--navabar-title-color);
   background-color: var(--navbar-title-container-bg-color);
-  border-radius: 10px;
+  border-radius: 0 0 10px 10px;
   margin: auto;
+}
+
+.material-symbols-outlined {
+  font-size: 1.5em;
+  color: var(--navbar-title-color);
+  margin: 0 0.5vw;
 }
 
 .dropdown {
 
 }
 
-.admin{
+.admin {
+  cursor: pointer;
+  color: var(--navabar-title-color);
+  font-size: 1.5em;
+  font-family: "Fjalla One", sans-serif, serif;
+  text-align: center;
+  transition: all 0.3s ease;
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-left: 100px;
-  padding: 0;
+  width: 15vw;
+  border-radius: 0 0 0 10px;
+}
 
+.admin:hover {
+  background-color: darkorange;
 }
 
 .dropdown-toggle {
   cursor: pointer;
-  background-color: goldenrod;
-  border-radius: 10px;
-  padding: 1vw;
   color: var(--navabar-title-color);
-  font-size: 1.5em;
+  font-family: "Fjalla One", sans-serif, serif;
   text-align: center;
-
+  transition: all 0.3s ease;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .dropdown-menu {
   position: absolute;
-  background-color: whitesmoke;
+  background-color: #000000;
   list-style-type: none;
   padding: 0;
   border-radius: 15px;
-  margin: 10px;
   min-width: 160px;
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
   z-index: 1;
 }
 
 .dropdown-menu a {
-  color: var(--navbar-title-color);
   padding: 12px 16px;
   text-decoration: none;
   display: block;
+  color: #ffffff;
 }
 
 .dropdown-item {
@@ -63,29 +77,44 @@
 }
 
 .dropdown-item:hover {
-  background-color: rgba(0, 0, 0, 0.1);
+  background-color: rgba(255, 255, 255, 0.1);
   border-radius: 15px;
 }
 
 .nav_title {
-  font-size: 1.5em;
   text-align: center;
+  color: white;
   font-family: "Fjalla One", sans-serif, serif;
-  margin: 1vw;
+  font-size: 1.5em;
+}
+
+.nav_play {
+  text-align: center;
+  color: white;
+  font-family: "Fjalla One", sans-serif, serif;
 }
 
 .navbar {
   display: flex;
   height: 3rem;
-  padding-top: 15px;
 }
 
-.quitContainer,
 .logoContainer {
-  width: 35vw;
+  width: 15vw;
   display: flex;
-  justify-content: center;
-  align-items: center;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+.quitContainer {
+  color: white;
+  max-width: 15vw;
+  background-color: black;
+  transition: all 0.3s ease;
+  display: flex;
+  justify-content: space-between;
+  border-radius: 0 0 0 10px;
+  height: 9vh;
 }
 
 .quitLogo,
@@ -93,16 +122,39 @@
   margin: 0;
 }
 
-.logo,
 .quit {
-  margin: 0;
+  cursor: pointer;
+  color: var(--navabar-title-color);
+  font-family: "Fjalla One", sans-serif, serif;
+  text-align: center;
+  transition: all 0.3s ease;
   display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 15vw;
+  font-size: 1.5em;
+}
+
+.logo{
+  background-color: black;
   cursor: var(--pointer-cursor);
+  padding: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 0 0 10px 0;
+  height: 8vh;
+}
+
+.quit:hover {
+  background-color: seagreen;
 }
 
 .logo-icon {
   width: 90px;
   height: auto;
+  fill: white;
+  color: white;
 }
 
 .logo-text {
