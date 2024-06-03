@@ -9,6 +9,25 @@
     <span *ngIf="userName">{{ userName }} - </span>
     <span>{{ title }}</span>
   </div>
+  <div class="admin">
+    <div class="dropdown" (click)="toggleDropdown()">
+      <a class="dropdown-toggle">Admin</a>
+      <div class="dropdown-menu" *ngIf="dropdownOpen" (mouseleave)="toggleDropdown()">
+        <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+          <li><a class="dropdown-item" [routerLink]="['/admin/selectQuestion']">Gestion des questions</a></li>
+          <li><a class="dropdown-item" [routerLink]="['/admin/quizManager']">Gestion des quizzes</a></li>
+          <li><a class="dropdown-item" [routerLink]="['/admin/selectUserToModify']">Gestion des utilisateurs</a></li>
+          <li><a class="dropdown-item" [routerLink]="['/stats/selectUserStat']">Statistiques</a></li>
+          <!--<li class="dropdown-submenu"><a class="dropdown-item dropdown-toggle" href="#">menu deroulant</a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="#">deroulant 1</a></li>
+              <li><a class="dropdown-item" href="#">deroulant 2</a></li>
+            </ul>
+          </li>-->
+        </ul>
+      </div>
+    </div>
+  </div>
   <div class="quitContainer" [routerLink]="['/']">
     <div class="quit">
       <span class="nav_title">Quitter</span>
