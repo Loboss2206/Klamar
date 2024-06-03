@@ -2,7 +2,6 @@
   <div class="userContainerWrapper">
     <app-search-quiz-selector (searchTerm)="searchUsers($event)"></app-search-quiz-selector>
     <div class="userContainer">
-      <app-select-user-item [user]="admin" routerLink="login"></app-select-user-item>
       <div *ngFor="let user of users">
         <app-select-user-item [user]="user" (click)="defineUser(user.id)"></app-select-user-item>
       </div>
