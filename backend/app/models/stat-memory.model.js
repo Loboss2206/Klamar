@@ -6,4 +6,5 @@ module.exports = new BaseModel('StatMemory', {
   indicesMemory: Joi.number().required(),
   tempsMemory: Joi.number().required(),
   pictures: Joi.array().items(Joi.string()).required(),
+  wasPassed: Joi.boolean().required(),
 })

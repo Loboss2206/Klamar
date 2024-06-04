@@ -1,14 +1,14 @@
-import {Component, ElementRef, Input, OnDestroy, OnInit, Renderer2, ViewChild} from '@angular/core';
-import {NgForOf, NgIf} from "@angular/common";
-import {ActivatedRoute} from "@angular/router";
-import {QuizService} from "../../services/quiz-service.service";
+import { Component, ElementRef, Input, OnDestroy, OnInit, Renderer2, ViewChild } from '@angular/core';
+import { NgForOf, NgIf } from "@angular/common";
+import { ActivatedRoute } from "@angular/router";
+import { QuizService } from "../../services/quiz-service.service";
 import * as Tone from "tone";
 import IUser from "../../interfaces/IUser";
-import {UserService} from "../../services/user-service.service";
+import { UserService } from "../../services/user-service.service";
 import ISimonConfig from "../../interfaces/ISimonConfig";
-import {GenericButtonComponent} from "../genericButton/genericButton.component";
+import { GenericButtonComponent } from "../genericButton/genericButton.component";
 import ISimonStat from "../../interfaces/ISimonStat";
-import {StatsService} from "../../services/stats.service";
+import { StatsService } from "../../services/stats.service";
 
 @Component({
   selector: 'simon-game',
@@ -19,7 +19,7 @@ import {StatsService} from "../../services/stats.service";
     GenericButtonComponent,
     NgIf
   ],
-  styleUrls: ['./simon-game.component.css']
+  styleUrls: ['./simon-game.component.scss']
 })
 export class SimonGameComponent implements OnInit, OnDestroy {
   @ViewChild('simonButton') simonButton: ElementRef | undefined;
@@ -32,7 +32,7 @@ export class SimonGameComponent implements OnInit, OnDestroy {
   numberOfBoxes: number = 10;
   numberOfRetries: number = 0;
   numberMaxOfRetries: number = 0;
-  numberOfBoxesArray: number[] = Array.from({length: this.numberOfBoxes}, (_, i) => i);
+  numberOfBoxesArray: number[] = Array.from({ length: this.numberOfBoxes }, (_, i) => i);
   buttonColors: string[] = [];
   rulesForSimon: ISimonConfig | undefined;
   lastButtonClickedTime: number = 0;
@@ -46,7 +46,7 @@ export class SimonGameComponent implements OnInit, OnDestroy {
   tipsMeter: number = 0;
   startTime: number = 0;
 
-  constructor(private renderer: Renderer2, private el: ElementRef, private route: ActivatedRoute, private quizService: QuizService, private userService: UserService, private statsService : StatsService) {
+  constructor(private renderer: Renderer2, private el: ElementRef, private route: ActivatedRoute, private quizService: QuizService, private userService: UserService, private statsService: StatsService) {
   }
 
   ngOnInit(): void {
@@ -57,7 +57,7 @@ export class SimonGameComponent implements OnInit, OnDestroy {
     this.numberOfBoxes = this.rulesForSimon?.numberOfBoxes || 4;
     this.numberMaxOfRetries = this.rulesForSimon?.numberOfRetriesAllowed || 0;
     this.intervalTime = this.user ? this.user.config.simonHints.displayTheFullSequenceAfter : 5000;
-    this.numberOfBoxesArray = Array.from({length: this.numberOfBoxes}, (_, i) => i);
+    this.numberOfBoxesArray = Array.from({ length: this.numberOfBoxes }, (_, i) => i);
     this.startTime = Date.now();
   }
 
@@ -74,7 +74,7 @@ export class SimonGameComponent implements OnInit, OnDestroy {
     setTimeout(() => {
       this.renderer.setStyle(button, 'box-shadow', 'none');
       this.renderer.removeClass(button, 'active');
-    }, 800);    this.playerInput.push(index);
+    }, 800); this.playerInput.push(index);
     this.checkPlayerInput();
     setTimeout(() => {
       this.startInactivityInterval();
@@ -259,16 +259,32 @@ export class SimonGameComponent implements OnInit, OnDestroy {
     }
   }
 
-  saveSimonStats(){
-    const simonStat : ISimonStat= {
+  saveSimonStats() {
+    const simonStat: ISimonStat = {
       id: 1,
       erreurSimon: this.numberOfRetries,
       indicesSimon: this.tipsMeter,
       tempsSimon: this.getTimeSpentOnMemory(),
       tailleFinalSimon: this.roundToWin,
-      nombreDeCouleurs: this.numberOfBoxes
+      nombreDeCouleurs: this.numberOfBoxes,
+      wasPassed: false
     };
     this.statsService.addSimonStat(simonStat);
+  }
+
+  skipSimon() {
+    console.log("cassé");
+    const simonStat: ISimonStat = {
+      id: 1,
+      erreurSimon: this.numberOfRetries,
+      indicesSimon: this.tipsMeter,
+      tempsSimon: this.getTimeSpentOnMemory(),
+      tailleFinalSimon: this.roundToWin,
+      nombreDeCouleurs: this.numberOfBoxes,
+      wasPassed: true
+    };
+    this.statsService.addSimonStat(simonStat);
+    this.quizService.endSimonGame();
   }
 
   private getTimeSpentOnMemory(): number {

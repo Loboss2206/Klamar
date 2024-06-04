@@ -3,6 +3,8 @@
     <p>Résultats du Simon joués par {{user?.name}} {{user?.firstname}}</p>
   </app-titlePage>
 </h1>
-  <div class="resultatSimon">
-    <app-result-simon [taille]=this.stat?.simonStats?.tailleFinalSimon [indices]=stat?.simonStats?.indicesSimon [erreur]=stat?.simonStats?.erreurSimon [temps]=stat?.simonStats?.tempsSimon [couleur]=stat?.simonStats?.nombreDeCouleurs></app-result-simon>
-  </div>
+<div class="resultatSimon">
+  <app-result-simon [wasPassed]=stat?.simonStats?.wasPassed [taille]=this.stat?.simonStats?.tailleFinalSimon
+    [indices]=stat?.simonStats?.indicesSimon [erreur]=stat?.simonStats?.erreurSimon [temps]=stat?.simonStats?.tempsSimon
+    [couleur]=stat?.simonStats?.nombreDeCouleurs></app-result-simon>
+</div>

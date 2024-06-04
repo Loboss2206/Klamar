@@ -1,4 +1,5 @@
 <div class="memoryStat">
+  <p *ngIf="wasPassed" class="questionPassed">Le memory a été passé</p>
   <div class="images-container">
     <img *ngFor="let pic of pictures" src="{{pic}}" alt="" />
   </div>

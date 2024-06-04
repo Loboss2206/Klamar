@@ -7,6 +7,7 @@
   <div class="tipsContainer">
     <app-genericButton class="tutorialButton" (click)=goToHowToPlay()>Tutoriel</app-genericButton>
     <app-tips (click)="incrementIndex()" #tipsComponent canBeClicked="canOpenTipsOnClick">
+
       <ul *ngIf="currentTipIndex === -1">
         <li *ngFor="let tip of tips">
           {{ tip }}
@@ -18,6 +19,7 @@
         </li>
       </ul>
     </app-tips>
+    <app-genericButton class="skipButton" (click)=skipQuestion()>Passer la question</app-genericButton>
   </div>
 
 

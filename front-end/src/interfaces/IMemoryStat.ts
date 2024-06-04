@@ -4,4 +4,5 @@ export default interface IMemoryStat {
     indicesMemory: number;
     tempsMemory: number;
     pictures: string[];
+    wasPassed: boolean;
 }

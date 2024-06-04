@@ -7,4 +7,10 @@
   text-shadow: var(--question-result-text-shadow);
 }
 
-
+.questionPassed {
+  font-family: "Alatsi", sans-serif;
+  font-size: 2.5rem;
+  margin: 1vw auto;
+  text-align: center;
+  color: red;
+}

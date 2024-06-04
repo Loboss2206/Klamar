@@ -19,9 +19,9 @@ export class StatsService {
   private dates: string[] = [];
   private sucessMemory: number[] = [];
   private sucessQuestion: number[] = [];
-  private sucessSimon: number[]= [];
-  private datesMemory : string[] = [];
-  private datesSimon : string[] = [];
+  private sucessSimon: number[] = [];
+  private datesMemory: string[] = [];
+  private datesSimon: string[] = [];
   constructor(private http: HttpClient, private userService: UserService) {
   }
   private currentStatId: number | undefined;
@@ -53,7 +53,7 @@ export class StatsService {
       questions: [],
       memoryStats: undefined,
       simonStats: undefined,
-      sucessSimon: undefined,
+      sucessSimon: 0,
       sucessMemory: 0,
       sucessQuiz: 0,
       date: new Date().toLocaleString('fr-FR', {
@@ -96,17 +96,32 @@ export class StatsService {
 
   addSummaryStats() {
     if (this.currentInGameStat) {
-      this.currentInGameStat.sucessQuiz = Math.ceil(this.currentInGameStat.questions.reduce((acc, question) => acc + question.pointQuestion, 0) / this.currentInGameStat.questions.reduce((acc, question) => acc + question.maxPointQuestion, 0) * 100);
+      let questionsWithoutNegativeScore = this.currentInGameStat.questions.filter(question => question.pointQuestion >= 0);
+      let sucessQuiz = Math.ceil(
+        questionsWithoutNegativeScore
+          .reduce((acc, question) => acc + question.pointQuestion, 0) /
+        questionsWithoutNegativeScore
+          .reduce((acc, question) => acc + question.maxPointQuestion, 0) *
+        100
+      );
+      if (!Number.isNaN(sucessQuiz)) this.currentInGameStat.sucessQuiz = sucessQuiz !== undefined ? sucessQuiz : 0;
+
+      console.log("test" + typeof (sucessQuiz));
+
       if (this.currentInGameStat.memoryStats) {
-        this.currentInGameStat.sucessMemory = Math.max(100 - Math.max(this.currentInGameStat.memoryStats.erreurMemory - 3, 0) * 10, 0);
+        if (this.currentInGameStat.memoryStats.wasPassed) this.currentInGameStat.sucessMemory = 0;
+        else this.currentInGameStat.sucessMemory = Math.max(100 - Math.max(this.currentInGameStat.memoryStats.erreurMemory - 3, 0) * 10, 0);
       }
-      this.currentInGameStat.sucessSimon = Math.max(this.currentInGameStat.simonStats ? 100 - this.currentInGameStat.simonStats.erreurSimon * 10 : 0, 0);
+      if (this.currentInGameStat.simonStats) {
+        if (this.currentInGameStat.simonStats.wasPassed) this.currentInGameStat.sucessSimon = 0;
+        else this.currentInGameStat.sucessSimon = Math.max(this.currentInGameStat.simonStats ? 100 - this.currentInGameStat.simonStats.erreurSimon * 10 : 0, 0);
+      }
     } else {
       console.error('Current stats not initialized.');
     }
   }
 
-  dumpStat(){
+  dumpStat() {
     this.dates = []
     this.datesMemory = []
     this.datesSimon = []
@@ -122,22 +137,18 @@ export class StatsService {
       for (const stat of filteredStats) {
         this.dates.push(stat.date);
         this.sucessQuestion.push(Number(stat.sucessQuiz));
-        if (stat.sucessMemory != undefined){
+        if (stat.sucessMemory != undefined) {
           this.sucessMemory.push(Number(stat.sucessMemory))
           this.datesMemory.push(String(stat.date))
         }
-        if (stat.sucessSimon != undefined){
+        if (stat.sucessSimon != undefined) {
           this.sucessSimon.push(Number(stat.sucessSimon))
           this.datesSimon.push(String(stat.date))
         }
       }
     });
-    return [this.dates,this.sucessQuestion,this.datesMemory,this.sucessMemory,this.datesSimon,this.sucessSimon]
+    return [this.dates, this.sucessQuestion, this.datesMemory, this.sucessMemory, this.datesSimon, this.sucessSimon]
   }
-
-
-
-
 
   sendStat(): void {
     this.addSummaryStats();
@@ -145,6 +156,8 @@ export class StatsService {
     console.log("ça post");
     console.log(this.currentInGameStat);
     console.log(this.apiURL);
+
+    console.log(this.currentInGameStat);
     this.http.post<IStats>(this.apiURL, this.currentInGameStat, { headers }).pipe(
       catchError((error) => {
         console.error('Error sending stat:', error);

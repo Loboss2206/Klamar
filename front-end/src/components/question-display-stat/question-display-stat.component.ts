@@ -32,6 +32,7 @@ export class QuestionDisplayStat implements OnInit {
   questionImage: string | undefined = '';
   areResponsesImages: boolean | undefined = false;
   answerIndex: number[] = [];
+  @Input() wasPassed: boolean | undefined;
 
   constructor(private questionService: QuestionService, private router: Router) { }
 
