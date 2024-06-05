@@ -4,6 +4,7 @@
   </app-titlePage>
 </h1>
 <div class="resultatMemory">
-  <app-result-memory [pictures]=stat?.memoryStats?.pictures [indices]=stat?.memoryStats?.indicesMemory
-    [erreur]=stat?.memoryStats?.erreurMemory [temps]=stat?.memoryStats?.tempsMemory></app-result-memory>
+  <app-result-memory [wasPassed]=stat?.memoryStats?.wasPassed [pictures]=stat?.memoryStats?.pictures
+    [indices]=stat?.memoryStats?.indicesMemory [erreur]=stat?.memoryStats?.erreurMemory
+    [temps]=stat?.memoryStats?.tempsMemory></app-result-memory>
 </div>

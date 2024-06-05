@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { StatQuestionComponent } from "../stat-question/stat-question.component";
 import { QuestionComponent } from "../question/question.component";
 import { QuestionDisplayStat } from "../question-display-stat/question-display-stat.component";
+import { NgIf } from '@angular/common';
 
 @Component({
   selector: 'app-result-question',
@@ -9,7 +10,8 @@ import { QuestionDisplayStat } from "../question-display-stat/question-display-s
   imports: [
     StatQuestionComponent,
     QuestionComponent,
-    QuestionDisplayStat
+    QuestionDisplayStat,
+    NgIf
   ],
   templateUrl: './result-question.component.html',
   styleUrl: './result-question.component.scss'

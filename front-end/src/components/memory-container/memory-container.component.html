@@ -1,3 +1,4 @@
+<app-genericButton class="skipButton" (click)=skipMemory()>Passer le Memory</app-genericButton>
 <p id="textHints">{{textHints}}</p>
 <div class="memoryContainer">
     <app-memory-item (onFlip)="updateFlippedItems(i)" *ngFor="let pic of pics; let i = index"

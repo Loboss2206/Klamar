@@ -8,15 +8,15 @@
     <div class="differentGame">
       <div *ngIf="this.statGraphic && this.statGraphic[0]">
         <app-graphic [chartId]="'1'" [titre]="'Statistique Questions'" [date]="this.date"
-                   [data]="this.sucessQuestion"></app-graphic>
+          [data]="this.sucessQuestion"></app-graphic>
+      </div>
+      <div *ngIf="this.statGraphic && this.statGraphic[4]">
+        <app-graphic [chartId]="'3'" [titre]="'Statistique Simon'" [date]="this.dateSimon"
+          [data]="this.sucessSimon"></app-graphic>
       </div>
       <div *ngIf="this.statGraphic && this.statGraphic[2]">
         <app-graphic [chartId]="'2'" [titre]="'Statistique Memory'" [date]="this.dateMemory"
-                     [data]="this.sucessMemory"></app-graphic>
-      </div>
-      <div *ngIf="this.statGraphic && this.statGraphic[4]">
-      <app-graphic [chartId]="'3'" [titre]="'Statistique Simon'" [date]="this.dateSimon"
-                 [data]="this.sucessSimon"></app-graphic>
+          [data]="this.sucessMemory"></app-graphic>
       </div>
     </div>
 

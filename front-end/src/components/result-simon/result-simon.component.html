@@ -1,4 +1,5 @@
 <div class="simonStat">
+  <p *ngIf="wasPassed" class="questionPassed">Le simon a été passé</p>
   <app-stat-question [indices]="indices" [erreur]="erreur" [temps]="temps"></app-stat-question>
   <h1>Taille de la séquence finale : {{taille}}</h1>
   <h1>Nombre de couleurs : {{couleur}}</h1>

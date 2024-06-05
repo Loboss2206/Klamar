@@ -11,7 +11,7 @@ import * as Tone from "tone";
 import IUser from "../../interfaces/IUser";
 import { UserService } from "../../services/user-service.service";
 import IQuestionStat from "../../interfaces/IQuestionStat";
-import {StatsService} from "../../services/stats.service";
+import { StatsService } from "../../services/stats.service";
 
 @Component({
   selector: 'app-question',
@@ -44,12 +44,12 @@ export class QuestionComponent implements OnInit, AfterViewInit {
   user: IUser | null = this.userService.getCurrentUser();
   canOpenTipsOnClick: boolean = this.user ? this.user.config.quiz.showHintAfterClick : false;
   currentTipIndex: number = this.user ? this.user.config.quiz.showHintOneByOne ? 0 : -1 : -1;
-  idQuestion ?: string
+  idQuestion?: string
   startTime: number = 0;
-  answerIndex : number[] = []
-  maxPointQuestion : number = 1
+  answerIndex: number[] = []
+  maxPointQuestion: number = 1
 
-  constructor(private quizService: QuizService, private router: Router, private userService: UserService, private statsService : StatsService) {
+  constructor(private quizService: QuizService, private router: Router, private userService: UserService, private statsService: StatsService) {
 
   }
   ngOnInit() {
@@ -112,7 +112,7 @@ export class QuestionComponent implements OnInit, AfterViewInit {
     if (this.quizService.checkAnswer(answer)) {
       let answerIndex = this.answers.findIndex((ans: any) => ans === answer);
       const questionStat: IQuestionStat = {
-        id:1,
+        id: 1,
         idQuestion: Number(this.idQuestion),
         pointQuestion: this.pointOnQuestion(),
         maxPointQuestion: this.maxPointQuestion,
@@ -121,14 +121,6 @@ export class QuestionComponent implements OnInit, AfterViewInit {
         tempsQuiz: this.getTimeSpentOnQuestion(),
         reponseId: [answerIndex]
       };
-      console.log("questionStat" + questionStat)
-      console.log(questionStat.idQuestion)
-      console.log(questionStat.pointQuestion)
-      console.log(questionStat.maxPointQuestion)
-      console.log(questionStat.erreurQuiz)
-      console.log(questionStat.indicesQuiz)
-      console.log(questionStat.tempsQuiz)
-      console.log(questionStat.reponseId)
 
       this.statsService.addQuestionStat(questionStat);
       this.playCorrectTune();
@@ -152,6 +144,21 @@ export class QuestionComponent implements OnInit, AfterViewInit {
       }
       this.wrongAnswers.push(answer);
     }
+  }
+
+  skipQuestion() {
+    const questionStat: IQuestionStat = {
+      id: 1,
+      idQuestion: Number(this.idQuestion),
+      pointQuestion: -1,
+      maxPointQuestion: this.maxPointQuestion,
+      erreurQuiz: this.wrongAnswers.length,
+      indicesQuiz: this.currentTipIndex + 1,
+      tempsQuiz: this.getTimeSpentOnQuestion(),
+      reponseId: [0]
+    };
+    this.statsService.addQuestionStat(questionStat);
+    this.quizService.nextQuestion();
   }
 
   goToHowToPlay() {
@@ -181,10 +188,10 @@ export class QuestionComponent implements OnInit, AfterViewInit {
     return Number(((currentTime - this.startTime) / 1000).toFixed(1));
   }
 
-  private pointOnQuestion() : number{
-    let point : number = this.maxPointQuestion - (this.wrongAnswers.length/3)
+  private pointOnQuestion(): number {
+    let point: number = this.maxPointQuestion - (this.wrongAnswers.length / 3)
     point = Number(point.toFixed(2))
-    if (point > 0){
+    if (point > 0) {
       return point
     }
     return 0;

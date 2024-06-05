@@ -1,4 +1,5 @@
 <div class="quizContainer">
+  <p *ngIf="wasPassed" class="questionPassed">Cette question a été passé</p>
   <p class="question">{{ questionText }}</p>
   <div *ngIf="questionImage" class="question-image-container">
     <img src="{{questionImage}}" alt="" />

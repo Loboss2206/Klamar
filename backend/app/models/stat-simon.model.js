@@ -7,4 +7,5 @@ module.exports = new BaseModel('StatSimon', {
   tempsSimon: Joi.number().required(),
   tailleFinalSimon: Joi.number().required(),
   nombreDeCouleurs: Joi.number().required(),
+  wasPassed: Joi.boolean().required(),
 })

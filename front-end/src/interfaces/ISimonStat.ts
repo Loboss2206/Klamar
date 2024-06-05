@@ -5,4 +5,5 @@ export default interface ISimonStat {
     tempsSimon: number;
     tailleFinalSimon: number;
     nombreDeCouleurs: number;
+    wasPassed: boolean;
 }
