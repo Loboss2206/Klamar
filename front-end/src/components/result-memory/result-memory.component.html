@@ -1,5 +1,6 @@
 <div class="memoryStat">
+  <div class="images-container">
+    <img *ngFor="let pic of pictures" src="{{pic}}" alt="" />
+  </div>
   <app-stat-question [indices]="indices" [erreur]="erreur" [temps]="temps"></app-stat-question>
-  <h1>hauteur de la grille : {{hauteur}}</h1>
-  <h1>largeur de la grille : {{largeur}}</h1>
 </div>

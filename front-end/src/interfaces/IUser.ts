@@ -9,6 +9,5 @@ export default interface IUser {
   config: IUserConfig;
   avatar: string | undefined;
   charts: string[];
-  statsId: number[];
   colorBlind: string;
 }

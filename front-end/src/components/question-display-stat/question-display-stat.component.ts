@@ -5,6 +5,7 @@ import { QuizService } from "../../services/quiz-service.service";
 import IQuestion from "../../interfaces/IQuestion";
 import { TipsComponent } from "../tips/tips.component";
 import { Router } from "@angular/router";
+import { QuestionService } from 'src/services/question.service';
 
 @Component({
   selector: 'app-question-display-stat',
@@ -22,30 +23,30 @@ import { Router } from "@angular/router";
 })
 
 export class QuestionDisplayStat implements OnInit {
-  @Input() questionId?: number;
+  @Input() questionId: number | undefined;
   question: IQuestion | undefined;
   questionText: string | undefined;
   answers: any;
   correctAnswer: any = null;
   wrongAnswers: any = [];
   questionImage: string | undefined = '';
-  areResponsesImages: boolean = false;
+  areResponsesImages: boolean | undefined = false;
   answerIndex: number[] = [];
 
-  constructor(private quizService: QuizService, private router: Router) { }
+  constructor(private questionService: QuestionService, private router: Router) { }
 
   ngOnInit() {
     console.log("idQuestion: " + this.questionId);
 
-    if (this.questionId) {
-      this.question = this.quizService.getQuestion(this.questionId);
+    this.questionService.questions$.subscribe((questions: IQuestion[]) => {
+      this.question = this.questionService.getQuestionById(this.questionId);
       console.log(this.question);
-      this.answers = this.question.responses;
-      this.questionText = this.question.question;
-      this.questionImage = this.question.questionImage;
-      this.areResponsesImages = this.question.AreResponsesImages;
+      this.answers = this.question?.responses;
+      this.questionText = this.question?.question;
+      this.questionImage = this.question?.questionImage;
+      this.areResponsesImages = this.question?.AreResponsesImages;
       this.correctAnswer = null;
       this.wrongAnswers = [];
-    }
+    });
   }
 }

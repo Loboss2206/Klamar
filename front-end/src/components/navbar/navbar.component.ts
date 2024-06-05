@@ -24,6 +24,12 @@ export class NavbarComponent implements OnInit {
   constructor(private router: Router, private activatedRoute: ActivatedRoute, private userService: UserService) {
   }
 
+  dropdownOpen = false;
+
+  toggleDropdown() {
+    this.dropdownOpen = !this.dropdownOpen;
+  }
+
 
   changeState() {
     this.currentState = this.currentState === 'initial' ? 'final' : 'initial';

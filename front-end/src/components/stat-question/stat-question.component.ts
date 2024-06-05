@@ -25,6 +25,5 @@ export class StatQuestionComponent {
     if (this.questionId) {
       this.question = this.quizService.getQuestion(this.questionId);
     }
-    console.log("idQuestion: " + this.question?.tips);
   }
 }

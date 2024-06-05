@@ -125,7 +125,7 @@ export class QuizService {
   }
 
   getQuestion(id: number): IQuestion {
-    return this.getAllQuestions().find((question) => parseInt(question.id) === id) || {} as IQuestion;
+    return this.getAllQuestions().find((question) => question.id === id) || {} as IQuestion;
   }
 
   restartQuiz() {

@@ -118,7 +118,6 @@ export class UserCreatorComponent {
       birthdate: this.userCreatorForm.get('userBirth')?.getRawValue(),
       config: newUserConfig,
       charts: [],
-      statsId: [],
       colorBlind: this.userCreatorForm.get('typeOfDalto')?.getRawValue()
     };
     const fileInput = document.getElementById('userImg') as HTMLInputElement;
@@ -203,8 +202,7 @@ export class UserCreatorComponent {
       avatar: this.user.avatar,
       birthdate: this.userCreatorForm.get('userBirth')?.getRawValue(),
       config: newUserConfig,
-      charts: [],
-      statsId: [],
+      charts: this.user.charts,
       colorBlind: this.userCreatorForm.get('typeOfDalto')?.getRawValue()
     };
     const fileInput = document.getElementById('userImg') as HTMLInputElement;
