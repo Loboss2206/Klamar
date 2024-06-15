@@ -6,20 +6,23 @@ import { QuizService } from "../../services/quiz-service.service";
 import { NgClass, NgIf } from "@angular/common";
 import { GenericButtonComponent } from "../genericButton/genericButton.component";
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from "@angular/forms";
-import { Subscription } from "rxjs";
+import { BehaviorSubject, Observable, Subscription } from "rxjs";
 import IQuestion from "../../interfaces/IQuestion";
 import ISimonConfig from "../../interfaces/ISimonConfig";
 import { ImagesPicklistComponent } from "../images-picklist/images-picklist.component";
 import { SearchQuizSelectorComponent } from "../search-quiz-selector/search-quiz-selector.component";
+import { QuestionComponent } from "../question/question.component";
+import { SelectQuestionEditComponent } from "../select-question-edit/select-question-edit.component";
 
 @Component({
   selector: 'app-quiz-manager',
   standalone: true,
-  imports: [MaterialTableComponent, QuestionsPicklistComponent, NgIf, GenericButtonComponent, FormsModule, NgClass, ReactiveFormsModule, ImagesPicklistComponent, SearchQuizSelectorComponent],
   templateUrl: './quiz-manager.component.html',
-  styleUrl: './quiz-manager.component.scss'
+  styleUrl: './quiz-manager.component.scss',
+  imports: [MaterialTableComponent, QuestionsPicklistComponent, NgIf, GenericButtonComponent, FormsModule, NgClass, ReactiveFormsModule, ImagesPicklistComponent, SearchQuizSelectorComponent, QuestionComponent, SelectQuestionEditComponent]
 })
 export class QuizManagerComponent implements OnInit {
+
   @ViewChild('fileInput') fileInput: ElementRef | undefined;
 
   editMode: boolean = false;
@@ -29,16 +32,17 @@ export class QuizManagerComponent implements OnInit {
   quizImage: string = "";
   pickListDataSubscription: Subscription | undefined;
   imagePickListDataSubscription: Subscription | undefined;
-  allQuestions: IQuestion[] = [];
+  allQuestionsObersavable: BehaviorSubject<IQuestion[]> = new BehaviorSubject<IQuestion[]>([]);
   existingQuizQuestions: IQuestion[] = [];
   isSimonGameOnQuiz: boolean = false;
   isMemoryGameOnQuiz: boolean = false;
   simonConfig: ISimonConfig = { numberOfRound: 5, numberOfBoxes: 4, numberOfRetriesAllowed: 2 };
   simonConfigForm: FormGroup = this.fb.group({});
   simonConfigOpened: boolean = false;
-  isInMemoryEdit: boolean = false
+  isInMemoryEdit: boolean = false;
   allImages: string[] = [];
   imagesAlreadyInTheMemory: string[] = [];
+  addQuestionOpened: boolean = false;
 
 
   constructor(private quizService: QuizService, private fb: FormBuilder) {
@@ -65,7 +69,7 @@ export class QuizManagerComponent implements OnInit {
     });
 
     this.pickListDataSubscription = this.quizService.getQuestionsPickListData().subscribe((data) => {
-      this.allQuestions = data.allQuestions;
+      this.allQuestionsObersavable.next(data.allQuestions);
       this.existingQuizQuestions = data.existingQuizQuestions;
     });
 
@@ -172,7 +176,7 @@ export class QuizManagerComponent implements OnInit {
 
   SaveCurrentQuiz() {
     let questionsIDs: number[] = this.existingQuizQuestions.map((question) => question.id);
-    let specials: { name: string, rulesForSimon?: ISimonConfig }[] = [];
+    let specials: { name: string, rulesForSimon?: ISimonConfig; }[] = [];
     let picsMemory: string[] = [];
     if (this.isSimonGameOnQuiz) {
       specials.push({ name: "Simon", rulesForSimon: this.simonConfig });
@@ -189,7 +193,7 @@ export class QuizManagerComponent implements OnInit {
       questions: questionsIDs.map((id) => id),
       specials: specials,
       picsMemory: picsMemory
-    }
+    };
     this.editMode = false;
     console.log(quiz, this.currentQuizID);
     this.saveQuiz(this.currentQuizID, quiz);
@@ -208,7 +212,7 @@ export class QuizManagerComponent implements OnInit {
       numberOfRound: this.simonConfigForm.get('numberOfRound')?.value,
       numberOfBoxes: this.simonConfigForm.get('numberOfBoxes')?.value,
       numberOfRetriesAllowed: this.simonConfigForm.get('numberOfRetriesAllowed')?.value
-    }
+    };
     this.simonConfigOpened = false;
   }
 
@@ -246,5 +250,13 @@ export class QuizManagerComponent implements OnInit {
     this.simonConfigOpened = false;
     this.isInMemoryEdit = false;
     this.imagesAlreadyInTheMemory = [];
+  }
+
+  createAQuestion() {
+    this.addQuestionOpened = true;
+  }
+
+  closeAddQuestion() {
+    this.addQuestionOpened = false;
   }
 }

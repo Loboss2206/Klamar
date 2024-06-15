@@ -15,7 +15,7 @@
     *ngIf="editMode">
     <div style="display: flex; justify-content: space-evenly; flex-direction: row; align-items: center; width: 100%">
       <div>
-        <img src="{{quizImage}}" width="250px" (click)="openFileChooser()" alt="L'image du Quiz" />
+        <img src="{{quizImage}}" width="250px" (click)="openFileChooser()" alt="L'image du Quiz" onerror="this.src='https://via.placeholder.com/250'">
         <input type="file" #fileInput style="display: none" (change)="onFileSelected($event)">
       </div>
 
@@ -25,7 +25,8 @@
         <textarea [(ngModel)]="quizDescription" placeholder="Description du quiz"></textarea>
         <br />
 
-        <div
+        <div style="display: flex; justify-content: center; flex-direction: column; align-items: center; margin-bottom: 10px">
+           <div
           style="display: flex; justify-content: center; flex-direction: row; align-items: center; margin-bottom: 10px">
           <label for="includeSimon">Inclure le simon ?<input type="checkbox" [(ngModel)]="isSimonGameOnQuiz"
               id="includeSimon" /></label>
@@ -37,12 +38,14 @@
               id="includeMemory" /></label>
           <app-genericButton (click)="openMemoryConfig()">Paramètres</app-genericButton>
         </div>
+        </div>
+
 
       </div>
     </div>
-    <app-questions-picklist [allQuestions]="allQuestions"
-      [questionsAlreadyInTheQuiz]="existingQuizQuestions"></app-questions-picklist>
-    <div style="display: flex; justify-content: center; flex-direction: row; align-items: center; width: 100%">
+    <app-questions-picklist [allQuestionsObersavable]="allQuestionsObersavable"
+      [questionsAlreadyInTheQuiz]="existingQuizQuestions" (createAQuestion)="createAQuestion()"></app-questions-picklist>
+    <div style="display: flex; justify-content: center; flex-direction: row; align-items: center; width: 100%; position: fixed; bottom: 0; margin-bottom: 20px">
       <app-genericButton [isDeleteButton]="true" (click)="cancelEdit()">Annuler</app-genericButton>
       <div style="width: 20px"></div>
       <app-genericButton (click)="SaveCurrentQuiz()">Sauvegarder</app-genericButton>
@@ -66,6 +69,13 @@
         <app-genericButton type="submit" (click)="saveSimonConfig()">Sauvegarder</app-genericButton>
       </div>
     </form>
+  </div>
+
+  <div id="overlayAddQuestion" *ngIf="addQuestionOpened">
+    <div class="close">
+      <span (click)="closeAddQuestion()">X</span>
+    </div>
+    <app-select-question-edit (close)="closeAddQuestion()" [enableRedirections]="false"></app-select-question-edit>
   </div>
   <div *ngIf="!editMode && isInMemoryEdit"
     style="display: flex; justify-content: center; flex-direction: column; align-items: center;">

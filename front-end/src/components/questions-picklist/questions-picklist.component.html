@@ -16,7 +16,11 @@
                cdkDropList
                [cdkDropListData]="column.questions"
                (cdkDropListDropped)="drop($event)">
-            <app-search-quiz-selector (searchTerm)="SearchQuestions($event)" *ngIf="column.id === '1'"></app-search-quiz-selector>
+               <div class="questionManager" *ngIf="column.id === '1'">
+                  <app-search-quiz-selector (searchTerm)="SearchQuestions($event)"></app-search-quiz-selector>
+                  <app-genericButton (click)="createQuestion()">Créer une question</app-genericButton>
+               </div>
+
             <div class="question" *ngFor="let question of column.questions" cdkDrag>
               {{ question.question }}
             </div>

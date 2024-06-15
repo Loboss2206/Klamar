@@ -17,8 +17,8 @@ export class QuestionService {
   public questions$: BehaviorSubject<IQuestion[]> = new BehaviorSubject<IQuestion[]>([]);
 
   constructor(private http: HttpClient, private router: Router) {
-    console.log('questionService Created')
-    console.log(this.questions)
+    console.log('questionService Created');
+    console.log(this.questions);
     this.retrieveQuestions();
   }
 
@@ -27,10 +27,11 @@ export class QuestionService {
     return question;
   }
 
-  createNewQuestion(newQuestion: IQuestion): void {
+  createNewQuestion(newQuestion: IQuestion, redirect?: boolean): void {
     this.http.post<IQuestion>(this.questionUrl, newQuestion, this.httpOptions).subscribe(() => {
       this.retrieveQuestions();
-      this.router.navigate(['/admin/selectQuestion']);
+      if (redirect)
+        this.router.navigate(['/admin/selectQuestion']);
     });
   }
 
@@ -51,12 +52,13 @@ export class QuestionService {
     this.http.delete<IQuestion>(urlWithId, this.httpOptions).subscribe(() => this.retrieveQuestions());
   }
 
-  modifyQuestion(question: IQuestion): void {
+  modifyQuestion(question: IQuestion, redirect?: boolean): void {
     const urlWithId = this.questionUrl + '/' + question.id;
-    console.log(question.id)
+    console.log(question.id);
     this.http.put<IQuestion>(urlWithId, question, this.httpOptions).subscribe(() => {
       this.retrieveQuestions();
-      this.router.navigate(['/admin/selectQuestion']);
+      if (redirect)
+        this.router.navigate(['/admin/selectQuestion']);
     });
   }
 }

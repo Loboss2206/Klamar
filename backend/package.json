@@ -8,7 +8,8 @@
     "dev": "nodemon app/index.js",
     "lint": "./node_modules/.bin/eslint -c .eslintrc.js app/",
     "lint:fix": "./node_modules/.bin/eslint -c .eslintrc.js app/ --fix",
-    "start:e2e": "rimraf ./database/e2e && copyfiles -f ./database/e2e-starter/* ./database/e2e ./database/e2e && cross-env DB_FOLDER=e2e/ node app/index.js"
+    "start:e2e": "rimraf ./database/e2e && copyfiles -f ./database/e2e-starter/* ./database/e2e ./database/e2e && cross-env DB_FOLDER=e2e/ node app/index.js",
+    "frontTheBack": "concurrently \"cd ../front-end && npm run start\" \"cd ../backend && npm run dev\""
   },
   "precommit": [
     "lint"
@@ -40,7 +41,8 @@
     "mkdirp": "^3.0.1",
     "nodemon": "2.0.2",
     "pre-commit": "1.2.2",
-    "rimraf": "^5.0.1"
+    "rimraf": "^5.0.1",
+    "concurrently": "^6.5.1"
   },
   "nodemonConfig": {
     "ignore": [
