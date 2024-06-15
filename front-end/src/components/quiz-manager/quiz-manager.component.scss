@@ -28,6 +28,37 @@ textarea {
   box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.7);
 }
 
+#overlayAddQuestion {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--quiz-manager-overlay);
+  z-index: 1000;
+  overflow: auto;
+}
+
+.close {
+  position: fixed;
+  top: 10px;
+  right: 25px;
+  font-size: 36px;
+  color: white;
+  cursor: pointer;
+}
+
+#overlayAddQuestion > ::ng-deep app-select-question-edit > main > .user-modifier-form {
+  border-radius: 20px;
+  box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.7);
+  margin-left: 15%;
+  margin-right: 15%;
+  margin-left: 15%;
+  text-align: center;
+  background-color: #F6F6F6;
+  margin-bottom: 100px;
+}
+
 #overlaySimonConfig {
   position: fixed;
   top: 0;

@@ -1,8 +1,8 @@
-import {Component} from '@angular/core';
-import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
-import {ActivatedRoute, Router} from "@angular/router";
-import {QuestionService} from "../../services/question.service";
-import {NgIf} from "@angular/common";
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from "@angular/forms";
+import { ActivatedRoute, Router } from "@angular/router";
+import { QuestionService } from "../../services/question.service";
+import { NgIf } from "@angular/common";
 import IQuestion from 'src/interfaces/IQuestion';
 
 @Component({
@@ -16,6 +16,11 @@ import IQuestion from 'src/interfaces/IQuestion';
   styleUrl: './select-question-edit.component.scss'
 })
 export class SelectQuestionEditComponent {
+
+  @Input() enableRedirections: boolean = true;
+  @Output() close = new EventEmitter<void>();
+
+
   protected questionModificatorComponent: FormGroup;
   idQuestionToModify: string | null = this.route.snapshot.paramMap.get('id');
   imageUrlQuestion: any;
@@ -63,14 +68,14 @@ export class SelectQuestionEditComponent {
         response3Value = questionToModify.responses[2];
         response4Value = questionToModify.responses[3];
       }
-      this.imageUrlQuestion = questionToModify.questionImage
+      this.imageUrlQuestion = questionToModify.questionImage;
       this.imageBase64Question = questionToModify.questionImage;
 
       this.questionModificatorComponent = this.formBuilder.group({
 
         question: [questionToModify.question, Validators.required],
         choicePicture: [String
-        (questionToModify.AreResponsesImages), Validators.required],
+          (questionToModify.AreResponsesImages), Validators.required],
         imageQuestion: questionToModify.questionImage,
         imageResponse1: questionToModify.responses[0],
         imageResponse2: questionToModify.responses[1],
@@ -122,19 +127,19 @@ export class SelectQuestionEditComponent {
       } else if (answerId == 4) {
         return this.questionModificatorComponent.get('reponse4')?.value;
       }
-    }else {
-      console.log("isImage")
+    } else {
+      console.log("isImage");
       if (answerId == 1) {
-        console.log("1", answerId)
+        console.log("1", answerId);
         return this.questionModificatorComponent.get('imageResponse1')?.value;
       } else if (answerId == 2) {
-        console.log("2", answerId)
+        console.log("2", answerId);
         return this.questionModificatorComponent.get('imageResponse2')?.value;
       } else if (answerId == 3) {
-        console.log("3", answerId)
+        console.log("3", answerId);
         return this.questionModificatorComponent.get('imageResponse3')?.value;
       } else if (answerId == 4) {
-        console.log("4", answerId)
+        console.log("4", answerId);
         return this.questionModificatorComponent.get('imageResponse4')?.value;
       }
     }
@@ -149,7 +154,7 @@ export class SelectQuestionEditComponent {
       tips: [this.questionModificatorComponent.get('indice1')?.getRawValue(), this.questionModificatorComponent.get('indice2')?.getRawValue()],
       AreResponsesImages: this.questionModificatorComponent.get('choicePicture')?.getRawValue().toString() === "true",
       responses: [this.questionModificatorComponent.get('reponse1')?.getRawValue(), this.questionModificatorComponent.get('reponse2')?.getRawValue(), this.questionModificatorComponent.get('reponse3')?.getRawValue(), this.questionModificatorComponent.get('reponse4')?.getRawValue()],
-      answer:  this.getTheQuestionOfAnswerId(parseInt(this.questionModificatorComponent.get('correctAnswer')?.getRawValue()), this.questionModificatorComponent.get('choicePicture')?.getRawValue().toString() === "true"),
+      answer: this.getTheQuestionOfAnswerId(parseInt(this.questionModificatorComponent.get('correctAnswer')?.getRawValue()), this.questionModificatorComponent.get('choicePicture')?.getRawValue().toString() === "true"),
       tags: this.questionModificatorComponent.get('categorie')?.getRawValue().split(",")
     };
     if (this.imageBase64Question != "") {
@@ -169,14 +174,17 @@ export class SelectQuestionEditComponent {
     }
     console.log(newQuestion);
     if (newQuestion.id == -1) {
-      this.questionService.createNewQuestion(newQuestion);
+      this.questionService.createNewQuestion(newQuestion, this.enableRedirections);
     } else {
-      this.questionService.modifyQuestion(newQuestion);
+      this.questionService.modifyQuestion(newQuestion, this.enableRedirections);
+    }
+    if (!this.enableRedirections) {
+      this.close.emit();
     }
   }
 
   onFileSelected(event: any, imageUrl: any) {
-    console.log(imageUrl)
+    console.log(imageUrl);
     const file: File = event.target.files[0];
     if (file) {
       const reader = new FileReader();
@@ -198,7 +206,7 @@ export class SelectQuestionEditComponent {
           this.imageUrlResponse4 = reader.result;
           this.imageBase64Response4 = reader.result;
         }
-      }
+      };
     }
   }
 }

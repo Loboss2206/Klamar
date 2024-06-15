@@ -15,6 +15,16 @@
   box-shadow: 5px 5px 10px 5px rgba(0, 0, 0, 0.2);
 }
 
+.questionManager {
+    display: flex;
+    justify-content: space-between;
+    align-items: stretch;
+    margin-bottom: 20px;
+    flex-direction: row;
+    flex-wrap: nowrap;
+  margin-bottom: 20px;
+}
+
 .kanbanColumn:not(:first-child) {
   margin-left: 0;
 }
@@ -69,4 +79,12 @@
 .questionsContainer::-webkit-scrollbar-thumb {
   background-color: var(--kanban-scrollbar-thumb-color);
   border-radius: var(--kanban-scrollbar-radius);
+}
+
+.question {
+  cursor: grab;
+}
+
+.question.cdk-drag-preview {
+  cursor: grabbing, -webkit-grabbing, -moz-grabbing, -o-grabbing, grab;
 }
