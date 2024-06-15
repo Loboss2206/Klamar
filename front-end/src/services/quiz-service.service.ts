@@ -22,7 +22,7 @@ export class QuizService {
 
   private currentQuestionSubject: BehaviorSubject<IQuestion> = new BehaviorSubject<IQuestion>({} as IQuestion);
   private currentQuestionIndex: number = JSON.parse(sessionStorage.getItem('currentQuestionIndex') || '0');
-  private waitingTimeBeforeNextQuestion: number = 1000;
+  private waitingTimeBeforeNextQuestion: number = 2500;
   private currentQuiz: number = JSON.parse(sessionStorage.getItem('currentQuiz') || '0');
 
   private quizzes: BehaviorSubject<IQuiz[]> = new BehaviorSubject<IQuiz[]>([] as IQuiz[]);
