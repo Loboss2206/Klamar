@@ -1,6 +1,5 @@
-<app-genericButton class="skipButton" (click)=skipSimon()>Passer le Simon</app-genericButton>
-
 <div class="simon-game">
+<app-genericButton class="skipButton" (click)=skipSimon()>Passer le Simon</app-genericButton>
 
   <div class="simon-board">
     <div *ngFor="let i of numberOfBoxesArray" class="simon-button" [id]="'button-' + i"
