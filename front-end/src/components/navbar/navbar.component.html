@@ -21,7 +21,7 @@ admin_panel_settings
         </div>
 
         <div class="dropdown-menu" *ngIf="dropdownOpen" (mouseleave)="toggleDropdown()">
-          <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+          <ul aria-labelledby="navbarDropdownMenuLink">
             <li><a class="dropdown-item" [routerLink]="['/admin/selectQuestion']">Gestion des questions</a></li>
             <li><a class="dropdown-item" [routerLink]="['/admin/quizManager']">Gestion des quizzes</a></li>
             <li><a class="dropdown-item" [routerLink]="['/admin/selectUserToModify']">Gestion des utilisateurs</a></li>
