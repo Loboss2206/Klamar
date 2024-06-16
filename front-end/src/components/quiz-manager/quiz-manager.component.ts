@@ -28,7 +28,7 @@ export class QuizManagerComponent implements OnInit {
   editMode: boolean = false;
   currentQuizID: number = 0;
   quizName: string = "";
-  quizDescription: string = "a";
+  quizDescription: string = "";
   quizImage: string = "";
   pickListDataSubscription: Subscription | undefined;
   imagePickListDataSubscription: Subscription | undefined;
