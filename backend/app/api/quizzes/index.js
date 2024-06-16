@@ -23,6 +23,7 @@ router.get('/:quizId', (req, res) => {
 
 router.post('/', (req, res) => {
   try {
+    console.log(req.body)
     const user = Quizzes.create({ ...req.body })
     res.status(201).json(user)
   } catch (err) {

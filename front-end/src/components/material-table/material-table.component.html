@@ -17,7 +17,8 @@
       <tbody>
         <tr *ngFor="let row of elements">
           <td *ngFor="let cell of Object.keys(row) | slice:0:headers.length" (click)="cellClick(row, 'rowClick')">
-            <img *ngIf="cell === 'image'" [src]="row[cell]" alt="image" width="100" class="material-table-image" />
+            <img *ngIf="cell === 'image'" [src]="row[cell]" alt="Pas d'image pour le quiz" width="100"
+              class="material-table-image material-table-cell" />
             <div class="material-table-cell" *ngIf="cell !== 'image'">{{row[cell]}}</div>
           </td>
           <td *ngIf="actions.length > 0">

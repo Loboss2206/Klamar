@@ -43,8 +43,8 @@ export class UserCreatorComponent {
         userImg: [""],
         firstName: [this.user.firstname, Validators.required],
         lastName: [this.user.name, Validators.required],
-        userBirth: [this.user.birthdate, Validators.required],
-        hobbies: [this.user.hobbies, Validators.required],
+        userBirth: [this.user.birthdate],
+        hobbies: [this.user.hobbies],
         baseZoom: [this.user.config.zoomLevel, Validators.required],
         choiceSimon: [this.user.config.simon.isColorful.toString(), Validators.required],
         choicePrintTipsAfterError: [this.user.config.quiz.showHintAfterError.toString(), Validators.required],
@@ -61,17 +61,17 @@ export class UserCreatorComponent {
         userImg: [''],
         firstName: ['', Validators.required],
         lastName: ['', Validators.required],
-        userBirth: ['', Validators.required],
-        hobbies: ['', Validators.required],
+        userBirth: [''],
+        hobbies: [''],
         baseZoom: [100, Validators.required],
-        choiceSimon: ['', Validators.required],
-        choicePrintTipsAfterError: ['', Validators.required],
-        choicePrintTipsAfterClick: ['', Validators.required],
-        choicePrintTipsOneByOne: ['', Validators.required],
-        secTipsForMemory: [0, Validators.required],
-        secTipsForSimon: [0, Validators.required],
-        secVisibleCardForMemory: [0, Validators.required],
-        typeOfDalto: ["", Validators.required]
+        choiceSimon: ['true', Validators.required],
+        choicePrintTipsAfterError: ['true', Validators.required],
+        choicePrintTipsAfterClick: ['true', Validators.required],
+        choicePrintTipsOneByOne: ['true', Validators.required],
+        secTipsForMemory: [10, Validators.required],
+        secTipsForSimon: [10, Validators.required],
+        secVisibleCardForMemory: [10, Validators.required],
+        typeOfDalto: ["nodaltonisme", Validators.required]
       });
     }
   }

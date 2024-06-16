@@ -94,7 +94,7 @@ export class SelectQuestionEditComponent {
       this.idQuestionToModify = null;
       this.questionModificatorComponent = this.formBuilder.group({
         question: ['', Validators.required],
-        choicePicture: ['', Validators.required],
+        choicePicture: ['false', Validators.required],
         imageQuestion: "",
         imageResponse1: "",
         imageResponse2: "",
