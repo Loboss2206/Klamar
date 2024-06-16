@@ -188,7 +188,7 @@ export class QuizManagerComponent implements OnInit {
     let quiz: IQuiz = {
       id: this.currentQuizID,
       title: this.quizName,
-      quizDescription: this.quizDescription,
+      quizDescription: this.quizDescription === "" ? "Pas de description pour le quiz" : this.quizDescription,
       imageUrl: this.quizImage,
       questions: questionsIDs.map((id) => id),
       specials: specials,

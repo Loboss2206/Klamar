@@ -1,4 +1,6 @@
 <div style="display: flex; flex-direction: column; align-items: center; margin-top: 20px;">
+  <app-genericButton [routerLink]="['/admin/createUser']">Création d'un nouvel
+    utilisateur</app-genericButton>
   <div class="userContainerWrapper">
     <app-search-quiz-selector (searchTerm)="searchUsers($event)"></app-search-quiz-selector>
     <div class="userContainer">
@@ -7,6 +9,4 @@
       </div>
     </div>
   </div>
-  <app-genericButton style=" padding: 20px;" [routerLink]="['/admin/createUser']">Création
-    d'un nouvel utilisateur</app-genericButton>
 </div>

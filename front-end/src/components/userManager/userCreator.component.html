@@ -22,19 +22,19 @@
                 </label>
                 <label>
                     <b>Date de naissance</b> <br>
-                    <input type="date" class="userInput" name="userInput" [formControlName]="'userBirth'" required />
+                    <input type="date" class="userInput" name="userInput" [formControlName]="'userBirth'" />
                 </label>
                 <label>
                     <b>Intérêt/hobbies</b> <br>
                     <input type="text" class="userInput" name="userInput" [formControlName]="'hobbies'"
-                        placeholder="Ex: Géographie, Sport, ..." required />
+                        placeholder="Ex: Géographie, Sport, ..." />
                 </label>
                 <label><b>Zoom de base</b> <br>
                     <input type="number" min="0" step="1" max="300" value="100" [formControlName]="'baseZoom'" required>
                 </label>
                 <label><b>Daltonisme</b> <br>
                     <select name="dalto" id="dalto-select" [formControlName]="'typeOfDalto'">
-                        <option value="nodaltonisme">Pas de daltonisme</option>
+                        <option value="nodaltonisme" selected>Pas de daltonisme</option>
                         <option value="achromatopsia">Achromatopsie</option>
                         <option value="achromatomaly">Achromatomie</option>
                         <option value="tritanopia">Tritanopie</option>
@@ -63,17 +63,20 @@
             </div>
             <p>Memory</p>
             <div class="settings-for-games">
-                <label> <b>Nombre de secondes d’inactivité avant d’afficher un indice ?</b> <br>
+                <label>
+                    <b>Nombre de secondes d’inactivité avant d’afficher un indice</b> <br>
                     <input type="number" min="0" step="1" max="10000" [formControlName]="'secTipsForMemory'" required>
                 </label>
-                <label> <b>Temps pour voir les cartes faces visibles ?</b> <br>
-                    <input type="number" min="0" step="1" max="10000" [formControlName]="'secVisibleCardForMemory'"
-                        required>
+                <label>
+                    <b>Temps pour voir toutes les cartes faces visibles au début de la partie</b> <br>
+                    <input value="5" type="number" min="0" step="1" max="10000"
+                        [formControlName]="'secVisibleCardForMemory'" required>
                 </label>
             </div>
+
             <p>Quiz</p>
             <div class="settings-for-games">
-                <label> <b>Afficher un indice après une erreur ?</b> <br>
+                <label> <b>Afficher un indice directement après une erreur ?</b> <br>
                     <label>
                         <input type="radio" name="choicePrintTipsAfterError" value="true"
                             [formControlName]="'choicePrintTipsAfterError'" required> Oui
@@ -83,7 +86,7 @@
                             [formControlName]="'choicePrintTipsAfterError'"> Non
                     </label>
                 </label>
-                <label> <b>Afficher un indice après click sur le bouton "indices" ?</b> <br>
+                <label> <b>Afficher le bouton "indices"</b> <br>
                     <label>
                         <input type="radio" name="choicePrintTipsAfterClick" value="true"
                             [formControlName]="'choicePrintTipsAfterClick'" required> Oui
@@ -93,7 +96,9 @@
                             [formControlName]="'choicePrintTipsAfterClick'"> Non
                     </label>
                 </label>
-                <label> <b>Afficher un indice 1 par 1 ?</b> <br>
+                <label> <b>Afficher les indices 1 par 1 (Cochez "Non" si vous voulez que tous les indices s'affichent en
+                        même
+                        temps)</b> <br>
                     <label>
                         <input type="radio" name="choicePrintTipsOneByOne" value="true"
                             [formControlName]="'choicePrintTipsOneByOne'" required> Oui
