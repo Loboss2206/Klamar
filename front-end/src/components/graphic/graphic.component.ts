@@ -14,15 +14,18 @@ export class GraphicComponent implements OnInit, OnDestroy, AfterViewInit {
   @Input() data: number[] = [];
   @Input() titre!: string;
   @Input() date: string[] = [];
+  positiveData: number[] = [];
+  positiveDate: string[] = []
   public percentageSuccess: number = 0;
   public chart: any;
 
   ngOnInit(): void {
-    this.calculateSuccessPercentage();
   }
 
   ngAfterViewInit(): void {
     setTimeout(() => {
+      this.includePositiveData();
+      this.calculateSuccessPercentage();
       this.unload();
       this.createChart();
     }, 500);
@@ -34,12 +37,15 @@ export class GraphicComponent implements OnInit, OnDestroy, AfterViewInit {
       this.chart = new Chart(canvas, {
         type: 'line', // this denotes the type of chart
         data: {
-          labels: this.date,
+          labels: this.positiveDate,
           datasets: [
             {
               label: "pourcentage de réussite",
-              data: this.data,
-              backgroundColor: 'blue'
+              data: this.positiveData,
+              backgroundColor: 'blue',
+              pointRadius: 9, // Make dots bigger
+              pointHoverRadius: 12, // Make dots bigger on hover
+              borderWidth: 6, // Make line thicker
             },
           ]
         },
@@ -47,10 +53,59 @@ export class GraphicComponent implements OnInit, OnDestroy, AfterViewInit {
           aspectRatio: 1.5,
           scales: {
             y: {
-              min: 0, // Valeur minimale de l'axe y
-              max: 100 // Valeur maximale de l'axe y
-            }
-          }
+              min: -20, // Valeur minimale de l'axe y
+              max: 120, // Valeur maximale de l'axe y
+              ticks: {
+                font: {
+                  size: 16, // Font size for y-axis labels
+                },
+                stepSize: 20, // Display labels at intervals of 20
+                callback: function(value: string | number) {
+                  if (typeof value === 'number' && value >= 0 && value <= 100) {
+                    return value;
+                  }
+                  return '';
+                }
+              },
+              title: {
+                display: true,
+                text: 'Pourcentage',
+                font: {
+                  size: 18, // Font size for y-axis title
+                },
+              },
+            },
+            x: {
+              ticks: {
+                font: {
+                  size: 14, // Font size for x-axis labels
+                },
+              },
+              title: {
+                display: true,
+                text: 'Dates',
+                font: {
+                  size: 18, // Font size for x-axis title
+                },
+              },
+            },
+          },
+          plugins: {
+            legend: {
+              labels: {
+                font: {
+                  size: 16, // Font size for legend
+                },
+              },
+            },
+            title: {
+              display: true,
+              text: this.titre,
+              font: {
+                size: 20, // Font size for chart title
+              },
+            },
+          },
         }
       });
     } else {
@@ -59,8 +114,11 @@ export class GraphicComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   calculateSuccessPercentage() {
-    const sum = this.data.reduce((acc, curr) => acc + curr, 0);
-    const average = sum / this.data.length;
+    console.log("WSHHSHSHSHSHSHSHS")
+    console.log(this.positiveData)
+    const sum = this.positiveData.reduce((acc, curr) => acc + curr, 0);
+    console.log(sum)
+    const average = this.positiveData.length > 0 ? sum / this.positiveData.length : 0;
     this.percentageSuccess = Math.round(average);
   }
 
@@ -72,5 +130,14 @@ export class GraphicComponent implements OnInit, OnDestroy, AfterViewInit {
 
   ngOnDestroy() {
     this.unload();
+  }
+
+  private includePositiveData() {
+    for (let i = 0; i < this.data.length; i++){
+      if (this.data[i]>=0){
+        this.positiveData.push(this.data[i]);
+        this.positiveDate.push(this.date[i]);
+      }
+    }
   }
 }

@@ -8,6 +8,7 @@ export default interface IStats {
   questions: IQuestionStat[];
   memoryStats?: IMemoryStat;
   simonStats?: ISimonStat;
+  allQuestionsSkipped : boolean;
   sucessSimon: number | undefined;
   sucessMemory: number | undefined;
   sucessQuiz: number | undefined;
