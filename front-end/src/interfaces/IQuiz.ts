@@ -7,5 +7,5 @@ export default interface IQuiz {
   quizDescription: string;
   id: number;
   picsMemory?: string[];
-  specials:{name: string, rulesForSimon?: ISimonConfig}[];
+  specials: { name: string, rulesForSimon?: ISimonConfig }[];
 }

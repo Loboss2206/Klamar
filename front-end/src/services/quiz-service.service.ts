@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import IQuestion from "../interfaces/IQuestion";
 import IQuiz from "../interfaces/IQuiz";
 import { questionsList } from "../mocks/questions";
-import { BehaviorSubject, Observable, of } from "rxjs";
+import { BehaviorSubject, map, Observable, of } from "rxjs";
 import { Router } from "@angular/router";
 import ISimonConfig from "../interfaces/ISimonConfig";
 import { ImageBank } from "../mocks/ImageBank";
@@ -22,10 +22,10 @@ export class QuizService {
 
   private currentQuestionSubject: BehaviorSubject<IQuestion> = new BehaviorSubject<IQuestion>({} as IQuestion);
   private currentQuestionIndex: number = JSON.parse(sessionStorage.getItem('currentQuestionIndex') || '0');
-  private waitingTimeBeforeNextQuestion: number = 1000;
+  private waitingTimeBeforeNextQuestion: number = 2500;
   private currentQuiz: number = JSON.parse(sessionStorage.getItem('currentQuiz') || '0');
 
-  private quizzes: BehaviorSubject<IQuiz[]> = new BehaviorSubject<IQuiz[]>([] as IQuiz[])
+  private quizzes: BehaviorSubject<IQuiz[]> = new BehaviorSubject<IQuiz[]>([] as IQuiz[]);
   private questions: IQuestion[] = questionsList;
   private SimonGameMode: boolean = false;
   private MemoryGameMode: boolean = false;
@@ -33,13 +33,17 @@ export class QuizService {
 
   private currentQuizSubject: BehaviorSubject<IQuiz> = new BehaviorSubject<IQuiz>({} as IQuiz);
 
-  getQuestionsPickListData(): Observable<{ allQuestions: IQuestion[], existingQuizQuestions: IQuestion[] }> {
-    const allQuestions = this.questionService.getQuestions();
-    const existingQuizQuestions = this.getQuestionsForQuiz(this.currentQuiz);
-    return of({ allQuestions, existingQuizQuestions });
+  getQuestionsPickListData(): Observable<{ allQuestions: IQuestion[], existingQuizQuestions: IQuestion[]; }> {
+    return this.questionService.questions$.pipe(
+      map((questions: IQuestion[]) => {
+        const allQuestions = questions;
+        const existingQuizQuestions = this.getQuestionsForQuiz(this.currentQuiz);
+        return { allQuestions, existingQuizQuestions };
+      })
+    );
   }
 
-  getImagesPickListData(): Observable<{ allImages: string[], imageAlreadyOnTheMemory: string[] }> {
+  getImagesPickListData(): Observable<{ allImages: string[], imageAlreadyOnTheMemory: string[]; }> {
     const allImages = ImageBank;
     const imageAlreadyOnTheMemory = this.getPicsMemory();
     return of({ allImages, imageAlreadyOnTheMemory });

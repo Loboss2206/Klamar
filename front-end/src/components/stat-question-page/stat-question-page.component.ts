@@ -39,10 +39,8 @@ export class StatQuestionPageComponent implements OnInit {
     this.id = Number(this.route.snapshot.paramMap.get('id'))
     this.user = this._userService.getTheUser(this.id)
     this.statId = this._statsService.getTheStat()
-    console.log("Momen" + this.statId)
     this._statsService.getStat(this.statId).subscribe(stat => {
       if (stat) {
-        console.log('Stat:', stat);
         this.stat = stat
       } else {
         console.log('Stat not found');

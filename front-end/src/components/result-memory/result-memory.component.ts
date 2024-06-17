@@ -1,13 +1,14 @@
 import { Component, Input } from '@angular/core';
 import { StatQuestionComponent } from "../stat-question/stat-question.component";
-import { NgFor } from '@angular/common';
+import { NgFor, NgIf } from '@angular/common';
 
 @Component({
   selector: 'app-result-memory',
   standalone: true,
   imports: [
     StatQuestionComponent,
-    NgFor
+    NgFor,
+    NgIf
   ],
   templateUrl: './result-memory.component.html',
   styleUrl: './result-memory.component.scss'
@@ -18,6 +19,7 @@ export class ResultMemoryComponent {
   @Input() indices?: number
   @Input() temps?: number
   @Input() pictures?: string[]
+  @Input() wasPassed: boolean | undefined;
 
   ngOnInit() {
     console.log("erreur: " + this.erreur);

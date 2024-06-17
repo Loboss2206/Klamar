@@ -4,6 +4,8 @@
   align-items: center;
   height: 88vh;
   width: 100vw;
+  position: absolute;
+  top: 80px;
 }
 
 .simon-board {
@@ -15,14 +17,17 @@
   position: absolute;
   top: 48%;
   left: 50%;
-  width: 7vw; /* Adjust as needed */
-  height: 7vw; /* Adjust as needed */
+  width: 7vw;
+  /* Adjust as needed */
+  height: 7vw;
+  /* Adjust as needed */
   margin: -3.5vw 0 0 -3.5vw;
   border-radius: 50%;
   background-color: var(--simon-button-default-bg-color);
   transition: all 0.5s ease;
   transform: translate(-50%, -50%);
 }
+
 .simon-button:hover {
   cursor: var(--pointer-cursor);
   filter: brightness(0.8);
@@ -51,7 +56,7 @@
 
 .congrats {
   position: fixed;
-  top: 48%;
+  top: 50%;
   left: 50%;
   width: 10vw;
   height: 10vw;
@@ -69,11 +74,23 @@
   cursor: var(--pointer-cursor);
 }
 
+.fullScreen {
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  transform: translate(0, 0);
+  border-radius: 0%;
+  background-color: #3a4eff;
+  transition: all 0.5s ease;
+  font-size: 10rem;
+}
+
 .circle:hover {
   opacity: 1;
 }
 
-.circle > span {
+.circle>span {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -81,3 +98,27 @@
   font-size: 1.5rem;
   color: white;
 }
+
+.skipButton {
+  position: fixed;
+  bottom: 0px;
+  text-align: center;
+  width: fit-content;
+  transition: all 0.5s ease;
+  cursor: var(--pointer-cursor);
+}
+
+.skipper {
+  position: fixed;
+  width: 100vw;
+  bottom: 0;
+  display: flex;
+  align-content: center;
+  justify-content: center;
+}
+
+.simon-game ::ng-deep app-genericButton > button {
+  background-color: black;
+  border-radius: 15px 15px 0 0;
+}
+

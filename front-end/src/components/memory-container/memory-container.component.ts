@@ -9,6 +9,7 @@ import { HostListener } from "@angular/core";
 import { Time } from 'tone';
 import { StatsService } from "../../services/stats.service";
 import IMemoryStat from "../../interfaces/IMemoryStat";
+import { GenericButtonComponent } from '../genericButton/genericButton.component';
 
 @Component({
   standalone: true,
@@ -17,7 +18,8 @@ import IMemoryStat from "../../interfaces/IMemoryStat";
   styleUrls: ['./memory-container.component.scss'],
   imports: [
     MemoryItemComponent,
-    NgForOf
+    NgForOf,
+    GenericButtonComponent
   ]
 })
 
@@ -243,12 +245,22 @@ export class MemoryContainerComponent {
       indicesMemory: this.numberOfTips,
       tempsMemory: this.getTimeSpentOnMemory(),
       pictures: this.pics,
+      wasPassed: false
     };
-    console.log(memoryStat.erreurMemory)
-    console.log(memoryStat.indicesMemory)
-    console.log(memoryStat.tempsMemory)
-    console.log(memoryStat.pictures)
     this.statsService.addMemoryStat(memoryStat);
+  }
+
+  skipMemory() {
+    const memoryStat: IMemoryStat = {
+      id: 1,
+      erreurMemory: this.numberOfError,
+      indicesMemory: this.numberOfTips,
+      tempsMemory: this.getTimeSpentOnMemory(),
+      pictures: this.pics,
+      wasPassed: true
+    };
+    this.statsService.addMemoryStat(memoryStat);
+    this.quizService.endMemoryGame();
   }
 
   private getTimeSpentOnMemory(): number {
