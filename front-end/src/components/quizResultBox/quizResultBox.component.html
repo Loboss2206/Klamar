@@ -3,15 +3,20 @@
     <p>Quiz du</p>
     <p>{{ statForButton?.date }}</p>
   </div>
-  <div *ngIf="!statForButton?.allQuestionsSkipped">
+  <div *ngIf="isThereQuestion">
     <p>Question</p>
-    <p>{{ statForButton?.sucessQuiz }}%</p>
-    <app-genericButton [routerLink]="['/stats/questionStat/' + user?.id]" (click)="defineStat(statForButton?.id)">Plus d'informations</app-genericButton>
+    <ng-container *ngIf="!statForButton?.allQuestionsSkipped">
+      <p>{{ statForButton?.sucessQuiz }}%</p>
+      <app-genericButton [routerLink]="['/stats/questionStat/' + user?.id]" (click)="defineStat(statForButton?.id)">Plus d'informations</app-genericButton>
+    </ng-container>
+    <ng-container *ngIf="statForButton?.allQuestionsSkipped">
+      <p>Questions passées</p>
+      <app-genericButton [routerLink]="['/stats/questionStat/' + user?.id]" (click)="defineStat(statForButton?.id)">Plus d'informations</app-genericButton>
+    </ng-container>
   </div>
-  <div *ngIf="statForButton?.allQuestionsSkipped">
-    <p>Questions</p>
-    <p>Questions passées</p>
-    <app-genericButton [routerLink]="['/stats/questionStat/' + user?.id]" (click)="defineStat(statForButton?.id)">Plus d'informations</app-genericButton>
+  <div *ngIf="!isThereQuestion">
+    <p>Question</p>
+    <p>Pas de Questions</p>
   </div>
   <div *ngIf="statForButton?.simonStats">
     <p>Simon</p>

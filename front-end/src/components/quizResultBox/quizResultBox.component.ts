@@ -23,7 +23,7 @@ export class quizResultBoxComponent {
 
   user ?: IUser | IAdmin
   id: number | undefined
-  allSkiped ?: boolean
+  isThereQuestion : boolean = false
   @Input() date ?: string
   @Input() sucessSimon ?: number
   @Input() sucessMemory ?: number
@@ -36,6 +36,7 @@ export class quizResultBoxComponent {
     console.log(this.statForButton?.questions)
     this.id = Number(this.route.snapshot.paramMap.get('id'))
     this.user = this._userService.getTheUser(this.id)
+    this.isThereQuestions()
   }
 
   defineStat(statId: number | undefined) {
@@ -48,7 +49,9 @@ export class quizResultBoxComponent {
     }
   }
 
-  allQuestionsSkiped(){
-
+  isThereQuestions(){
+    if (this.statForButton?.questions.length != 0) {
+      this.isThereQuestion = true
+    }
   }
 }
