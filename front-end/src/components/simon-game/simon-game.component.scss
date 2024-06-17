@@ -108,6 +108,15 @@
   cursor: var(--pointer-cursor);
 }
 
+.skipper {
+  position: fixed;
+  width: 100vw;
+  bottom: 0;
+  display: flex;
+  align-content: center;
+  justify-content: center;
+}
+
 .simon-game ::ng-deep app-genericButton > button {
   background-color: black;
   border-radius: 15px 15px 0 0;
