@@ -66,7 +66,7 @@ test.describe('Navbar Component', () => {
     await page.goto(baseURL);
 
     await adminLink.click();
-    const gestionDesUtilisateurs = page.locator('a:has-text("Gestion des utilisateurs")');
+    let gestionDesUtilisateurs = page.locator('a:has-text("Gestion des utilisateurs")');
     await gestionDesUtilisateurs.click();
     await expect(page).toHaveURL(`${baseURL}/login;returnUrl=%2Fadmin%2FselectUserToModify`);
     await page.fill('input[ng-reflect-name=username]', 'admin');
@@ -93,6 +93,7 @@ test.describe('Navbar Component', () => {
     await expect(page).toHaveURL(`${baseURL}/admin/quizManager`);
 
     await adminLink.click();
+    gestionDesUtilisateurs = page.locator('a:has-text("Gestion des utilisateurs")');
     gestionDesUtilisateurs.click();
     await expect(page).toHaveURL(`${baseURL}/admin/selectUserToModify`);
 
