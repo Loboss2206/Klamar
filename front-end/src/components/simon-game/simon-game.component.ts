@@ -132,6 +132,7 @@ export class SimonGameComponent implements OnInit, OnDestroy {
 
   generateGameInput() {
     this.gameInput.push(Math.floor(Math.random() * this.numberOfBoxes));
+    console.log("Simon sequence:", this.gameInput);
   }
 
   playSequence() {

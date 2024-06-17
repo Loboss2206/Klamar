@@ -211,8 +211,89 @@ test.describe('Play Quiz', async () => {
     });
   });
 
-  test('Play a Quiz of Simon', async ({ page }) => {
+  test.only('Play a Quiz of Simon', async ({ page }) => {
+    await page.goto(baseURL);
+    await test.step('should have a user list containing a user', async () => {
+      const userList = page.locator('.userContainer');
+      await expect(userList).toBeVisible();
+      await expect(userList).toHaveCount(1);
+      const userItem = page.locator('.userItem');
+      await expect(userItem).toBeVisible();
+      await expect(userItem).toHaveCount(1);
+      const avatar = page.locator('.imgUser');
+      await expect(avatar).toBeVisible();
+      await expect(avatar).toHaveAttribute('src', regexp4base64);
+      const name = page.locator('.userName');
+      await expect(name).toBeVisible();
+      await expect(name).toHaveText('Utilisa teur');
+    });
 
+    await test.step('should click on the user', async () => {
+      const userItem = page.locator('.userItem');
+      await userItem.click();
+      await expect(page).toHaveURL(`${baseURL}/selectQuiz`);
+    });
+
+    await test.step('should have a list of quizzes', async () => {
+      const quizList = page.locator('.quizContainer');
+      await expect(quizList).toBeVisible();
+      await expect(quizList).toHaveCount(1);
+      const quizcontainer = page.locator('.quizContainer>div');
+      await expect(quizcontainer).toHaveCount(2);
+      const quizItem = page.locator('.quizItem');
+      await expect(quizItem).toHaveCount(2);
+      const quizImage = page.locator('.imgQuiz').nth(0);
+      await expect(quizImage).toHaveAttribute('src', regexp4base64);
+      const quizTitle = page.locator('.quizTitle').nth(0);
+      await expect(quizTitle).toHaveText('Quiz 1');
+    });
+    await test.step('should click on a quiz', async () => {
+      const quizItem = page.locator('.quizItem').nth(1);
+      await quizItem.click();
+      await expect(page).toHaveURL(`${baseURL}/simon`);
+    });
+
+    await test.step('should play a normal game of Simon', async () => {
+
+      const startButton = await page.locator('div.congrats');
+      await startButton.click();
+
+      async function getSimonSequence() {
+        const sequence: any = [];
+        const buttons = await document.querySelectorAll('.simon-button');
+        for (let i = 0; i < buttons.length; i++) {
+          const button = buttons[i];
+          console.log('Button:', button);
+        }
+        await page.waitForTimeout(2000);
+        return sequence;
+      }
+
+      async function playSequence(sequence: number[]) {
+        for (let i of sequence) {
+          const button = await page.locator(`#button-${i}`);
+          await button.click();
+          await page.waitForTimeout(500);
+        }
+      }
+
+      while (true) {
+        const sequence = await getSimonSequence();
+        console.log('Sequence:', sequence);
+        if (sequence.length === 0) break;
+
+        await playSequence(sequence);
+
+        const successMessage = await page.$('div.congrats span:has-text("Bravo !")');
+        if (successMessage) {
+          console.log('Sequence successfully followed!');
+          await expect(page).toHaveURL(`${baseURL}/felicitations`);
+        } else {
+          console.log('Failed to follow the sequence.');
+          break;
+        }
+      }
+
+    });
   });
-
 });
