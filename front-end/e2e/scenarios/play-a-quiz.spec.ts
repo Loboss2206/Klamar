@@ -90,7 +90,7 @@ test.describe('Play Quiz', async () => {
       await expect(overlay).toBeVisible();
 
       const tipMessage = page.locator('.AstuceContent');
-      await expect(tipMessage).toHaveText('tip 2');
+      await expect(tipMessage).toHaveText('tip 1');
 
       await overlay.click();
 
@@ -170,7 +170,7 @@ test.describe('Play Quiz', async () => {
       await expect(overlay).toBeVisible();
 
       const tipMessage = page.locator('.AstuceContent');
-      await expect(tipMessage).toHaveText(' Indice 2 ');
+      await expect(tipMessage).toHaveText(' Indice 1 ');
 
       await overlay.click();
 

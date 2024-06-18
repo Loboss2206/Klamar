@@ -140,7 +140,7 @@ export class QuestionComponent implements OnInit, AfterViewInit {
     } else {
       this.playWrongTune();
       if (this.user && this.user.config.quiz.showHintAfterError) {
-        if (this.currentTipIndex > -1 && this.currentTipIndex < this.tips.length - 1) {
+        if (this.currentTipIndex < this.tips.length - 1) {
           this.currentTipIndex++;
         }
         this.tipsComponent.openATip();
