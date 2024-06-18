@@ -63,7 +63,7 @@ test.describe('Quiz Feature', () => {
       });
 
       await test.step('Move question to quiz', async () => {
-        const questionDsd = await page.getByText('dsd');
+        const questionDsd = await page.getByText('Quelle est la capitale de la France ?');
         expect(questionDsd).toBeVisible();
         const questionQuiz = await page.locator('.cdk-drop-list.questionsContainer').nth(1);
         expect(questionQuiz).toBeVisible();
