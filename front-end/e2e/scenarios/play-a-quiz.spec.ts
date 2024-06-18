@@ -1,4 +1,6 @@
 import { test, expect } from '@playwright/test';
+import { testUrl } from 'e2e/e2e.config';
+import { SimonGameFixture } from 'src/components/simon-game/simon-game.fixture';
 
 test.describe('Play Quiz', async () => {
   const baseURL = 'http://localhost:4200';
@@ -205,6 +207,7 @@ test.describe('Play Quiz', async () => {
   });
 
   test('Play a Quiz of Simon', async ({ page }) => {
+    const simonFixture = new SimonGameFixture(page);
     await page.goto(baseURL);
     await test.step('should have a user list containing a user', async () => {
       const userList = page.locator('.userContainer');
@@ -243,33 +246,33 @@ test.describe('Play Quiz', async () => {
     await test.step('should click on a quiz', async () => {
       const quizItem = page.locator('.quizItem').nth(1);
       await quizItem.click();
-      await expect(page).toHaveURL(`${baseURL}/simon`);
+      await expect(page).toHaveURL(`${testUrl}/simon`);
     });
 
     await test.step('should play a normal game of Simon', async () => {
 
-      const startButton = await page.locator('div.congrats');
+      const startButton = await simonFixture.getStartButton();
       await startButton.click();
 
       async function getSimonSequence(nb: number) {
         const sequence: number[] = [];
         for (let i = 0; i < nb; i++) {
-          let el = await page.waitForSelector('.simon-button.active');
+          let el = await simonFixture.waitForActiveOfSimonButtons();
           console.log('el:', await (await el.getProperty('id')).jsonValue());
           let id = await el.getAttribute('id');
           let idNumber;
           if (id) {
             idNumber = Number(id.split('-')[1]);
             sequence.push(idNumber);
+            await simonFixture.waitForNotActiveOfSimonButtonByID(idNumber);
           }
-          await page.waitForSelector(`#button-${idNumber}:not(.active)`);
         }
         return sequence;
       }
 
       async function playSequence(sequence: number[]) {
         for (let i of sequence) {
-          const button = await page.locator(`#button-${i}`);
+          const button = await simonFixture.getASimonButtonByID(i);
           await button.click();
         }
       }
@@ -282,13 +285,13 @@ test.describe('Play Quiz', async () => {
         console.log('Sequence:', sequence);
         if (sequence.length === 0) break;
         await playSequence(sequence);
-        const successMessage = await page.$('div.congrats span:has-text("Bravo !")');
+        const successMessage = await simonFixture.getCongratsMessage();
         if (successMessage && numberOfGoodSequence < 4) {
           console.log('Sequence successfully followed!');
           numberOfGoodSequence++;
           await page.waitForTimeout(1000 * (currentNbOfSequence + 1));
         } else if (numberOfGoodSequence === 4) {
-          await expect(page).toHaveURL(`${baseURL}/felicitations`);
+          await expect(page).toHaveURL(`${testUrl}/felicitations`);
           console.log('Sequence successfully followed!');
           console.log('Simon game successfully played!');
           return;
