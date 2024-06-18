@@ -34,6 +34,7 @@ export class QuizManagerComponent implements OnInit, OnDestroy {
   pickListDataSubscription: Subscription | undefined;
   imagePickListDataSubscription: Subscription | undefined;
   questionsOrderSubscription: Subscription | undefined;
+  ImagesOrderSubscription: Subscription | undefined;
   allQuestionsObersavable: BehaviorSubject<IQuestion[]> = new BehaviorSubject<IQuestion[]>([]);
   existingQuizQuestions: IQuestion[] = [];
   isSimonGameOnQuiz: boolean = false;
@@ -82,6 +83,10 @@ export class QuizManagerComponent implements OnInit, OnDestroy {
     this.questionsOrderSubscription = this.sharedService.questionsOrder$.subscribe((questions) => {
       this.existingQuizQuestions = questions;
     });
+
+    this.ImagesOrderSubscription = this.sharedService.imagesOrder$.subscribe((images) => {
+      this.imagesAlreadyInTheMemory = images;
+    });
   }
 
   ngOnDestroy() {
@@ -95,6 +100,10 @@ export class QuizManagerComponent implements OnInit, OnDestroy {
 
     if (this.questionsOrderSubscription) {
       this.questionsOrderSubscription.unsubscribe();
+    }
+
+    if (this.ImagesOrderSubscription) {
+      this.ImagesOrderSubscription.unsubscribe();
     }
   }
 

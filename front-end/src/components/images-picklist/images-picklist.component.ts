@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import {
   CdkDrag,
   CdkDragDrop,
@@ -7,8 +7,9 @@ import {
   moveItemInArray,
   transferArrayItem
 } from "@angular/cdk/drag-drop";
-import {NgForOf} from "@angular/common";
-import {BehaviorSubject} from "rxjs";
+import { NgForOf } from "@angular/common";
+import { BehaviorSubject } from "rxjs";
+import { SharedService } from 'src/services/shared.service';
 
 @Component({
   selector: 'app-images-picklist',
@@ -36,7 +37,7 @@ export class ImagesPicklistComponent implements OnInit {
     new KanbanCol('Images dans le quiz ', '2', [])
   ]);
 
-  constructor() {}
+  constructor(private sharedService: SharedService) { }
 
   public ngOnInit(): void {
     this.availableImage.subscribe((tasks) => {
@@ -64,15 +65,16 @@ export class ImagesPicklistComponent implements OnInit {
         event.currentIndex);
     }
     this.imagesOrder = this.kanban.col[1].images;
+    this.sharedService.setImagesOrder(this.imagesOrder); // Update the shared service
   }
 }
 
 class Kanban {
-  constructor(public name: string, public col: KanbanCol[]) {}
+  constructor(public name: string, public col: KanbanCol[]) { }
 }
 
 class KanbanCol {
-  constructor(public name: string, public id: string, public images: string[]) {}
+  constructor(public name: string, public id: string, public images: string[]) { }
 }
 
 

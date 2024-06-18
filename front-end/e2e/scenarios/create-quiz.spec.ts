@@ -24,6 +24,34 @@ test.describe('Quiz Feature', () => {
     await loginFixture.clickLogin();
     await expect(page).toHaveURL("http://localhost:4200/admin/quizManager");
 
+    await quizManagerFixture.clickCreateQuizButton();
+
+    await page.locator(`#includeMemory`).check();
+    await page.locator('#memoryConfigButton').getByRole('button', { name: 'Paramètres' }).click()
+    const questionDsd = await page.locator('.cdk-drop-list.imagesContainer').nth(0).locator('img').last();
+    expect(questionDsd).toBeVisible();
+    const questionQuiz = await page.locator('.cdk-drop-list.imagesContainer').nth(1);
+    expect(questionQuiz).toBeVisible();
+
+    const originElement = questionDsd
+    const destinationElement = questionQuiz
+
+
+    await originElement.hover();
+    await page.mouse.down();
+    const box = (await destinationElement.boundingBox())!;
+    await page.mouse.move(box.x + box.width / 2, box.y + box.height / 2);
+    await destinationElement.hover();
+    await page.mouse.up();
+    await page.getByRole('button', { name: 'Fermer' }).click()
+
+    const inputName = await quizManagerFixture.getInput('quiz-name');
+    await inputName.type('Quiz carré');
+    const inputTheme = await quizManagerFixture.getTextArea('quiz-description');
+    await inputTheme.type('E2E description');
+    await quizManagerFixture.clickSaveButton();
+    await page.waitForTimeout(10000);
+
     /*await test.step(`Quiz form visible`, async () => {
       const quizForm = await quizManagerFixture.getQuizForm();
       const isVisible = await quizForm.isVisible();
@@ -31,7 +59,7 @@ test.describe('Quiz Feature', () => {
     });
     */
 
-    await test.step(`Create Quiz`, async () => {
+    /*await test.step(`Create Quiz`, async () => {
       await quizManagerFixture.clickCreateQuizButton();
 
       await test.step('Create a question', async () => {
@@ -93,6 +121,6 @@ test.describe('Quiz Feature', () => {
     await inputTheme.type('E2E description');
     await quizManagerFixture.clickSaveButton();
 
-    await page.waitForTimeout(10000);
+    await page.waitForTimeout(10000);*/
   });
 });

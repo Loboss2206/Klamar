@@ -40,7 +40,7 @@
           <div style="display: flex; justify-content: center; flex-direction: row; align-items: center;">
             <label for="includeSimon">Inclure le memory ? <input type="checkbox" [(ngModel)]="isMemoryGameOnQuiz"
                 id="includeMemory" /></label>
-            <app-genericButton (click)="openMemoryConfig()">Paramètres</app-genericButton>
+            <app-genericButton id="memoryConfigButton" (click)="openMemoryConfig()">Paramètres</app-genericButton>
           </div>
         </div>
 
