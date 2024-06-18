@@ -11,6 +11,7 @@ module.exports = new BaseModel('Stat', {
   memoryStats: StatMemory.schema,
   questions: Joi.array().items(StatQuestion.schema),
 
+  allQuestionsSkipped: Joi.boolean().required(),
   sucessSimon: Joi.number().required(),
   sucessMemory: Joi.number().required(),
   sucessQuiz: Joi.number().required(),
