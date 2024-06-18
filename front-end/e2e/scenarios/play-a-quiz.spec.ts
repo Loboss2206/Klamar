@@ -204,7 +204,7 @@ test.describe('Play Quiz', async () => {
     });
   });
 
-  test.only('Play a Quiz of Simon', async ({ page }) => {
+  test('Play a Quiz of Simon', async ({ page }) => {
     await page.goto(baseURL);
     await test.step('should have a user list containing a user', async () => {
       const userList = page.locator('.userContainer');
