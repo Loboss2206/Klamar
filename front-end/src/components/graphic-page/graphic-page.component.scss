@@ -5,7 +5,6 @@
 h1 {
   font-size: 1.5em;
   width: 80%;
-  font-size: 1.5em;
   text-align: center;
   font-family: Roboto, serif;
   color: #ffffff;
@@ -25,18 +24,7 @@ footer {
 
 .differentGame {
   display: flex;
-  justify-content: space-evenly;
-  margin-bottom: 30px;
-}
-
-.type1 {
-  display: flex;
-  justify-content: space-evenly;
-  margin-bottom: 30px;
-}
-
-.type2 {
-  display: flex;
+  flex-wrap: wrap;
   justify-content: space-evenly;
   margin-bottom: 30px;
 }
