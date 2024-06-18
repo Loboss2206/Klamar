@@ -5,7 +5,7 @@
       <div class="filing">
         <label>
           <b>Intititulé de la question</b> <br>
-          <input type="text" class="userInput" name="userInput" [formControlName]="'question'" required />
+          <input id="question" type="text" class="userInput" name="userInput" [formControlName]="'question'" required />
         </label>
         <label>
           <img *ngIf="imageUrlQuestion" [src]="imageUrlQuestion" id="imageQuestion">
@@ -28,21 +28,21 @@
       <div *ngIf="questionModificatorComponent.controls['choicePicture'].value === 'false'" class="filing">
         <label>
           <b>Proposition 1</b> <br>
-          <input type="text" class="userInput" name="userInput" [formControlName]="'reponse1'" required />
+          <input id="prop1" type="text" class="userInput" name="userInput" [formControlName]="'reponse1'" required />
         </label>
         <label>
           <b>Proposition 2</b> <br>
-          <input type="text" class="userInput" name="userInput" [formControlName]="'reponse2'" required />
+          <input id="prop2" type="text" class="userInput" name="userInput" [formControlName]="'reponse2'" required />
         </label>
       </div>
       <div *ngIf="questionModificatorComponent.controls['choicePicture'].value === 'false'" class="filing">
         <label>
           <b>Proposition 3</b> <br>
-          <input type="text" class="userInput" name="userInput" [formControlName]="'reponse3'" required />
+          <input id="prop3" type="text" class="userInput" name="userInput" [formControlName]="'reponse3'" required />
         </label>
         <label>
           <b>Proposition 4</b> <br>
-          <input type="text" class="userInput" name="userInput" [formControlName]="'reponse4'" required />
+          <input id="prop4" type="text" class="userInput" name="userInput" [formControlName]="'reponse4'" required />
         </label>
       </div>
 
@@ -94,17 +94,18 @@
       <div class="filing">
         <label>
           <b>Indice 1</b> <br>
-          <input type="text" class="userInput" name="userInput" [formControlName]="'indice1'" required />
+          <input id="hint1" type="text" class="userInput" name="userInput" [formControlName]="'indice1'" required />
         </label>
         <label>
           <b>Indice 2</b> <br>
-          <input type="text" class="userInput" name="userInput" [formControlName]="'indice2'" required />
+          <input id="hint2" type="text" class="userInput" name="userInput" [formControlName]="'indice2'" required />
         </label>
       </div>
       <p>Catégorie</p>
       <div class="filing">
         <label>
-          <input type="text" class="userInput" name="userInput" [formControlName]="'categorie'" required />
+          <input id="categorie" type="text" class="userInput" name="userInput" [formControlName]="'categorie'"
+            required />
         </label>
       </div>
     </div>

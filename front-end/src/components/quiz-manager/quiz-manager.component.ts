@@ -1,6 +1,6 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { MaterialTableComponent } from "../material-table/material-table.component";
-import { QuestionsPicklistComponent } from "../questions-picklist/questions-picklist.component";
+import { QuestionsPicklistComponent } from '../questions-picklist/questions-picklist.component';
 import IQuiz from "../../interfaces/IQuiz";
 import { QuizService } from "../../services/quiz-service.service";
 import { NgClass, NgIf } from "@angular/common";
@@ -175,6 +175,8 @@ export class QuizManagerComponent implements OnInit {
   }
 
   SaveCurrentQuiz() {
+    console.log("existing");
+    console.log(this.existingQuizQuestions);
     let questionsIDs: number[] = this.existingQuizQuestions.map((question) => question.id);
     let specials: { name: string, rulesForSimon?: ISimonConfig; }[] = [];
     let picsMemory: string[] = [];

@@ -62,7 +62,6 @@ export class QuestionsPicklistComponent implements OnInit {
     this.questionsInTheQuiz.subscribe((questions) => {
       this.kanban.col[1].questions = questions;
     });
-
   }
 
   public dropGrid(event: CdkDragDrop<IQuestion[]>): void {
@@ -79,6 +78,13 @@ export class QuestionsPicklistComponent implements OnInit {
         event.currentIndex);
     }
     this.questionsOrder = this.kanban.col[1].questions;
+  }
+
+  moveFirstElement() {
+    if (this.kanban.col[0].questions.length > 0) {
+      const firstElement = this.kanban.col[0].questions.shift();
+      this.kanban.col[1].questions.push(firstElement as IQuestion);
+    }
   }
 
   SearchQuestions($event: string) {
