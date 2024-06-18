@@ -18,10 +18,6 @@ test.describe('Play Quiz', async () => {
       const name = page.locator('.userName');
       await expect(name).toBeVisible();
       await expect(name).toHaveText('Utilisa teur');
-    });
-
-    await test.step('should click on the user', async () => {
-      const userItem = page.locator('.userItem');
       await userItem.click();
       await expect(page).toHaveURL(`${baseURL}/selectQuiz`);
     });
@@ -32,15 +28,13 @@ test.describe('Play Quiz', async () => {
       await expect(quizList).toHaveCount(1);
       const quizcontainer = page.locator('.quizContainer>div');
       await expect(quizcontainer).toHaveCount(2);
-      const quizItem = page.locator('.quizItem');
+      let quizItem = page.locator('.quizItem');
       await expect(quizItem).toHaveCount(2);
       const quizImage = page.locator('.imgQuiz').nth(0);
       await expect(quizImage).toHaveAttribute('src', regexp4base64);
       const quizTitle = page.locator('.quizTitle').nth(0);
       await expect(quizTitle).toHaveText('Quiz 1');
-    });
-    await test.step('should click on a quiz', async () => {
-      const quizItem = page.locator('.quizItem').nth(0);
+      quizItem = page.locator('.quizItem').nth(0);
       await quizItem.click();
       await expect(page).toHaveURL(`${baseURL}/quiz`);
     });
@@ -164,7 +158,6 @@ test.describe('Play Quiz', async () => {
 
       const tipButton = page.locator('button:has-text("Indice")');
       await expect(tipButton).toBeVisible();
-
     });
 
     await test.step('should click on an answer that is wrong', async () => {
@@ -258,14 +251,19 @@ test.describe('Play Quiz', async () => {
       const startButton = await page.locator('div.congrats');
       await startButton.click();
 
-      async function getSimonSequence() {
-        const sequence: any = [];
-        const buttons = await document.querySelectorAll('.simon-button');
-        for (let i = 0; i < buttons.length; i++) {
-          const button = buttons[i];
-          console.log('Button:', button);
+      async function getSimonSequence(nb: number) {
+        const sequence: number[] = [];
+        for (let i = 0; i < nb; i++) {
+          let el = await page.waitForSelector('.simon-button.active');
+          console.log('el:', await (await el.getProperty('id')).jsonValue());
+          let id = await el.getAttribute('id');
+          let idNumber;
+          if (id) {
+            idNumber = Number(id.split('-')[1]);
+            sequence.push(idNumber);
+          }
+          await page.waitForSelector(`#button-${idNumber}:not(.active)`);
         }
-        await page.waitForTimeout(2000);
         return sequence;
       }
 
@@ -273,27 +271,33 @@ test.describe('Play Quiz', async () => {
         for (let i of sequence) {
           const button = await page.locator(`#button-${i}`);
           await button.click();
-          await page.waitForTimeout(500);
         }
       }
 
+      let numberOfGoodSequence = 0;
+      let currentNbOfSequence = 0;
+
       while (true) {
-        const sequence = await getSimonSequence();
+        const sequence = await (await getSimonSequence(++currentNbOfSequence));
         console.log('Sequence:', sequence);
         if (sequence.length === 0) break;
-
         await playSequence(sequence);
-
         const successMessage = await page.$('div.congrats span:has-text("Bravo !")');
-        if (successMessage) {
+        if (successMessage && numberOfGoodSequence < 4) {
           console.log('Sequence successfully followed!');
+          numberOfGoodSequence++;
+          await page.waitForTimeout(1000 * (currentNbOfSequence + 1));
+        } else if (numberOfGoodSequence === 4) {
           await expect(page).toHaveURL(`${baseURL}/felicitations`);
-        } else {
+          console.log('Sequence successfully followed!');
+          console.log('Simon game successfully played!');
+          return;
+        }
+        else {
           console.log('Failed to follow the sequence.');
           break;
         }
       }
-
     });
   });
 });
