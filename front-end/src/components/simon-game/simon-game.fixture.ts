@@ -1,9 +1,6 @@
 import { E2EComponentFixture } from "../../../e2e/e2e-component.fixture";
 
 export class SimonGameFixture extends E2EComponentFixture {
-  async getCongratsMessage() {
-    return await this.page.$('div.congrats span:has-text("Bravo !")');
-  }
 
   async getASimonButtonByID(i: number) {
     return await this.page.locator(`#button-${i}`);
@@ -19,5 +16,17 @@ export class SimonGameFixture extends E2EComponentFixture {
 
   async getStartButton() {
     return await this.page.locator('div.congrats');
+  }
+
+  async waitForCongratsToBeNotFullscreen() {
+    return await this.page.waitForSelector('div.congrats:not(.fullscreen)');
+  }
+
+  async getCongratsMessageText(text: string) {
+    return await this.page.$(`div.congrats span:has-text("${text}")`);
+  }
+
+  async waitForCongratsMessage(text: string) {
+    return await this.page.waitForSelector(`div.congrats span:has-text("${text}")`);
   }
 }
