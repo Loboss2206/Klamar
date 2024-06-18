@@ -101,6 +101,14 @@ export class QuestionComponent implements OnInit, AfterViewInit {
     synth.triggerAttackRelease("C4", "16n");
   }
 
+  resetAll() {
+    this.correctAnswer = null;
+    this.wrongAnswers = [];
+    this.setBlockUI(false);
+    this.showAllAnswers();
+    this.currentTipIndex = this.user ? this.user.config.quiz.showHintOneByOne ? -1 : -2 : -2;
+  }
+
   incrementIndex() {
     if (this.user && this.user.config.quiz.showHintOneByOne === true) {
       if (this.currentTipIndex < this.tips.length - 1) this.currentTipIndex++;
@@ -136,6 +144,7 @@ export class QuestionComponent implements OnInit, AfterViewInit {
           return;
         }
         this.quizService.nextQuestion();
+        this.resetAll();
       }, this.quizService.getWaitingTimeBeforeNextQuestion);
     } else {
       this.playWrongTune();
@@ -184,6 +193,12 @@ export class QuestionComponent implements OnInit, AfterViewInit {
       if ((!isImage && element.innerText !== answer) || (isImage && element.children[0].children[0].children[0].src !== answer)) {
         element.style.display = 'none';
       }
+    });
+  }
+
+  private showAllAnswers() {
+    document.querySelectorAll('app-quizButton').forEach((element: any) => {
+      element.style.display = 'block';
     });
   }
   private getTimeSpentOnQuestion(): number {
