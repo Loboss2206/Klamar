@@ -63,9 +63,9 @@ test.describe('Quiz Feature', () => {
       });
 
       await test.step('Move question to quiz', async () => {
-        const questionDsd = await page.getByText('Quelle est la capitale de la spain ?');
+        const questionDsd = await page.getByText('dsd');
         expect(questionDsd).toBeVisible();
-        const questionQuiz = await page.locator('.cdk-drop-list').nth(2);
+        const questionQuiz = await page.locator('.cdk-drop-list.questionsContainer').nth(1);
         expect(questionQuiz).toBeVisible();
 
         const originElement = questionDsd
@@ -78,6 +78,11 @@ test.describe('Quiz Feature', () => {
         await destinationElement.hover();
         await page.mouse.up();
 
+        // Wait for the data to be updated
+        await page.waitForSelector('.cdk-drop-list.questionsContainer:nth-child(2) .question');
+
+        // Check if the question is now in the quiz
+        const movedQuestion = await page.locator('.cdk-drop-list.questionsContainer:nth-child(2) .question').getByText('dsd');
         await page.waitForTimeout(2000);
       });
     });
