@@ -2,4 +2,5 @@
 .idea/
 node_modules/
 database/*
+!database/e2e-starter/*
 !database/.gitkeep
