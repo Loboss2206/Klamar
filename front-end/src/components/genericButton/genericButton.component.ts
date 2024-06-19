@@ -12,4 +12,5 @@ import { NgClass } from "@angular/common";
 })
 export class GenericButtonComponent {
   @Input() isDeleteButton: boolean = false;
+  @Input() isEditButton: boolean = false;
 }
