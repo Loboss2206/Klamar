@@ -29,5 +29,22 @@
       }
     ],
     "picsMemory": []
+  },
+  {
+    "id": 1718697608896,
+    "title": "QuizMemory",
+    "quizDescription": "Coucou",
+    "imageUrl": "",
+    "questions": [],
+    "specials": [
+      {
+        "name": "Memory"
+      }
+    ],
+    "picsMemory": [
+      "https://cdn-icons-png.flaticon.com/512/10685/10685022.png",
+      "https://cdn-icons-png.flaticon.com/512/5999/5999613.png",
+      "https://cdn-icons-png.flaticon.com/512/616/616554.png"
+    ]
   }
 ]
