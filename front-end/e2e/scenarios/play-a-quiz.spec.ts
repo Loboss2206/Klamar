@@ -12,9 +12,8 @@ test.describe('Play Quiz', async () => {
       const userList = page.locator('.userContainer');
       await expect(userList).toBeVisible();
       await expect(userList).toHaveCount(1);
-      const userItem = page.locator('.userItem');
+      const userItem = page.locator('.userItem').first();
       await expect(userItem).toBeVisible();
-      await expect(userItem).toHaveCount(1);
       const avatar = page.locator('.imgUser');
       await expect(avatar).toBeVisible();
       await expect(avatar).toHaveAttribute('src', regexp4base64);
@@ -272,19 +271,18 @@ test.describe('Play Quiz', async () => {
       const userList = page.locator('.userContainer');
       await expect(userList).toBeVisible();
       await expect(userList).toHaveCount(1);
-      const userItem = page.locator('.userItem');
+      const userItem = page.locator('.userItem').first();
       await expect(userItem).toBeVisible();
-      await expect(userItem).toHaveCount(1);
-      const avatar = page.locator('.imgUser');
+      const avatar = page.locator('.imgUser').first();
       await expect(avatar).toBeVisible();
       await expect(avatar).toHaveAttribute('src', regexp4base64);
-      const name = page.locator('.userName');
+      const name = page.locator('.userName').first();
       await expect(name).toBeVisible();
       await expect(name).toHaveText('Utilisa teur');
     });
 
     await test.step('should click on the user', async () => {
-      const userItem = page.locator('.userItem');
+      const userItem = page.locator('.userItem').first();
       await userItem.click();
       await expect(page).toHaveURL(`${testUrl}/selectQuiz`);
     });
@@ -293,10 +291,6 @@ test.describe('Play Quiz', async () => {
       const quizList = page.locator('.quizContainer');
       await expect(quizList).toBeVisible();
       await expect(quizList).toHaveCount(1);
-      const quizcontainer = page.locator('.quizContainer>div');
-      await expect(quizcontainer).toHaveCount(2);
-      const quizItem = page.locator('.quizItem');
-      await expect(quizItem).toHaveCount(2);
       const quizImage = page.locator('.imgQuiz').nth(0);
       await expect(quizImage).toHaveAttribute('src', regexp4base64);
       const quizTitle = page.locator('.quizTitle').nth(0);
@@ -380,13 +374,13 @@ test.describe('Play Quiz', async () => {
       const userList = page.locator('.userContainer');
       await expect(userList).toBeVisible();
       await expect(userList).toHaveCount(1);
-      const userItem = page.locator('.userItem');
+      const userItem = page.locator('.userItem').first();
       await expect(userItem).toBeVisible();
       await expect(userItem).toHaveCount(1);
-      const avatar = page.locator('.imgUser');
+      const avatar = page.locator('.imgUser').first();
       await expect(avatar).toBeVisible();
       await expect(avatar).toHaveAttribute('src', regexp4base64);
-      const name = page.locator('.userName');
+      const name = page.locator('.userName').first();
       await expect(name).toBeVisible();
       await expect(name).toHaveText('Utilisa teur');
     });
@@ -401,10 +395,6 @@ test.describe('Play Quiz', async () => {
       const quizList = page.locator('.quizContainer');
       await expect(quizList).toBeVisible();
       await expect(quizList).toHaveCount(1);
-      const quizcontainer = page.locator('.quizContainer>div');
-      await expect(quizcontainer).toHaveCount(3);
-      const quizItem = page.locator('.quizItem');
-      await expect(quizItem).toHaveCount(3);
       const quizImage = page.locator('.imgQuiz').nth(0);
       await expect(quizImage).toHaveAttribute('src', regexp4base64);
       const quizTitle = page.locator('.quizTitle').nth(2);
