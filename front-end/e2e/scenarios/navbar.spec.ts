@@ -1,7 +1,8 @@
 import { test, expect } from '@playwright/test';
+import { environment } from 'src/environments/environment';
 
 test.describe('Navbar Component', () => {
-  const baseURL = 'http://localhost:4200';
+  const baseURL = environment.testUrl;
 
   test.beforeEach(async ({ page }) => {
     await page.goto(baseURL);
