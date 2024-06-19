@@ -36,7 +36,7 @@ export class quizResultPageComponent implements OnInit {
 
   ngOnInit(): void {
     this.id = Number(this.route.snapshot.paramMap.get('id'))
-
+    this.user = this._userService.getTheUser(this.id)
     this._statsService.getStats().subscribe(stats => {
       if (stats) {
         console.log(stats)

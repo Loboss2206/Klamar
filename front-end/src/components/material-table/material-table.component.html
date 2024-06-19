@@ -26,7 +26,9 @@
               <app-genericButton [isDeleteButton]="action.className === 'delete'"
                 [isEditButton]="action.className === 'edit'" *ngFor="let action of actions"
                 (click)="cellClick(row, action.name)">
-                {{action.name}}
+                {{action.name}}       <span class="material-symbols-outlined"> {{
+                  action.className === 'delete' ? 'delete' : 'edit'
+                }}</span>
               </app-genericButton>
             </div>
           </td>

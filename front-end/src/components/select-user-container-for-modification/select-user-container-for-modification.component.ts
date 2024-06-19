@@ -62,7 +62,7 @@ export class SelectUserContainerForModificationComponent implements OnInit {
 
     const editButton = document.createElement('button');
     editButton.textContent = 'Modifier';
-    editButton.style.fontSize = '1.2em'
+    editButton.style.fontSize = '1.2em';
     editButton.style.color = 'white';
     editButton.style.backgroundColor = 'blue';
     editButton.style.border = 'blue';
@@ -73,7 +73,7 @@ export class SelectUserContainerForModificationComponent implements OnInit {
 
     const deleteButton = document.createElement('button');
     deleteButton.textContent = 'Supprimer';
-    deleteButton.style.fontSize = '1.2em'
+    deleteButton.style.fontSize = '1.2em';
     deleteButton.style.color = 'white';
     deleteButton.style.backgroundColor = 'red';
     deleteButton.style.border = 'red';

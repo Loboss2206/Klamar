@@ -43,11 +43,11 @@ export class QuestionComponent implements OnInit, AfterViewInit {
   areResponsesImages: boolean = false;
   user: IUser | null = this.userService.getCurrentUser();
   canOpenTipsOnClick: boolean = this.user ? this.user.config.quiz.showHintAfterClick : false;
-  currentTipIndex: number = this.user ? this.user.config.quiz.showHintOneByOne ? 0 : -1 : -1;
-  idQuestion?: string
+  currentTipIndex: number = this.user ? this.user.config.quiz.showHintOneByOne ? -1 : -2 : -2;
+  idQuestion?: string;
   startTime: number = 0;
-  answerIndex: number[] = []
-  maxPointQuestion: number = 1
+  answerIndex: number[] = [];
+  maxPointQuestion: number = 1;
 
   constructor(private quizService: QuizService, private router: Router, private userService: UserService, private statsService: StatsService) {
 
@@ -63,13 +63,13 @@ export class QuestionComponent implements OnInit, AfterViewInit {
       console.log(question.responses);
       this.answers = question.responses;
       this.questionText = question.question;
-      this.currentTipIndex = this.user ? this.user.config.quiz.showHintOneByOne ? 0 : -1 : -1;
+      this.currentTipIndex = this.user ? this.user.config.quiz.showHintOneByOne ? -1 : -2 : -2;
       this.tips = question.tips;
       this.questionImage = question.questionImage;
       this.areResponsesImages = question.AreResponsesImages;
       this.correctAnswer = null;
       this.wrongAnswers = [];
-      this.idQuestion = parseInt(question.id.toString()).toString()
+      this.idQuestion = parseInt(question.id.toString()).toString();
       this.setBlockUI(false);
       if (this.user && this.user.config.quiz.showHintAfterStart) {
         this.tipsComponent.openATip();
@@ -101,14 +101,25 @@ export class QuestionComponent implements OnInit, AfterViewInit {
     synth.triggerAttackRelease("C4", "16n");
   }
 
+  resetAll() {
+    this.correctAnswer = null;
+    this.wrongAnswers = [];
+    this.setBlockUI(false);
+    this.showAllAnswers();
+    this.currentTipIndex = this.user ? this.user.config.quiz.showHintOneByOne ? -1 : -2 : -2;
+  }
+
   incrementIndex() {
-    if (this.currentTipIndex > -1 && this.currentTipIndex < this.tips.length - 1) {
-      this.currentTipIndex++;
+    if (this.user && this.user.config.quiz.showHintOneByOne === true) {
+      if (this.currentTipIndex < this.tips.length - 1) this.currentTipIndex++;
+    } else {
+      console.log('incrementIndex');
+      this.currentTipIndex = this.tips.length - 1;
     }
   }
 
   onAnswer(answer: string) {
-    this.answerIndex
+    this.answerIndex;
     if (this.quizService.checkAnswer(answer)) {
       let answerIndex = this.answers.findIndex((ans: any) => ans === answer);
       const questionStat: IQuestionStat = {
@@ -133,11 +144,12 @@ export class QuestionComponent implements OnInit, AfterViewInit {
           return;
         }
         this.quizService.nextQuestion();
+        this.resetAll();
       }, this.quizService.getWaitingTimeBeforeNextQuestion);
     } else {
       this.playWrongTune();
       if (this.user && this.user.config.quiz.showHintAfterError) {
-        if (this.currentTipIndex > -1 && this.currentTipIndex < this.tips.length - 1) {
+        if (this.currentTipIndex < this.tips.length - 1) {
           this.currentTipIndex++;
         }
         this.tipsComponent.openATip();
@@ -183,16 +195,22 @@ export class QuestionComponent implements OnInit, AfterViewInit {
       }
     });
   }
+
+  private showAllAnswers() {
+    document.querySelectorAll('app-quizButton').forEach((element: any) => {
+      element.style.display = 'block';
+    });
+  }
   private getTimeSpentOnQuestion(): number {
     const currentTime = Date.now();
     return Number(((currentTime - this.startTime) / 1000).toFixed(1));
   }
 
   private pointOnQuestion(): number {
-    let point: number = this.maxPointQuestion - (this.wrongAnswers.length / 3)
-    point = Number(point.toFixed(2))
+    let point: number = this.maxPointQuestion - (this.wrongAnswers.length / 3);
+    point = Number(point.toFixed(2));
     if (point > 0) {
-      return point
+      return point;
     }
     return 0;
   }
