@@ -140,9 +140,12 @@ test.describe('User feature', () => {
         expect(userItemCreated).toBeVisible();
         await userItemCreated.click();
 
-        let getModifyButton = await selectUserContainerForModificationFixture.getModifyButton();
+        const parentDiv = page.locator(".customDiv");
+        let modifyUsereButton = await parentDiv.getByText("Modifier");
+        let getModifyButton = await modifyUsereButton;
         expect(getModifyButton).toBeVisible();
-        await selectUserContainerForModificationFixture.clickOnModifyButton();
+
+        await getModifyButton.click();
         expect(page).toHaveURL(new RegExp(`${baseURL}/admin/modifyUser/[1-9]*`));
 
         const userCreatorFixture = new UserCreatorFixture(page);
@@ -173,9 +176,10 @@ test.describe('User feature', () => {
         expect(userItemCreated).toBeVisible();
         await userItemCreated.click();
 
-        let deleteButton = await selectUserContainerForModificationFixture.getDeleteButton();
+        const parentDiv = page.locator(".customDiv");
+        let deleteButton = await parentDiv.getByText("Supprimer");
         expect(deleteButton).toBeVisible();
-        await selectUserContainerForModificationFixture.clickOnDeleteButton();
+        await deleteButton.click();
 
         expect(userItemCreated).not.toBeVisible();
     });
