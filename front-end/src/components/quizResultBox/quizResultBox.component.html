@@ -10,7 +10,7 @@
       <app-genericButton [routerLink]="['/stats/questionStat/' + user?.id]" (click)="defineStat(statForButton?.id)">Plus d'informations</app-genericButton>
     </ng-container>
     <ng-container *ngIf="statForButton?.allQuestionsSkipped">
-      <p>Questions passées</p>
+      <p>Question passée</p>
       <app-genericButton [routerLink]="['/stats/questionStat/' + user?.id]" (click)="defineStat(statForButton?.id)">Plus d'informations</app-genericButton>
     </ng-container>
   </div>
