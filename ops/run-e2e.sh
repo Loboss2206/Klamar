@@ -2,7 +2,7 @@
 
 front=false
 back=false
-dockercomp=false
+test=false
 logging=false
 
 while (( "$#" )); do
@@ -13,6 +13,10 @@ while (( "$#" )); do
     ;;
     --rebuild-back)
         back=true
+        shift
+    ;;
+    --rebuild-test)
+        test=true
         shift
     ;;
     *)
@@ -37,6 +41,14 @@ if $back; then
     docker rmi -f back
     echo "Rebuilding the image without cache..."
     docker build --no-cache -t back ../backend
+fi
+
+if $test; then
+    echo "Forcing the removal of the container and image with tag test..."
+    echo "Removing the container..."
+    docker rmi -f test
+    echo "Rebuilding the image without cache..."
+    docker build --no-cache --file ../front-end/Dockerfile-e2e -t test ../front-end
 fi
 
 
