@@ -1,2 +1,3 @@
+import { environment } from "src/environments/environment";
 
-export const testUrl = 'http://localhost:4200';
+export const testUrl = environment.testUrl;
