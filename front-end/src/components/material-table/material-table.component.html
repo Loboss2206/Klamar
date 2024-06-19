@@ -23,7 +23,8 @@
           </td>
           <td *ngIf="actions.length > 0">
             <div class="material-table-actions">
-              <app-genericButton [isDeleteButton]="action.className === 'delete'" *ngFor="let action of actions"
+              <app-genericButton [isDeleteButton]="action.className === 'delete'"
+                [isEditButton]="action.className === 'edit'" *ngFor="let action of actions"
                 (click)="cellClick(row, action.name)">
                 {{action.name}}
               </app-genericButton>

@@ -2,6 +2,7 @@ import { PlaywrightTestConfig } from '@playwright/test';
 
 const config: PlaywrightTestConfig = {
   reporter: [['html', { open: 'always' }]],
+  timeout: 120000,
   use: {
     baseURL: 'http://localhost:4200',
     headless: false,
@@ -10,7 +11,7 @@ const config: PlaywrightTestConfig = {
     video: 'on-first-retry',
     screenshot: 'only-on-failure',
     launchOptions: {
-      slowMo: 1000,
+      slowMo: 200,
     }
   },
 };
