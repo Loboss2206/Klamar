@@ -46,5 +46,34 @@
       "https://cdn-icons-png.flaticon.com/512/5999/5999613.png",
       "https://cdn-icons-png.flaticon.com/512/616/616554.png"
     ]
+  },
+  {
+    "id": 1718787997915,
+    "title": "quiz complet",
+    "quizDescription": "complet",
+    "imageUrl": "",
+    "questions": [
+      1717579327448,
+      45,
+      1718625867812
+    ],
+    "specials": [
+      {
+        "name": "Simon",
+        "rulesForSimon": {
+          "numberOfRound": 5,
+          "numberOfBoxes": 4,
+          "numberOfRetriesAllowed": 2
+        }
+      },
+      {
+        "name": "Memory"
+      }
+    ],
+    "picsMemory": [
+      "https://cdn-icons-png.flaticon.com/512/10685/10685022.png",
+      "https://cdn-icons-png.flaticon.com/512/5999/5999613.png",
+      "https://cdn-icons-png.flaticon.com/512/616/616554.png"
+    ]
   }
 ]
