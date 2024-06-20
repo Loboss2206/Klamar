@@ -1,0 +1,11 @@
+FROM mcr.microsoft.com/playwright:latest
+
+USER pwuser
+WORKDIR /tests
+COPY ./e2e /tests/
+COPY ./playwright.config.ts /tests/
+RUN mkdir -p /tests/src/environments/
+COPY ./src/environments/environment.docker.ts /tests/src/environments/environment.docker-e2e.ts
+COPY --chown=pwuser package*.json /tests/
+RUN npm i -D @playwright/test playwright
+CMD ["npx", "playwright", "test --output=/home/pwuser/xyz"]
