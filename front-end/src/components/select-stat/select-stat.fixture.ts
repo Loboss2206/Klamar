@@ -18,21 +18,21 @@ export class SelectStatFixture extends E2EComponentFixture {
     return this.page.locator('app-quizresultpage div').filter({ hasText: 'Quiz du18/06/2024 13:36Question67%Plus d\'informationsSimon100%Plus d\'' }).nth(3).isVisible();
   }
 
-  async clickOnStatQuestion(){
+  async clickOnStatQuestion() {
     const statButton = this.page.locator('app-quizresultbox').filter({ hasText: 'Quiz du18/06/2024 13:36Question84%Plus d\'informationsSimonPas de SimonMemoryPas' }).getByRole('button').first();
     return statButton.click();
   }
-  async clickOnStatSimonSkiped(){
+  async clickOnStatSimonSkiped() {
     const simonButton = this.page.getByText('SimonSimon passéPlus d\'').getByRole('button').first();
     return simonButton.click();
   }
 
-  async clickOnStatMemory(){
+  async clickOnStatMemory() {
     const memoryButton = this.page.locator('app-quizresultbox').filter({ hasText: 'Quiz du18/06/2024 13:36Question67%Plus d\'informationsSimon100%Plus d\'' }).getByRole('button').nth(2).first();
     return memoryButton.click();
   }
 
-  async getStatGraphic(){
+  async getStatGraphic() {
     return this.page.locator('app-quizresultpage div')
       .filter({ hasText: "Quiz du18/06/2024 13:36Question67%Plus d'informationsSimon100%Plus d'" })
       .nth(3);

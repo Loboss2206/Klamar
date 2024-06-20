@@ -1,7 +1,7 @@
 import { PlaywrightTestConfig } from '@playwright/test';
 
 const config: PlaywrightTestConfig = {
-  reporter: [['json', { outputFile: '/app/test-results/report.json' }]],
+  reporter: [['json', { outputFile: '/app/result/report.json' }]],
   timeout: 120000,
   use: {
     baseURL: 'http://front',
@@ -9,7 +9,7 @@ const config: PlaywrightTestConfig = {
     viewport: { width: 1280, height: 720 },
     ignoreHTTPSErrors: true,
     video: 'on',
-    screenshot: 'only-on-failure',
+    screenshot: 'on',
     launchOptions: {
       slowMo: 500,
     }

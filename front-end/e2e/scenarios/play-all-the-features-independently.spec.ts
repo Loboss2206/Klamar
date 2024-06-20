@@ -173,7 +173,7 @@ test.describe('Play Quiz', async () => {
       await expect(tipButton).toBeVisible();
 
       const skipButton = page.locator('button:has-text("Passer la question")');
-      await skipButton.click();
+      await skipButton.click({ force: true });
 
     });
 

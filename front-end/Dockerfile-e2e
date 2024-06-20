@@ -10,5 +10,5 @@ COPY playwright.config.docker.ts playwright.config.ts
 COPY src/environments/environment.docker-e2e.ts src/environments/environment.ts
 ENV PATH /app/node_modules/.bin:$PATH
 
-CMD ["npx", "playwright", "test", "--config", "playwright.config.docker.ts", "--output=/app/test-results"]
+CMD ["npx", "playwright", "test", "--config", "playwright.config.docker.ts", "--output=/app/result/test-results"]
 

@@ -11,6 +11,7 @@
       "simon": {
         "isColorful": "true"
       },
+      "displaySkip": true,
       "memory": {
         "timeBeforeSwitching": 0
       },

@@ -75,7 +75,7 @@ test.describe('User feature', () => {
     expect(createButtonQuestion).toBeVisible();
 
 
-    let questionItem = await page.locator(".cellspacing").getByText("Quelle est la capitale de la France ?");
+    let questionItem = await page.locator(".cellspacing").getByText("Quelle est la capitale de la France ?").last();
     expect(questionItem).toBeVisible();
 
     await questionItem.click();

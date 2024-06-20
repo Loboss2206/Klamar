@@ -62,7 +62,7 @@ export class SimonGameComponent implements OnInit, OnDestroy {
     this.numberMaxOfRetries = this.rulesForSimon?.numberOfRetriesAllowed || 0;
     this.intervalTime = this.user ? this.user.config.simonHints.displayTheFullSequenceAfter : 5000;
     this.numberOfBoxesArray = Array.from({ length: this.numberOfBoxes }, (_, i) => i);
-    this.buttonSkip = this.userService.getUserConfig().displaySkip as any === "true" ? true : false;
+    this.buttonSkip = this.userService.getUserConfig().displaySkip === true ? true : false;
     this.startTime = Date.now();
     this.shutup = false;
     this.onMessageReceived('wait', true);

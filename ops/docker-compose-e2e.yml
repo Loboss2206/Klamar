@@ -4,7 +4,7 @@ services:
     container_name: back
     command: ["npm", "run", "start:e2e"]
     volumes:
-      - ./database:/app/database
+      - ../backend/database:/app/database
     networks:
       - my_network
     healthcheck:
@@ -26,7 +26,7 @@ services:
       interval: 30s
       timeout: 10s
       retries: 3
-      start_period: 30s
+      start_period: 3s
 
     networks:
       - my_network
@@ -42,14 +42,14 @@ services:
     networks:
       - my_network
     volumes:
-      - ./test_results:/app/test-results
+      - ./test_results:/app/result
     depends_on:
       front:
         condition: service_healthy
 
 volumes:
   my_volume:
-  test_results:
+  result:
 
 networks:
   my_network:

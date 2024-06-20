@@ -63,7 +63,7 @@ export class MemoryContainerComponent {
     this.pics = this.pics.concat(this.pics);
     console.log("display");
     console.log(this.userService.getUserConfig().displaySkip);
-    this.buttonSkip = this.userService.getUserConfig().displaySkip as any === "true" ? true : false;
+    this.buttonSkip = this.userService.getUserConfig().displaySkip === true ? true : false;
     console.log(typeof this.buttonSkip);
     this.shuffleArray(this.pics);
     this.initialFlip = true;
@@ -277,7 +277,7 @@ export class MemoryContainerComponent {
   }
 
   private getDimension(): void {
-    this.width = this.pics.length >= 4 ? 4 : this.pics.length
-    this.height = Math.floor((this.pics.length - 1) / 4) + 1
+    this.width = this.pics.length >= 4 ? 4 : this.pics.length;
+    this.height = Math.floor((this.pics.length - 1) / 4) + 1;
   }
 }
