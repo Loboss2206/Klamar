@@ -58,7 +58,7 @@
               "sourceMap": true,
               "namedChunks": true
             },
-            "docker":{
+            "docker": {
               "fileReplacements": [
                 {
                   "replace": "src/environments/environment.ts",

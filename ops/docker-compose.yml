@@ -1,0 +1,33 @@
+services:
+  back:
+    build: ../backend
+    container_name: back
+    volumes:
+      - my_volume:/var/lib/xyz
+    ports:
+      - "8081:9428"
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://back:9428/api/status"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  front:
+    build:
+      context: ../front-end
+      args:
+        ENVIRONMENT: docker
+    container_name: front
+    ports:
+      - "8080:80"
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://front:80/"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    depends_on:
+      back:
+        condition: service_healthy
+
+volumes:
+  my_volume:
