@@ -43,6 +43,7 @@ export class QuestionComponent implements OnInit, AfterViewInit {
   areResponsesImages: boolean = false;
   user: IUser | null = this.userService.getCurrentUser();
   canOpenTipsOnClick: boolean = this.user ? this.user.config.quiz.showHintAfterClick : false;
+  tipsIfError : boolean = this.user ? this.user?.config.quiz.showHintAfterError : false;
   currentTipIndex: number = this.user ? this.user.config.quiz.showHintOneByOne ? -1 : -2 : -2;
   idQuestion?: string;
   startTime: number = 0;
@@ -148,7 +149,7 @@ export class QuestionComponent implements OnInit, AfterViewInit {
       }, this.quizService.getWaitingTimeBeforeNextQuestion);
     } else {
       this.playWrongTune();
-      if (this.user && this.user.config.quiz.showHintAfterError) {
+      if (this.user && String(this.user.config.quiz.showHintAfterError) === 'true') {
         if (this.currentTipIndex < this.tips.length - 1) {
           this.currentTipIndex++;
         }
