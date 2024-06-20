@@ -1,4 +1,4 @@
-FROM mcr.microsoft.com/playwright:v1.44.1-jammy
+FROM mcr.microsoft.com/playwright:v1.34.3-jammy
 USER pwuser
 WORKDIR /app
 COPY --chown=pwuser:pwuser package.json package-lock.json ./

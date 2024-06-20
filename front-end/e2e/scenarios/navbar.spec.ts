@@ -50,8 +50,10 @@ test.describe('Navbar Component', () => {
     const gestionDesQuestions = page.locator('a:has-text("Gestion des questions")');
     await gestionDesQuestions.click();
     await expect(page).toHaveURL(`${baseURL}/login;returnUrl=%2Fadmin%2FselectQuestion`);
-    await page.fill('input[ng-reflect-name=username]', 'admin');
-    await page.fill('input[ng-reflect-name=password]', 'admin');
+    let nom = await page.getByPlaceholder('Nom d\'utilisateur');
+    await nom.fill('admin');
+    let mdp = await page.getByPlaceholder('Mot de passe');
+    await mdp.fill('admin');
     await page.click('button:has-text("Se connecter")');
     await expect(page).toHaveURL(`${baseURL}/admin/selectQuestion`);
     await page.goto(baseURL);
@@ -60,8 +62,10 @@ test.describe('Navbar Component', () => {
     const gestionDesQuizzes = page.locator('a:has-text("Gestion des quizzes")');
     await gestionDesQuizzes.click();
     await expect(page).toHaveURL(`${baseURL}/login;returnUrl=%2Fadmin%2FquizManager`);
-    await page.fill('input[ng-reflect-name=username]', 'admin');
-    await page.fill('input[ng-reflect-name=password]', 'admin');
+    nom = await page.getByPlaceholder('Nom d\'utilisateur');
+    await nom.fill('admin');
+    mdp = await page.getByPlaceholder('Mot de passe');
+    await mdp.fill('admin');
     await page.click('button:has-text("Se connecter")');
     await expect(page).toHaveURL(`${baseURL}/admin/quizManager`);
     await page.goto(baseURL);
@@ -70,8 +74,10 @@ test.describe('Navbar Component', () => {
     let gestionDesUtilisateurs = page.locator('a:has-text("Gestion des utilisateurs")');
     await gestionDesUtilisateurs.click();
     await expect(page).toHaveURL(`${baseURL}/login;returnUrl=%2Fadmin%2FselectUserToModify`);
-    await page.fill('input[ng-reflect-name=username]', 'admin');
-    await page.fill('input[ng-reflect-name=password]', 'admin');
+    nom = await page.getByPlaceholder('Nom d\'utilisateur');
+    await nom.fill('admin');
+    mdp = await page.getByPlaceholder('Mot de passe');
+    await mdp.fill('admin');
     await page.click('button:has-text("Se connecter")');
     await expect(page).toHaveURL(`${baseURL}/admin/selectUserToModify`);
     await page.goto(baseURL);
@@ -80,8 +86,10 @@ test.describe('Navbar Component', () => {
     const statistiques = page.locator('a:has-text("Statistiques")');
     await statistiques.click();
     await expect(page).toHaveURL(`${baseURL}/login;returnUrl=%2Fstats%2FselectUserStat`);
-    await page.fill('input[ng-reflect-name=username]', 'admin');
-    await page.fill('input[ng-reflect-name=password]', 'admin');
+    nom = await page.getByPlaceholder('Nom d\'utilisateur');
+    await nom.fill('admin');
+    mdp = await page.getByPlaceholder('Mot de passe');
+    await mdp.fill('admin');
     await page.click('button:has-text("Se connecter")');
     await expect(page).toHaveURL(`${baseURL}/stats/selectUserStat`);
 
