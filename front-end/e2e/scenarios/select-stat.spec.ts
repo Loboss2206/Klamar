@@ -1,10 +1,10 @@
 import { test, expect } from '@playwright/test';
-import {LoginFixture} from "../../src/components/login/login.fixture";
 import {SelectUserStatFixture} from "../../src/components/select-user-stat/select-user-stat.fixture";
 import {SelectStatFixture} from "../../src/components/select-stat/select-stat.fixture";
 import {StatQuestionPageFixture} from "../../src/components/stat-question-page/stat-question-page.fixture";
 import {StatSimonPageFixture} from "../../src/components/stat-simon-page/stat-simon-page.fixture";
 import {StatMemoryPageFixture} from "../../src/components/stat-memory-page/stat-memory-page.fixture";
+import {LoginFixture} from "../../src/components/login/login.fixture";
 
 test.describe('Stat Component', () => {
   const baseURL = 'http://localhost:4200/stats/';
@@ -15,7 +15,7 @@ test.describe('Stat Component', () => {
     await page.goto(baseURL + "selectUserStat");
   });
 
-  test('Select a user to display stat', async ({ page, context }) => {
+  test('Navigate in stat to see if everything is there', async ({ page, context }) => {
     const loginFixture = new LoginFixture(page);
     const selectUserStatFixture = new SelectUserStatFixture(page);
     const selectStatFixture = new SelectStatFixture(page);

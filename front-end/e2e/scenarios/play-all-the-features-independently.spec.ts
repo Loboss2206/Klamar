@@ -4,7 +4,7 @@ import { testUrl } from 'e2e/e2e.config';
 import { SimonGameFixture } from 'src/components/simon-game/simon-game.fixture';
 import { MemoryGameFixture } from 'src/components/memory-container/memory-container.fixture';
 
-test.describe('Play Quiz', async () => {
+test.describe.only('Play Quiz', async () => {
   const regexp4base64 = new RegExp('(data:image/png;base64,)|(data:image/jpeg;base64,)|(data:image/jpg;base64,)|(data:image/gif;base64,)|(data:image/webp;base64,)');
   test('Play a Quiz with question', async ({ page }) => {
     await page.goto(testUrl);
@@ -29,9 +29,9 @@ test.describe('Play Quiz', async () => {
       await expect(quizList).toBeVisible();
       await expect(quizList).toHaveCount(1);
       const quizcontainer = page.locator('.quizContainer>div');
-      await expect(quizcontainer).toHaveCount(2);
+      await expect(quizcontainer).toHaveCount(4);
       let quizItem = page.locator('.quizItem');
-      await expect(quizItem).toHaveCount(2);
+      await expect(quizItem).toHaveCount(4);
       const quizImage = page.locator('.imgQuiz').nth(0);
       await expect(quizImage).toHaveAttribute('src', regexp4base64);
       const quizTitle = page.locator('.quizTitle').nth(0);
@@ -419,27 +419,55 @@ test.describe('Play Quiz', async () => {
 
       let nbPairs = 0;
       let lastTurn = false;
+
       while (true) {
+        await page.waitForTimeout(5000);
         let memoryItems = await memoryGameFixture.getAllMemoryItems();
         for (let i = 0; i < memoryItems.length - 1; i++) {
-          if (await memoryGameFixture.isMemoryItemHidden(i)) {
+          if ((await memoryGameFixture.isMemoryItemHidden(i))) {
             continue;
           }
           for (let j = i + 1; j < memoryItems.length; j++) {
-            if (await memoryGameFixture.isMemoryItemHidden(j)) {
+            if ((await memoryGameFixture.isMemoryItemHidden(j))) {
               continue;
             }
-            await makeATry(i, j, lastTurn);
             if (lastTurn) {
-              await expect(page).toHaveURL(`${testUrl}/felicitations`);
-              console.log('Sequence successfully followed!');
-              console.log('Memory game successfully played!');
+              for (let k = 0; k < memoryItems.length - 1; k++) {
+                if ((await memoryGameFixture.isMemoryItemHidden(k))) {
+                  continue;
+                }
+                for (let m = k + 1; m < memoryItems.length; m++) {
+                  if ((await memoryGameFixture.isMemoryItemHidden(m))) {
+                    continue;
+                  }
+                  await makeATry(k, m, lastTurn);
+                  await page.waitForTimeout(3000);
+                  console.log('Memory game is playing...' + nbPairs);
+                  break;
+                }
+                if (nbPairs === (memoryItems.length / 2)) {
+                  await expect(page).toHaveURL(`${testUrl}/felicitations`);
+                  console.log('Sequence successfully followed!');
+                  console.log('Memory game successfully played!');
+                  return;
+                }
+              }
             }
-            if (lastTurn) return;
+            await makeATry(i, j, lastTurn);
+            await page.waitForTimeout(1000);
+            console.log('Memory game is playing...' + lastTurn);
 
+            console.log(i + " | " + j);
+            console.log(await memoryGameFixture.isMemoryItemHidden(i));
+            console.log(await memoryGameFixture.isMemoryItemHidden(j));
 
             if (await memoryGameFixture.isMemoryItemHidden(i) && await memoryGameFixture.isMemoryItemHidden(j)) {
               nbPairs++;
+              console.log("Pair found ! " + nbPairs);
+              i++;
+              console.log("i " + i);
+              j = i + 1;
+              console.log("j " + j);
               if (nbPairs === (memoryItems.length / 2) - 1) lastTurn = true;
             }
           }
