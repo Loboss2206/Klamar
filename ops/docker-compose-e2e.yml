@@ -1,0 +1,49 @@
+services:
+  back:
+    build: ../backend
+    container_name: back
+    volumes:
+      - my_volume:/var/lib/xyz
+    networks:
+      - my_network
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://back:9428/api/status"]
+      interval: 3s
+      timeout: 10s
+      retries: 3
+
+  front:
+    build:
+      context: ../front-end
+      dockerfile: Dockerfile
+      args:
+        ENVIRONMENT: docker
+    container_name: front
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://front:80/"]
+      interval: 3s
+      timeout: 10s
+      retries: 3
+    networks:
+      - my_network
+    depends_on:
+      back:
+        condition: service_healthy
+  
+  playwright:
+    build:
+      context: ../front-end
+      dockerfile: Dockerfile-e2e
+    container_name: playwright
+    volumes:
+      - test_results:/home/pwuser/xyz
+    depends_on:
+      front:
+        condition: service_healthy
+
+volumes:
+  my_volume:
+  test_results:
+
+networks:
+  my_network:

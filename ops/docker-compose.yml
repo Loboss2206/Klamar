@@ -15,6 +15,7 @@ services:
   front:
     build:
       context: ../front-end
+      dockerfile: Dockerfile
       args:
         ENVIRONMENT: docker
     container_name: front
