@@ -34,10 +34,18 @@ export class QuizService {
   private currentQuizSubject: BehaviorSubject<IQuiz> = new BehaviorSubject<IQuiz>({} as IQuiz);
 
   getQuestionsPickListData(): Observable<{ allQuestions: IQuestion[], existingQuizQuestions: IQuestion[]; }> {
+    console.log('Getting questions picklist data');
+    console.log(this.questionService.getQuestions());
+    console.log("test1");
+    console.log(this.questionService.questions$);
     return this.questionService.questions$.pipe(
       map((questions: IQuestion[]) => {
         const allQuestions = questions;
         const existingQuizQuestions = this.getQuestionsForQuiz(this.currentQuiz);
+        console.log('Existing quiz questions');
+        console.log(existingQuizQuestions);
+        console.log('All questions');
+        console.log(allQuestions);
         return { allQuestions, existingQuizQuestions };
       })
     );
@@ -226,6 +234,8 @@ export class QuizService {
   }
 
   createQuiz(quiz: IQuiz) {
+    console.log("Creating quiz");
+    console.log(quiz);
     this.http.post(serverUrl + "/quizzes", quiz).subscribe(res => {
       this.refreshQuizzes();
     });

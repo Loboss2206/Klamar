@@ -12,19 +12,20 @@
       [actions]="getActions()"></app-material-table>
   </div>
 
-  <div style="display: flex; justify-content: center; flex-direction: column; align-items: center;  margin-top: 20px"
+  <div id="form"
+    style="display: flex; justify-content: center; flex-direction: column; align-items: center;  margin-top: 20px"
     *ngIf="editMode">
     <div style="display: flex; justify-content: space-evenly; flex-direction: row; align-items: center; width: 100%">
       <div>
         <img src="{{quizImage}}" width="250px" (click)="openFileChooser()" alt="L'image du Quiz"
           onerror="this.src='https://via.placeholder.com/250'">
-        <input type="file" #fileInput style="display: none" (change)="onFileSelected($event)">
+        <input id="image" type="file" #fileInput style="display: none" (change)="onFileSelected($event)">
       </div>
 
       <div class="editContainer">
-        <input type="text" [(ngModel)]="quizName" placeholder="Nom du quiz" />
+        <input id="quiz-name" type="text" [(ngModel)]="quizName" placeholder="Nom du quiz" />
         <br />
-        <textarea [(ngModel)]="quizDescription" placeholder="Description du quiz"></textarea>
+        <textarea id="quiz-description" [(ngModel)]="quizDescription" placeholder="Description du quiz"></textarea>
         <br />
 
         <div
@@ -39,7 +40,7 @@
           <div style="display: flex; justify-content: center; flex-direction: row; align-items: center;">
             <label for="includeSimon">Inclure le memory ? <input type="checkbox" [(ngModel)]="isMemoryGameOnQuiz"
                 id="includeMemory" /></label>
-            <app-genericButton (click)="openMemoryConfig()">Paramètres</app-genericButton>
+            <app-genericButton id="memoryConfigButton" (click)="openMemoryConfig()">Paramètres</app-genericButton>
           </div>
         </div>
 
