@@ -2,6 +2,7 @@ import { test, expect } from '@playwright/test';
 import { testUrl } from 'e2e/e2e.config';
 import { SimonGameFixture } from 'src/components/simon-game/simon-game.fixture';
 import { MemoryGameFixture } from 'src/components/memory-container/memory-container.fixture';
+
 test.describe('Play Quiz', async () => {
   const regexp4base64 = new RegExp('(data:image/png;base64,)|(data:image/jpeg;base64,)|(data:image/jpg;base64,)|(data:image/gif;base64,)|(data:image/webp;base64,)');
   test('Play a Quiz with question', async ({ page }) => {
@@ -349,8 +350,6 @@ test.describe('Play Quiz', async () => {
                     continue;
                   }
                   await makeATry(k, m, lastTurn);
-                  await page.waitForTimeout(3000);
-                  console.log('Memory game is playing...' + nbPairs);
                   break;
                 }
                 if (nbPairs === (memoryItems.length / 2)) {
@@ -363,24 +362,16 @@ test.describe('Play Quiz', async () => {
             }
             await makeATry(i, j, lastTurn);
             await page.waitForTimeout(1000);
-            console.log('Memory game is playing...' + lastTurn);
-
-            console.log(i + " | " + j);
-            console.log(await memoryGameFixture.isMemoryItemHidden(i));
-            console.log(await memoryGameFixture.isMemoryItemHidden(j));
 
             if (await memoryGameFixture.isMemoryItemHidden(i) && await memoryGameFixture.isMemoryItemHidden(j)) {
               nbPairs++;
-              console.log("Pair found ! " + nbPairs);
               i++;
-              console.log("i " + i);
               j = i + 1;
-              console.log("j " + j);
               if (nbPairs === (memoryItems.length / 2) - 1) lastTurn = true;
             }
           }
         }
       }
     });
-  })
-})
+  });
+});
