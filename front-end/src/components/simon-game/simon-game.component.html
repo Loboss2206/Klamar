@@ -10,8 +10,5 @@
 </div>
 
 <div #congratsButton class="congrats" (click)="takeAction()">
-  <span *ngIf="!isGoodSequence && !isGameStarted">Appuyez pour commencer</span>
-  <span *ngIf="!isGoodSequence && isGameRunning">Votre tour</span>
-  <span *ngIf="!isGoodSequence && !isGameRunning && isGameStarted">Regardez la séquence</span>
-  <span *ngIf="isGoodSequence">Bravo !</span>
+  <span>{{message}}</span>
 </div>

@@ -50,7 +50,7 @@
       [questionsAlreadyInTheQuiz]="existingQuizQuestions"
       (createAQuestion)="createAQuestion()"></app-questions-picklist>
     <div
-      style="display: flex; justify-content: center; flex-direction: row; align-items: center; width: 100%; position: fixed; bottom: 0; margin-bottom: 20px">
+      style="display: flex; justify-content: center; flex-direction: row; align-items: center; position: fixed; bottom: 0; margin-bottom: 20px; background-color: rgba(0, 0, 0, 0.5); padding: 10px; border-radius: 20px;">
       <app-genericButton [isDeleteButton]="true" (click)="cancelEdit()">Annuler</app-genericButton>
       <div style="width: 20px"></div>
       <app-genericButton (click)="SaveCurrentQuiz()">Sauvegarder</app-genericButton>
@@ -61,12 +61,13 @@
     <form [formGroup]="simonConfigForm">
       <label for="numberOfRound">Nombre de tours</label>
       <input type="number" id="numberOfRound" formControlName="numberOfRound">
-
+      <br/>
       <label for="numberOfBoxes">Nombre de bouton</label>
       <input type="number" id="numberOfBoxes" formControlName="numberOfBoxes">
-
+      <br/>
       <label for="numberOfRetriesAllowed">Nombre d'essaie avant de passer</label>
       <input type="number" id="numberOfRetriesAllowed" formControlName="numberOfRetriesAllowed">
+      <br/>
       <div
         style="display: flex; justify-content: center; flex-direction: row; align-items: center; width: 100%; margin-top: 20px">
         <app-genericButton [isDeleteButton]="true" (click)="closeSimonConfig()">Fermer</app-genericButton>

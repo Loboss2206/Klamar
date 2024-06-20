@@ -9,19 +9,23 @@
 }
 
 .simon-board {
-  width: 80vh;
-  height: 80vh;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
 }
 
 .simon-button {
-  position: absolute;
-  top: 48%;
-  left: 50%;
-  width: 7vw;
+  position: fixed;
+  top: calc(50% - 10vh);
+  left: calc(50% - 10vh);
+  transform: translate(-50%, -50%);
+  width: calc(20vh - 1rem);
   /* Adjust as needed */
-  height: 7vw;
+  height: calc(20vh - 1rem);
   /* Adjust as needed */
-  margin: -3.5vw 0 0 -3.5vw;
   border-radius: 50%;
   background-color: var(--simon-button-default-bg-color);
   transition: all 0.5s ease;
@@ -34,9 +38,9 @@
 }
 
 .simon-button.active {
-  width: 28vh;
-  height: 28vh;
-  margin: -14vh;
+  width: calc(35vh - 1rem);
+  height: calc(35vh - 1rem);
+  margin: calc(-5vh - 1rem);
   opacity: 1;
   transition: all 0.5s ease;
 }
@@ -58,8 +62,8 @@
   position: fixed;
   top: 50%;
   left: 50%;
-  width: 10vw;
-  height: 10vw;
+  width: calc(15vw - 2rem);
+  height: calc(15vw - 2rem);
   border-radius: 10%;
   transition: all 0.5s ease;
   transform: translate(-50%, -50%);
@@ -77,8 +81,8 @@
 .fullScreen {
   top: 0;
   left: 0;
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  height: 100%;
   transform: translate(0, 0);
   border-radius: 0%;
   background-color: #3a4eff;
@@ -102,6 +106,7 @@
 .skipButton {
   position: fixed;
   bottom: 0px;
+  right: 0px;
   text-align: center;
   width: fit-content;
   transition: all 0.5s ease;
@@ -112,13 +117,15 @@
   position: fixed;
   width: 100vw;
   bottom: 0;
+  right: 0;
   display: flex;
   align-content: center;
   justify-content: center;
+  z-index: 1000;
 }
 
 .simon-game ::ng-deep app-genericButton > button {
   background-color: black;
-  border-radius: 15px 15px 0 0;
+  border-radius: 15px 0 0 0;
 }
 
