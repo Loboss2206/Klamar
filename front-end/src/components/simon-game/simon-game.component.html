@@ -1,11 +1,11 @@
 <div class="simon-game">
-  <div class="skipper">
+  <div *ngIf="buttonSkip == true" class="skipper">
     <app-genericButton class="skipButton" (click)=skipSimon()>Passer le Simon</app-genericButton>
   </div>
   <div class="simon-board">
     <div *ngFor="let i of numberOfBoxesArray" class="simon-button" [id]="'button-' + i"
-         [style.transform]="getButtonStyle(i)" [style.z-index]="(i === numberOfBoxesArray.length - 1) ? 0 : 1"
-         [style.background-color]="getButtonColor(i)" (click)="onButtonClick(i)"></div>
+      [style.transform]="getButtonStyle(i)" [style.z-index]="(i === numberOfBoxesArray.length - 1) ? 0 : 1"
+      [style.background-color]="getButtonColor(i)" (click)="onButtonClick(i)"></div>
   </div>
 </div>
 

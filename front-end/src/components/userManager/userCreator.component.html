@@ -8,7 +8,7 @@
             <p>Ajouter une photo</p>
         </div>
         <div class="inputs">
-            <p>Informations personnelles</p>
+            <p>Informations générales</p>
             <div class="personnal-information">
                 <label>
                     <b>Prénom</b> <br>
@@ -44,6 +44,16 @@
                         <option value="deuteranopia">Deuteranopie</option>
                         <option value="deuteranomaly">Deuteranomalie</option>
                     </select>
+                </label>
+                <label> <b>Afficher le bouton "Passer les questions"</b> <br>
+                    <label>
+                        <input type="radio" name="choiceDisplaySkip" value="true"
+                            [formControlName]="'choiceDisplaySkip'" required> Oui
+                    </label>
+                    <label>
+                        <input type="radio" name="choiceDisplaySkip" value="false"
+                            [formControlName]="'choiceDisplaySkip'"> Non
+                    </label>
                 </label>
             </div>
             <p>Simon</p>

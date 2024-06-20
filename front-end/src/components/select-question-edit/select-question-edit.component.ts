@@ -44,6 +44,7 @@ export class SelectQuestionEditComponent {
 
   constructor(private router: Router, protected formBuilder: FormBuilder, private questionService: QuestionService, private route: ActivatedRoute) {
     if ((Number(this.route.snapshot.paramMap.get('id')))) {
+      console.log("123");
       let questionToModify = this.questionService.getQuestionById(Number(this.route.snapshot.paramMap.get('id'))) as IQuestion;
       console.log(questionToModify);
       const responsesAreImages = questionToModify.AreResponsesImages;
@@ -91,6 +92,7 @@ export class SelectQuestionEditComponent {
         correctAnswer: [this.getTheRightAnswer(questionToModify), Validators.required]
       });
     } else {
+      console.log("445");
       this.idQuestionToModify = null;
       this.questionModificatorComponent = this.formBuilder.group({
         question: ['', Validators.required],
@@ -172,7 +174,6 @@ export class SelectQuestionEditComponent {
     if (this.imageBase64Response4 != "") {
       newQuestion.responses[3] = this.imageBase64Response4;
     }
-    console.log(newQuestion);
     if (newQuestion.id == -1) {
       this.questionService.createNewQuestion(newQuestion, this.enableRedirections);
     } else {
@@ -206,6 +207,8 @@ export class SelectQuestionEditComponent {
           this.imageUrlResponse4 = reader.result;
           this.imageBase64Response4 = reader.result;
         }
+        console.log(this.imageBase64Response1);
+        console.log(this.imageUrlResponse1);
       };
     }
   }
