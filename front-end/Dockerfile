@@ -6,9 +6,7 @@ WORKDIR /app/
 COPY --chown=node package*.json ./
 RUN npm install
 COPY --chown=node . ./
-RUN npm run build -- --configuration=$ENVIRONMENT
-RUN npm prune --production && \
-    rm -rf /app/node_modules /app/src /app/public /app/package*.json /tmp/npm-*
+RUN npm run build -- --configuration=$ENVIRONMENT && npm prune --production && rm -rf /app/node_modules /app/src /app/public /app/package*.json /tmp/npm-*
 
 
 

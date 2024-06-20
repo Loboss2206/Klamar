@@ -1,8 +1,10 @@
-FROM mcr.microsoft.com/playwright:v1.34.3
+FROM mcr.microsoft.com/playwright:v1.44.1-jammy
 USER pwuser
 WORKDIR /app
 COPY --chown=pwuser:pwuser package.json package-lock.json ./
 RUN npm install
+RUN npm install -D @playwright/test
+RUN npx playwright install
 COPY --chown=pwuser:pwuser . .
 COPY --chown=pwuser:pwuser playwright.config.docker.ts playwright.config.ts
 COPY --chown=pwuser:pwuser src/environments/environment.docker-e2e.ts src/environments/environment.ts
