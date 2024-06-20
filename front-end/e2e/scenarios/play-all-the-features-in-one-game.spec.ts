@@ -1,5 +1,4 @@
 import { test, expect } from '@playwright/test';
-import { controllers } from 'chart.js';
 import { testUrl } from 'e2e/e2e.config';
 import { SimonGameFixture } from 'src/components/simon-game/simon-game.fixture';
 import { MemoryGameFixture } from 'src/components/memory-container/memory-container.fixture';
@@ -8,6 +7,7 @@ test.describe('Play Quiz', async () => {
   const regexp4base64 = new RegExp('(data:image/png;base64,)|(data:image/jpeg;base64,)|(data:image/jpg;base64,)|(data:image/gif;base64,)|(data:image/webp;base64,)');
   test('Play a Quiz with question', async ({ page }) => {
     await page.goto(testUrl);
+    const simonFixture = new SimonGameFixture(page)
     await test.step('should have a user list containing a user', async () => {
       const userList = page.locator('.userContainer');
       await expect(userList).toBeVisible();
@@ -29,14 +29,14 @@ test.describe('Play Quiz', async () => {
       await expect(quizList).toBeVisible();
       await expect(quizList).toHaveCount(1);
       const quizcontainer = page.locator('.quizContainer>div');
-      await expect(quizcontainer).toHaveCount(2);
+      await expect(quizcontainer).toHaveCount(4);
       let quizItem = page.locator('.quizItem');
-      await expect(quizItem).toHaveCount(2);
+      await expect(quizItem).toHaveCount(4);
       const quizImage = page.locator('.imgQuiz').nth(0);
       await expect(quizImage).toHaveAttribute('src', regexp4base64);
       const quizTitle = page.locator('.quizTitle').nth(0);
       await expect(quizTitle).toHaveText('Quiz 1');
-      quizItem = page.locator('.quizItem').nth(0);
+      quizItem = page.locator('app-quiz-selector-item').filter({ hasText: 'quiz complet' }).locator('div');
       await quizItem.click();
       await expect(page).toHaveURL(`${testUrl}/quiz`);
     });
@@ -249,56 +249,6 @@ test.describe('Play Quiz', async () => {
     await test.step('should click on an answer that is correct', async () => {
       const answer4 = page.locator('app-quizbutton').nth(3);
       await answer4.click();
-      await expect(page).toHaveURL(`${testUrl}/felicitations`);
-    });
-
-    await test.step('should see the congratulation page', async () => {
-      await expect(page).toHaveURL(`${testUrl}/felicitations`);
-      await expect(page.locator('.finish_text')).toHaveText('FELICITATIONS');
-    });
-
-    await test.step('should click on the button to restart the quiz', async () => {
-      const restartButton = page.locator('.buttonBackground');
-      await restartButton.click();
-      await expect(page).toHaveURL(`${testUrl}/quiz`);
-    });
-  });
-
-  test('Play a Quiz of Simon', async ({ page }) => {
-    const simonFixture = new SimonGameFixture(page);
-    await page.goto(testUrl);
-    await test.step('should have a user list containing a user', async () => {
-      const userList = page.locator('.userContainer');
-      await expect(userList).toBeVisible();
-      await expect(userList).toHaveCount(1);
-      const userItem = page.locator('.userItem').first();
-      await expect(userItem).toBeVisible();
-      const avatar = page.locator('.imgUser').first();
-      await expect(avatar).toBeVisible();
-      await expect(avatar).toHaveAttribute('src', regexp4base64);
-      const name = page.locator('.userName').first();
-      await expect(name).toBeVisible();
-      await expect(name).toHaveText('Utilisa teur');
-    });
-
-    await test.step('should click on the user', async () => {
-      const userItem = page.locator('.userItem').first();
-      await userItem.click();
-      await expect(page).toHaveURL(`${testUrl}/selectQuiz`);
-    });
-
-    await test.step('should have a list of quizzes', async () => {
-      const quizList = page.locator('.quizContainer');
-      await expect(quizList).toBeVisible();
-      await expect(quizList).toHaveCount(1);
-      const quizImage = page.locator('.imgQuiz').nth(0);
-      await expect(quizImage).toHaveAttribute('src', regexp4base64);
-      const quizTitle = page.locator('.quizTitle').nth(0);
-      await expect(quizTitle).toHaveText('Quiz 1');
-    });
-    await test.step('should click on a quiz', async () => {
-      const quizItem = page.locator('.quizItem').nth(1);
-      await quizItem.click();
       await expect(page).toHaveURL(`${testUrl}/simon`);
     });
 
@@ -354,7 +304,7 @@ test.describe('Play Quiz', async () => {
           numberOfGoodSequence++;
           await page.waitForTimeout(1000 * (currentNbOfSequence + 1));
         } else if (numberOfGoodSequence === 4) {
-          await expect(page).toHaveURL(`${testUrl}/felicitations`);
+          await expect(page).toHaveURL(`${testUrl}/memory`);
           console.log('Sequence successfully followed!');
           console.log('Simon game successfully played!');
           return;
@@ -364,47 +314,6 @@ test.describe('Play Quiz', async () => {
           break;
         }
       }
-    });
-  });
-
-  test('Play a Quiz of Memory', async ({ page }) => {
-    await page.goto(testUrl);
-
-    await test.step('should have a user list containing a user', async () => {
-      const userList = page.locator('.userContainer');
-      await expect(userList).toBeVisible();
-      await expect(userList).toHaveCount(1);
-      const userItem = page.locator('.userItem').first();
-      await expect(userItem).toBeVisible();
-      await expect(userItem).toHaveCount(1);
-      const avatar = page.locator('.imgUser').first();
-      await expect(avatar).toBeVisible();
-      await expect(avatar).toHaveAttribute('src', regexp4base64);
-      const name = page.locator('.userName').first();
-      await expect(name).toBeVisible();
-      await expect(name).toHaveText('Utilisa teur');
-    });
-
-    await test.step('should click on the user', async () => {
-      const userItem = page.locator('.userItem');
-      await userItem.click();
-      await expect(page).toHaveURL(`${testUrl}/selectQuiz`);
-    });
-
-    await test.step('should have a list of quizzes', async () => {
-      const quizList = page.locator('.quizContainer');
-      await expect(quizList).toBeVisible();
-      await expect(quizList).toHaveCount(1);
-      const quizImage = page.locator('.imgQuiz').nth(0);
-      await expect(quizImage).toHaveAttribute('src', regexp4base64);
-      const quizTitle = page.locator('.quizTitle').nth(2);
-      await expect(quizTitle).toHaveText('QuizMemory');
-    });
-
-    await test.step('should click on a quiz', async () => {
-      const quizItem = page.locator('.quizItem').nth(2);
-      await quizItem.click();
-      await expect(page).toHaveURL(`${testUrl}/memory`);
     });
 
     await test.step('should play a normal game of Memory', async () => {
@@ -419,27 +328,45 @@ test.describe('Play Quiz', async () => {
 
       let nbPairs = 0;
       let lastTurn = false;
+
       while (true) {
+        await page.waitForTimeout(5000);
         let memoryItems = await memoryGameFixture.getAllMemoryItems();
         for (let i = 0; i < memoryItems.length - 1; i++) {
-          if (await memoryGameFixture.isMemoryItemHidden(i)) {
+          if ((await memoryGameFixture.isMemoryItemHidden(i))) {
             continue;
           }
           for (let j = i + 1; j < memoryItems.length; j++) {
-            if (await memoryGameFixture.isMemoryItemHidden(j)) {
+            if ((await memoryGameFixture.isMemoryItemHidden(j))) {
               continue;
             }
-            await makeATry(i, j, lastTurn);
             if (lastTurn) {
-              await expect(page).toHaveURL(`${testUrl}/felicitations`);
-              console.log('Sequence successfully followed!');
-              console.log('Memory game successfully played!');
+              for (let k = 0; k < memoryItems.length - 1; k++) {
+                if ((await memoryGameFixture.isMemoryItemHidden(k))) {
+                  continue;
+                }
+                for (let m = k + 1; m < memoryItems.length; m++) {
+                  if ((await memoryGameFixture.isMemoryItemHidden(m))) {
+                    continue;
+                  }
+                  await makeATry(k, m, lastTurn);
+                  break;
+                }
+                if (nbPairs === (memoryItems.length / 2)) {
+                  await expect(page).toHaveURL(`${testUrl}/felicitations`);
+                  console.log('Sequence successfully followed!');
+                  console.log('Memory game successfully played!');
+                  return;
+                }
+              }
             }
-            if (lastTurn) return;
-
+            await makeATry(i, j, lastTurn);
+            await page.waitForTimeout(1000);
 
             if (await memoryGameFixture.isMemoryItemHidden(i) && await memoryGameFixture.isMemoryItemHidden(j)) {
               nbPairs++;
+              i++;
+              j = i + 1;
               if (nbPairs === (memoryItems.length / 2) - 1) lastTurn = true;
             }
           }
