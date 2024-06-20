@@ -9,9 +9,10 @@ services:
       - my_network
     healthcheck:
       test: ["CMD", "curl", "-f", "http://back:9428/api/status"]
-      interval: 3s
+      interval: 30s
       timeout: 10s
       retries: 3
+      start_period: 3s
 
   front:
     build:
@@ -22,9 +23,11 @@ services:
     container_name: front
     healthcheck:
       test: ["CMD", "curl", "-f", "http://front:80/"]
-      interval: 3s
+      interval: 30s
       timeout: 10s
       retries: 3
+      start_period: 30s
+
     networks:
       - my_network
     depends_on:

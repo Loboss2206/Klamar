@@ -1,11 +1,14 @@
-FROM mcr.microsoft.com/playwright:v1.34.3-jammy
-USER pwuser
+FROM mcr.microsoft.com/playwright:v1.44.1-jammy
 WORKDIR /app
-COPY --chown=pwuser:pwuser package.json package-lock.json ./
+COPY package.json package-lock.json ./
 RUN npm install
-RUN npm install -D @playwright/test
-RUN npx playwright install
-COPY --chown=pwuser:pwuser . .
-COPY --chown=pwuser:pwuser playwright.config.docker.ts playwright.config.ts
-COPY --chown=pwuser:pwuser src/environments/environment.docker-e2e.ts src/environments/environment.ts
+COPY src/ /app/src/
+COPY e2e/ /app/e2e/
+COPY *config.json /app/
+COPY playwright.config.docker.ts /app/playwright.config.docker.ts
+COPY playwright.config.docker.ts playwright.config.ts
+COPY src/environments/environment.docker-e2e.ts src/environments/environment.ts
+ENV PATH /app/node_modules/.bin:$PATH
+
 CMD ["npx", "playwright", "test", "--config", "playwright.config.docker.ts", "--output=/app/test-results"]
+

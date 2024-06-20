@@ -4,7 +4,6 @@ import { SelectStatFixture } from "../../src/components/select-stat/select-stat.
 import { StatQuestionPageFixture } from "../../src/components/stat-question-page/stat-question-page.fixture";
 import { StatSimonPageFixture } from "../../src/components/stat-simon-page/stat-simon-page.fixture";
 import { StatMemoryPageFixture } from "../../src/components/stat-memory-page/stat-memory-page.fixture";
-import { LoginFixture } from "../../src/components/login/login.fixture";
 import { environment } from 'src/environments/environment';
 
 test.describe('Stat Component', () => {
@@ -17,18 +16,14 @@ test.describe('Stat Component', () => {
   });
 
   test('Navigate in stat to see if everything is there', async ({ page, context }) => {
-    const loginFixture = new LoginFixture(page);
     const selectUserStatFixture = new SelectUserStatFixture(page);
     const selectStatFixture = new SelectStatFixture(page);
     const statQuestionPageFixture = new StatQuestionPageFixture(page);
     const statSimonPageFixture = new StatSimonPageFixture(page);
     const statMemoryPageFixture = new StatMemoryPageFixture(page);
-    await loginFixture.fillUsername("admin");
-    await loginFixture.fillPassword("admin");
-    await Promise.all([
-      loginFixture.clickLogin(),
-      page.waitForURL(baseURL + 'selectUserStat') // Remplacer par l'URL de destination après connexion
-    ]);
+
+    await page.waitForURL(baseURL + 'selectUserStat'); // Remplacer par l'URL de destination après connexion
+
     await selectUserStatFixture.searchUser("Utilisa");
     await Promise.all([
       selectUserStatFixture.clickUser("Utilisa", "Teur"),

@@ -1,5 +1,6 @@
 export const environment = {
-    production: false,
-    backendUrl: 'http://back:9428/api',
-    testUrl: 'http://front:80'
+  production: false,
+  docker: true,
+  backendUrl: 'http://back:9428/api',
+  testUrl: 'http://front'
 };

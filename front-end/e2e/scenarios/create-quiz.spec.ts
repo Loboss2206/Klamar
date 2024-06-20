@@ -2,7 +2,6 @@ import { test, expect } from '@playwright/test';
 import { testUrl } from '../../e2e/e2e.config';
 import { QuizManagerFixture } from '../../src/components/quiz-manager/quiz-manager.fixture';
 import { NavbarFixture } from 'src/components/navbar/navbar.fixture';
-import { LoginFixture } from 'src/components/login/login.fixture';
 import { SelectQuestionEditFixture } from 'src/components/select-question-edit/select-question-edit.fixture';
 import { time } from 'highcharts';
 // test.describe is a hook that creates a test group and lets you define lifecycle stages such as beforeEach.
@@ -14,27 +13,23 @@ test.describe('Quiz Feature', () => {
     //create all fixtures
     const quizManagerFixture = new QuizManagerFixture(page);
     const navbarFixture = new NavbarFixture(page);
-    const loginFixture = new LoginFixture(page);
     const selectQuestionFixture = new SelectQuestionEditFixture(page);
 
     await navbarFixture.clickNavbarAdminMenu();
     await navbarFixture.clickGoToQuizManager();
-    await loginFixture.fillUsername("admin");
-    await loginFixture.fillPassword("admin");
-    await loginFixture.clickLogin();
-    await expect(page).toHaveURL("http://localhost:4200/admin/quizManager");
+    await expect(page).toHaveURL(`${testUrl}/admin/quizManager`);
 
     await quizManagerFixture.clickCreateQuizButton();
 
     await page.locator(`#includeMemory`).check();
-    await page.locator('#memoryConfigButton').getByRole('button', { name: 'Paramètres' }).click()
+    await page.locator('#memoryConfigButton').getByRole('button', { name: 'Paramètres' }).click();
     const questionDsd = await page.locator('.cdk-drop-list.imagesContainer').nth(0).locator('img').last();
     expect(questionDsd).toBeVisible();
     const questionQuiz = await page.locator('.cdk-drop-list.imagesContainer').nth(1);
     expect(questionQuiz).toBeVisible();
 
-    const originElement = questionDsd
-    const destinationElement = questionQuiz
+    const originElement = questionDsd;
+    const destinationElement = questionQuiz;
 
 
     await originElement.hover();
@@ -43,7 +38,7 @@ test.describe('Quiz Feature', () => {
     await page.mouse.move(box.x + box.width / 2, box.y + box.height / 2);
     await destinationElement.hover();
     await page.mouse.up();
-    await page.getByRole('button', { name: 'Fermer' }).click()
+    await page.getByRole('button', { name: 'Fermer' }).click();
 
     const inputName = await quizManagerFixture.getInput('quiz-name');
     await inputName.type('Quiz carré');

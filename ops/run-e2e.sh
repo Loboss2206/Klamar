@@ -46,9 +46,9 @@ fi
 if $test; then
     echo "Forcing the removal of the container and image with tag test..."
     echo "Removing the container..."
-    docker rmi -f test
+    docker rmi -f playwright
     echo "Rebuilding the image without cache..."
-    docker build --no-cache --file ../front-end/Dockerfile-e2e -t test ../front-end
+    docker build --no-cache --file ../front-end/Dockerfile-e2e -t playwright ../front-end
 fi
 
 

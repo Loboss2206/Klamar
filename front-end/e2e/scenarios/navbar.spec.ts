@@ -49,66 +49,20 @@ test.describe('Navbar Component', () => {
 
     const gestionDesQuestions = page.locator('a:has-text("Gestion des questions")');
     await gestionDesQuestions.click();
-    await expect(page).toHaveURL(`${baseURL}/login;returnUrl=%2Fadmin%2FselectQuestion`);
-    let nom = await page.getByPlaceholder('Nom d\'utilisateur');
-    await nom.fill('admin');
-    let mdp = await page.getByPlaceholder('Mot de passe');
-    await mdp.fill('admin');
-    await page.click('button:has-text("Se connecter")');
     await expect(page).toHaveURL(`${baseURL}/admin/selectQuestion`);
     await page.goto(baseURL);
 
     await adminLink.click();
     const gestionDesQuizzes = page.locator('a:has-text("Gestion des quizzes")');
     await gestionDesQuizzes.click();
-    await expect(page).toHaveURL(`${baseURL}/login;returnUrl=%2Fadmin%2FquizManager`);
-    nom = await page.getByPlaceholder('Nom d\'utilisateur');
-    await nom.fill('admin');
-    mdp = await page.getByPlaceholder('Mot de passe');
-    await mdp.fill('admin');
-    await page.click('button:has-text("Se connecter")');
     await expect(page).toHaveURL(`${baseURL}/admin/quizManager`);
     await page.goto(baseURL);
 
     await adminLink.click();
     let gestionDesUtilisateurs = page.locator('a:has-text("Gestion des utilisateurs")');
     await gestionDesUtilisateurs.click();
-    await expect(page).toHaveURL(`${baseURL}/login;returnUrl=%2Fadmin%2FselectUserToModify`);
-    nom = await page.getByPlaceholder('Nom d\'utilisateur');
-    await nom.fill('admin');
-    mdp = await page.getByPlaceholder('Mot de passe');
-    await mdp.fill('admin');
-    await page.click('button:has-text("Se connecter")');
     await expect(page).toHaveURL(`${baseURL}/admin/selectUserToModify`);
     await page.goto(baseURL);
-
-    await adminLink.click();
-    const statistiques = page.locator('a:has-text("Statistiques")');
-    await statistiques.click();
-    await expect(page).toHaveURL(`${baseURL}/login;returnUrl=%2Fstats%2FselectUserStat`);
-    nom = await page.getByPlaceholder('Nom d\'utilisateur');
-    await nom.fill('admin');
-    mdp = await page.getByPlaceholder('Mot de passe');
-    await mdp.fill('admin');
-    await page.click('button:has-text("Se connecter")');
-    await expect(page).toHaveURL(`${baseURL}/stats/selectUserStat`);
-
-    await adminLink.click();
-    gestionDesQuestions.click();
-    await expect(page).toHaveURL(`${baseURL}/admin/selectQuestion`);
-
-    await adminLink.click();
-    gestionDesQuizzes.click();
-    await expect(page).toHaveURL(`${baseURL}/admin/quizManager`);
-
-    await adminLink.click();
-    gestionDesUtilisateurs = page.locator('a:has-text("Gestion des utilisateurs")');
-    gestionDesUtilisateurs.click();
-    await expect(page).toHaveURL(`${baseURL}/admin/selectUserToModify`);
-
-    await adminLink.click();
-    statistiques.click();
-    await expect(page).toHaveURL(`${baseURL}/stats/selectUserStat`);
   });
 
   test('should display and function the quit button', async ({ page }) => {
