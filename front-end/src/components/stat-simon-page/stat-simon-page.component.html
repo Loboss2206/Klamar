@@ -4,6 +4,8 @@
   </app-titlePage>
 </h1>
 <div class="resultatSimon">
+  <simon-for-test [numberOfBoxes]=tailleFinalSimon [user] = this.user>
+  </simon-for-test>
   <app-result-simon [wasPassed]=stat?.simonStats?.wasPassed [taille]=this.stat?.simonStats?.tailleFinalSimon
     [indices]=stat?.simonStats?.indicesSimon [erreur]=stat?.simonStats?.erreurSimon [temps]=stat?.simonStats?.tempsSimon
     [couleur]=stat?.simonStats?.nombreDeCouleurs></app-result-simon>

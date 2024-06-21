@@ -1,0 +1,25 @@
+.simon-game {
+  height: 88vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.simon-board {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.simon-button {
+  position: absolute;
+  width: calc(20vh - 1rem);
+  height: calc(20vh - 1rem);
+  border-radius: 50%;
+  background-color: var(--simon-button-default-bg-color);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

@@ -42,9 +42,7 @@ export class QuestionComponent implements OnInit, AfterViewInit {
   questionImage: string | undefined = '';
   areResponsesImages: boolean = false;
   user: IUser | null = this.userService.getCurrentUser();
-  canOpenTipsOnClick: boolean = this.user ? this.user.config.quiz.showHintAfterClick : false;
-  tipsIfError : boolean = this.user ? this.user?.config.quiz.showHintAfterError : false;
-  currentTipIndex: number = this.user ? this.user.config.quiz.showHintOneByOne ? -1 : -2 : -2;
+  currentTipIndex: number = this.user ? String(this.user.config.quiz.showHintOneByOne) === 'true' ? -1 : -2 : -2;
   idQuestion?: string;
   startTime: number = 0;
   answerIndex: number[] = [];
@@ -64,7 +62,7 @@ export class QuestionComponent implements OnInit, AfterViewInit {
       console.log(question.responses);
       this.answers = question.responses;
       this.questionText = question.question;
-      this.currentTipIndex = this.user ? this.user.config.quiz.showHintOneByOne ? -1 : -2 : -2;
+      this.currentTipIndex = this.user ? String(this.user.config.quiz.showHintOneByOne) === 'true' ? -1 : -2 : -2;
       this.tips = question.tips;
       this.questionImage = question.questionImage;
       this.areResponsesImages = question.AreResponsesImages;
@@ -72,14 +70,14 @@ export class QuestionComponent implements OnInit, AfterViewInit {
       this.wrongAnswers = [];
       this.idQuestion = parseInt(question.id.toString()).toString();
       this.setBlockUI(false);
-      if (this.user && this.user.config.quiz.showHintAfterStart) {
+      if (this.user && String(this.user.config.quiz.showHintAfterStart) === 'true') {
         this.tipsComponent.openATip();
       }
     });
   }
 
   ngAfterViewInit() {
-    if (this.user && this.user.config.quiz.showHintAfterStart) {
+    if (this.user && String(this.user.config.quiz.showHintAfterStart) === 'true'){
       this.tipsComponent.openATip();
     }
   }
@@ -107,12 +105,14 @@ export class QuestionComponent implements OnInit, AfterViewInit {
     this.wrongAnswers = [];
     this.setBlockUI(false);
     this.showAllAnswers();
-    this.currentTipIndex = this.user ? this.user.config.quiz.showHintOneByOne ? -1 : -2 : -2;
+    this.currentTipIndex = this.user ? String(this.user.config.quiz.showHintOneByOne) === 'true' ? -1 : -2 : -2;
   }
 
   incrementIndex() {
-    if (this.user && this.user.config.quiz.showHintOneByOne === true) {
+    if (this.user && String(this.user.config.quiz.showHintOneByOne) === 'true') {
+      console.log(this.currentTipIndex)
       if (this.currentTipIndex < this.tips.length - 1) this.currentTipIndex++;
+      console.log(this.currentTipIndex)
     } else {
       console.log('incrementIndex');
       this.currentTipIndex = this.tips.length - 1;
@@ -215,4 +215,6 @@ export class QuestionComponent implements OnInit, AfterViewInit {
     }
     return 0;
   }
+
+  protected readonly String = String;
 }

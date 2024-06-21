@@ -19,6 +19,7 @@ import IUser from "../../interfaces/IUser";
 export class TipsComponent {
 
   @Input({transform: booleanAttribute}) canBeClicked!: boolean
+  @Input() displayButton : boolean | undefined
 
   showHint: boolean = false;
 
