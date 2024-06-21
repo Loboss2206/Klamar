@@ -3,7 +3,7 @@
   flex-wrap: wrap;
   justify-content: center;
   width: 80vw;
-  margin: 5vw auto 1vw auto;
+  margin: 2vw auto 0vw auto;
 }
 
 .userContainer::-webkit-scrollbar {
@@ -26,8 +26,9 @@
   flex-direction: column;
   margin-top: 20px;
   background-color: #f8f8f8;
-  padding: 20px;
+  padding-top: 5rem;
+  padding-bottom: 5rem;
+  margin-bottom: 5rem;
   border-radius: 20px;
   box-shadow: 5px 5px 10px 5px rgba(0, 0, 0, 0.2);
-
 }

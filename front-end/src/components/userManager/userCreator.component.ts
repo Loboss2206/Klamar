@@ -46,6 +46,7 @@ export class UserCreatorComponent {
         userBirth: [this.user.birthdate],
         hobbies: [this.user.hobbies],
         baseZoom: [this.user.config.zoomLevel, Validators.required],
+        choiceDisplaySkip: [this.user.config.displaySkip, Validators.required],
         choiceSimon: [this.user.config.simon.isColorful.toString(), Validators.required],
         choicePrintTipsAfterError: [this.user.config.quiz.showHintAfterError.toString(), Validators.required],
         choicePrintTipsAfterClick: [this.user.config.quiz.showHintAfterClick.toString(), Validators.required],
@@ -64,6 +65,7 @@ export class UserCreatorComponent {
         userBirth: [''],
         hobbies: [''],
         baseZoom: [100, Validators.required],
+        choiceDisplaySkip: [true, Validators.required],
         choiceSimon: ['true', Validators.required],
         choicePrintTipsAfterError: ['true', Validators.required],
         choicePrintTipsAfterClick: ['true', Validators.required],
@@ -108,6 +110,7 @@ export class UserCreatorComponent {
         showHintOneByOne: this.userCreatorForm.get('choicePrintTipsOneByOne')?.getRawValue(),
       },
       zoomLevel: this.userCreatorForm.get('baseZoom')?.getRawValue(),
+      displaySkip: this.userCreatorForm.get('choiceDisplaySkip')?.getRawValue()
     };
     let newUser: IUser = {
       id: (this.userService.getUsers().length + 1) as number,
@@ -193,6 +196,7 @@ export class UserCreatorComponent {
         showHintOneByOne: this.userCreatorForm.get('choicePrintTipsOneByOne')?.getRawValue(),
       },
       zoomLevel: this.userCreatorForm.get('baseZoom')?.getRawValue(),
+      displaySkip: this.userCreatorForm.get('choiceDisplaySkip')?.getRawValue()
     };
     const newUser: IUser = {
       id: this.user.id,

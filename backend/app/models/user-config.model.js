@@ -20,5 +20,6 @@ module.exports = new BaseModel('UserConfig', {
     showHintAfterClick: Joi.boolean().required(),
     showHintOneByOne: Joi.boolean().required(),
   }).required(),
+  displaySkip: Joi.boolean().required(),
   zoomLevel: Joi.number().required(),
 })
