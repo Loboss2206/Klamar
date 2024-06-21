@@ -22,7 +22,7 @@ import { StatsService } from "../../services/stats.service";
 import { interval } from 'rxjs';
 
 @Component({
-  selector: 'simon-for-test',
+  selector: 'simon-for-stat',
   templateUrl: './simon-for-stat.component.html',
   standalone: true,
   imports: [
