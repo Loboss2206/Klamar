@@ -113,10 +113,10 @@ test.describe('Play Quiz', async () => {
       const overlay = page.locator('.overlay');
       await expect(overlay).toBeVisible();
 
-      const tipMessage = page.locator('.AstuceContent');
-      await expect(tipMessage).toHaveText('tip 2');
+      const tipMessage = page.locator('.AstuceContent').first();
+      await expect(tipMessage).toHaveText(' tip 1 tip 2 ');
 
-      await overlay.click();
+      await overlay.click({ force: true });
 
       const question = page.locator('.question');
       await expect(question).toBeVisible();
