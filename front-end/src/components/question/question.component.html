@@ -21,7 +21,9 @@
         </li>
       </ul>
     </app-tips>
-    <app-genericButton class="skipButton" (click)=skipQuestion()>Passer la question</app-genericButton>
+    <div *ngIf="buttonSkip == true">
+      <app-genericButton class="skipButton" (click)=skipQuestion()>Passer la question</app-genericButton>
+    </div>
   </div>
 
 

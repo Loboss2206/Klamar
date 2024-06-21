@@ -2,7 +2,6 @@ import { test, expect } from '@playwright/test';
 import { testUrl } from '../../e2e/e2e.config';
 import { QuizManagerFixture } from '../../src/components/quiz-manager/quiz-manager.fixture';
 import { NavbarFixture } from 'src/components/navbar/navbar.fixture';
-import { LoginFixture } from 'src/components/login/login.fixture';
 import { SelectQuestionEditFixture } from 'src/components/select-question-edit/select-question-edit.fixture';
 import { time } from 'highcharts';
 import { async } from 'rxjs';
@@ -15,15 +14,12 @@ test.describe('Quiz Feature', () => {
     //create all fixtures
     const quizManagerFixture = new QuizManagerFixture(page);
     const navbarFixture = new NavbarFixture(page);
-    const loginFixture = new LoginFixture(page);
     const selectQuestionFixture = new SelectQuestionEditFixture(page);
 
     await navbarFixture.clickNavbarAdminMenu();
     await navbarFixture.clickGoToQuizManager();
-    await loginFixture.fillUsername("admin");
-    await loginFixture.fillPassword("admin");
-    await loginFixture.clickLogin();
-    await expect(page).toHaveURL("http://localhost:4200/admin/quizManager");
+
+    await expect(page).toHaveURL(`${testUrl}/admin/quizManager`);
 
     await test.step(`Components visible`, async () => {
       const addQuizButton = await quizManagerFixture.getCreateQuizButton();
@@ -65,8 +61,8 @@ test.describe('Quiz Feature', () => {
         const zoneToDrop = quizManagerFixture.getZoneToDropImage();
         expect(zoneToDrop).toBeVisible();
 
-        const originElement = imageToDrag
-        const destinationElement = zoneToDrop
+        const originElement = imageToDrag;
+        const destinationElement = zoneToDrop;
 
         await originElement.hover();
         await page.mouse.down();
@@ -74,7 +70,7 @@ test.describe('Quiz Feature', () => {
         await page.mouse.move(box.x + box.width / 2, box.y + box.height / 2);
         await destinationElement.hover();
         await page.mouse.up();
-        await page.getByRole('button', { name: 'Fermer' }).click()
+        await page.getByRole('button', { name: 'Fermer' }).click();
       });
 
       await test.step('Create a question', async () => {
@@ -112,8 +108,8 @@ test.describe('Quiz Feature', () => {
         const questionQuiz = await page.locator('.cdk-drop-list.questionsContainer').nth(1);
         expect(questionQuiz).toBeVisible();
 
-        const originElement = questionDsd
-        const destinationElement = questionQuiz
+        const originElement = questionDsd;
+        const destinationElement = questionQuiz;
 
         await originElement.hover();
         await page.mouse.down();
@@ -144,14 +140,10 @@ test.describe('Quiz Feature', () => {
     //create all fixtures
     const quizManagerFixture = new QuizManagerFixture(page);
     const navbarFixture = new NavbarFixture(page);
-    const loginFixture = new LoginFixture(page);
 
     await navbarFixture.clickNavbarAdminMenu();
     await navbarFixture.clickGoToQuizManager();
-    await loginFixture.fillUsername("admin");
-    await loginFixture.fillPassword("admin");
-    await loginFixture.clickLogin();
-    await expect(page).toHaveURL("http://localhost:4200/admin/quizManager");
+    await expect(page).toHaveURL(`${testUrl}/admin/quizManager`);
 
     await page.waitForTimeout(2000);
     let lastQuiz = (await quizManagerFixture.getAllQuizs()).length - 2;
@@ -176,14 +168,10 @@ test.describe('Quiz Feature', () => {
     //create all fixtures
     const quizManagerFixture = new QuizManagerFixture(page);
     const navbarFixture = new NavbarFixture(page);
-    const loginFixture = new LoginFixture(page);
 
     await navbarFixture.clickNavbarAdminMenu();
     await navbarFixture.clickGoToQuizManager();
-    await loginFixture.fillUsername("admin");
-    await loginFixture.fillPassword("admin");
-    await loginFixture.clickLogin();
-    await expect(page).toHaveURL("http://localhost:4200/admin/quizManager");
+    await expect(page).toHaveURL(`${testUrl}/admin/quizManager`);
 
     await page.waitForTimeout(2000);
     let lastQuiz = (await quizManagerFixture.getAllQuizs()).length - 2;
@@ -199,6 +187,5 @@ test.describe('Quiz Feature', () => {
     expect(quizManagerFixture.getQuizCell(lastQuiz, 4)).not.toBeVisible();
     expect(quizManagerFixture.getQuizCell(lastQuiz, 5)).not.toBeVisible();
     await page.waitForTimeout(2000);
-
   });
 });

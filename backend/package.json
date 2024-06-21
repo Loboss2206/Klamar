@@ -31,7 +31,8 @@
     "cors": "2.8.5",
     "express": "^4.17.1",
     "joi": "14.3.1",
-    "morgan": "1.9.1"
+    "morgan": "1.9.1",
+        "rimraf": "^5.0.1"
   },
   "devDependencies": {
     "copyfiles": "^2.4.1",
@@ -42,7 +43,6 @@
     "mkdirp": "^3.0.1",
     "nodemon": "2.0.2",
     "pre-commit": "1.2.2",
-    "rimraf": "^5.0.1",
     "concurrently": "^6.5.1"
   },
   "nodemonConfig": {

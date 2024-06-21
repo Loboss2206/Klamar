@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NgForOf } from "@angular/common";
+import { NgForOf, NgIf } from "@angular/common";
 import { MemoryItemComponent } from "../memory-item/memory-item.component";
 import { QueryList, ViewChildren } from "@angular/core";
 import { Router } from "@angular/router";
@@ -10,6 +10,7 @@ import { Time } from 'tone';
 import { StatsService } from "../../services/stats.service";
 import IMemoryStat from "../../interfaces/IMemoryStat";
 import { GenericButtonComponent } from '../genericButton/genericButton.component';
+import { CommonModule } from '@angular/common';
 
 @Component({
   standalone: true,
@@ -19,7 +20,9 @@ import { GenericButtonComponent } from '../genericButton/genericButton.component
   imports: [
     MemoryItemComponent,
     NgForOf,
-    GenericButtonComponent
+    GenericButtonComponent,
+    NgIf,
+    CommonModule
   ]
 })
 
@@ -44,6 +47,7 @@ export class MemoryContainerComponent {
   startTime: number = 0;
   width: number = 0;
   height: number = 0;
+  buttonSkip: boolean = true;
 
   @HostListener('document:click', ['$event'])
   @HostListener('document:keypress', ['$event'])
@@ -57,6 +61,10 @@ export class MemoryContainerComponent {
     this.timeBeforeSwitching = this.userService.getUserConfig().memory.timeBeforeSwitching;
     this.timeBeforeHints = this.userService.getUserConfig().memoryHints.timeBeforeHints;
     this.pics = this.pics.concat(this.pics);
+    console.log("display");
+    console.log(this.userService.getUserConfig().displaySkip);
+    this.buttonSkip = this.userService.getUserConfig().displaySkip;
+    console.log(typeof this.buttonSkip);
     this.shuffleArray(this.pics);
     this.initialFlip = true;
     this.startTime = Date.now();
@@ -269,7 +277,7 @@ export class MemoryContainerComponent {
   }
 
   private getDimension(): void {
-    this.width = this.pics.length >= 4 ? 4 : this.pics.length
-    this.height = Math.floor((this.pics.length - 1) / 4) + 1
+    this.width = this.pics.length >= 4 ? 4 : this.pics.length;
+    this.height = Math.floor((this.pics.length - 1) / 4) + 1;
   }
 }

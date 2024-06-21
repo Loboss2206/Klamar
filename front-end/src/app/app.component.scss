@@ -40,32 +40,88 @@ app-navbar {
 
 .colorblind-overlay.protanopia-filter {
   filter: url("/assets/filters.svg#protanopia");
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 9999;
+  pointer-events: all;
 }
 
 .colorblind-overlay.deuteranopia-filter {
   filter: url("/assets/filters.svg#deuteranopia");
+    position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 9999;
+  pointer-events: all;
 }
 
 .colorblind-overlay.tritanopia-filter {
   filter: url("/assets/filters.svg#tritanopia");
+    position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 9999;
+  pointer-events: all;
 }
 
 .colorblind-overlay.protanomaly-filter {
   filter: url("/assets/filters.svg#protanomaly");
+    position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 9999;
+  pointer-events: all;
 }
 
 .colorblind-overlay.deuteranomaly-filter {
   filter: url("/assets/filters.svg#deuteranomaly");
+    position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 9999;
+  pointer-events: all;
 }
 
 .colorblind-overlay.tritanomaly-filter {
   filter: url("/assets/filters.svg#tritanomaly");
+    position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 9999;
+  pointer-events: all;
 }
 
 .colorblind-overlay.achromatopsia-filter {
   filter: url("/assets/filters.svg#achromatopsia");
+    position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 9999;
+  pointer-events: all;
 }
 
 .colorblind-overlay.achromatomaly-filter {
   filter: url("/assets/filters.svg#achromatomaly");
+    position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 9999;
+  pointer-events: all;
 }

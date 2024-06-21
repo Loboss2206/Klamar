@@ -46,7 +46,8 @@ export class QuestionDisplayStat implements OnInit {
       this.questionText = this.question?.question;
       this.questionImage = this.question?.questionImage;
       this.areResponsesImages = this.question?.AreResponsesImages;
-      this.correctAnswer = null;
+      this.correctAnswer = this.question?.answer;
+      console.log("correct : " + this.correctAnswer);
       this.wrongAnswers = [];
     });
   }

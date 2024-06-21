@@ -47,6 +47,7 @@ export class QuestionComponent implements OnInit, AfterViewInit {
   startTime: number = 0;
   answerIndex: number[] = [];
   maxPointQuestion: number = 1;
+  buttonSkip: boolean = true;
 
   constructor(private quizService: QuizService, private router: Router, private userService: UserService, private statsService: StatsService) {
 
@@ -66,6 +67,7 @@ export class QuestionComponent implements OnInit, AfterViewInit {
       this.tips = question.tips;
       this.questionImage = question.questionImage;
       this.areResponsesImages = question.AreResponsesImages;
+      this.buttonSkip = this.userService.getUserConfig().displaySkip;
       this.correctAnswer = null;
       this.wrongAnswers = [];
       this.idQuestion = parseInt(question.id.toString()).toString();
