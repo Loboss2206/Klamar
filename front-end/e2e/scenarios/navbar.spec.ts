@@ -1,5 +1,6 @@
 import { test, expect } from '@playwright/test';
 import { environment } from 'src/environments/environment';
+import { LoginFixture } from 'src/components/login/login.fixture';
 
 test.describe('Navbar Component', () => {
   const baseURL = environment.testUrl;
@@ -49,18 +50,43 @@ test.describe('Navbar Component', () => {
 
     const gestionDesQuestions = page.locator('a:has-text("Gestion des questions")');
     await gestionDesQuestions.click();
+    if (environment.production) {
+      expect(page).toHaveURL(`${baseURL}/login;returnUrl=%2Fadmin%2FselectQuestion`);
+
+      const loginFixture = new LoginFixture(page);
+      await loginFixture.fillUsername("admin");
+      await loginFixture.fillPassword("admin");
+      await loginFixture.clickLogin();
+    }
+
     await expect(page).toHaveURL(`${baseURL}/admin/selectQuestion`);
     await page.goto(baseURL);
 
     await adminLink.click();
     const gestionDesQuizzes = page.locator('a:has-text("Gestion des quizzes")');
     await gestionDesQuizzes.click();
+    if (environment.production) {
+      expect(page).toHaveURL(`${baseURL}/login;returnUrl=%2Fadmin%2FquizManager`);
+
+      const loginFixture = new LoginFixture(page);
+      await loginFixture.fillUsername("admin");
+      await loginFixture.fillPassword("admin");
+      await loginFixture.clickLogin();
+    }
     await expect(page).toHaveURL(`${baseURL}/admin/quizManager`);
     await page.goto(baseURL);
 
     await adminLink.click();
     let gestionDesUtilisateurs = page.locator('a:has-text("Gestion des utilisateurs")');
     await gestionDesUtilisateurs.click();
+    if (environment.production) {
+      expect(page).toHaveURL(`${baseURL}/login;returnUrl=%2Fadmin%2FselectUserToModify`);
+
+      const loginFixture = new LoginFixture(page);
+      await loginFixture.fillUsername("admin");
+      await loginFixture.fillPassword("admin");
+      await loginFixture.clickLogin();
+    }
     await expect(page).toHaveURL(`${baseURL}/admin/selectUserToModify`);
     await page.goto(baseURL);
   });

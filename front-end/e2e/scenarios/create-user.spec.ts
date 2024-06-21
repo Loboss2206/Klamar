@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test';
 import { UserCreatorFixture } from 'src/components/userManager/userCreator.fixture';
 import { SelectUserContainerForModificationFixture } from 'src/components/select-user-container-for-modification/select-user-container-for-modification.fixture';
 import { environment } from 'src/environments/environment';
-
+import { LoginFixture } from 'src/components/login/login.fixture';
 test.describe('User feature', () => {
   const baseURL = environment.testUrl;
 
@@ -21,12 +21,28 @@ test.describe('User feature', () => {
     await expect(gestionDesUtilisateurs).toBeVisible();
 
     await gestionDesUtilisateurs.click();
+    if (environment.production) {
+      expect(page).toHaveURL(`${baseURL}/login;returnUrl=%2Fadmin%2FselectUserToModify`);
+
+      const loginFixture = new LoginFixture(page);
+      await loginFixture.fillUsername("admin");
+      await loginFixture.fillPassword("admin");
+      await loginFixture.clickLogin();
+    }
 
     await expect(page).toHaveURL(`${baseURL}/admin/selectUserToModify`);
   });
 
   test('Create user button should be visible', async ({ page }) => {
     await page.goto(`${baseURL}/admin/selectUserToModify`);
+    if (environment.production) {
+      expect(page).toHaveURL(`${baseURL}/login;returnUrl=%2Fadmin%2FselectUserToModify`);
+
+      const loginFixture = new LoginFixture(page);
+      await loginFixture.fillUsername("admin");
+      await loginFixture.fillPassword("admin");
+      await loginFixture.clickLogin();
+    }
     const selectUserContainerForModificationFixture = new SelectUserContainerForModificationFixture(page);
 
     const createUserButton = await selectUserContainerForModificationFixture.getNewUserCreationButton();
@@ -38,6 +54,14 @@ test.describe('User feature', () => {
 
   test('user form inputs should be visible', async ({ page }) => {
     await page.goto(`${baseURL}/admin/createUser`);
+    if (environment.production) {
+      expect(page).toHaveURL(`${baseURL}/login;returnUrl=%2Fadmin%2FcreateUser`);
+
+      const loginFixture = new LoginFixture(page);
+      await loginFixture.fillUsername("admin");
+      await loginFixture.fillPassword("admin");
+      await loginFixture.clickLogin();
+    }
     const userCreatorFixture = new UserCreatorFixture(page);
     let createButton = await userCreatorFixture.getCreateButton();
     await expect(createButton).toBeVisible();
@@ -112,6 +136,14 @@ test.describe('User feature', () => {
 
   test('User item should be modified', async ({ page }) => {
     await page.goto(`${baseURL}/admin/selectUserToModify`);
+    if (environment.production) {
+      expect(page).toHaveURL(`${baseURL}/login;returnUrl=%2Fadmin%2FselectUserToModify`);
+
+      const loginFixture = new LoginFixture(page);
+      await loginFixture.fillUsername("admin");
+      await loginFixture.fillPassword("admin");
+      await loginFixture.clickLogin();
+    }
 
     const selectUserContainerForModificationFixture = new SelectUserContainerForModificationFixture(page);
 
@@ -141,6 +173,14 @@ test.describe('User feature', () => {
 
   test('User item should be deleted', async ({ page }) => {
     await page.goto(`${baseURL}/admin/selectUserToModify`);
+    if (environment.production) {
+      expect(page).toHaveURL(`${baseURL}/login;returnUrl=%2Fadmin%2FselectUserToModify`);
+
+      const loginFixture = new LoginFixture(page);
+      await loginFixture.fillUsername("admin");
+      await loginFixture.fillPassword("admin");
+      await loginFixture.clickLogin();
+    }
 
     const selectUserContainerForModificationFixture = new SelectUserContainerForModificationFixture(page);
     page.on('dialog', async (dialog) => {
@@ -148,7 +188,7 @@ test.describe('User feature', () => {
       await dialog.accept();
     });
 
-    const userItemCreated = await selectUserContainerForModificationFixture.getUserByName("Georgette Li");
+    const userItemCreated = await selectUserContainerForModificationFixture.getUserByName("Georgette Li").last();
     await expect(userItemCreated).toBeVisible();
     await userItemCreated.click();
 

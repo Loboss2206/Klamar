@@ -5,11 +5,14 @@ import { NavbarFixture } from 'src/components/navbar/navbar.fixture';
 import { SelectQuestionEditFixture } from 'src/components/select-question-edit/select-question-edit.fixture';
 import { time } from 'highcharts';
 import { async } from 'rxjs';
+import { environment } from 'src/environments/environment';
+import { LoginFixture } from 'src/components/login/login.fixture';
 // test.describe is a hook that creates a test group and lets you define lifecycle stages such as beforeEach.
 test.describe('Quiz Feature', () => {
+  const baseURL = environment.testUrl
 
   test('Create a quiz successfully', async ({ page }) => {
-    await page.goto(testUrl);
+    await page.goto(baseURL);
 
     //create all fixtures
     const quizManagerFixture = new QuizManagerFixture(page);
@@ -18,6 +21,15 @@ test.describe('Quiz Feature', () => {
 
     await navbarFixture.clickNavbarAdminMenu();
     await navbarFixture.clickGoToQuizManager();
+
+    if (environment.production) {
+      expect(page).toHaveURL(`${baseURL}/login;returnUrl=%2Fadmin%2FquizManager`);
+
+      const loginFixture = new LoginFixture(page);
+      await loginFixture.fillUsername("admin");
+      await loginFixture.fillPassword("admin");
+      await loginFixture.clickLogin();
+    }
 
     await expect(page).toHaveURL(`${testUrl}/admin/quizManager`);
 
@@ -135,7 +147,7 @@ test.describe('Quiz Feature', () => {
   });
 
   test('Modify a quiz successfully', async ({ page }) => {
-    await page.goto(testUrl);
+    await page.goto(baseURL);
 
     //create all fixtures
     const quizManagerFixture = new QuizManagerFixture(page);
@@ -143,7 +155,17 @@ test.describe('Quiz Feature', () => {
 
     await navbarFixture.clickNavbarAdminMenu();
     await navbarFixture.clickGoToQuizManager();
+    if (environment.production) {
+      expect(page).toHaveURL(`${baseURL}/login;returnUrl=%2Fadmin%2FquizManager`);
+
+      const loginFixture = new LoginFixture(page);
+      await loginFixture.fillUsername("admin");
+      await loginFixture.fillPassword("admin");
+      await loginFixture.clickLogin();
+    }
+
     await expect(page).toHaveURL(`${testUrl}/admin/quizManager`);
+
 
     await page.waitForTimeout(2000);
     let lastQuiz = (await quizManagerFixture.getAllQuizs()).length - 2;
@@ -163,7 +185,7 @@ test.describe('Quiz Feature', () => {
 
   test('Delete a quiz successfully', async ({ page }) => {
 
-    await page.goto(testUrl);
+    await page.goto(baseURL);
 
     //create all fixtures
     const quizManagerFixture = new QuizManagerFixture(page);
@@ -171,6 +193,15 @@ test.describe('Quiz Feature', () => {
 
     await navbarFixture.clickNavbarAdminMenu();
     await navbarFixture.clickGoToQuizManager();
+    if (environment.production) {
+      expect(page).toHaveURL(`${baseURL}/login;returnUrl=%2Fadmin%2FquizManager`);
+
+      const loginFixture = new LoginFixture(page);
+      await loginFixture.fillUsername("admin");
+      await loginFixture.fillPassword("admin");
+      await loginFixture.clickLogin();
+    }
+
     await expect(page).toHaveURL(`${testUrl}/admin/quizManager`);
 
     await page.waitForTimeout(2000);

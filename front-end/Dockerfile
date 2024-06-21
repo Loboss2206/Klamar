@@ -1,4 +1,4 @@
-FROM node:18.16.0-alpine3.17 AS build
+FROM node:18-alpine AS build
 ARG ENVIRONMENT=production
 RUN mkdir /app && chown node:node /app
 USER node
@@ -10,7 +10,7 @@ RUN npm run build -- --configuration=$ENVIRONMENT && npm prune --production && r
 
 
 
-FROM nginx:alpine3.17
+FROM nginx:alpine
 RUN mkdir -p /var/cache/nginx && chown -R nginx:nginx /var/cache/nginx && \
     touch /var/run/nginx.pid && chown nginx:nginx /var/run/nginx.pid
 COPY default.conf /etc/nginx/conf.d/

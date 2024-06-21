@@ -2,6 +2,7 @@ import { test, expect } from '@playwright/test';
 import { SelectQuestionFixture } from 'src/components/select-question/select-question.fixture';
 import { SelectQuestionEditFixture } from 'src/components/select-question-edit/select-question-edit.fixture';
 import { environment } from 'src/environments/environment';
+import { LoginFixture } from 'src/components/login/login.fixture';
 
 test.describe('User feature', () => {
   const baseURL = environment.testUrl;
@@ -20,13 +21,30 @@ test.describe('User feature', () => {
     const gestionDesUtilisateurs = await page.locator('a:has-text("Gestion des utilisateurs")');
     expect(gestionDesUtilisateurs).toBeVisible();
 
-    await gestionDesUtilisateurs.click();
+    await gestionDesQuestions.click();
 
-    expect(page).toHaveURL(`${baseURL}/admin/selectUserToModify`);
+    if (environment.production) {
+      expect(page).toHaveURL(`${baseURL}/login;returnUrl=%2Fadmin%2FselectQuestion`);
+
+      const loginFixture = new LoginFixture(page);
+      await loginFixture.fillUsername("admin");
+      await loginFixture.fillPassword("admin");
+      await loginFixture.clickLogin();
+    }
+
+    expect(page).toHaveURL(`${baseURL}/admin/selectQuestion`);
   });
 
   test(`Should go to create question page`, async ({ page }) => {
     await page.goto(`${baseURL}/admin/selectQuestion`);
+    if (environment.production) {
+      expect(page).toHaveURL(`${baseURL}/login;returnUrl=%2Fadmin%2FselectQuestion`);
+
+      const loginFixture = new LoginFixture(page);
+      await loginFixture.fillUsername("admin");
+      await loginFixture.fillPassword("admin");
+      await loginFixture.clickLogin();
+    }
 
     let selectQuestionFixture = new SelectQuestionFixture(page);
     let createButtonQuestion = await selectQuestionFixture.getCreateQuestionButton();
@@ -38,7 +56,14 @@ test.describe('User feature', () => {
 
   test(`Should write in the form and create the question`, async ({ page }) => {
     await page.goto(`${baseURL}/admin/createQuestion`);
+    if (environment.production) {
+      expect(page).toHaveURL(`${baseURL}/login;returnUrl=%2Fadmin%2FcreateQuestion`);
 
+      const loginFixture = new LoginFixture(page);
+      await loginFixture.fillUsername("admin");
+      await loginFixture.fillPassword("admin");
+      await loginFixture.clickLogin();
+    }
     let selectQuestioneEditFixture = new SelectQuestionEditFixture(page);
     await selectQuestioneEditFixture.getQuestionForm();
 
@@ -69,6 +94,14 @@ test.describe('User feature', () => {
 
   test(`check if the question have been created`, async ({ page }) => {
     await page.goto(`${baseURL}/admin/selectQuestion`);
+    if (environment.production) {
+      expect(page).toHaveURL(`${baseURL}/login;returnUrl=%2Fadmin%2FselectQuestion`);
+
+      const loginFixture = new LoginFixture(page);
+      await loginFixture.fillUsername("admin");
+      await loginFixture.fillPassword("admin");
+      await loginFixture.clickLogin();
+    }
 
     let selectQuestionFixture = new SelectQuestionFixture(page);
     let createButtonQuestion = await selectQuestionFixture.getCreateQuestionButton();
@@ -84,6 +117,14 @@ test.describe('User feature', () => {
 
   test(`Should write in the form and modify the question`, async ({ page }) => {
     await page.goto(`${baseURL}/admin/selectQuestion`);
+    if (environment.production) {
+      expect(page).toHaveURL(`${baseURL}/login;returnUrl=%2Fadmin%2FselectQuestion`);
+
+      const loginFixture = new LoginFixture(page);
+      await loginFixture.fillUsername("admin");
+      await loginFixture.fillPassword("admin");
+      await loginFixture.clickLogin();
+    }
 
     let questionItem = await page.locator(".cellspacing").getByText("Quelle est la capitale de la France ?").last();
     expect(questionItem).toBeVisible();
@@ -110,6 +151,14 @@ test.describe('User feature', () => {
 
   test(`Create Quiz`, async ({ page }) => {
     await page.goto(`${baseURL}/admin/selectQuestion`);
+    if (environment.production) {
+      expect(page).toHaveURL(`${baseURL}/login;returnUrl=%2Fadmin%2FselectQuestion`);
+
+      const loginFixture = new LoginFixture(page);
+      await loginFixture.fillUsername("admin");
+      await loginFixture.fillPassword("admin");
+      await loginFixture.clickLogin();
+    }
 
     let selectQuestionFixture = new SelectQuestionFixture(page);
     let createButtonQuestion = await selectQuestionFixture.getCreateQuestionButton();

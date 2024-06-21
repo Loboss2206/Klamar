@@ -1,4 +1,4 @@
-FROM node:18.16.0-alpine3.17 AS build
+FROM node:18-alpine AS build
 RUN mkdir /app && chown node:node /app
 WORKDIR /app/
 COPY --chown=node package*.json ./

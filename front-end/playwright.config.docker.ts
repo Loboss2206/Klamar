@@ -3,6 +3,7 @@ import { PlaywrightTestConfig } from '@playwright/test';
 const config: PlaywrightTestConfig = {
   reporter: [['json', { outputFile: '/app/result/report.json' }]],
   timeout: 120000,
+  workers: 1,
   use: {
     baseURL: 'http://front',
     headless: true,
