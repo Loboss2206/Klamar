@@ -36,7 +36,7 @@ export class UserCreatorComponent {
 
 
   constructor(private router: Router, protected formBuilder: FormBuilder, private userService: UserService, private route: ActivatedRoute) {
-    if ((Number(this.route.snapshot.paramMap.get('id')))) {
+    if (Number(this.route.snapshot.paramMap.get('id'))) {
       this.user = userService.getTheUser(Number(this.route.snapshot.paramMap.get('id'))) as IUser;
       this.imageUrl = this.user.avatar;
       this.userCreatorForm = this.formBuilder.group({
@@ -65,7 +65,7 @@ export class UserCreatorComponent {
         userBirth: [''],
         hobbies: [''],
         baseZoom: [100, Validators.required],
-        choiceDisplaySkip: [true, Validators.required],
+        choiceDisplaySkip: ['true', Validators.required],
         choiceSimon: ['true', Validators.required],
         choicePrintTipsAfterError: ['true', Validators.required],
         choicePrintTipsAfterClick: ['true', Validators.required],
@@ -90,9 +90,9 @@ export class UserCreatorComponent {
 
   addUser(): void {
     let newUserConfig: IUserConfig = {
-      id: (this.userService.getUsers().length + 1) as number,
+      id: this.userService.getUsers().length + 1,
       simon: {
-        isColorful: this.userCreatorForm.get('choiceSimon')?.getRawValue(),
+        isColorful: JSON.parse(this.userCreatorForm.get('choiceSimon')?.getRawValue() || 'false'),
       },
       memory: {
         timeBeforeSwitching: this.userCreatorForm.get('secVisibleCardForMemory')?.getRawValue(),
@@ -104,14 +104,16 @@ export class UserCreatorComponent {
         timeBeforeHints: this.userCreatorForm.get('secTipsForMemory')?.getRawValue(),
       },
       quiz: {
-        showHintAfterError: this.userCreatorForm.get('choicePrintTipsAfterError')?.getRawValue(),
+        showHintAfterError: JSON.parse(this.userCreatorForm.get('choicePrintTipsAfterError')?.getRawValue() || 'false'),
         showHintAfterStart: false,
-        showHintAfterClick: this.userCreatorForm.get('choicePrintTipsAfterClick')?.getRawValue(),
-        showHintOneByOne: this.userCreatorForm.get('choicePrintTipsOneByOne')?.getRawValue(),
+        showHintAfterClick: JSON.parse(this.userCreatorForm.get('choicePrintTipsAfterClick')?.getRawValue() || 'false'),
+        showHintOneByOne: JSON.parse(this.userCreatorForm.get('choicePrintTipsOneByOne')?.getRawValue() || 'false'),
       },
       zoomLevel: this.userCreatorForm.get('baseZoom')?.getRawValue(),
-      displaySkip: this.userCreatorForm.get('choiceDisplaySkip')?.getRawValue()
+      displaySkip: JSON.parse(this.userCreatorForm.get('choiceDisplaySkip')?.getRawValue() || 'false')
     };
+    console.log("teeeeeeeeeeeeeeeeeeest");
+    console.log(typeof newUserConfig.displaySkip)
     let newUser: IUser = {
       id: (this.userService.getUsers().length + 1) as number,
       name: this.userCreatorForm.get('lastName')?.getRawValue(),
