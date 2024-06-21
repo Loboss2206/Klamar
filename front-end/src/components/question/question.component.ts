@@ -68,7 +68,7 @@ export class QuestionComponent implements OnInit, AfterViewInit {
       this.tips = question.tips;
       this.questionImage = question.questionImage;
       this.areResponsesImages = question.AreResponsesImages;
-      this.buttonSkip = this.userService.getUserConfig().displaySkip === true ? true : false;
+      this.buttonSkip = this.userService.getUserConfig().displaySkip;
       this.correctAnswer = null;
       this.wrongAnswers = [];
       this.idQuestion = parseInt(question.id.toString()).toString();

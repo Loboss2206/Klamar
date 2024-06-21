@@ -63,7 +63,7 @@ export class MemoryContainerComponent {
     this.pics = this.pics.concat(this.pics);
     console.log("display");
     console.log(this.userService.getUserConfig().displaySkip);
-    this.buttonSkip = this.userService.getUserConfig().displaySkip === true ? true : false;
+    this.buttonSkip = this.userService.getUserConfig().displaySkip;
     console.log(typeof this.buttonSkip);
     this.shuffleArray(this.pics);
     this.initialFlip = true;
