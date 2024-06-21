@@ -20,6 +20,10 @@
 
 ## Usage
 
+To log in to the administrator section of the project, you will need to register with these identifiers :
+- username : admin
+- password : admin
+
 To run our Klamar project, you need to run 
 
 in front-end :
