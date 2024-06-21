@@ -58,11 +58,6 @@ test.describe('User feature', () => {
     await expect(hobbiesInput).toBeVisible();
     await hobbiesInput.fill("Géographie, Histoire");
 
-    let baseZoomInput = await userCreatorFixture.getBaseZoomInput();
-    await expect(baseZoomInput).toBeVisible();
-    await baseZoomInput.fill("105");
-
-
     let typeOfDaltoSelect = await userCreatorFixture.getTypeOfDaltoSelect();
     await expect(typeOfDaltoSelect).toBeVisible();
     await typeOfDaltoSelect.selectOption("Deuteranopie");
