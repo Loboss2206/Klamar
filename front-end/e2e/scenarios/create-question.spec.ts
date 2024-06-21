@@ -32,7 +32,7 @@ test.describe('User feature', () => {
       await loginFixture.clickLogin();
     }
 
-    expect(page).toHaveURL(`${baseURL}/admin/selectQuestion`);
+    await expect(page).toHaveURL(`${baseURL}/admin/selectQuestion`);
   });
 
   test(`Should go to create question page`, async ({ page }) => {

@@ -3,7 +3,6 @@ import { PlaywrightTestConfig } from '@playwright/test';
 const config: PlaywrightTestConfig = {
   reporter: [['html', { open: 'always' }]],
   timeout: 120000,
-  workers: 1,
   use: {
     baseURL: 'http://localhost:4200',
     headless: true,

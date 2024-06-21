@@ -422,46 +422,64 @@ test.describe('Play Quiz', async () => {
       while (true) {
         await page.waitForTimeout(5000);
         let memoryItems = await memoryGameFixture.getAllMemoryItems();
+
         for (let i = 0; i < memoryItems.length - 1; i++) {
           if ((await memoryGameFixture.isMemoryItemHidden(i))) {
             continue;
           }
+
           for (let j = i + 1; j < memoryItems.length; j++) {
             if ((await memoryGameFixture.isMemoryItemHidden(j))) {
               continue;
             }
+
             if (lastTurn) {
               for (let k = 0; k < memoryItems.length - 1; k++) {
                 if ((await memoryGameFixture.isMemoryItemHidden(k))) {
                   continue;
                 }
+
                 for (let m = k + 1; m < memoryItems.length; m++) {
                   if ((await memoryGameFixture.isMemoryItemHidden(m))) {
                     continue;
                   }
+
                   await makeATry(k, m, lastTurn);
+                  if (nbPairs === memoryItems.length / 2) {
+                    await expect(page).toHaveURL(`${testUrl}/felicitations`);
+                    console.log('Sequence successfully followed!');
+                    console.log('Memory game successfully played!');
+                    return;
+                  }
                   break;
                 }
-                if (nbPairs === (memoryItems.length / 2)) {
-                  await expect(page).toHaveURL(`${testUrl}/felicitations`);
-                  console.log('Sequence successfully followed!');
-                  console.log('Memory game successfully played!');
-                  return;
+                if (nbPairs === memoryItems.length / 2) {
+                  break;
                 }
               }
-            }
-            await makeATry(i, j, lastTurn);
-            await page.waitForTimeout(1000);
+            } else {
+              await makeATry(i, j, lastTurn);
+              await page.waitForTimeout(1000);
 
-            if (await memoryGameFixture.isMemoryItemHidden(i) && await memoryGameFixture.isMemoryItemHidden(j)) {
-              nbPairs++;
-              i++;
-              j = i + 1;
-              if (nbPairs === (memoryItems.length / 2) - 1) lastTurn = true;
+              if (await memoryGameFixture.isMemoryItemHidden(i) && await memoryGameFixture.isMemoryItemHidden(j)) {
+                nbPairs++;
+                if (nbPairs === memoryItems.length / 2 - 1) lastTurn = true;
+                break;
+              }
             }
           }
+          if (nbPairs === memoryItems.length / 2) {
+            break;
+          }
+        }
+        if (nbPairs === memoryItems.length / 2) {
+          await expect(page).toHaveURL(`${testUrl}/felicitations`);
+          console.log('Sequence successfully followed!');
+          console.log('Memory game successfully played!');
+          return;
         }
       }
     });
+
   });
 });
