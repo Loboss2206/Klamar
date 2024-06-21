@@ -19,4 +19,5 @@ export interface IUserConfig {
     showHintOneByOne: boolean;
   };
   zoomLevel: number;
+  displaySkip: boolean;
 }

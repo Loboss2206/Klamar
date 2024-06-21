@@ -146,7 +146,7 @@ test.describe('User feature', () => {
 
         let deleteButton = await questionItem.locator("..").locator("..").getByRole('button', { name: "Supprimer" });
         expect(deleteButton).toBeVisible();
-        await deleteButton.click()
+        await deleteButton.click();
         expect(page).toHaveURL(`${baseURL}/admin/selectQuestion`);
     });
 });
