@@ -5,7 +5,7 @@ const config: PlaywrightTestConfig = {
   timeout: 120000,
   use: {
     baseURL: 'http://localhost:4200',
-    headless: false,
+    headless: true,
     viewport: { width: 1280, height: 720 },
     ignoreHTTPSErrors: true,
     video: 'on-first-retry',

@@ -277,7 +277,7 @@ export class MemoryContainerComponent {
   }
 
   private getDimension(): void {
-    this.width = this.pics.length >= 4 ? 4 : this.pics.length
-    this.height = Math.floor((this.pics.length - 1) / 4) + 1
+    this.width = this.pics.length >= 4 ? 4 : this.pics.length;
+    this.height = Math.floor((this.pics.length - 1) / 4) + 1;
   }
 }

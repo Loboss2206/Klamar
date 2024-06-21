@@ -256,7 +256,7 @@ export class UserCreatorComponent {
     } else {
       this.userService.modifyUser(newUser);
     }
-    this.message = "Utilisateur modifié"
+    this.message = "Utilisateur modifié";
     this.showMessage = true;
     setTimeout(() => {
       this.router.navigate(['/admin/selectUserToModify']);
