@@ -52,8 +52,8 @@ if $test; then
 fi
 
 
-
 echo "Running docker-compose down..."
+docker-compose --file docker-compose.yml dowm
 docker-compose --file docker-compose-e2e.yml down
 
 echo "Running docker-compose up..."

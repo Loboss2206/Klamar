@@ -42,6 +42,7 @@ fi
 
 
 echo "Running docker-compose down..."
+docker-compose --file docker-compose-e2e.yml down
 docker-compose --file docker-compose.yml down
 
 echo "Running docker-compose up..."
