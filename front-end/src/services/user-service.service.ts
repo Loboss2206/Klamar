@@ -1,13 +1,12 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import IUser from 'src/interfaces/IUser';
 import IAdmin from "../interfaces/IAdmin";
-import { adminList } from "../mocks/admin";
-import { BehaviorSubject, Subject, of } from "rxjs";
-import { Router } from "@angular/router";
-import { HttpClient } from '@angular/common/http';
-import { serverUrl, httpOptionsBase } from '../configs/server.config';
+import {adminList} from "../mocks/admin";
+import {BehaviorSubject, of, Subject} from "rxjs";
+import {Router} from "@angular/router";
+import {HttpClient} from '@angular/common/http';
+import {httpOptionsBase, serverUrl} from '../configs/server.config';
 import {Location} from '@angular/common';
-import {AuthGuard} from "./AuthGuard";
 
 @Injectable({
   providedIn: 'root'
@@ -70,6 +69,10 @@ export class UserService {
       return admin;
     }
     return user;
+  }
+
+  getTheUserNonAdmin(id: number) {
+    return this.users.find((user) => user.id === id);
   }
 
   getCharts(id: number) {

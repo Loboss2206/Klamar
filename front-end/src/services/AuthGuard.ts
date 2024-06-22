@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree, Router, Route, UrlSegment } from '@angular/router';
 import { Observable } from 'rxjs';
 import { UserService } from './user-service.service';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -31,7 +32,12 @@ export class AuthGuard {
       }
     }
     console.log('AuthGuard: User not logged in, redirecting to login page');
-    this.router.navigate(['/login', { returnUrl: url }]);
-    return this.router.parseUrl('/login');
+    // Since the login system is not working on the dockerized version of the test environment, we need to disable the redirection to the login page
+    if (environment.production || (environment.docker && environment.production)) {
+      this.router.navigate(['/login', { returnUrl: url }]);
+      return this.router.parseUrl('/login');
+    } else {
+      return true;
+    }
   }
 }

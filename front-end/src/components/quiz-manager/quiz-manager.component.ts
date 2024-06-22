@@ -1,6 +1,6 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild, OnDestroy } from '@angular/core';
 import { MaterialTableComponent } from "../material-table/material-table.component";
-import { QuestionsPicklistComponent } from "../questions-picklist/questions-picklist.component";
+import { QuestionsPicklistComponent } from '../questions-picklist/questions-picklist.component';
 import IQuiz from "../../interfaces/IQuiz";
 import { QuizService } from "../../services/quiz-service.service";
 import { NgClass, NgIf } from "@angular/common";
@@ -13,6 +13,7 @@ import { ImagesPicklistComponent } from "../images-picklist/images-picklist.comp
 import { SearchQuizSelectorComponent } from "../search-quiz-selector/search-quiz-selector.component";
 import { QuestionComponent } from "../question/question.component";
 import { SelectQuestionEditComponent } from "../select-question-edit/select-question-edit.component";
+import { SharedService } from '../../services/shared.service';
 
 @Component({
   selector: 'app-quiz-manager',
@@ -21,7 +22,7 @@ import { SelectQuestionEditComponent } from "../select-question-edit/select-ques
   styleUrl: './quiz-manager.component.scss',
   imports: [MaterialTableComponent, QuestionsPicklistComponent, NgIf, GenericButtonComponent, FormsModule, NgClass, ReactiveFormsModule, ImagesPicklistComponent, SearchQuizSelectorComponent, QuestionComponent, SelectQuestionEditComponent]
 })
-export class QuizManagerComponent implements OnInit {
+export class QuizManagerComponent implements OnInit, OnDestroy {
 
   @ViewChild('fileInput') fileInput: ElementRef | undefined;
 
@@ -32,6 +33,8 @@ export class QuizManagerComponent implements OnInit {
   quizImage: string = "";
   pickListDataSubscription: Subscription | undefined;
   imagePickListDataSubscription: Subscription | undefined;
+  questionsOrderSubscription: Subscription | undefined;
+  ImagesOrderSubscription: Subscription | undefined;
   allQuestionsObersavable: BehaviorSubject<IQuestion[]> = new BehaviorSubject<IQuestion[]>([]);
   existingQuizQuestions: IQuestion[] = [];
   isSimonGameOnQuiz: boolean = false;
@@ -44,8 +47,7 @@ export class QuizManagerComponent implements OnInit {
   imagesAlreadyInTheMemory: string[] = [];
   addQuestionOpened: boolean = false;
 
-
-  constructor(private quizService: QuizService, private fb: FormBuilder) {
+  constructor(private quizService: QuizService, private fb: FormBuilder, private sharedService: SharedService) {
   }
 
   ngOnInit(): void {
@@ -77,6 +79,14 @@ export class QuizManagerComponent implements OnInit {
       this.allImages = data.allImages;
       this.imagesAlreadyInTheMemory = data.imageAlreadyOnTheMemory;
     });
+
+    this.questionsOrderSubscription = this.sharedService.questionsOrder$.subscribe((questions) => {
+      this.existingQuizQuestions = questions;
+    });
+
+    this.ImagesOrderSubscription = this.sharedService.imagesOrder$.subscribe((images) => {
+      this.imagesAlreadyInTheMemory = images;
+    });
   }
 
   ngOnDestroy() {
@@ -86,6 +96,14 @@ export class QuizManagerComponent implements OnInit {
 
     if (this.imagePickListDataSubscription) {
       this.imagePickListDataSubscription.unsubscribe();
+    }
+
+    if (this.questionsOrderSubscription) {
+      this.questionsOrderSubscription.unsubscribe();
+    }
+
+    if (this.ImagesOrderSubscription) {
+      this.ImagesOrderSubscription.unsubscribe();
     }
   }
 
@@ -108,7 +126,6 @@ export class QuizManagerComponent implements OnInit {
       reader.readAsDataURL(file);
     });
   }
-
 
   onFileSelected(event: any) {
     const file = event.target.files[0];
@@ -175,6 +192,8 @@ export class QuizManagerComponent implements OnInit {
   }
 
   SaveCurrentQuiz() {
+    console.log("existing");
+    console.log(this.existingQuizQuestions);
     let questionsIDs: number[] = this.existingQuizQuestions.map((question) => question.id);
     let specials: { name: string, rulesForSimon?: ISimonConfig; }[] = [];
     let picsMemory: string[] = [];

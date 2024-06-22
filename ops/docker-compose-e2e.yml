@@ -1,0 +1,55 @@
+services:
+  back-test:
+    build: ../backend
+    container_name: back-test
+    command: ["npm", "run", "start:e2e"]
+    volumes:
+      - ../backend/database:/app/database
+    networks:
+      - my_network
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://back-test:9428/api/status"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 3s
+
+  front-test:
+    build:
+      context: ../front-end
+      dockerfile: Dockerfile
+      args:
+        ENVIRONMENT: docker-e2e
+    container_name: front-test
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://front-test:80/"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 3s
+
+    networks:
+      - my_network
+    depends_on:
+      back-test:
+        condition: service_healthy
+  
+  playwright:
+    build:
+      context: ../front-end
+      dockerfile: Dockerfile-e2e
+    container_name: playwright
+    networks:
+      - my_network
+    volumes:
+      - ./test_results:/app/result
+    depends_on:
+      front-test:
+        condition: service_healthy
+
+volumes:
+  my_volume:
+  result:
+
+networks:
+  my_network:

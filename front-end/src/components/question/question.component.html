@@ -6,20 +6,24 @@
 
   <div class="tipsContainer">
     <app-genericButton class="tutorialButton" (click)=goToHowToPlay()>Tutoriel</app-genericButton>
-    <app-tips (click)="incrementIndex()" #tipsComponent canBeClicked="canOpenTipsOnClick">
-
-      <ul *ngIf="currentTipIndex === -1">
+    <app-tips (click)="incrementIndex()" [displayButton] ="String(this.user && this.user.config.quiz.showHintAfterClick) === 'true'" #tipsComponent canBeClicked="canOpenTipsOnClick">
+      <ul *ngIf="currentTipIndex === -2">
         <li *ngFor="let tip of tips">
           {{ tip }}
         </li>
       </ul>
-      <ul *ngIf="currentTipIndex !== -1">
+      <ul *ngIf="currentTipIndex >= 0">
         <li>
-          {{ tips[currentTipIndex] }}
+          {{ tips[0] }}
+        </li>
+        <li *ngIf="currentTipIndex >= 1 || this.user && String(this.user.config.quiz.showHintOneByOne) === 'false'">
+          {{ tips[1] }}
         </li>
       </ul>
     </app-tips>
-    <app-genericButton class="skipButton" (click)=skipQuestion()>Passer la question</app-genericButton>
+    <div *ngIf="buttonSkip == true">
+      <app-genericButton class="skipButton" (click)=skipQuestion()>Passer la question</app-genericButton>
+    </div>
   </div>
 
 

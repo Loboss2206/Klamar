@@ -1,17 +1,14 @@
 <div class="simon-game">
-  <div class="skipper">
+  <div *ngIf="buttonSkip == true" class="skipper">
     <app-genericButton class="skipButton" (click)=skipSimon()>Passer le Simon</app-genericButton>
   </div>
   <div class="simon-board">
     <div *ngFor="let i of numberOfBoxesArray" class="simon-button" [id]="'button-' + i"
-         [style.transform]="getButtonStyle(i)" [style.z-index]="(i === numberOfBoxesArray.length - 1) ? 0 : 1"
-         [style.background-color]="getButtonColor(i)" (click)="onButtonClick(i)"></div>
+      [style.transform]="getButtonStyle(i)" [style.z-index]="(i === numberOfBoxesArray.length - 1) ? 0 : 1"
+      [style.background-color]="getButtonColor(i)" (click)="onButtonClick(i)"></div>
   </div>
 </div>
 
 <div #congratsButton class="congrats" (click)="takeAction()">
-  <span *ngIf="!isGoodSequence && !isGameStarted">Appuyez pour commencer</span>
-  <span *ngIf="!isGoodSequence && isGameRunning">Votre tour</span>
-  <span *ngIf="!isGoodSequence && !isGameRunning && isGameStarted">Regardez la séquence</span>
-  <span *ngIf="isGoodSequence">Bravo !</span>
+  <span>{{message}}</span>
 </div>

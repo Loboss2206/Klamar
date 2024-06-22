@@ -8,7 +8,7 @@
             <p>Ajouter une photo</p>
         </div>
         <div class="inputs">
-            <p>Informations personnelles</p>
+            <p>Informations générales</p>
             <div class="personnal-information">
                 <label>
                     <b>Prénom</b> <br>
@@ -29,9 +29,7 @@
                     <input type="text" class="userInput" name="userInput" [formControlName]="'hobbies'"
                         placeholder="Ex: Géographie, Sport, ..." />
                 </label>
-                <label><b>Zoom de base</b> <br>
-                    <input type="number" min="0" step="1" max="300" value="100" [formControlName]="'baseZoom'" required>
-                </label>
+
                 <label><b>Daltonisme</b> <br>
                     <select name="dalto" id="dalto-select" [formControlName]="'typeOfDalto'">
                         <option value="nodaltonisme" selected>Pas de daltonisme</option>
@@ -45,6 +43,16 @@
                         <option value="deuteranomaly">Deuteranomalie</option>
                     </select>
                 </label>
+                <label> <b>Afficher le bouton "Passer les questions"</b> <br>
+                    <label>
+                        <input type="radio" name="choiceDisplaySkip" value="true"
+                            [formControlName]="'choiceDisplaySkip'" required> Oui
+                    </label>
+                    <label>
+                        <input type="radio" name="choiceDisplaySkip" value="false"
+                            [formControlName]="'choiceDisplaySkip'"> Non
+                    </label>
+                </label>
             </div>
             <p>Simon</p>
             <div class="settings-for-games">
@@ -57,7 +65,7 @@
                         <input type="radio" name="choiceSimon" value="false" [formControlName]="'choiceSimon'"> Non
                     </label>
                 </label>
-                <label> <b>Nombre de secondes d’inactivité avant d’afficher un indice ?</b> <br>
+                <label> <b>Nombre de secondes d’inactivité avant de réafficher la séquence ?</b> <br>
                     <input type="number" min="0" step="1" max="10000" [formControlName]="'secTipsForSimon'" required>
                 </label>
             </div>
@@ -74,7 +82,7 @@
                 </label>
             </div>
 
-            <p>Quiz</p>
+            <p>Questions</p>
             <div class="settings-for-games">
                 <label> <b>Afficher un indice directement après une erreur ?</b> <br>
                     <label>

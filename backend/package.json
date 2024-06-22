@@ -4,12 +4,13 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node app/index.js",
+    "start": "cross-env DB_FOLDER=prod/ node app/index.js",
     "dev": "nodemon app/index.js",
     "lint": "./node_modules/.bin/eslint -c .eslintrc.js app/",
     "lint:fix": "./node_modules/.bin/eslint -c .eslintrc.js app/ --fix",
     "start:e2e": "rimraf ./database/e2e && copyfiles -f ./database/e2e-starter/* ./database/e2e ./database/e2e && cross-env DB_FOLDER=e2e/ node app/index.js",
-    "frontTheBack": "concurrently \"cd ../front-end && npm run start\" \"cd ../backend && npm run dev\""
+    "frontTheBack": "concurrently \"cd ../front-end && npm run start\" \"cd ../backend && npm run dev\"",
+    "test": "concurrently \"cd ../backend && npm run start:e2e\" \"cd ../front-end && npm run test:e2e\""
   },
   "precommit": [
     "lint"
@@ -30,7 +31,8 @@
     "cors": "2.8.5",
     "express": "^4.17.1",
     "joi": "14.3.1",
-    "morgan": "1.9.1"
+    "morgan": "1.9.1",
+        "rimraf": "^5.0.1"
   },
   "devDependencies": {
     "copyfiles": "^2.4.1",
@@ -41,7 +43,6 @@
     "mkdirp": "^3.0.1",
     "nodemon": "2.0.2",
     "pre-commit": "1.2.2",
-    "rimraf": "^5.0.1",
     "concurrently": "^6.5.1"
   },
   "nodemonConfig": {

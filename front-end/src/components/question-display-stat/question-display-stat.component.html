@@ -6,9 +6,10 @@
   </div>
 
   <div class="griddy">
-    <app-quizButton [isStatsButton]="true" [class.expandables]="correctAnswer === answer" *ngFor="let answer of answers"
-      [color]="{correct: answer === correctAnswer ,wrong: answer !== correctAnswer && wrongAnswers.includes(answer)}"
-      [img]="areResponsesImages ? answer : ''">{{ answer }}
-    </app-quizButton>
+    <div class="answer" *ngFor="let answer of answers">
+      <app-quizButton [isStatsButton]="true" [class.expandables]="correctAnswer === answer"
+        [img]="areResponsesImages ? answer : ''">{{ answer }}
+      </app-quizButton>
+      <p *ngIf="correctAnswer === answer" class="correct-answer">Bonne réponse</p>
+    </div>
   </div>
-</div>

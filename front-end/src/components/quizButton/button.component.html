@@ -1,5 +1,5 @@
 <div class="buttonBackground"
-  [ngClass]="{'btnGreen': color?.correct, 'btnGray': color?.wrong, 'btnGrayImage': color?.wrong && img !== '', 'liteButton': lite, 'stat-button': isStatsButton}">
+  [ngClass]="{'btnGreen': color?.correct, 'btnGray': color?.wrong, 'btnGrayImage': color?.wrong && img !== '', 'liteButton': lite, 'stat-button': isStatsButton, 'flex':img === ''}">
   <span *ngIf="img === ''" class="buttonTxt">
     <ng-content></ng-content>
   </span>

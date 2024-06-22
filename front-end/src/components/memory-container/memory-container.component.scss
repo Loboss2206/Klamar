@@ -19,3 +19,29 @@
     font-weight: bold;
     color: var(--button-green-background-color);
 }
+
+.skipButton {
+    position: fixed;
+    bottom: 0px;
+    right: 0px;
+    text-align: center;
+    width: fit-content;
+    transition: all 0.5s ease;
+    cursor: var(--pointer-cursor);
+}
+
+.skipper {
+    position: fixed;
+    width: 100vw;
+    bottom: 0;
+    right: 0;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.memory-game ::ng-deep app-genericButton>button {
+    background-color: black;
+    border-radius: 15px 0 0 0;
+}

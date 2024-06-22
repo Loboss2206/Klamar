@@ -9,6 +9,7 @@ import ISimonConfig from "../../interfaces/ISimonConfig";
 import { GenericButtonComponent } from "../genericButton/genericButton.component";
 import ISimonStat from "../../interfaces/ISimonStat";
 import { StatsService } from "../../services/stats.service";
+import { interval } from 'rxjs';
 
 @Component({
   selector: 'simon-game',
@@ -46,6 +47,8 @@ export class SimonGameComponent implements OnInit, OnDestroy {
   tipsMeter: number = 0;
   startTime: number = 0;
   shutup: boolean = false;
+  message: string = '';
+  buttonSkip: boolean = true;
 
   constructor(private renderer: Renderer2, private el: ElementRef, private route: ActivatedRoute, private quizService: QuizService, private userService: UserService, private statsService: StatsService) {
   }
@@ -59,11 +62,18 @@ export class SimonGameComponent implements OnInit, OnDestroy {
     this.numberMaxOfRetries = this.rulesForSimon?.numberOfRetriesAllowed || 0;
     this.intervalTime = this.user ? this.user.config.simonHints.displayTheFullSequenceAfter : 5000;
     this.numberOfBoxesArray = Array.from({ length: this.numberOfBoxes }, (_, i) => i);
+    this.buttonSkip = this.userService.getUserConfig().displaySkip;
     this.startTime = Date.now();
     this.shutup = false;
+    this.onMessageReceived('wait', true);
   }
 
-  onButtonClick(index: number) {
+  async ngAfterViewInit() {
+    await this.pause(200);
+    this.toggleBigIt(true);
+  }
+
+  async onButtonClick(index: number) {
     if (this.sequencePlaying) {
       return;
     }
@@ -73,14 +83,13 @@ export class SimonGameComponent implements OnInit, OnDestroy {
     this.renderer.setStyle(button, 'box-shadow', `0 0 30px 15px ${this.buttonColors[index]}`);
     this.renderer.addClass(button, 'active');
     this.playSound(index);
-    setTimeout(() => {
-      this.renderer.setStyle(button, 'box-shadow', 'none');
-      this.renderer.removeClass(button, 'active');
-    }, 800); this.playerInput.push(index);
+    await this.pause(800);
+    this.renderer.setStyle(button, 'box-shadow', 'none');
+    this.renderer.removeClass(button, 'active');
+    this.playerInput.push(index);
     this.checkPlayerInput();
-    setTimeout(() => {
-      this.startInactivityInterval();
-    }, 1000);
+    await this.pause(1000);
+    this.startInactivityInterval();
   }
 
   playSound(index: number) {
@@ -94,6 +103,10 @@ export class SimonGameComponent implements OnInit, OnDestroy {
     const note = Tone.Frequency(frequency, "hz").toNote();
     synth.triggerAttackRelease(note, "8n");
     Tone.start();
+  }
+
+  async pause(milliseconds: number) {
+    return new Promise(resolve => setTimeout(resolve, milliseconds));
   }
 
   startInactivityInterval() {
@@ -131,33 +144,64 @@ export class SimonGameComponent implements OnInit, OnDestroy {
   }
 
   generateGameInput() {
-    this.gameInput.push(Math.floor(Math.random() * this.numberOfBoxes));
+    if (this.gameInput.length === 0) {
+      this.gameInput.push(Math.floor(Math.random() * this.numberOfBoxes));
+      return;
+    }
+    const lastInput = this.gameInput[this.gameInput.length - 1];
+    let newRandom;
+    do {
+      newRandom = Math.floor(Math.random() * this.numberOfBoxes);
+    } while (newRandom === lastInput);
+    this.gameInput.push(newRandom);
   }
 
-  playSequence() {
+  async onMessageReceived(message: 'yourTurn' | 'wait' | 'congrats' | 'playSequence', persistant: boolean = false) {
+    if (message === 'yourTurn') {
+      this.message = 'C\'est à vous de jouer !';
+    }
+    if (message === 'wait') {
+      this.message = 'Appuyer pour commencer...';
+    }
+    if (message === 'congrats') {
+      this.message = 'Bravo !';
+    }
+    if (message === 'playSequence') {
+      this.message = 'Regardez la séquence...';
+    }
+
+    this.toggleBigIt(true);
+    if (!persistant) {
+      await this.pause(2000);
+      this.toggleBigIt(false);
+    }
+  }
+
+  async playSequence() {
     this.playerInput = [];
     this.isGameRunning = false;
     this.clearAllIntervals();
     this.sequencePlaying = true;
-    let i = 0;
-    const interval = setInterval(() => {
+    this.onMessageReceived('playSequence');
+    await this.pause(3000);
+    for (let i = 0; i < this.gameInput.length; i++) {
       const button = this.el.nativeElement.querySelector(`#button-${this.gameInput[i]}`);
       this.renderer.setStyle(button, 'box-shadow', `0 0 30px 15px ${this.buttonColors[this.gameInput[i]]}`);
       this.renderer.addClass(button, 'active');
       this.playSound(this.gameInput[i]);
-      setTimeout(() => {
-        this.renderer.setStyle(button, 'box-shadow', 'none');
-        this.renderer.removeClass(button, 'active');
-      }, 800);
-      i++;
-      if (i >= this.gameInput.length) {
-        clearInterval(interval);
+      await this.pause(800);
+      this.renderer.setStyle(button, 'box-shadow', 'none');
+      this.renderer.removeClass(button, 'active');
+      if ((i + 1) >= this.gameInput.length) {
         this.sequencePlaying = false;
         this.startInactivityInterval();
         this.isGameRunning = true;
       }
-    }, 1000);
-    this.intervals.push(interval);
+    }
+
+    await this.pause(1000);
+    this.onMessageReceived('yourTurn');
+    await this.pause(3000);
   }
 
 
@@ -168,7 +212,7 @@ export class SimonGameComponent implements OnInit, OnDestroy {
     return `rotate(${rotation}deg) translate(${translation}vh) rotate(-${rotation}deg)`;
   }
 
-  checkPlayerInput() {
+  async checkPlayerInput() {
     if (this.playerInput.length < this.gameInput.length) {
       if (this.playerInput[this.playerInput.length - 1] !== this.gameInput[this.playerInput.length - 1]) {
         this.numberOfRetries++;
@@ -202,36 +246,27 @@ export class SimonGameComponent implements OnInit, OnDestroy {
       }
       this.numberOfRetries = 0;
       this.isGoodSequence = true;
-      this.bigIt();
-      setTimeout(() => {
-        this.isGoodSequence = false;
-        this.playerInput = [];
-        this.generateGameInput();
-        this.playSequence();
-      }, 4000);
+      this.onMessageReceived('congrats');
+      await this.pause(4000);
+      this.isGoodSequence = false;
+      this.playerInput = [];
+      this.generateGameInput();
+      this.playSequence();
     }
   }
 
-  bigIt() {
-    setTimeout(
-      () => {
-        this.renderer.addClass(this.congratsButton?.nativeElement, 'fullScreen');
-      },
-      200
-    );
-    setTimeout(
-      () => {
-        this.renderer.removeClass(this.congratsButton?.nativeElement, 'fullScreen');
-      },
-      3500
-    );
+  toggleBigIt(on: boolean) {
+    if (on)
+      this.renderer.addClass(this.congratsButton?.nativeElement, 'fullScreen');
+    else
+      this.renderer.removeClass(this.congratsButton?.nativeElement, 'fullScreen');
   }
 
   generateDistinctColors(n: number): string[] {
     const colors: string[] = [];
-    const hueDifference = 360 / n;
+    const hueDifference = 1290 / n;
     for (let i = 0; i < n; i++) {
-      const hue = (hueDifference * i) % 360;
+      const hue = (hueDifference * i) % 1290;
       const color = `hsl(${hue}, 80%, 50%)`;
       colors.push(color);
     }
@@ -275,7 +310,6 @@ export class SimonGameComponent implements OnInit, OnDestroy {
   }
 
   skipSimon() {
-    console.log("cassé");
     const simonStat: ISimonStat = {
       id: 1,
       erreurSimon: this.numberOfRetries,

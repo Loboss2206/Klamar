@@ -1,4 +1,5 @@
 .nav_current_page_head {
+  transition: all 0.3s ease;
   width: 60vw;
   height: fit-content;
   padding: 0.5vw;
@@ -19,21 +20,16 @@
   margin: 0 0.5vw;
 }
 
-.dropdown {
-
-}
-
 .admin {
   cursor: pointer;
   color: var(--navabar-title-color);
   font-family: "Fjalla One", sans-serif, serif;
   text-align: center;
-  transition: all 0.3s ease;
   display: flex;
   justify-content: center;
   align-items: center;
   width: 15vw;
-  font-size: 1vw;
+  font-size: 1.4vw;
   border-radius: 0 0 0 10px;
 }
 
@@ -52,15 +48,71 @@
   align-items: center;
 }
 
-.dropdown-menu, .dropdown-menu>ul {
+.dropdown-menu,
+.dropdown-menu>ul {
   position: absolute;
+  transform: translateX(-3.5vw);
   background-color: #000000;
   list-style-type: none;
   padding: 0;
   border-radius: 15px;
   min-width: 160px;
+  width: 20vw;
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
   z-index: 1;
+  transition: all 0.3s ease;
+  animation: fadeIn 0.2s;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+.admin:hover .material-symbols-outlined {
+  animation: shield 0.5s;
+}
+
+.quit:hover .material-symbols-outlined {
+  animation: play-button 1s;
+}
+
+@keyframes play-button {
+  0% {
+    transform: translateX(0);
+  }
+
+  25% {
+    transform: translateX(-10px);
+  }
+
+  50% {
+    transform: translateX(10px);
+  }
+
+  100% {
+    transform: translateX(0);
+  }
+
+}
+
+@keyframes shield {
+  0% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.4);
+  }
+
+  100% {
+    transform: scale(1);
+  }
 }
 
 .dropdown-menu a {
@@ -134,10 +186,10 @@
   justify-content: center;
   align-items: center;
   width: 15vw;
-  font-size: 1vw;
+  font-size: 1.4vw;
 }
 
-.logo{
+.logo {
   background-color: black;
   cursor: var(--pointer-cursor);
   padding: 5px;
@@ -147,6 +199,7 @@
   width: 15vw;
   border-radius: 0 0 10px 0;
   height: 8vh;
+  transition: all 0.3s ease;
 }
 
 .quit:hover {
@@ -154,10 +207,52 @@
 }
 
 .logo-icon {
-  width: 90px;
-  height: auto;
-  fill: white;
-  color: white;
+  width: auto;
+  height: 100%;
+  transition: all 0.3s ease;
+}
+
+.logo-icon:hover {
+  transition: all 0.3s ease;
+  animation: spooky-scary-squidward 0.5s infinite;
+}
+
+.logo-icon:active {
+  animation: squid-attack 0.5s;
+}
+
+@keyframes squid-attack {
+  0% {
+    transform: scale(1);
+  }
+
+  100% {
+    transform: scale(4);
+  }
+
+}
+
+@keyframes spooky-scary-squidward {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  25% {
+    transform: rotate(10deg);
+  }
+
+  50% {
+    transform: rotate(0deg);
+  }
+
+  75% {
+    transform: rotate(-10deg);
+  }
+
+  100% {
+    transform: rotate(0deg);
+  }
+
 }
 
 .logo-text {

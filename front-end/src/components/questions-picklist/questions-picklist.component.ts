@@ -9,9 +9,10 @@ import {
 } from "@angular/cdk/drag-drop";
 import { NgForOf, NgIf } from "@angular/common";
 import IQuestion from "../../interfaces/IQuestion";
-import { BehaviorSubject, Observable } from "rxjs";
+import { Observable, BehaviorSubject } from "rxjs";
 import { SearchQuizSelectorComponent } from "../search-quiz-selector/search-quiz-selector.component";
 import { GenericButtonComponent } from "../genericButton/genericButton.component";
+import { SharedService } from '../../services/shared.service';
 
 @Component({
   selector: 'app-questions-picklist',
@@ -41,12 +42,12 @@ export class QuestionsPicklistComponent implements OnInit {
   questionsInTheQuiz: BehaviorSubject<IQuestion[]> = new BehaviorSubject<IQuestion[]>([]);
   allQuestions: IQuestion[] = [];
 
-
   public kanban: Kanban = new Kanban('Quiz Editor', [
     new KanbanCol('Questions disponibles', '1', []),
     new KanbanCol('Questions dans le quiz ', '2', [])
   ]);
-  constructor() { }
+
+  constructor(private sharedService: SharedService) { }
 
   public ngOnInit(): void {
     this.allQuestionsObersavable.subscribe((questions) => {
@@ -62,7 +63,6 @@ export class QuestionsPicklistComponent implements OnInit {
     this.questionsInTheQuiz.subscribe((questions) => {
       this.kanban.col[1].questions = questions;
     });
-
   }
 
   public dropGrid(event: CdkDragDrop<IQuestion[]>): void {
@@ -79,6 +79,15 @@ export class QuestionsPicklistComponent implements OnInit {
         event.currentIndex);
     }
     this.questionsOrder = this.kanban.col[1].questions;
+    this.sharedService.setQuestionsOrder(this.questionsOrder); // Update the shared service
+  }
+
+  moveFirstElement() {
+    if (this.kanban.col[0].questions.length > 0) {
+      const firstElement = this.kanban.col[0].questions.shift();
+      this.kanban.col[1].questions.push(firstElement as IQuestion);
+      this.sharedService.setQuestionsOrder(this.kanban.col[1].questions); // Update the shared service
+    }
   }
 
   SearchQuestions($event: string) {
@@ -103,5 +112,3 @@ class Kanban {
 class KanbanCol {
   constructor(public name: string, public id: string, public questions: IQuestion[]) { }
 }
-
-

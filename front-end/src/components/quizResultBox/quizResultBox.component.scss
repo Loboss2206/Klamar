@@ -1,38 +1,38 @@
 .quizResultBox {
-    border: var(--result-border);
-    display: flex;
-    padding: 5px;
-    flex-direction: row;
-    justify-content: space-around;
-    font-family: "Noto Sans Thai Looped", sans-serif;
-    text-shadow: var(--text-shadow);
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  border: 2px solid #ccc;
 }
 
-.quizResultBox>div:first-child {
-    margin-right: 40px;
+.quizResultBox > div {
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-.quizResultBox>div {
-    margin-right: 10px;
+.quizResultBox > div:first-child {
+  margin-right: 40px;
 }
 
-.quizResultBox>div:first-child>p:nth-child(1) {
-    text-align: center;
+.quizResultBox > div:not(:first-child) {
+  margin-right: 10px;
 }
 
-.quizResultBox>div>p:nth-child(1) {
-    font-weight: 900;
-    font-size: 2em;
-    text-align: center;
+.quizResultBox > div > p:nth-child(1) {
+  font-weight: 900;
+  font-size: 2em;
+  text-align: center;
 }
 
-.quizResultBox>div:first-child>p:nth-child(2) {
-    text-align: center;
-    font-size: 2em;
+.quizResultBox > div > p:nth-child(2) {
+  text-align: center;
+  font-weight: 600;
+  font-size: 2em;
 }
 
-.quizResultBox>div>p:nth-child(2) {
-    text-align: center;
-    font-weight: 600;
-    font-size: 2em;
+.quizResultBox > div > p:nth-child(3) {
+  display: flex;
+  justify-content: center;
 }
+
