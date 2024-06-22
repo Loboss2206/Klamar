@@ -9,7 +9,7 @@ import { environment } from 'src/environments/environment';
 import { LoginFixture } from 'src/components/login/login.fixture';
 // test.describe is a hook that creates a test group and lets you define lifecycle stages such as beforeEach.
 test.describe('Quiz Feature', () => {
-  const baseURL = environment.testUrl
+  const baseURL = environment.testUrl;
 
   test('Create a quiz successfully', async ({ page }) => {
     await page.goto(baseURL);
@@ -173,7 +173,7 @@ test.describe('Quiz Feature', () => {
     expect(quizManagerFixture.getEditQuizButton(lastQuiz)).toBeVisible();
     quizManagerFixture.clickEditButton(lastQuiz);
 
-    expect(await quizManagerFixture.getCreateQuestionButton()).toBeVisible();
+    await expect(await quizManagerFixture.getCreateQuestionButton()).toBeVisible();
     const inputName = await quizManagerFixture.getInput('quiz-name');
     await inputName.fill('Quiz E2E modified');
     const inputDescription = await quizManagerFixture.getTextArea('quiz-description');
