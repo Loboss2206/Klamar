@@ -8,7 +8,7 @@ services:
     networks:
       - my_network
     healthcheck:
-      test: ["CMD", "curl", "-f", "http://back:9428/api/status"]
+      test: ["CMD", "curl", "-f", "http://back-test:9428/api/status"]
       interval: 30s
       timeout: 10s
       retries: 3
@@ -22,7 +22,7 @@ services:
         ENVIRONMENT: docker-e2e
     container_name: front-test
     healthcheck:
-      test: ["CMD", "curl", "-f", "http://front:80/"]
+      test: ["CMD", "curl", "-f", "http://front-test:80/"]
       interval: 30s
       timeout: 10s
       retries: 3
