@@ -1,7 +1,7 @@
 services:
-  back:
+  back-test:
     build: ../backend
-    container_name: back
+    container_name: back-test
     command: ["npm", "run", "start:e2e"]
     volumes:
       - ../backend/database:/app/database
@@ -14,13 +14,13 @@ services:
       retries: 3
       start_period: 3s
 
-  front:
+  front-test:
     build:
       context: ../front-end
       dockerfile: Dockerfile
       args:
         ENVIRONMENT: docker-e2e
-    container_name: front
+    container_name: front-test
     healthcheck:
       test: ["CMD", "curl", "-f", "http://front:80/"]
       interval: 30s
@@ -31,7 +31,7 @@ services:
     networks:
       - my_network
     depends_on:
-      back:
+      back-test:
         condition: service_healthy
   
   playwright:
@@ -44,7 +44,7 @@ services:
     volumes:
       - ./test_results:/app/result
     depends_on:
-      front:
+      front-test:
         condition: service_healthy
 
 volumes:
